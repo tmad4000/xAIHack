@@ -1144,10 +1144,12 @@
             // Node labels - show summary text, truncated
             const nodeText = node.append('text')
                 .attr('class', 'node-label')
-                .attr('text-anchor', 'start')
+                .attr('x', 8)
+                .attr('y', 4)
                 .attr('fill', '#e6edf3')
                 .attr('font-size', '10px')
                 .style('pointer-events', 'none')
+                .style('dominant-baseline', 'hanging')
                 .each(function(d) {
                     const text = d3.select(this);
                     const summary = d.summary || 'No summary';
@@ -1180,7 +1182,7 @@
                     lines.forEach((line, i) => {
                         text.append('tspan')
                             .attr('x', 8)
-                            .attr('dy', i === 0 ? 14 : 14)
+                            .attr('dy', i === 0 ? 10 : 14)
                             .text(line);
                     });
                 });
