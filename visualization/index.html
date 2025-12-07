@@ -818,20 +818,20 @@
         let selectedCluster = null;
         let selectedNode = null;
 
-        // Color palette for clusters - warm, distinctive civic colors
+        // Color palette for clusters - muted, sophisticated tones
         const clusterColors = {
-            'Housing': '#ff7b54',      // Coral
-            'Transit': '#58a6ff',      // Sky blue
-            'Sidewalks': '#3fb950',    // Green
-            'Safety': '#f85149',       // Red
-            'Green Space': '#56d364',  // Bright green
-            'Schools': '#d2a8ff',      // Lavender
+            'Housing': '#e07a5f',      // Terracotta
+            'Transit': '#81b29a',      // Sage
+            'Sidewalks': '#7c98b3',    // Steel blue
+            'Safety': '#c97c5d',       // Rust
+            'Green Space': '#a8c686',  // Olive
+            'Schools': '#b8a9c9',      // Dusty lavender
             'Other': '#8b949e'         // Gray
         };
 
         const fallbackColors = [
-            '#ff7b54', '#58a6ff', '#3fb950', '#ffa657', '#f85149',
-            '#56d364', '#d2a8ff', '#79c0ff', '#a5d6ff', '#ffd33d'
+            '#e07a5f', '#81b29a', '#7c98b3', '#c97c5d', '#a8c686',
+            '#b8a9c9', '#9ab3d5', '#d4a574', '#a3c4bc', '#c9b1d4'
         ];
 
         // Topic keywords for classification
@@ -1181,11 +1181,10 @@
             const nodeText = node.append('text')
                 .attr('class', 'node-label')
                 .attr('x', 8)
-                .attr('y', 4)
+                .attr('y', 12)
                 .attr('fill', '#e6edf3')
                 .attr('font-size', '10px')
                 .style('pointer-events', 'none')
-                .style('dominant-baseline', 'hanging')
                 .each(function(d) {
                     const text = d3.select(this);
                     const summary = d.summary || 'No summary';
@@ -1218,23 +1217,26 @@
                     lines.forEach((line, i) => {
                         text.append('tspan')
                             .attr('x', 8)
-                            .attr('dy', i === 0 ? 10 : 14)
+                            .attr('dy', i === 0 ? 0 : 13)
                             .text(line);
                     });
                 });
 
             // Add rounded rectangle background behind text
+            // Height calculation: 6px top + lineCount*13px content + 6px bottom
+            const getNodeHeight = (d) => (d.lineCount || 2) * 13 + 10;
+
             node.insert('rect', 'text')
                 .attr('class', 'node-bg')
                 .attr('rx', 6)
                 .attr('ry', 6)
                 .attr('fill', '#21262d')
-                .attr('stroke', d => d.clusterColor || '#58a6ff')
+                .attr('stroke', d => d.clusterColor || '#81b29a')
                 .attr('stroke-width', 2)
                 .attr('fill-opacity', 1)
                 .attr('stroke-opacity', 1)
                 .attr('width', d => Math.max(d.maxLineWidth + 16, 100))
-                .attr('height', d => (d.lineCount || 2) * 14 + 12)
+                .attr('height', d => getNodeHeight(d))
                 .attr('x', 0)
                 .attr('y', 0)
                 .style('cursor', 'pointer')
@@ -1246,9 +1248,9 @@
             simulation.on('tick', () => {
                 link
                     .attr('x1', d => d.source.x + (d.source.maxLineWidth + 16) / 2)
-                    .attr('y1', d => d.source.y + ((d.source.lineCount || 2) * 14 + 12) / 2)
+                    .attr('y1', d => d.source.y + getNodeHeight(d.source) / 2)
                     .attr('x2', d => d.target.x + (d.target.maxLineWidth + 16) / 2)
-                    .attr('y2', d => d.target.y + ((d.target.lineCount || 2) * 14 + 12) / 2);
+                    .attr('y2', d => d.target.y + getNodeHeight(d.target) / 2);
 
                 node.attr('transform', d => `translate(${d.x},${d.y})`);
             });
