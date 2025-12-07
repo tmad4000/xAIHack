@@ -4517,7 +4517,8 @@
                 if (actionableViewMode === 'demands') {
                     // Demands view - show synthesized issues
                     contentHtml = allDemands.map((demand, idx) => {
-                        const tweetIds = (demand.tweets || []).map(t => t.id).filter(Boolean);
+                        const dedupedTweets = dedupeTweets(demand.tweets || []);
+                        const tweetIds = dedupedTweets.map(t => t.id).filter(Boolean);
                         return `
                         <div class="actionable-item demand-item" data-cluster-id="${demand.clusters[0].id}" data-demand-idx="${idx}" data-tweet-ids="${tweetIds.join(',')}">
                             <div class="actionable-rank">#${idx + 1}</div>
@@ -4530,21 +4531,25 @@
                                     <div class="support-fill" style="width: ${Math.min(100, (demand.count || 1) * 20)}%; background: ${demand.color};"></div>
                                 </div>
                                 <div class="support-text">${demand.count || 1} voice${(demand.count || 1) === 1 ? '' : 's'}</div>
-                                ${demand.tweets && demand.tweets.length > 0 ? `
+                                ${dedupedTweets.length > 0 ? `
                                     <div class="tweets-toggle" onclick="event.stopPropagation(); this.closest('.demand-item').classList.toggle('tweets-expanded');">
-                                        <span class="toggle-icon">▶</span> View ${demand.tweets.length} supporting tweet${demand.tweets.length === 1 ? '' : 's'}
+                                        <span class="toggle-icon">▶</span> View ${dedupedTweets.length} supporting tweet${dedupedTweets.length === 1 ? '' : 's'}
                                     </div>
                                     <div class="demand-tweets">
-                                        ${demand.tweets.map(t => {
+                                        ${dedupedTweets.map(t => {
                                             const handle = (t.username || '').replace(/^@+/, '');
-                                            const hasLink = t.link && t.link.startsWith('http');
+                                            const resolvedLink = ensureGrokLink({
+                                                Link: t.link,
+                                                Username: t.username,
+                                                'Summary/Quote': t.summary || t.text || ''
+                                            });
                                             return `
                                             <div class="demand-tweet">
                                                 <div class="tweet-content">${t.summary || 'No content'}</div>
                                                 <div class="tweet-meta">
                                                     <a href="https://twitter.com/${handle}" target="_blank" class="tweet-author" onclick="event.stopPropagation();">@${handle}</a>
                                                     ${t.date ? `<span class="tweet-date">${t.date}</span>` : ''}
-                                                    ${hasLink ? `<a href="${t.link}" target="_blank" class="tweet-link" onclick="event.stopPropagation();">View tweet →</a>` : ''}
+                                                    <a href="${resolvedLink}" target="_blank" class="tweet-link" onclick="event.stopPropagation();">View tweet →</a>
                                                 </div>
                                             </div>
                                         `}).join('')}
@@ -5094,6 +5099,96 @@
                 .map(h => h.trim().replace(/^@/, ''))
                 .filter(Boolean);
             return handles.length ? handles : null;
+        }
+
+        function ensureGrokLink(row) {
+            const rawLink = ((row && (row.Link || row.link)) || '').trim();
+            const username = (row && (row.Username || row.username) || '').replace(/^@/, '').trim();
+            const summary = row ? (row['Summary/Quote'] || row.summary || '') : '';
+
+            const addScheme = (value) => {
+                if (!value) return '';
+                const cleaned = value.replace(/^https?:\/\//i, '');
+                return value.startsWith('http://') || value.startsWith('https://') ? value : `https://${cleaned}`;
+            };
+
+            const buildSearchUrl = () => summary
+                ? `https://x.com/search?q=${encodeURIComponent(summary.slice(0, 180))}`
+                : (username ? `https://x.com/${username}` : 'https://x.com');
+
+            if (rawLink) {
+                const lowered = rawLink.toLowerCase();
+                if (lowered.startsWith('http://') || lowered.startsWith('https://')) {
+                    return rawLink;
+                }
+                if (rawLink.startsWith('www.') || rawLink.startsWith('x.com/') || rawLink.startsWith('twitter.com/') || rawLink.startsWith('mobile.twitter.com/')) {
+                    return addScheme(rawLink);
+                }
+                if (rawLink.includes('/status/')) {
+                    const [handlePart, statusPart] = rawLink.split('/status/', 1);
+                    const handle = handlePart.replace(/^@/, '').trim();
+                    const status = statusPart.trim();
+                    if (handle && status) {
+                        return `https://x.com/${handle}/status/${status}`;
+                    }
+                }
+                if (username && /^\d+$/.test(rawLink)) {
+                    return `https://x.com/${username}/status/${rawLink}`;
+                }
+            }
+
+            return buildSearchUrl();
+        }
+
+        function normalizeTweetSummary(text) {
+            return (text || '')
+                .toLowerCase()
+                .replace(/https?:\/\/\S+/g, '')
+                .replace(/[^a-z0-9\s]/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function textSimilarity(a, b) {
+            if (!a || !b) return 0;
+            const tokensA = new Set(a.split(' ').filter(Boolean));
+            const tokensB = new Set(b.split(' ').filter(Boolean));
+            if (tokensA.size === 0 || tokensB.size === 0) return 0;
+            let intersection = 0;
+            tokensA.forEach(token => {
+                if (tokensB.has(token)) intersection += 1;
+            });
+            return intersection / Math.min(tokensA.size, tokensB.size);
+        }
+
+        function dedupeTweets(tweets = []) {
+            const unique = [];
+            const seenIds = new Set();
+            const seenSummaries = [];
+
+            tweets.forEach(tweet => {
+                if (!tweet) return;
+                const id = tweet.id || tweet.tweet_id || tweet.link;
+                if (id && seenIds.has(id)) {
+                    return;
+                }
+
+                const summary = normalizeTweetSummary(tweet.summary || tweet.text || tweet.quote);
+                if (summary) {
+                    const isSimilar = seenSummaries.some(existing => textSimilarity(existing, summary) >= 0.85);
+                    if (isSimilar) {
+                        return;
+                    }
+                    seenSummaries.push(summary);
+                }
+
+                if (id) {
+                    seenIds.add(id);
+                }
+                unique.push(tweet);
+            });
+
+            return unique;
         }
 
         function ensureGrokLink(row) {
