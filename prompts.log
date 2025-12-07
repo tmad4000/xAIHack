@@ -9,3 +9,9 @@ So I want to create a graph of all the suggestions and issues for different loca
 [Follow-up] I want it to probably make an additional output file that's another CSV or another appropriate data format that includes those connections.
 
 ---
+
+## 2025-12-06
+
+Can you process this file '/Users/jacobcole/code/xAIHack/data/moreCompleteData/input_raw/Suggestions to improve Britain.docx' into a CSV inspired by /Users/jacobcole/code/xAIHack/data/geodatanyc.csv If it ends up naturally needing extra data, like basically, I don't want to lose the heading data, you can add an extra column that will include the heading and subheading each tweet is in. Save the output to. input_csv So while you're at it, can you just convert that Word document to a Markdown document in place?
+
+---
