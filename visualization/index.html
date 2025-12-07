@@ -1250,6 +1250,13 @@
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .project-quick-actions {
+            padding: 8px 12px;
+            border-bottom: 1px solid #21262d;
+            background: rgba(13, 17, 23, 0.6);
         }
 
         .provisional-actions {
@@ -1316,6 +1323,17 @@
             border: 1px solid #30363d;
         }
 
+        .project-new-icon-btn {
+            flex: 0 0 36px;
+            height: 36px;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .project-new-btn {
             background: #21262d;
             color: #c9d1d9;
@@ -1330,6 +1348,16 @@
             background: #238636;
             color: white;
             border-color: #238636;
+        }
+
+        .project-cluster-btn.rerun {
+            background: #1e2a3a;
+            color: #58a6ff;
+            border-color: #58a6ff;
+        }
+
+        .project-cluster-btn.rerun:hover {
+            background: #26354a;
         }
 
         .project-cluster-btn:hover {
@@ -2443,6 +2471,7 @@
                         <span class="project-current-name" id="currentProjectName">NYC Urbanist Ideas</span>
                         <span class="project-toggle-icon">▼</span>
                     </div>
+                    <button class="project-new-btn project-new-icon-btn" onclick="showNewProjectDialog()" title="New project" aria-label="New project">+</button>
                     <button class="project-more-btn" onclick="toggleProjectMenu(event)" title="More options">⋯</button>
                     <div class="project-menu" id="projectMenu">
                         <div class="project-menu-item" onclick="renameCurrentProject()">
@@ -2453,20 +2482,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="project-actions project-quick-actions">
+                    <button class="project-cluster-btn" id="runClusteringBtn" onclick="runCurrentProjectClustering()">Run Clustering</button>
+                    <div class="provisional-actions" id="provisionalActions">
+                        <div class="provisional-label"><span id="provisionalCount">0</span> provisional node(s)</div>
+                        <div class="provisional-btns">
+                            <button class="commit-btn" onclick="commitAllNodes()">Commit All</button>
+                            <button class="discard-btn" onclick="discardAllNodes()">Discard</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="project-selector-content" id="projectSelectorContent">
                     <div class="project-list" id="projectList">
                         <!-- Projects loaded dynamically -->
-                    </div>
-                    <div class="project-actions">
-                        <button class="project-new-btn" onclick="showNewProjectDialog()">+ New Project</button>
-                        <button class="project-cluster-btn" id="runClusteringBtn" onclick="runCurrentProjectClustering()">Run Clustering</button>
-                        <div class="provisional-actions" id="provisionalActions">
-                            <div class="provisional-label"><span id="provisionalCount">0</span> provisional node(s)</div>
-                            <div class="provisional-btns">
-                                <button class="commit-btn" onclick="commitAllNodes()">Commit All</button>
-                                <button class="discard-btn" onclick="discardAllNodes()">Discard</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -2651,6 +2679,7 @@
 
         // Overlay mode: 'auto' | 'always' | 'never'
         let overlayMode = 'auto';
+        let overlayToggleInitialized = false;
 
         // Tooltip hover state
         let tooltipTimeout = null;
@@ -2807,6 +2836,7 @@
 
                 const data = await response.json();
                 currentProject = projectName;
+                clusters = [];
 
                 // Update URL
                 if (updateURL) {
@@ -2822,12 +2852,10 @@
                 document.getElementById('currentProjectName').textContent =
                     projectInfo ? projectInfo.display_name : projectName;
 
-                // Re-render graph
-                initGraph();
+                // Re-render graph and side panels
+                prepareGraphData();
+                renderFullUI();
                 renderProjectsList();
-
-                // Collapse selector
-                document.querySelector('.project-selector').classList.remove('expanded');
 
             } catch (error) {
                 console.error('Failed to switch project:', error);
@@ -2894,6 +2922,7 @@
             } finally {
                 btn.disabled = false;
                 btn.textContent = originalText;
+                updateClusterButtonState();
             }
         }
 
@@ -3012,21 +3041,15 @@
                         const data = await response.json();
                         graphData = data.connections;
                         enhancedClusters = data.clusters;
+                        clusters = [];
 
                         // Update UI with project name
                         const projectInfo = projectsList.find(p => p.name === urlProject);
                         document.getElementById('currentProjectName').textContent =
                             projectInfo ? projectInfo.display_name : urlProject;
 
-                        // Initialize visualization
-                        initGraph();
-                        updateStats();
-                        renderClusters();
-                        renderActionable();
-                        setupLegend();
-                        setupClusterOverlay();
-                        hookClusterLabelUpdates();
-                        setupOverlayToggle();
+                        prepareGraphData();
+                        renderFullUI();
                         return;
                     }
                     // If project not found, fall through to default
@@ -3039,6 +3062,7 @@
                 ]);
 
                 graphData = await graphResponse.json();
+                clusters = [];
 
                 // Try to load enhanced clusters
                 if (clustersResponse && clustersResponse.ok) {
@@ -3046,32 +3070,41 @@
                     console.log('Loaded enhanced clusters:', enhancedClusters);
                 }
 
-                // Classify nodes by topic
-                graphData.nodes.forEach(node => {
-                    node.topics = classifyNode(node);
-                    node.primaryTopic = node.topics[0] || 'Other';
-                });
-
-                // Use enhanced clusters if available, otherwise detect them
-                if (enhancedClusters) {
-                    useEnhancedClusters();
-                } else {
-                    detectClusters();
-                }
-
-                // Initialize visualization
-                initGraph();
-                updateStats();
-                renderClusters();
-                renderActionable();
-                setupLegend();
-                setupClusterOverlay();
-                hookClusterLabelUpdates();
-                setupOverlayToggle();
+                prepareGraphData();
+                renderFullUI();
+                document.querySelector('.project-selector')?.classList.add('expanded');
 
             } catch (error) {
                 console.error('Error loading data:', error);
             }
+        }
+
+        function prepareGraphData() {
+            if (!graphData || !graphData.nodes) return;
+
+            // Classify nodes by topic and prime cluster state
+            graphData.nodes.forEach(node => {
+                node.topics = classifyNode(node);
+                node.primaryTopic = node.topics[0] || 'Other';
+            });
+
+            if (enhancedClusters) {
+                useEnhancedClusters();
+            } else {
+                detectClusters();
+            }
+        }
+
+        function renderFullUI() {
+            initGraph();
+            updateStats();
+            renderClusters();
+            renderActionable();
+            setupLegend();
+            setupClusterOverlay();
+            hookClusterLabelUpdates();
+            setupOverlayToggle();
+            updateClusterButtonState();
         }
 
         function useEnhancedClusters() {
@@ -3759,6 +3792,7 @@
         }
 
         function updateStats() {
+            if (!graphData || !graphData.nodes || !graphData.edges) return;
             document.getElementById('totalIdeas').textContent = graphData.nodes.length;
             document.getElementById('totalConnections').textContent = graphData.edges.length;
             document.getElementById('totalClusters').textContent = clusters.length;
@@ -3780,6 +3814,35 @@
                 } else {
                     container.classList.remove('show');
                 }
+            }
+
+            // Update clustering button enabled/disabled state
+            updateClusterButtonState();
+        }
+
+        function updateClusterButtonState() {
+            const btn = document.getElementById('runClusteringBtn');
+            if (!btn) return;
+
+            const projectInfo = projectsList.find(p => p.name === currentProject);
+            const hasClusters = (clusters && clusters.length > 0) || !!enhancedClusters || projectInfo?.has_clusters;
+            const hasNodes = graphData && Array.isArray(graphData.nodes) && graphData.nodes.length > 0;
+            const provisionalCount = graphData && Array.isArray(graphData.nodes)
+                ? graphData.nodes.filter(n => n.status === 'provisional').length
+                : 0;
+
+            btn.classList.toggle('rerun', !!hasClusters);
+            btn.textContent = hasClusters ? 'Re-run Clustering' : 'Run Clustering';
+
+            if (!hasNodes) {
+                btn.disabled = true;
+                btn.title = 'Add ideas to run clustering';
+            } else if (hasClusters && provisionalCount === 0) {
+                btn.disabled = true;
+                btn.title = 'No new provisional ideas since last run';
+            } else {
+                btn.disabled = false;
+                btn.title = hasClusters ? 'Re-run clustering with latest changes' : 'Run clustering';
             }
         }
 
@@ -3811,7 +3874,7 @@
                             <div class="cluster-empty-icon">🔮</div>
                             <div class="cluster-empty-title">Ready for Clustering</div>
                             <div class="cluster-empty-description">
-                                You have ${graphData.nodes.length} idea${graphData.nodes.length === 1 ? '' : 's'}. Run clustering to discover themes and connections.
+                                You have ${graphData.nodes.length} idea${graphData.nodes.length === 1 ? '' : 's'}. Run clustering to discover themes and connections. Provisional ideas are included — commit them if you want to lock them before re-running.
                             </div>
                             <button class="cluster-run-btn" onclick="runCurrentProjectClustering()">Run Clustering</button>
                         </div>
@@ -4324,6 +4387,8 @@
 
         function setupLegend() {
             const legend = document.getElementById('legend');
+            if (!legend || !graphData || !graphData.nodes) return;
+            legend.innerHTML = '<h4>Topics</h4>';
             const topics = [...new Set(graphData.nodes.map(n => n.primaryTopic))];
 
             topics.forEach((topic) => {
@@ -4451,6 +4516,8 @@
 
         // Setup overlay toggle buttons
         function setupOverlayToggle() {
+            if (overlayToggleInitialized) return;
+            overlayToggleInitialized = true;
             document.querySelectorAll('.overlay-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.querySelectorAll('.overlay-btn').forEach(b => b.classList.remove('active'));
