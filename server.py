@@ -125,8 +125,14 @@ def delete_project(name):
     return True
 
 
-def add_nodes_to_project(project_name, rows):
-    """Add nodes from Grok search results to a project."""
+def add_nodes_to_project(project_name, rows, source='unknown'):
+    """Add nodes from Grok search results or CSV import to a project.
+
+    Args:
+        project_name: The project to add nodes to
+        rows: List of row dicts with node data
+        source: Source of the nodes ('grok_search', 'csv_import', etc.)
+    """
     project_path = get_project_path(project_name)
     connections_file = project_path / 'connections.json'
 
@@ -139,7 +145,7 @@ def add_nodes_to_project(project_name, rows):
     # Find max existing ID
     max_id = max([n.get('id', 0) for n in data['nodes']], default=0)
 
-    # Add new nodes
+    # Add new nodes with provisional status
     new_nodes = []
     for row in rows:
         max_id += 1
@@ -148,7 +154,9 @@ def add_nodes_to_project(project_name, rows):
             'username': (row.get('Username') or row.get('username', '')).replace('@', ''),
             'summary': row.get('Summary/Quote') or row.get('summary', ''),
             'date': row.get('Date') or row.get('date', ''),
-            'link': row.get('Link') or row.get('link', '')
+            'link': row.get('Link') or row.get('link', ''),
+            'status': 'provisional',
+            'source': source
         }
         new_nodes.append(node)
         data['nodes'].append(node)
@@ -157,7 +165,74 @@ def add_nodes_to_project(project_name, rows):
     with open(connections_file, 'w') as f:
         json.dump(data, f, indent=2)
 
-    return {'added': len(new_nodes), 'total': len(data['nodes'])}
+    return {'added': len(new_nodes), 'total': len(data['nodes']), 'new_node_ids': [n['id'] for n in new_nodes]}
+
+
+def commit_nodes(project_name, node_ids=None):
+    """Commit provisional nodes (make them permanent).
+
+    Args:
+        project_name: The project name
+        node_ids: List of node IDs to commit, or None to commit all provisional
+    """
+    project_path = get_project_path(project_name)
+    connections_file = project_path / 'connections.json'
+
+    if not connections_file.exists():
+        raise ValueError(f"Project '{project_name}' not found")
+
+    with open(connections_file, 'r') as f:
+        data = json.load(f)
+
+    committed_count = 0
+    for node in data['nodes']:
+        if node.get('status') == 'provisional':
+            if node_ids is None or node['id'] in node_ids:
+                node['status'] = 'committed'
+                committed_count += 1
+
+    with open(connections_file, 'w') as f:
+        json.dump(data, f, indent=2)
+
+    return {'committed': committed_count}
+
+
+def discard_nodes(project_name, node_ids=None):
+    """Discard provisional nodes (remove them).
+
+    Args:
+        project_name: The project name
+        node_ids: List of node IDs to discard, or None to discard all provisional
+    """
+    project_path = get_project_path(project_name)
+    connections_file = project_path / 'connections.json'
+
+    if not connections_file.exists():
+        raise ValueError(f"Project '{project_name}' not found")
+
+    with open(connections_file, 'r') as f:
+        data = json.load(f)
+
+    # Find nodes to remove
+    if node_ids is None:
+        ids_to_remove = {n['id'] for n in data['nodes'] if n.get('status') == 'provisional'}
+    else:
+        ids_to_remove = {n['id'] for n in data['nodes']
+                         if n.get('status') == 'provisional' and n['id'] in node_ids}
+
+    # Remove nodes
+    original_count = len(data['nodes'])
+    data['nodes'] = [n for n in data['nodes'] if n['id'] not in ids_to_remove]
+
+    # Remove edges involving discarded nodes
+    data['edges'] = [e for e in data['edges']
+                     if e.get('source_id') not in ids_to_remove
+                     and e.get('target_id') not in ids_to_remove]
+
+    with open(connections_file, 'w') as f:
+        json.dump(data, f, indent=2)
+
+    return {'discarded': original_count - len(data['nodes'])}
 
 
 def run_clustering(project_name):
@@ -280,6 +355,22 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
             if len(parts) == 5:  # ['', 'api', 'projects', 'name', 'cluster']
                 project_name = parts[3]
                 self.handle_run_clustering(project_name)
+                return
+
+        # API: Commit provisional nodes
+        if parsed.path.endswith('/commit') and parsed.path.startswith('/api/projects/'):
+            parts = parsed.path.split('/')
+            if len(parts) == 5:  # ['', 'api', 'projects', 'name', 'commit']
+                project_name = parts[3]
+                self.handle_commit_nodes(project_name)
+                return
+
+        # API: Discard provisional nodes
+        if parsed.path.endswith('/discard') and parsed.path.startswith('/api/projects/'):
+            parts = parsed.path.split('/')
+            if len(parts) == 5:  # ['', 'api', 'projects', 'name', 'discard']
+                project_name = parts[3]
+                self.handle_discard_nodes(project_name)
                 return
 
         # API: Rename project
@@ -514,7 +605,7 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
             self._send_json(500, {'error': str(e)})
 
     def handle_add_nodes(self, project_name):
-        """Add nodes to a project from Grok search results."""
+        """Add nodes to a project from Grok search results or CSV import."""
         try:
             content_length = int(self.headers.get('Content-Length', 0))
             raw_body = self.rfile.read(content_length) if content_length else b''
@@ -525,7 +616,40 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
                 self._send_json(400, {'error': 'No rows to add'})
                 return
 
-            result = add_nodes_to_project(project_name, rows)
+            source = payload.get('source', 'unknown')
+            result = add_nodes_to_project(project_name, rows, source=source)
+            self._send_json(200, result)
+
+        except ValueError as e:
+            self._send_json(400, {'error': str(e)})
+        except Exception as e:
+            self._send_json(500, {'error': str(e)})
+
+    def handle_commit_nodes(self, project_name):
+        """Commit provisional nodes to the project."""
+        try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            raw_body = self.rfile.read(content_length) if content_length else b''
+            payload = json.loads(raw_body.decode('utf-8')) if raw_body else {}
+
+            node_ids = payload.get('node_ids')  # None means commit all
+            result = commit_nodes(project_name, node_ids)
+            self._send_json(200, result)
+
+        except ValueError as e:
+            self._send_json(400, {'error': str(e)})
+        except Exception as e:
+            self._send_json(500, {'error': str(e)})
+
+    def handle_discard_nodes(self, project_name):
+        """Discard provisional nodes from the project."""
+        try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            raw_body = self.rfile.read(content_length) if content_length else b''
+            payload = json.loads(raw_body.decode('utf-8')) if raw_body else {}
+
+            node_ids = payload.get('node_ids')  # None means discard all
+            result = discard_nodes(project_name, node_ids)
             self._send_json(200, result)
 
         except ValueError as e:

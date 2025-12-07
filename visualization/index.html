@@ -1058,6 +1058,61 @@
         .project-actions {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .provisional-actions {
+            display: none;
+            width: 100%;
+            margin-top: 8px;
+            padding: 8px;
+            background: rgba(240, 160, 48, 0.1);
+            border: 1px dashed rgba(240, 160, 48, 0.4);
+            border-radius: 6px;
+        }
+
+        .provisional-actions.show {
+            display: block;
+        }
+
+        .provisional-label {
+            font-size: 0.7rem;
+            color: #f0a030;
+            margin-bottom: 6px;
+        }
+
+        .provisional-btns {
+            display: flex;
+            gap: 6px;
+        }
+
+        .commit-btn, .discard-btn {
+            flex: 1;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .commit-btn {
+            background: rgba(63, 185, 80, 0.15);
+            border: 1px solid rgba(63, 185, 80, 0.4);
+            color: #3fb950;
+        }
+
+        .commit-btn:hover {
+            background: rgba(63, 185, 80, 0.25);
+        }
+
+        .discard-btn {
+            background: rgba(248, 81, 73, 0.1);
+            border: 1px solid rgba(248, 81, 73, 0.3);
+            color: #f85149;
+        }
+
+        .discard-btn:hover {
+            background: rgba(248, 81, 73, 0.2);
         }
 
         .project-new-btn, .project-cluster-btn {
@@ -2208,6 +2263,13 @@
                     <div class="project-actions">
                         <button class="project-new-btn" onclick="showNewProjectDialog()">+ New Project</button>
                         <button class="project-cluster-btn" id="runClusteringBtn" onclick="runCurrentProjectClustering()">Run Clustering</button>
+                        <div class="provisional-actions" id="provisionalActions">
+                            <div class="provisional-label"><span id="provisionalCount">0</span> provisional node(s)</div>
+                            <div class="provisional-btns">
+                                <button class="commit-btn" onclick="commitAllNodes()">Commit All</button>
+                                <button class="discard-btn" onclick="discardAllNodes()">Discard</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2614,7 +2676,7 @@
             }
         }
 
-        async function addGrokResultsToProject(rows) {
+        async function addGrokResultsToProject(rows, source = 'grok_search') {
             if (!rows || rows.length === 0) {
                 alert('No results to add');
                 return;
@@ -2624,7 +2686,7 @@
                 const response = await fetch(`/api/projects/${currentProject}/nodes`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ rows })
+                    body: JSON.stringify({ rows, source })
                 });
 
                 if (!response.ok) {
@@ -2633,7 +2695,8 @@
                 }
 
                 const data = await response.json();
-                alert(`Added ${data.added} nodes to the graph. Total: ${data.total} nodes.`);
+                const provisionalCount = data.added;
+                alert(`Added ${provisionalCount} provisional nodes. Click "Commit All" to make them permanent, or "Discard" to remove.`);
 
                 // Reload the project (force reload since we're on the same project)
                 await switchProject(currentProject, false, true);
@@ -2641,6 +2704,64 @@
             } catch (error) {
                 console.error('Failed to add nodes:', error);
                 alert('Failed to add nodes: ' + error.message);
+            }
+        }
+
+        async function commitAllNodes() {
+            try {
+                const response = await fetch(`/api/projects/${currentProject}/commit`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to commit nodes');
+                }
+
+                const data = await response.json();
+                if (data.committed > 0) {
+                    alert(`Committed ${data.committed} nodes.`);
+                    await switchProject(currentProject, false, true);
+                } else {
+                    alert('No provisional nodes to commit.');
+                }
+            } catch (error) {
+                console.error('Failed to commit nodes:', error);
+                alert('Failed to commit: ' + error.message);
+            }
+        }
+
+        async function discardAllNodes() {
+            const provisional = graphData.nodes.filter(n => n.status === 'provisional');
+            if (provisional.length === 0) {
+                alert('No provisional nodes to discard.');
+                return;
+            }
+
+            if (!confirm(`Discard ${provisional.length} provisional node(s)? This cannot be undone.`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/projects/${currentProject}/discard`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to discard nodes');
+                }
+
+                const data = await response.json();
+                alert(`Discarded ${data.discarded} nodes.`);
+                await switchProject(currentProject, false, true);
+            } catch (error) {
+                console.error('Failed to discard nodes:', error);
+                alert('Failed to discard: ' + error.message);
             }
         }
 
@@ -3120,14 +3241,15 @@
             const getNodeWidth = (d) => Math.max(d.maxLineWidth + paddingH * 2, 120);
 
             node.insert('rect', 'text')
-                .attr('class', 'node-bg')
+                .attr('class', d => 'node-bg' + (d.status === 'provisional' ? ' provisional' : ''))
                 .attr('rx', 6)
                 .attr('ry', 6)
-                .attr('fill', '#21262d')
-                .attr('stroke', d => d.clusterColor || '#81b29a')
-                .attr('stroke-width', 1)
+                .attr('fill', d => d.status === 'provisional' ? '#1a1d21' : '#21262d')
+                .attr('stroke', d => d.status === 'provisional' ? '#f0a030' : (d.clusterColor || '#81b29a'))
+                .attr('stroke-width', d => d.status === 'provisional' ? 2 : 1)
+                .attr('stroke-dasharray', d => d.status === 'provisional' ? '4,3' : 'none')
                 .attr('fill-opacity', 1)
-                .attr('stroke-opacity', 1)
+                .attr('stroke-opacity', d => d.status === 'provisional' ? 0.8 : 1)
                 .attr('width', d => getNodeWidth(d))
                 .attr('height', d => getNodeHeight(d))
                 .attr('x', 0)
@@ -3419,6 +3541,25 @@
             document.getElementById('totalIdeas').textContent = graphData.nodes.length;
             document.getElementById('totalConnections').textContent = graphData.edges.length;
             document.getElementById('totalClusters').textContent = clusters.length;
+
+            // Update provisional nodes UI
+            updateProvisionalUI();
+        }
+
+        function updateProvisionalUI() {
+            const provisionalNodes = graphData.nodes.filter(n => n.status === 'provisional');
+            const count = provisionalNodes.length;
+            const container = document.getElementById('provisionalActions');
+            const countEl = document.getElementById('provisionalCount');
+
+            if (container && countEl) {
+                countEl.textContent = count;
+                if (count > 0) {
+                    container.classList.add('show');
+                } else {
+                    container.classList.remove('show');
+                }
+            }
         }
 
         function renderClusters() {
@@ -4529,7 +4670,7 @@ BrentToderian,"Implement school streets - car-free blocks beside schools during 
                         `\n\nAdd to project "${currentProject}"?`;
 
                     if (confirm(confirmMsg)) {
-                        addGrokResultsToProject(rows);
+                        addGrokResultsToProject(rows, 'csv_import');
                     }
                 } catch (err) {
                     console.error('CSV parse error:', err);
