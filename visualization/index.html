@@ -284,37 +284,46 @@
         .node-detail .summary {
             font-size: 0.95rem;
             line-height: 1.7;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             color: #e6edf3;
-            padding: 14px;
+            padding: 16px;
             background: #161b22;
             border-radius: 8px;
-            border-left: 3px solid #30363d;
         }
 
         .detail-meta {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 14px;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #21262d;
         }
 
         .detail-author {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #58a6ff;
             font-weight: 500;
         }
 
         .detail-date {
-            font-size: 0.8rem;
-            color: #484f58;
+            font-size: 0.75rem;
+            color: #6e7681;
         }
 
         .node-clusters {
             display: flex;
+            align-items: center;
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 16px;
+        }
+
+        .cluster-label-text {
+            font-size: 0.7rem;
+            color: #6e7681;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .node-cluster-tag {
@@ -338,6 +347,12 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .node-detail .connections-header {
@@ -381,21 +396,23 @@
         }
 
         .link-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 16px;
-            background: #e07a5f;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: transparent;
+            color: #58a6ff;
             text-decoration: none;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: all 0.2s;
             font-weight: 500;
+            border: 1px solid #30363d;
         }
 
         .link-btn:hover {
-            background: #c96a50;
-            transform: translateY(-1px);
+            background: rgba(88, 166, 255, 0.1);
+            border-color: #58a6ff;
         }
 
         .stats-bar {
@@ -1678,6 +1695,7 @@
                     </div>
                     ${nodeClusters.length > 0 ? `
                         <div class="node-clusters">
+                            <span class="cluster-label-text">Cluster:</span>
                             ${nodeClusters.map(c => `
                                 <span class="node-cluster-tag" data-cluster-id="${c.id}" style="background: ${c.color}20; color: ${c.color}; border: 1px solid ${c.color}40;">
                                     <span class="cluster-dot" style="background: ${c.color}"></span>
@@ -1687,7 +1705,7 @@
                         </div>
                     ` : ''}
                     ${node.link && node.link.startsWith('http') ?
-                        `<a href="${node.link}" target="_blank" class="link-btn">View Original Tweet</a>` : ''}
+                        `<div class="detail-actions"><a href="${node.link}" target="_blank" class="link-btn">↗ View Original</a></div>` : ''}
 
                     <div class="connections-header" style="margin-top: 20px;">
                         ${connections.length} Connected Ideas
