@@ -88,3 +88,23 @@ Input CSV should have these columns:
 Date,Username,Summary/Quote,Link
 2025-12-05,@NYCPlanning,ADUs are a proven way to create housing...,https://x.com/...
 ```
+
+## Gather Fresh Posts with Grok X Search
+
+Use `grok_x_search.py` (requires `pip install "xai-sdk>=1.3.1"`) to have Grok search X with the official `x_search` tool and dump detailed CSV rows that match the `Date,Username,Summary/Quote,Link` format.
+
+```bash
+# Set your xAI key (or store it in .env)
+export XAI_API_KEY=sk-...
+
+python grok_x_search.py \
+  --location "San Francisco transit" \
+  --count 12 \
+  --from-date 2024-06-01 \
+  --csv-out data/grok_sf_transit.csv \
+  --json-out data/grok_sf_transit.json
+```
+
+- `--csv-out` writes exactly what Grok streams (header + rows) so you can drop it into the visualization pipeline.
+- `--json-out` stores the assistant response, citations, and token usage for auditing.
+- Extra flags allow handle whitelists (`--allowed-handles`), exclusions, or date filters to match civic research needs.
