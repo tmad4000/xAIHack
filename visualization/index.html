@@ -1514,6 +1514,25 @@
         .grok-result-meta {
             font-size: 0.8rem;
             color: #9fb8d0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .grok-save-csv-btn {
+            background: #238636;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .grok-save-csv-btn:hover {
+            background: #2ea043;
         }
 
         .grok-row {
@@ -1670,8 +1689,8 @@
             <div class="tabs">
                 <button class="tab active" data-tab="clusters">Clusters</button>
                 <button class="tab" data-tab="actionable">Actionable</button>
-                <button class="tab" data-tab="grok">Grok Search</button>
                 <button class="tab" data-tab="detail">Detail</button>
+                <button class="tab" data-tab="grok">Grok Search</button>
             </div>
 
             <div class="panel-content">
@@ -3336,25 +3355,73 @@
             grokChatHistory.scrollTop = grokChatHistory.scrollHeight;
         }
 
+        function saveGrokResultsAsCSV() {
+            const data = window.lastGrokResults;
+            if (!data || !data.rows || data.rows.length === 0) {
+                alert('No results to save');
+                return;
+            }
+
+            // Build CSV content
+            const headers = ['Date', 'Username', 'Summary/Quote', 'Link'];
+            const csvRows = [headers.join(',')];
+
+            data.rows.forEach(row => {
+                const date = row.Date || row.date || '';
+                const username = (row.Username || row.username || '').replace(/^@/, '');
+                const summary = (row['Summary/Quote'] || row.summary || '').replace(/"/g, '""');
+                const link = row.Link || row.link || '';
+                csvRows.push(`"${date}","@${username}","${summary}","${link}"`);
+            });
+
+            const csvContent = csvRows.join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+
+            // Create download link
+            const a = document.createElement('a');
+            a.href = url;
+            const timestamp = new Date().toISOString().slice(0, 10);
+            const location = (data.location || 'grok-search').replace(/[^a-zA-Z0-9]/g, '_');
+            a.download = `${location}_${timestamp}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
         function renderGrokResponse(data) {
             const rows = Array.isArray(data?.rows) ? data.rows : [];
             if (rows.length > 0) {
                 const intro = data.location
                     ? `${rows.length} posts mentioning "${escapeHtml(data.location)}"`
                     : `${rows.length} posts retrieved`;
+
+                // Store last results for CSV export
+                window.lastGrokResults = data;
+
+                // Helper to validate URLs
+                const isValidUrl = (url) => url && (url.startsWith('http://') || url.startsWith('https://'));
+
                 return `
                     <div class="grok-result">
-                        <div class="grok-result-meta">${intro}</div>
-                        ${rows.map(row => `
+                        <div class="grok-result-meta">
+                            ${intro}
+                            <button class="grok-save-csv-btn" onclick="saveGrokResultsAsCSV()">Save CSV</button>
+                        </div>
+                        ${rows.map(row => {
+                            const link = row.Link || row.link || '';
+                            const validLink = isValidUrl(link) ? link : '';
+                            return `
                             <div class="grok-row">
                                 <div class="grok-row-header">
                                     <span>${escapeHtml(row.Date || row.date || '')}</span>
                                     <span>@${escapeHtml((row.Username || row.username || '').replace(/^@/, ''))}</span>
                                 </div>
                                 <p>${escapeHtml(row['Summary/Quote'] || row.summary || '')}</p>
-                                ${row.Link ? `<a class="grok-row-link" href="${escapeHtml(row.Link)}" target="_blank" rel="noopener">Open post</a>` : ''}
+                                ${validLink ? `<a class="grok-row-link" href="${escapeHtml(validLink)}" target="_blank" rel="noopener">Open post</a>` : ''}
                             </div>
-                        `).join('')}
+                        `}).join('')}
                     </div>
                 `;
             }
