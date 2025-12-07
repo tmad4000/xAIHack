@@ -299,6 +299,15 @@
             background: #21262d;
             padding: 2px 6px;
             border-radius: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .more-issues {
+            font-size: 0.75rem;
+            color: #8b949e;
+            padding: 4px 8px;
+            font-style: italic;
         }
 
         .actionable-item.highlighted {
@@ -1108,6 +1117,87 @@
 
         .demand-item {
             border-left: 3px solid #ffa657;
+        }
+
+        .tweets-toggle {
+            font-size: 0.8rem;
+            color: #58a6ff;
+            cursor: pointer;
+            margin-top: 10px;
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tweets-toggle:hover {
+            color: #79c0ff;
+        }
+
+        .toggle-icon {
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+        }
+
+        .demand-item.tweets-expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .demand-tweets {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #30363d;
+        }
+
+        .demand-item.tweets-expanded .demand-tweets {
+            display: block;
+        }
+
+        .demand-tweet {
+            background: #161b22;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 2px solid #30363d;
+        }
+
+        .tweet-content {
+            font-size: 0.85rem;
+            color: #c9d1d9;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+
+        .tweet-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-size: 0.75rem;
+        }
+
+        .tweet-author {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .tweet-author:hover {
+            text-decoration: underline;
+        }
+
+        .tweet-date {
+            color: #8b949e;
+        }
+
+        .tweet-link {
+            color: #58a6ff;
+            text-decoration: none;
+            margin-left: auto;
+        }
+
+        .tweet-link:hover {
+            text-decoration: underline;
         }
 
         .synthesized-action {
@@ -2449,16 +2539,17 @@
                         </div>
                     ` : ''}
                     <div class="cluster-summary">${cluster.summary}</div>
-                    ${cluster.synthesized_actions && cluster.synthesized_actions.length > 0 ? `
+                    ${cluster.demands && cluster.demands.length > 0 ? `
                         <div class="cluster-actions">
-                            <div class="actions-label">Policy Proposals:</div>
-                            ${cluster.synthesized_actions.map((action, idx) => `
-                                <div class="action-link" data-action-title="${action.title}" data-cluster-id="${cluster.id}">
+                            <div class="actions-label">Key Issues:</div>
+                            ${cluster.demands.slice(0, 3).map((demand, idx) => `
+                                <div class="action-link issue-link" data-demand="${demand.description}" data-cluster-id="${cluster.id}">
                                     <span class="action-bullet">→</span>
-                                    <span class="action-title-text">${action.title}</span>
-                                    <span class="action-voices">${action.voices_represented || 1} voice${(action.voices_represented || 1) === 1 ? '' : 's'}</span>
+                                    <span class="action-title-text">${demand.description}</span>
+                                    <span class="action-voices">${demand.count || 1} voice${(demand.count || 1) === 1 ? '' : 's'}</span>
                                 </div>
                             `).join('')}
+                            ${cluster.demands.length > 3 ? `<div class="more-issues">+${cluster.demands.length - 3} more...</div>` : ''}
                         </div>
                     ` : cluster.action ? `
                         <div class="cluster-action">
@@ -2480,7 +2571,15 @@
             // Add click handlers
             container.querySelectorAll('.cluster-card').forEach(card => {
                 card.addEventListener('click', (e) => {
-                    // Handle action link clicks - jump to Actionable tab
+                    // Handle issue link clicks - jump to Actionable tab (Demands view)
+                    if (e.target.closest('.issue-link')) {
+                        e.stopPropagation();
+                        const issueLink = e.target.closest('.issue-link');
+                        const demandDescription = issueLink.dataset.demand;
+                        jumpToDemand(demandDescription);
+                        return;
+                    }
+                    // Handle action link clicks - jump to Actionable tab (Policy Proposals view)
                     if (e.target.closest('.action-link')) {
                         e.stopPropagation();
                         const actionLink = e.target.closest('.action-link');
@@ -2542,6 +2641,43 @@
             }
         }
 
+        // Jump to Actionable tab (Demands view) and scroll to specific demand
+        function jumpToDemand(demandDescription) {
+            // Switch to Actionable tab
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-tab="actionable"]').classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('actionable-tab').classList.add('active');
+
+            // Switch to demands view if not already
+            if (actionableViewMode !== 'demands') {
+                actionableViewMode = 'demands';
+                updateActionableTab();
+            }
+
+            // Find and highlight the demand item
+            setTimeout(() => {
+                const demandItems = document.querySelectorAll('.demand-item');
+                for (const item of demandItems) {
+                    const titleEl = item.querySelector('h4');
+                    if (titleEl && titleEl.textContent.trim() === demandDescription) {
+                        // Remove highlight from other items
+                        demandItems.forEach(i => i.classList.remove('highlighted'));
+
+                        // Highlight this item
+                        item.classList.add('highlighted');
+                        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                        // Remove highlight after delay
+                        setTimeout(() => {
+                            item.classList.remove('highlighted');
+                        }, 3000);
+                        break;
+                    }
+                }
+            }, 150);
+        }
+
         // Jump to Actionable tab and scroll to specific action
         function jumpToActionable(actionTitle) {
             // Switch to Actionable tab
@@ -2549,6 +2685,12 @@
             document.querySelector('[data-tab="actionable"]').classList.add('active');
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.getElementById('actionable-tab').classList.add('active');
+
+            // Switch to proposals view if not already
+            if (actionableViewMode !== 'proposals') {
+                actionableViewMode = 'proposals';
+                updateActionableTab();
+            }
 
             // Find and highlight the action item
             setTimeout(() => {
@@ -2570,7 +2712,7 @@
                         break;
                     }
                 }
-            }, 100);
+            }, 150);
         }
 
         function highlightCluster(clusterId, shouldPan = true) {
@@ -2634,19 +2776,41 @@
                 }
             });
 
-            // Collect all demands across clusters
+            // Collect all demands across clusters with actual tweet data
             const allDemands = [];
             clusters.forEach(cluster => {
                 if (cluster.demands && cluster.demands.length > 0) {
                     cluster.demands.forEach(demand => {
+                        // Get actual tweet data for this demand
+                        const tweets = (demand.tweet_ids || []).map(id => {
+                            const node = graphData.nodes.find(n => n.id === id);
+                            if (node) {
+                                return {
+                                    id: node.id,
+                                    username: node.username,
+                                    summary: node.summary,
+                                    link: node.link,
+                                    date: node.date
+                                };
+                            }
+                            return null;
+                        }).filter(Boolean);
+
                         // Check if this demand already exists (dedup across clusters)
                         const existing = allDemands.find(d => d.description === demand.description);
                         if (existing) {
                             existing.count += demand.count;
                             existing.clusters.push(cluster);
+                            // Merge tweets, avoiding duplicates
+                            tweets.forEach(t => {
+                                if (!existing.tweets.find(et => et.id === t.id)) {
+                                    existing.tweets.push(t);
+                                }
+                            });
                         } else {
                             allDemands.push({
                                 ...demand,
+                                tweets: tweets,
                                 clusters: [cluster],
                                 color: cluster.color,
                                 topic: cluster.topic
@@ -2725,7 +2889,7 @@
                 if (actionableViewMode === 'demands') {
                     // Demands view - show synthesized issues
                     contentHtml = allDemands.map((demand, idx) => `
-                        <div class="actionable-item demand-item" data-cluster-id="${demand.clusters[0].id}">
+                        <div class="actionable-item demand-item" data-cluster-id="${demand.clusters[0].id}" data-demand-idx="${idx}">
                             <div class="actionable-rank">#${idx + 1}</div>
                             <div class="actionable-content">
                                 <div class="actionable-title-row">
@@ -2736,12 +2900,24 @@
                                     <div class="support-fill" style="width: ${Math.min(100, (demand.count || 1) * 20)}%; background: ${demand.color};"></div>
                                 </div>
                                 <div class="support-text">${demand.count || 1} voice${(demand.count || 1) === 1 ? '' : 's'}</div>
-                                ${demand.voices && demand.voices.length > 0 ? `
-                                    <div class="demand-voices">
-                                        ${demand.voices.map(v => {
-                                            const handle = v.replace(/^@+/, '');
-                                            return `<a href="https://twitter.com/${handle}" target="_blank" class="voice-link" onclick="event.stopPropagation();">@${handle}</a>`;
-                                        }).join('')}
+                                ${demand.tweets && demand.tweets.length > 0 ? `
+                                    <div class="tweets-toggle" onclick="event.stopPropagation(); this.closest('.demand-item').classList.toggle('tweets-expanded');">
+                                        <span class="toggle-icon">▶</span> View ${demand.tweets.length} supporting tweet${demand.tweets.length === 1 ? '' : 's'}
+                                    </div>
+                                    <div class="demand-tweets">
+                                        ${demand.tweets.map(t => {
+                                            const handle = (t.username || '').replace(/^@+/, '');
+                                            const hasLink = t.link && t.link.startsWith('http');
+                                            return `
+                                            <div class="demand-tweet">
+                                                <div class="tweet-content">${t.summary || 'No content'}</div>
+                                                <div class="tweet-meta">
+                                                    <a href="https://twitter.com/${handle}" target="_blank" class="tweet-author" onclick="event.stopPropagation();">@${handle}</a>
+                                                    ${t.date ? `<span class="tweet-date">${t.date}</span>` : ''}
+                                                    ${hasLink ? `<a href="${t.link}" target="_blank" class="tweet-link" onclick="event.stopPropagation();">View tweet →</a>` : ''}
+                                                </div>
+                                            </div>
+                                        `}).join('')}
                                     </div>
                                 ` : ''}
                             </div>
