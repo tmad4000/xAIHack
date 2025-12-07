@@ -1736,6 +1736,183 @@
             color: #facc15;
         }
 
+        /* Manual import section */
+        .grok-manual-section {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #3d4f61;
+        }
+
+        .grok-manual-header {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 6px;
+        }
+
+        .grok-manual-description {
+            font-size: 0.8rem;
+            color: #9fb8d0;
+            margin-bottom: 12px;
+        }
+
+        .grok-manual-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .grok-manual-btn, .grok-upload-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .grok-manual-btn {
+            background: #2d3a4a;
+            border: 1px solid #4a5d73;
+            color: #e0e0e0;
+        }
+
+        .grok-manual-btn:hover {
+            background: #3d4f61;
+            border-color: #5a7d9a;
+        }
+
+        .grok-upload-btn {
+            background: #1a4a2e;
+            border: 1px solid #238636;
+            color: #7ee787;
+            display: inline-block;
+        }
+
+        .grok-upload-btn:hover {
+            background: #238636;
+            color: white;
+        }
+
+        /* Prompt Modal */
+        .prompt-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .prompt-modal-content {
+            background: #1e2a38;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .prompt-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #3d4f61;
+        }
+
+        .prompt-modal-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        .prompt-modal-close {
+            background: none;
+            border: none;
+            color: #9fb8d0;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .prompt-modal-close:hover {
+            color: #e0e0e0;
+        }
+
+        .prompt-modal-body {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .prompt-modal-body p {
+            margin: 0 0 12px 0;
+            font-size: 0.9rem;
+            color: #9fb8d0;
+        }
+
+        .prompt-modal-body a {
+            color: #7ee787;
+        }
+
+        .prompt-textarea {
+            width: 100%;
+            height: 250px;
+            background: #151f2a;
+            border: 1px solid #3d4f61;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            padding: 12px;
+            resize: none;
+        }
+
+        .prompt-modal-footer {
+            display: flex;
+            gap: 10px;
+            padding: 16px 20px;
+            border-top: 1px solid #3d4f61;
+        }
+
+        .prompt-copy-btn {
+            flex: 1;
+            padding: 10px 16px;
+            background: #238636;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .prompt-copy-btn:hover {
+            background: #2ea043;
+        }
+
+        .prompt-close-btn {
+            padding: 10px 16px;
+            background: #3d4f61;
+            border: none;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .prompt-close-btn:hover {
+            background: #4a5d73;
+        }
+
         .grok-result {
             display: flex;
             flex-direction: column;
@@ -2040,6 +2217,22 @@
                             </div>
 
                             <div class="grok-status" id="grokStatus"></div>
+
+                            <div class="grok-manual-section">
+                                <div class="grok-manual-header">Manual Import</div>
+                                <div class="grok-manual-description">
+                                    If the API isn't working, use Grok directly and export to CSV.
+                                </div>
+                                <div class="grok-manual-buttons">
+                                    <button type="button" class="grok-manual-btn" onclick="showPromptModal()">
+                                        📋 Copy Prompt for Grok
+                                    </button>
+                                    <label class="grok-upload-btn">
+                                        📁 Upload CSV
+                                        <input type="file" id="csvUpload" accept=".csv" onchange="handleCSVUpload(event)" style="display: none;">
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -4036,8 +4229,174 @@
             URL.revokeObjectURL(url);
         }
 
+        // Prompt modal functions
+        function showPromptModal() {
+            const topic = document.getElementById('grokPrompt')?.value || 'urban improvement ideas';
+            const count = document.getElementById('grokCount')?.value || 10;
+
+            const prompt = `Search X/Twitter for ${count} posts about: ${topic}
+
+For each relevant post found, extract and format as CSV with these exact columns:
+Username,Summary/Quote,Date,Link
+
+Requirements:
+- Username: Twitter handle without @ symbol
+- Summary/Quote: A brief 1-2 sentence summary of what they're suggesting or advocating for
+- Date: In YYYY-MM-DD format
+- Link: Direct link to the tweet (https://x.com/username/status/...)
+
+Output ONLY the CSV data, starting with the header row. No additional text or explanation.
+
+Example output:
+Username,Summary/Quote,Date,Link
+BrentToderian,"Implement school streets - car-free blocks beside schools during drop-off/pick-up times.",2024-03-15,https://x.com/BrentToderian/status/123456789`;
+
+            document.getElementById('promptText').value = prompt;
+            document.getElementById('promptModal').style.display = 'flex';
+        }
+
+        function closePromptModal() {
+            document.getElementById('promptModal').style.display = 'none';
+        }
+
+        function copyPromptToClipboard() {
+            const promptText = document.getElementById('promptText');
+            promptText.select();
+            document.execCommand('copy');
+
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = originalText, 2000);
+        }
+
+        // CSV upload handling
+        function handleCSVUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const csv = e.target.result;
+                    const rows = parseCSV(csv);
+
+                    if (rows.length === 0) {
+                        alert('No valid rows found in CSV');
+                        return;
+                    }
+
+                    // Show preview and confirm
+                    const confirmMsg = `Found ${rows.length} rows to import:\n\n` +
+                        rows.slice(0, 3).map(r => `• @${r.Username}: ${(r['Summary/Quote'] || r.summary || '').substring(0, 50)}...`).join('\n') +
+                        (rows.length > 3 ? `\n... and ${rows.length - 3} more` : '') +
+                        `\n\nAdd to project "${currentProject}"?`;
+
+                    if (confirm(confirmMsg)) {
+                        addGrokResultsToProject(rows);
+                    }
+                } catch (err) {
+                    console.error('CSV parse error:', err);
+                    alert('Failed to parse CSV: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+
+            // Reset input so same file can be uploaded again
+            event.target.value = '';
+        }
+
+        function parseCSV(csv) {
+            const lines = csv.trim().split('\n');
+            if (lines.length < 2) return [];
+
+            // Parse header
+            const header = parseCSVLine(lines[0]);
+            const rows = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                const values = parseCSVLine(line);
+                const row = {};
+
+                header.forEach((col, idx) => {
+                    row[col.trim()] = values[idx] || '';
+                });
+
+                // Validate required fields
+                const username = row.Username || row.username || '';
+                const summary = row['Summary/Quote'] || row.summary || row.Summary || '';
+
+                if (username && summary) {
+                    rows.push({
+                        Username: username.replace('@', ''),
+                        'Summary/Quote': summary,
+                        Date: row.Date || row.date || '',
+                        Link: row.Link || row.link || ''
+                    });
+                }
+            }
+
+            return rows;
+        }
+
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+
+                if (char === '"') {
+                    if (inQuotes && line[i + 1] === '"') {
+                        current += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current);
+
+            return result;
+        }
+
+        // Close modal on outside click
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('promptModal');
+            if (e.target === modal) {
+                closePromptModal();
+            }
+        });
+
         // Initialize
         loadData();
     </script>
+
+    <!-- Prompt Modal -->
+    <div id="promptModal" class="prompt-modal">
+        <div class="prompt-modal-content">
+            <div class="prompt-modal-header">
+                <h3>Prompt for Grok</h3>
+                <button class="prompt-modal-close" onclick="closePromptModal()">&times;</button>
+            </div>
+            <div class="prompt-modal-body">
+                <p>Copy this prompt and paste it into <a href="https://grok.x.ai" target="_blank">grok.x.ai</a>. Then export the response as CSV and upload it.</p>
+                <textarea id="promptText" class="prompt-textarea" readonly></textarea>
+            </div>
+            <div class="prompt-modal-footer">
+                <button class="prompt-copy-btn" onclick="copyPromptToClipboard()">📋 Copy to Clipboard</button>
+                <button class="prompt-close-btn" onclick="closePromptModal()">Close</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
