@@ -889,6 +889,148 @@
             transform: translateY(0);
         }
 
+        /* Project Selector Styles */
+        .project-selector {
+            border-bottom: 1px solid #21262d;
+        }
+
+        .project-selector-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .project-selector-header:hover {
+            background: rgba(88, 166, 255, 0.1);
+        }
+
+        .project-toggle-icon {
+            font-size: 0.7rem;
+            color: #8b949e;
+            transition: transform 0.2s;
+        }
+
+        .project-selector.expanded .project-toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .project-current-name {
+            flex: 1;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #e6edf3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .project-switch-hint {
+            font-size: 0.7rem;
+            color: #58a6ff;
+            opacity: 0.7;
+        }
+
+        .project-selector-content {
+            display: none;
+            padding: 0 12px 12px;
+        }
+
+        .project-selector.expanded .project-selector-content {
+            display: block;
+        }
+
+        .project-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.8rem;
+            color: #c9d1d9;
+        }
+
+        .project-item:hover {
+            background: rgba(88, 166, 255, 0.15);
+        }
+
+        .project-item.active {
+            background: rgba(88, 166, 255, 0.2);
+            border-left: 2px solid #58a6ff;
+        }
+
+        .project-item-name {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .project-item-badge {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            background: #21262d;
+            color: #8b949e;
+        }
+
+        .project-item-badge.has-clusters {
+            background: rgba(35, 134, 54, 0.3);
+            color: #3fb950;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .project-new-btn, .project-cluster-btn {
+            flex: 1;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #30363d;
+        }
+
+        .project-new-btn {
+            background: #21262d;
+            color: #c9d1d9;
+        }
+
+        .project-new-btn:hover {
+            background: #30363d;
+            border-color: #58a6ff;
+        }
+
+        .project-cluster-btn {
+            background: #238636;
+            color: white;
+            border-color: #238636;
+        }
+
+        .project-cluster-btn:hover {
+            background: #2ea043;
+        }
+
+        .project-cluster-btn:disabled {
+            background: #21262d;
+            color: #8b949e;
+            border-color: #30363d;
+            cursor: not-allowed;
+        }
+
         .search-box {
             padding: 12px 16px;
             border-bottom: 1px solid #21262d;
@@ -1535,6 +1677,26 @@
             background: #2ea043;
         }
 
+        .grok-result-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .grok-add-btn {
+            background: #58a6ff;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .grok-add-btn:hover {
+            background: #79c0ff;
+        }
+
         .grok-row {
             border-radius: 10px;
             border: 1px solid #30363d;
@@ -1682,6 +1844,24 @@
                 </div>
             </div>
 
+            <!-- Project Selector (Collapsible) -->
+            <div class="project-selector">
+                <div class="project-selector-header" onclick="toggleProjectSelector()">
+                    <span class="project-toggle-icon">▶</span>
+                    <span class="project-current-name" id="currentProjectName">NYC Urbanist Ideas</span>
+                    <span class="project-switch-hint">Switch</span>
+                </div>
+                <div class="project-selector-content" id="projectSelectorContent">
+                    <div class="project-list" id="projectList">
+                        <!-- Projects loaded dynamically -->
+                    </div>
+                    <div class="project-actions">
+                        <button class="project-new-btn" onclick="showNewProjectDialog()">+ New Project</button>
+                        <button class="project-cluster-btn" id="runClusteringBtn" onclick="runCurrentProjectClustering()">Run Clustering</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="search-box">
                 <input type="text" class="search-input" id="searchInput" placeholder="Search ideas...">
             </div>
@@ -1821,6 +2001,168 @@
         // Tooltip hover state
         let tooltipTimeout = null;
         let isTooltipHovered = false;
+
+        // Project management
+        let currentProject = 'default';
+        let projectsList = [];
+
+        // Project selector functions
+        function toggleProjectSelector() {
+            const selector = document.querySelector('.project-selector');
+            selector.classList.toggle('expanded');
+            if (selector.classList.contains('expanded')) {
+                loadProjectsList();
+            }
+        }
+
+        async function loadProjectsList() {
+            try {
+                const response = await fetch('/api/projects');
+                const data = await response.json();
+                projectsList = data.projects || [];
+                renderProjectsList();
+            } catch (error) {
+                console.error('Failed to load projects:', error);
+            }
+        }
+
+        function renderProjectsList() {
+            const container = document.getElementById('projectList');
+            if (!container) return;
+
+            container.innerHTML = projectsList.map(project => `
+                <div class="project-item ${project.name === currentProject ? 'active' : ''}"
+                     onclick="switchProject('${project.name}')">
+                    <span class="project-item-name">${project.display_name}</span>
+                    ${project.has_clusters ? '<span class="project-item-badge has-clusters">Clustered</span>' : ''}
+                    ${project.is_default ? '<span class="project-item-badge">Default</span>' : ''}
+                </div>
+            `).join('');
+        }
+
+        async function switchProject(projectName) {
+            if (projectName === currentProject) return;
+
+            try {
+                const response = await fetch(`/api/projects/${projectName}`);
+                if (!response.ok) throw new Error('Failed to load project');
+
+                const data = await response.json();
+                currentProject = projectName;
+
+                // Update graph data
+                graphData = data.connections;
+                enhancedClusters = data.clusters;
+
+                // Update UI
+                const projectInfo = projectsList.find(p => p.name === projectName);
+                document.getElementById('currentProjectName').textContent =
+                    projectInfo ? projectInfo.display_name : projectName;
+
+                // Re-render graph
+                initializeGraph();
+                renderProjectsList();
+
+                // Collapse selector
+                document.querySelector('.project-selector').classList.remove('expanded');
+
+            } catch (error) {
+                console.error('Failed to switch project:', error);
+                alert('Failed to load project: ' + error.message);
+            }
+        }
+
+        function showNewProjectDialog() {
+            const name = prompt('Enter a name for the new project:');
+            if (name && name.trim()) {
+                createProject(name.trim());
+            }
+        }
+
+        async function createProject(name) {
+            try {
+                const response = await fetch('/api/projects', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name })
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to create project');
+                }
+
+                const data = await response.json();
+                await loadProjectsList();
+                switchProject(data.name);
+
+            } catch (error) {
+                console.error('Failed to create project:', error);
+                alert('Failed to create project: ' + error.message);
+            }
+        }
+
+        async function runCurrentProjectClustering() {
+            const btn = document.getElementById('runClusteringBtn');
+            if (!btn) return;
+
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Running...';
+
+            try {
+                const response = await fetch(`/api/projects/${currentProject}/cluster`, {
+                    method: 'POST'
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Clustering failed');
+                }
+
+                // Reload the project to get updated clusters
+                await switchProject(currentProject);
+                await loadProjectsList();
+                alert('Clustering completed successfully!');
+
+            } catch (error) {
+                console.error('Clustering failed:', error);
+                alert('Clustering failed: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        }
+
+        async function addGrokResultsToProject(rows) {
+            if (!rows || rows.length === 0) {
+                alert('No results to add');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/projects/${currentProject}/nodes`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ rows })
+                });
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to add nodes');
+                }
+
+                const data = await response.json();
+                alert(`Added ${data.added} nodes to the graph. Total: ${data.total} nodes.`);
+
+                // Reload the project
+                await switchProject(currentProject);
+
+            } catch (error) {
+                console.error('Failed to add nodes:', error);
+                alert('Failed to add nodes: ' + error.message);
+            }
+        }
 
         // Topic keywords for classification
         const topicKeywords = {
@@ -3406,8 +3748,11 @@
                 return `
                     <div class="grok-result">
                         <div class="grok-result-meta">
-                            ${intro}
-                            <button class="grok-save-csv-btn" onclick="saveGrokResultsAsCSV()">Save CSV</button>
+                            <span>${intro}</span>
+                            <div class="grok-result-actions">
+                                <button class="grok-add-btn" onclick="addGrokResultsToProject(window.lastGrokResults?.rows)">Add to Graph</button>
+                                <button class="grok-save-csv-btn" onclick="saveGrokResultsAsCSV()">Save CSV</button>
+                            </div>
                         </div>
                         ${rows.map(row => {
                             const link = row.Link || row.link || '';
