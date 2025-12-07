@@ -2301,6 +2301,30 @@
         let currentProject = 'default';
         let projectsList = [];
 
+        // URL slug support
+        function getProjectFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('project') || 'default';
+        }
+
+        function updateURLForProject(projectName) {
+            const url = new URL(window.location);
+            if (projectName === 'default') {
+                url.searchParams.delete('project');
+            } else {
+                url.searchParams.set('project', projectName);
+            }
+            window.history.pushState({ project: projectName }, '', url);
+        }
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', (event) => {
+            const projectName = event.state?.project || getProjectFromURL();
+            if (projectName !== currentProject) {
+                switchProject(projectName, false); // false = don't update URL again
+            }
+        });
+
         // Project selector functions
         function toggleProjectSelector() {
             const selector = document.querySelector('.project-selector');
@@ -2335,8 +2359,8 @@
             `).join('');
         }
 
-        async function switchProject(projectName) {
-            if (projectName === currentProject) return;
+        async function switchProject(projectName, updateURL = true, forceReload = false) {
+            if (projectName === currentProject && !forceReload) return;
 
             try {
                 const response = await fetch(`/api/projects/${projectName}`);
@@ -2344,6 +2368,11 @@
 
                 const data = await response.json();
                 currentProject = projectName;
+
+                // Update URL
+                if (updateURL) {
+                    updateURLForProject(projectName);
+                }
 
                 // Update graph data
                 graphData = data.connections;
@@ -2450,8 +2479,8 @@
                 const data = await response.json();
                 alert(`Added ${data.added} nodes to the graph. Total: ${data.total} nodes.`);
 
-                // Reload the project
-                await switchProject(currentProject);
+                // Reload the project (force reload since we're on the same project)
+                await switchProject(currentProject, false, true);
 
             } catch (error) {
                 console.error('Failed to add nodes:', error);
@@ -2473,7 +2502,39 @@
         // Load and process data
         async function loadData() {
             try {
-                // Load both data files in parallel
+                // Check URL for project parameter
+                const urlProject = getProjectFromURL();
+
+                // If URL specifies a non-default project, load it via API
+                if (urlProject !== 'default') {
+                    await loadProjectsList();
+                    currentProject = urlProject;
+                    const response = await fetch(`/api/projects/${urlProject}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        graphData = data.connections;
+                        enhancedClusters = data.clusters;
+
+                        // Update UI with project name
+                        const projectInfo = projectsList.find(p => p.name === urlProject);
+                        document.getElementById('currentProjectName').textContent =
+                            projectInfo ? projectInfo.display_name : urlProject;
+
+                        // Initialize visualization
+                        initGraph();
+                        updateStats();
+                        renderClusters();
+                        renderActionable();
+                        setupLegend();
+                        setupClusterOverlay();
+                        hookClusterLabelUpdates();
+                        setupOverlayToggle();
+                        return;
+                    }
+                    // If project not found, fall through to default
+                }
+
+                // Load both data files in parallel (default project)
                 const [graphResponse, clustersResponse] = await Promise.all([
                     fetch('/data/connections.json'),
                     fetch('/data/enhanced_clusters.json').catch(() => null)
