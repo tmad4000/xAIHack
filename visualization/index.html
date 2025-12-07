@@ -159,6 +159,129 @@
             padding: 15px;
         }
 
+        .sidebar-compact-toggle {
+            padding: 10px 16px;
+            border-bottom: 1px solid #21262d;
+            background: rgba(13, 17, 23, 0.6);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .sidebar-compact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            letter-spacing: 0.3px;
+            background: rgba(33, 38, 45, 0.8);
+            border: 1px solid #30363d;
+            color: #8b949e;
+            border-radius: 999px;
+            padding: 5px 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-compact-btn:hover {
+            color: #f0f6fc;
+            border-color: #3d444d;
+        }
+
+        .sidebar-compact-icon {
+            font-size: 0.7rem;
+        }
+
+        .side-panel.compact .panel-header,
+        .side-panel.compact .stats-bar,
+        .side-panel.compact .project-selector,
+        .side-panel.compact .search-box {
+            display: none;
+        }
+
+        .side-panel.compact .sidebar-compact-toggle {
+            border-top: 1px solid #21262d;
+            border-bottom: 1px solid #21262d;
+            margin-top: 0;
+        }
+
+        .side-panel.compact .tabs {
+            border-top: 1px solid #21262d;
+        }
+
+        .tab-section {
+            background: rgba(13, 17, 23, 0.85);
+            border: 1px solid #21262d;
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #f0f6fc;
+        }
+
+        .section-description {
+            font-size: 0.8rem;
+            color: #8b949e;
+            margin-top: 4px;
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .section-pill {
+            border: 1px solid #30363d;
+            color: #8b949e;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            text-transform: capitalize;
+            background: #0d1117;
+        }
+
+        .section-pill.success {
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.35);
+        }
+
+        .section-pill.error {
+            color: #f87171;
+            border-color: rgba(248, 113, 113, 0.35);
+        }
+
+        .section-pill.loading {
+            color: #facc15;
+            border-color: rgba(250, 204, 21, 0.35);
+        }
+
+        .section-scroll {
+            margin-top: 14px;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .section-scroll.no-limit {
+            max-height: none;
+            overflow: visible;
+        }
+
+        .actionable-scroll {
+            max-height: 58vh;
+        }
+
         .cluster-card {
             background: #161b22;
             border-radius: 10px;
@@ -351,27 +474,45 @@
         }
 
         .node-detail {
-            padding: 13px 12px 20px 12px;
+            padding: 0;
         }
 
-        .node-detail .summary {
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .detail-card {
+            background: #161b22;
+            border-radius: 12px;
+            border: 1px solid #21262d;
+            padding: 14px;
+        }
+
+        .detail-card-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6e7681;
+            margin-bottom: 8px;
+        }
+
+        .detail-summary-text {
             font-size: 1rem;
             line-height: 1.7;
-            margin: 0 4px 14px 4px;
             color: #f0f6fc;
-            padding: 16px;
-            padding-right: 38px;
-            background: #161b22;
-            border-radius: 8px;
-            text-align: left;
-            position: relative;
-            border-left: 3px solid #58a6ff;
+            margin-bottom: 10px;
+        }
+
+        .detail-summary-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .tweet-link-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
             color: #6e7681;
             text-decoration: none;
             font-size: 0.8rem;
@@ -389,9 +530,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
-            padding: 0 14px 16px 14px;
-            border-bottom: 1px solid #21262d;
+            gap: 10px;
+            margin-bottom: 6px;
         }
 
         .detail-author {
@@ -408,6 +548,12 @@
         .detail-date {
             font-size: 0.75rem;
             color: #6e7681;
+        }
+
+        .detail-meta-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .node-clusters {
@@ -442,6 +588,30 @@
         .node-cluster-tag:hover {
             transform: translateY(-1px);
             filter: brightness(1.1);
+        }
+
+        .detail-support-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .detail-support-item {
+            background: #161b22;
+            border-radius: 10px;
+            border: 1px solid #21262d;
+            padding: 12px;
+        }
+
+        .detail-support-item .support-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
         }
 
         .node-cluster-tag .cluster-dot {
@@ -2659,6 +2829,13 @@
                 <input type="text" class="search-input" id="searchInput" placeholder="Search ideas...">
             </div>
 
+            <div class="sidebar-compact-toggle">
+                <button type="button" class="sidebar-compact-btn" id="sidebarCompactToggle" aria-pressed="false">
+                    <span class="sidebar-compact-icon">▾</span>
+                    <span class="sidebar-compact-label">Collapse controls</span>
+                </button>
+            </div>
+
             <div class="tabs">
                 <button class="tab active" data-tab="clusters">Clusters</button>
                 <button class="tab" data-tab="actionable">Actionable</button>
@@ -2668,16 +2845,70 @@
 
             <div class="panel-content">
                 <div class="tab-content active" id="clusters-tab">
-                    <div id="clusterList"></div>
+                    <div class="tab-section">
+                        <div class="section-header">
+                            <div>
+                                <div class="section-title">Cluster Overview</div>
+                                <p class="section-description">Largest voices first. Click a cluster to focus the graph.</p>
+                            </div>
+                            <div class="section-actions">
+                                <span class="section-pill" id="clusterCountPill">0 clusters</span>
+                            </div>
+                        </div>
+                        <div class="section-scroll">
+                            <div id="clusterList"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="tab-content" id="actionable-tab">
-                    <div id="actionableList" class="actionable-list"></div>
+                    <div class="tab-section">
+                        <div class="section-header">
+                            <div>
+                                <div class="section-title">Actionable Insights</div>
+                                <p class="section-description">Switch between community demands and AI proposals.</p>
+                            </div>
+                            <div class="section-actions">
+                                <span class="section-pill" id="actionableCountPill">0 items</span>
+                            </div>
+                        </div>
+                        <div class="section-scroll actionable-scroll">
+                            <div id="actionableList" class="actionable-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="detail-tab">
+                    <div class="tab-section">
+                        <div class="section-header">
+                            <div>
+                                <div class="section-title">Selected Voice</div>
+                                <p class="section-description" id="detailHint">Click a node or actionable item to view its details.</p>
+                            </div>
+                            <div class="section-actions">
+                                <span class="section-pill" id="detailMetaPill">No selection</span>
+                            </div>
+                        </div>
+                        <div id="nodeDetail" class="empty-state">
+                            <p>Click on a node in the graph to see details</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="tab-content" id="grok-tab">
-                    <div class="grok-chat">
-                        <div class="grok-chat-card">
+                    <div class="tab-section">
+                        <div class="section-header">
+                            <div>
+                                <div class="section-title">Grok Search</div>
+                                <p class="section-description">Gather supporting tweets without leaving the workspace.</p>
+                            </div>
+                            <div class="section-actions">
+                                <span class="section-pill" id="grokStatusPill">Ready</span>
+                            </div>
+                        </div>
+                        <div class="section-scroll no-limit">
+                            <div class="grok-chat">
+                                <div class="grok-chat-card">
                             <form class="grok-chat-form" id="grokChatForm">
                                 <div class="grok-search-box">
                                     <div class="grok-search-icon">
@@ -2775,11 +3006,6 @@
                     </div>
                 </div>
 
-                <div class="tab-content" id="detail-tab">
-                    <div id="nodeDetail" class="empty-state">
-                        <p>Click on a node in the graph to see details</p>
-                    </div>
-                </div>
             </div>
 
             <div class="export-section">
@@ -2858,6 +3084,9 @@
         let tooltipTimeout = null;
         let isTooltipHovered = false;
 
+        // Sidebar compact settings
+        const SIDEBAR_COMPACT_KEY = 'cityvoice_sidebar_compact';
+
         // Project management
         let currentProject = 'default';
         let currentContext = 'civic';
@@ -2921,6 +3150,52 @@
                 url.searchParams.set('project', projectName);
             }
             window.history.pushState({ project: projectName }, '', url);
+        }
+
+        function updateSidebarCompactToggle(isCompact) {
+            if (!sidebarCompactToggle) return;
+            sidebarCompactToggle.setAttribute('aria-pressed', isCompact ? 'true' : 'false');
+            const label = sidebarCompactToggle.querySelector('.sidebar-compact-label');
+            const icon = sidebarCompactToggle.querySelector('.sidebar-compact-icon');
+            if (label) {
+                label.textContent = isCompact ? 'Show controls' : 'Collapse controls';
+            }
+            if (icon) {
+                icon.textContent = isCompact ? '▸' : '▾';
+            }
+        }
+
+        function setSidebarCompactState(isCompact, persist = true) {
+            if (!sidePanelElement) return;
+            sidePanelElement.classList.toggle('compact', isCompact);
+            updateSidebarCompactToggle(isCompact);
+            if (!persist) return;
+            try {
+                localStorage.setItem(SIDEBAR_COMPACT_KEY, isCompact ? '1' : '0');
+            } catch (err) {
+                // Ignore storage errors (e.g., private browsing)
+            }
+        }
+
+        function initSidebarCompact() {
+            if (!sidePanelElement || !sidebarCompactToggle) return;
+            let initialState = null;
+            try {
+                const stored = localStorage.getItem(SIDEBAR_COMPACT_KEY);
+                if (stored !== null) {
+                    initialState = stored === '1';
+                }
+            } catch (err) {
+                initialState = null;
+            }
+            if (initialState === null) {
+                initialState = window.innerHeight < 860;
+            }
+            setSidebarCompactState(initialState, false);
+            sidebarCompactToggle.addEventListener('click', () => {
+                const nextState = !sidePanelElement.classList.contains('compact');
+                setSidebarCompactState(nextState);
+            });
         }
 
         // Handle browser back/forward
@@ -3988,45 +4263,64 @@
             const twitterHandle = node.username.replace('@', '');
             const hasLink = node.link && node.link.startsWith('http');
 
+            const connectionItems = connections.map(c => {
+                const cHandle = c.node.username.replace('@', '');
+                const resolvedLink = ensureGrokLink({
+                    Link: c.node.link,
+                    Username: c.node.username,
+                    'Summary/Quote': c.node.summary
+                });
+                return `
+                    <div class="detail-support-item clickable-connection" data-node-id="${c.node.id}">
+                        <div class="support-meta">
+                            <div class="connection-text-wrap">
+                                ${c.node.summary || 'No summary'}
+                                <a href="https://twitter.com/${cHandle}" target="_blank" class="connection-author" onclick="event.stopPropagation();">${c.node.username}</a>
+                            </div>
+                            <a href="${resolvedLink}" target="_blank" class="connection-link-icon" onclick="event.stopPropagation();" title="View original tweet">↗</a>
+                        </div>
+                        <div class="reason">${c.reason}</div>
+                    </div>
+                `;
+            }).join('');
+
             const detailHtml = `
                 <div class="node-detail">
-                    <div class="summary">
-                        ${node.summary || 'No summary available'}
-                        ${hasLink ? `<a href="${node.link}" target="_blank" class="tweet-link-icon" title="View original tweet">↗</a>` : ''}
-                    </div>
-                    <div class="detail-meta">
-                        <a href="https://twitter.com/${twitterHandle}" target="_blank" class="detail-author">${node.username}</a>
-                        <span class="detail-date">${node.date}</span>
-                    </div>
-                    ${nodeClusters.length > 0 ? `
-                        <div class="node-clusters">
-                            <span class="cluster-label-text">Cluster:</span>
-                            ${nodeClusters.map(c => `
-                                <span class="node-cluster-tag" data-cluster-id="${c.id}" style="background: ${c.color}20; color: ${c.color}; border: 1px solid ${c.color}40;">
-                                    <span class="cluster-dot" style="background: ${c.color}"></span>
-                                    ${c.name}
-                                </span>
-                            `).join('')}
-                        </div>
-                    ` : ''}
-
-                    <div class="connections-header" style="margin-top: 20px;">
-                        Connected Ideas (${connections.length})
-                    </div>
-                    ${connections.map(c => {
-                        const cHandle = c.node.username.replace('@', '');
-                        const cHasLink = c.node.link && c.node.link.startsWith('http');
-                        return `
-                        <div class="connection-item clickable-connection" data-node-id="${c.node.id}">
-                            <div class="connection-content">
-                                <div class="connection-text-wrap">
-                                    ${c.node.summary || 'No summary'} — <a href="https://twitter.com/${cHandle}" target="_blank" class="connection-author" onclick="event.stopPropagation();">${c.node.username}</a>
+                    <div class="detail-grid">
+                        <div class="detail-card">
+                            <div class="detail-card-title">Summary</div>
+                            <div class="detail-summary-text">${node.summary || 'No summary available'}</div>
+                            ${hasLink ? `
+                                <div class="detail-summary-links">
+                                    <a href="${node.link}" target="_blank" class="tweet-link-icon">View original tweet →</a>
                                 </div>
-                                ${cHasLink ? `<a href="${c.node.link}" target="_blank" class="connection-link-icon" onclick="event.stopPropagation();" title="View original tweet">↗</a>` : ''}
-                            </div>
-                            <div class="reason">${c.reason}</div>
+                            ` : ''}
                         </div>
-                    `}).join('')}
+                        <div class="detail-card">
+                            <div class="detail-card-title">Source</div>
+                            <div class="detail-meta">
+                                <a href="https://twitter.com/${twitterHandle}" target="_blank" class="detail-author">${node.username}</a>
+                                <span class="detail-date">${node.date || ''}</span>
+                            </div>
+                            ${nodeClusters.length > 0 ? `
+                                <div class="node-clusters">
+                                    <span class="cluster-label-text">Cluster:</span>
+                                    ${nodeClusters.map(c => `
+                                        <span class="node-cluster-tag" data-cluster-id="${c.id}" style="background: ${c.color}20; color: ${c.color}; border: 1px solid ${c.color}40;">
+                                            <span class="cluster-dot" style="background: ${c.color}"></span>
+                                            ${c.name}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            ` : '<div class="section-description">Not assigned to a cluster yet.</div>'}
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-card-title">${connections.length} Connected Idea${connections.length === 1 ? '' : 's'}</div>
+                        <div class="detail-support-list">
+                            ${connections.length > 0 ? connectionItems : '<div class="section-description">No related ideas yet. Use the clusters or Grok search to discover connections.</div>'}
+                        </div>
+                    </div>
                 </div>
             `;
 
@@ -4034,8 +4328,20 @@
             nodeDetailEl.classList.remove('empty-state');
             nodeDetailEl.innerHTML = detailHtml;
 
+            const detailPill = document.getElementById('detailMetaPill');
+            if (detailPill) {
+                detailPill.textContent = `ID #${node.id}`;
+            }
+            const detailHintEl = document.getElementById('detailHint');
+            if (detailHintEl) {
+                detailHintEl.textContent = `Insights for ${node.username}`;
+            }
+
             // Scroll detail panel to top
-            document.querySelector('.panel-content').scrollTop = 0;
+            const panelContent = document.querySelector('.panel-content');
+            if (panelContent) {
+                panelContent.scrollTop = 0;
+            }
 
             // Add click handlers to cluster tags
             document.querySelectorAll('.node-cluster-tag').forEach(tag => {
@@ -4054,7 +4360,6 @@
                     if (targetNode) {
                         panToNode(nodeId);
                         showNodeDetail(targetNode);
-                        // Highlight the node briefly
                         d3.selectAll('.node-bg')
                             .attr('stroke-width', n => n.id === nodeId ? 2 : 1)
                             .attr('opacity', n => n.id === nodeId ? 1 : 0.5);
@@ -4067,6 +4372,7 @@
                 });
             });
         }
+
 
         function updateStats() {
             if (!graphData || !graphData.nodes || !graphData.edges) return;
@@ -4211,6 +4517,11 @@
                 </div>
             `).join('');
 
+            const clusterCountPill = document.getElementById('clusterCountPill');
+            if (clusterCountPill) {
+                clusterCountPill.textContent = `${clusters.length} cluster${clusters.length === 1 ? '' : 's'}`;
+            }
+
             // Add click handlers
             container.querySelectorAll('.cluster-card').forEach(card => {
                 card.addEventListener('click', (e) => {
@@ -4310,7 +4621,7 @@
             // Switch to demands view if not already
             if (actionableViewMode !== 'demands') {
                 actionableViewMode = 'demands';
-                updateActionableTab();
+                renderActionable();
             }
 
             // Find and highlight the demand item
@@ -4347,7 +4658,7 @@
             // Switch to proposals view if not already
             if (actionableViewMode !== 'proposals') {
                 actionableViewMode = 'proposals';
-                updateActionableTab();
+                renderActionable();
             }
 
             // Find and highlight the action item
@@ -4418,6 +4729,15 @@
 
         function renderActionable() {
             const container = document.getElementById('actionableList');
+            if (!container) return;
+
+            const actionableCountEl = document.getElementById('actionableCountPill');
+            const setActionableCount = (count, singular, plural) => {
+                if (!actionableCountEl) return;
+                const single = singular || 'item';
+                const many = plural || `${single}s`;
+                actionableCountEl.textContent = `${count} ${count === 1 ? single : many}`;
+            };
 
             // Collect all synthesized actions across clusters
             const allActions = [];
@@ -4525,6 +4845,7 @@
                         </div>
                     `).join('')}
                 `;
+                setActionableCount(actionable.length, 'priority', 'priorities');
             } else {
                 // Build the view toggle header
                 const labels = getContextLabels();
@@ -4634,6 +4955,9 @@
                 }
 
                 container.innerHTML = headerHtml + contentHtml;
+                const countForMode = actionableViewMode === 'demands' ? allDemands.length : allActions.length;
+                const labelForMode = actionableViewMode === 'demands' ? 'demand' : 'proposal';
+                setActionableCount(countForMode, labelForMode);
 
                 // Add toggle handlers
                 container.querySelectorAll('.toggle-btn').forEach(btn => {
@@ -5093,6 +5417,10 @@
                 });
         });
 
+        // Sidebar compact handling
+        const sidePanelElement = document.querySelector('.side-panel');
+        const sidebarCompactToggle = document.getElementById('sidebarCompactToggle');
+
         // Grok chat handling
         const grokChatForm = document.getElementById('grokChatForm');
         const grokChatHistory = document.getElementById('grokChatHistory');
@@ -5103,7 +5431,8 @@
         const grokDateToInput = document.getElementById('grokDateTo');
         const grokAllowedInput = document.getElementById('grokAllowed');
         const grokExcludedInput = document.getElementById('grokExcluded');
-        const grokStatusEl = document.getElementById('grokStatus');
+        const grokStatusTextEl = document.getElementById('grokStatus');
+        const grokStatusPillEl = document.getElementById('grokStatusPill');
         const grokSendBtn = document.getElementById('grokSendBtn');
         const grokClearBtn = document.getElementById('grokClearBtn');
         const grokExpandBtn = document.getElementById('grokExpandBtn');
@@ -5157,15 +5486,19 @@
                     return addScheme(rawLink);
                 }
                 if (rawLink.includes('/status/')) {
-                    const [handlePart, statusPart] = rawLink.split('/status/', 1);
-                    const handle = handlePart.replace(/^@/, '').trim();
-                    const status = statusPart.trim();
-                    if (handle && status) {
-                        return `https://x.com/${handle}/status/${status}`;
+                    const parts = rawLink.split('/status/');
+                    const handlePart = (parts[0] || '').replace(/^@/, '').trim();
+                    const statusPart = (parts[1] || '').trim();
+                    if (handlePart && statusPart) {
+                        return `https://x.com/${handlePart}/status/${statusPart}`;
                     }
                 }
                 if (username && /^\d+$/.test(rawLink)) {
                     return `https://x.com/${username}/status/${rawLink}`;
+                }
+                if (/^[a-z0-9_]+\/\d+$/i.test(rawLink)) {
+                    const [handlePart, statusPart] = rawLink.split('/');
+                    return `https://x.com/${handlePart.replace(/^@/, '')}/status/${statusPart}`;
                 }
             }
 
@@ -5221,45 +5554,6 @@
             });
 
             return unique;
-        }
-
-        function ensureGrokLink(row) {
-            const rawLink = ((row && (row.Link || row.link)) || '').trim();
-            const username = (row && (row.Username || row.username) || '').replace(/^@/, '').trim();
-            const summary = row ? (row['Summary/Quote'] || row.summary || '') : '';
-
-            const addScheme = (value) => {
-                if (!value) return '';
-                const cleaned = value.replace(/^https?:\/\//i, '');
-                return value.startsWith('http://') || value.startsWith('https://') ? value : `https://${cleaned}`;
-            };
-
-            const buildSearchUrl = () => summary
-                ? `https://x.com/search?q=${encodeURIComponent(summary.slice(0, 180))}`
-                : (username ? `https://x.com/${username}` : 'https://x.com');
-
-            if (rawLink) {
-                const lowered = rawLink.toLowerCase();
-                if (lowered.startsWith('http://') || lowered.startsWith('https://')) {
-                    return rawLink;
-                }
-                if (rawLink.startsWith('www.') || rawLink.startsWith('x.com/') || rawLink.startsWith('twitter.com/') || rawLink.startsWith('mobile.twitter.com/')) {
-                    return addScheme(rawLink);
-                }
-                if (rawLink.includes('/status/')) {
-                    const [handlePart, statusPart] = rawLink.split('/status/', 1);
-                    const handle = handlePart.replace(/^@/, '').trim();
-                    const status = statusPart.trim();
-                    if (handle && status) {
-                        return `https://x.com/${handle}/status/${status}`;
-                    }
-                }
-                if (username && /^\d+$/.test(rawLink)) {
-                    return `https://x.com/${username}/status/${rawLink}`;
-                }
-            }
-
-            return buildSearchUrl();
         }
 
         function appendGrokMessage(role, contentHtml) {
@@ -5366,11 +5660,29 @@
         }
 
         function setGrokStatus(message, variant = 'muted') {
-            if (!grokStatusEl) return;
-            grokStatusEl.textContent = message || '';
-            grokStatusEl.classList.remove('error', 'success', 'loading');
-            if (variant && variant !== 'muted') {
-                grokStatusEl.classList.add(variant);
+            if (grokStatusTextEl) {
+                grokStatusTextEl.textContent = message || '';
+                grokStatusTextEl.classList.remove('error', 'success', 'loading');
+                if (variant && variant !== 'muted') {
+                    grokStatusTextEl.classList.add(variant);
+                }
+            }
+
+            if (grokStatusPillEl) {
+                grokStatusPillEl.classList.remove('error', 'success', 'loading');
+                let pillLabel = 'Ready';
+                if (variant === 'loading') {
+                    pillLabel = 'Fetching...';
+                } else if (variant === 'success') {
+                    pillLabel = 'Synced';
+                } else if (variant === 'error') {
+                    pillLabel = 'Error';
+                }
+                grokStatusPillEl.textContent = pillLabel;
+                grokStatusPillEl.title = message || 'Ready';
+                if (variant && variant !== 'muted') {
+                    grokStatusPillEl.classList.add(variant);
+                }
             }
         }
 
@@ -5849,6 +6161,7 @@ BrentToderian,"Implement school streets - car-free blocks beside schools during 
         });
 
         // Initialize
+        initSidebarCompact();
         loadData();
     </script>
 
