@@ -2003,6 +2003,12 @@
 
         .grok-error {
             color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: block;
+            margin: 4px 0;
         }
 
         .grok-raw {
@@ -4167,11 +4173,18 @@
                 const excluded = parseHandleInput(grokExcludedInput?.value);
                 if (excluded) payload.excluded_handles = excluded;
                 try {
+                    // Add 60 second timeout
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 60000);
+
                     const response = await fetch('/api/grok-search', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
+                        body: JSON.stringify(payload),
+                        signal: controller.signal
                     });
+                    clearTimeout(timeoutId);
+
                     const data = await response.json();
                     if (!response.ok) {
                         throw new Error(data.error || 'Grok search failed');
@@ -4179,8 +4192,12 @@
                     appendGrokMessage('assistant', renderGrokResponse(data));
                     setGrokStatus(`Completed via ${data.model || 'grok-4-1-fast'}.`, 'success');
                 } catch (err) {
-                    appendGrokMessage('assistant', `<span class="grok-error">⚠️ ${escapeHtml(err.message || String(err))}</span>`);
-                    setGrokStatus(err.message || 'Unexpected error', 'error');
+                    let errorMsg = err.message || String(err);
+                    if (err.name === 'AbortError') {
+                        errorMsg = 'Request timed out after 60 seconds. The Grok API may be slow or unresponsive. Try the manual import option below.';
+                    }
+                    appendGrokMessage('assistant', `<span class="grok-error">⚠️ ${escapeHtml(errorMsg)}</span>`);
+                    setGrokStatus(errorMsg, 'error');
                 } finally {
                     setGrokLoading(false);
                 }
