@@ -331,6 +331,16 @@
             font-weight: 500;
         }
 
+        .item-mini .username-link {
+            color: #58a6ff;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .item-mini .username-link:hover {
+            text-decoration: underline;
+        }
+
         .node-detail {
             padding: 13px 12px 20px 12px;
         }
@@ -965,6 +975,13 @@
             padding: 2px 8px;
             border-radius: 10px;
             font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .topic-tag:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
         }
 
         .support-bar {
@@ -2449,11 +2466,13 @@
                         </div>
                     ` : ''}
                     <div class="cluster-items">
-                        ${cluster.nodes.map(n => `
+                        ${cluster.nodes.map(n => {
+                            const handle = (n.username || '').replace(/^@+/, '');
+                            return `
                             <div class="item-mini" data-node-id="${n.id}">
-                                ${(n.summary || '').substring(0, 100)}${(n.summary || '').length > 100 ? '...' : ''} <span class="username">— ${n.username}</span>
+                                ${(n.summary || '').substring(0, 100)}${(n.summary || '').length > 100 ? '...' : ''} — <a href="https://twitter.com/${handle}" target="_blank" class="username-link" onclick="event.stopPropagation();">@${handle}</a>
                             </div>
-                        `).join('')}
+                        `}).join('')}
                     </div>
                 </div>
             `).join('');
@@ -2785,6 +2804,15 @@
                                 }
                             }
                         }, 100);
+                    });
+                });
+
+                // Add topic tag click handlers (highlight topic on graph)
+                container.querySelectorAll('.topic-tag').forEach(tag => {
+                    tag.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const topic = tag.textContent.trim();
+                        highlightTopic(topic);
                     });
                 });
             }
