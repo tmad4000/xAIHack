@@ -1054,14 +1054,46 @@
                 .on('mouseout', handleMouseOut)
                 .on('click', handleNodeClick);
 
-            // Node labels
+            // Node labels - show summary text, truncated
             node.append('text')
                 .attr('class', 'node-label')
                 .attr('dy', 20)
                 .attr('text-anchor', 'middle')
-                .attr('fill', '#888')
-                .attr('font-size', '10px')
-                .text(d => d.username);
+                .attr('fill', '#8b949e')
+                .attr('font-size', '9px')
+                .each(function(d) {
+                    const text = d3.select(this);
+                    const summary = d.summary || 'No summary';
+                    const maxChars = 40;
+
+                    // Split into lines
+                    const words = summary.split(' ');
+                    let lines = [];
+                    let currentLine = '';
+
+                    words.forEach(word => {
+                        if ((currentLine + ' ' + word).trim().length <= maxChars) {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        } else {
+                            if (currentLine) lines.push(currentLine);
+                            currentLine = word;
+                        }
+                    });
+                    if (currentLine) lines.push(currentLine);
+
+                    // Limit to 2 lines, add ellipsis if needed
+                    if (lines.length > 2) {
+                        lines = lines.slice(0, 2);
+                        lines[1] = lines[1].substring(0, 35) + '...';
+                    }
+
+                    lines.forEach((line, i) => {
+                        text.append('tspan')
+                            .attr('x', 0)
+                            .attr('dy', i === 0 ? 0 : '1.1em')
+                            .text(line);
+                    });
+                });
 
             // Update positions on tick
             simulation.on('tick', () => {
@@ -1099,7 +1131,7 @@
         function handleMouseOver(event, d) {
             const tooltip = d3.select('#tooltip');
             tooltip
-                .html(`<span class="username">${d.username}</span><br>${d.summary || 'No summary'}`)
+                .html(`<div style="margin-bottom: 8px; line-height: 1.4;">${d.summary || 'No summary'}</div><span class="username">${d.username}</span> · ${d.date || ''}`)
                 .style('left', (event.pageX + 15) + 'px')
                 .style('top', (event.pageY - 10) + 'px')
                 .classed('visible', true);
