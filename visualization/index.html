@@ -2662,8 +2662,8 @@
                     throw new Error(data.error || 'Clustering failed');
                 }
 
-                // Reload the project to get updated clusters
-                await switchProject(currentProject);
+                // Reload the project to get updated clusters (forceReload=true since same project)
+                await switchProject(currentProject, true, true);
                 await loadProjectsList();
                 alert('Clustering completed successfully!');
 
