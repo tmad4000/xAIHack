@@ -9,3 +9,12 @@ So I want to create a graph of all the suggestions and issues for different loca
 [Follow-up] I want it to probably make an additional output file that's another CSV or another appropriate data format that includes those connections.
 
 ---
+## 2025-12-06 (later)
+
+Now I want you to make an awesome graph visualizer so I can win the the XAI hackathon and have a very cool demo. And actually have the thing also be useful in that what it should what we'll be able to do is look at the clusters of ideas that have emerged and think about the ones that are actually speaking of the same truth, and maybe create some kind of meta grouping or tag or label that shows the essential idea of each cluster.
+
+We can also consider topic-based clustering, but exact idea-based clustering—like when people have thought of basically the same suggestion or the same problem—is even more important because that's more actionable.
+
+So I want to be able to generate this in a 2D force-directed graph visualization, which has great user experience, but then also have some kind of summary pane in the user experience where I can actually get the consolidated suggestions list so that I can action on it as a representative of a locality or give it to a representative of a locality or something like that. And then general topical trends are also welcome.
+
+---

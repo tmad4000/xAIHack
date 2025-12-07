@@ -1,0 +1,276 @@
+{
+  "total_ideas": 26,
+  "total_clusters": 8,
+  "clusters": [
+    {
+      "id": 0,
+      "topic": "Housing",
+      "name": "Staten Island Housing",
+      "summary": "8 citizens advocating for housing improvements",
+      "action": "Review and prioritize these housing-related suggestions",
+      "consensus": "High",
+      "node_count": 8,
+      "nodes": [
+        {
+          "id": 1,
+          "username": "@NYCPlanning",
+          "summary": "Accessory dwelling units (ADUs) are a proven way to create housing & help homeowners. Homeowners filing to build them across boroughs including Staten Island.",
+          "date": "2025-12-05",
+          "link": "https://x.com/NYCPlanning/status/1996951955885765018"
+        },
+        {
+          "id": 3,
+          "username": "@privatelexicon",
+          "summary": "Propose 150k homes in Bronx",
+          "date": "2025-12-02",
+          "link": " 100k in Manhattan (infill + conversions)"
+        },
+        {
+          "id": 4,
+          "username": "@BadTakeEnjoyer",
+          "summary": "Build a subway tunnel to Staten Island for 7-10 min trips and enable much more housing on the island.",
+          "date": "2025-12-01",
+          "link": "https://x.com/BadTakeEnjoyer/status/1995193598900686890"
+        },
+        {
+          "id": 5,
+          "username": "@BadTakeEnjoyer",
+          "summary": "Apply Tokyo-style zoning to Staten Island as experiment",
+          "date": "2025-12-01",
+          "link": " use tax revenue to extend subway lines to the island."
+        },
+        {
+          "id": 6,
+          "username": "@CelestinAustin",
+          "summary": "Criticizes council members for proposing housing on inconvenient islands while their districts build none; calls for housing in existing neighborhoods.",
+          "date": "2025-11-30",
+          "link": "https://x.com/CelestinAustin/status/1994876419218800720"
+        },
+        {
+          "id": 7,
+          "username": "@DanBiancoNYC",
+          "summary": "Build affordable housing first on helipads ruining enjoyment of Governor\u2019s Island (satirical support for more housing there).",
+          "date": "2025-11-30",
+          "link": "https://x.com/DanBiancoNYC/status/1994890217720091036"
+        },
+        {
+          "id": 8,
+          "username": "@roselialescrime",
+          "summary": "Build dense",
+          "date": "2025-11-30",
+          "link": " affordable city-run 5+ story housing complexes (not for-profit)."
+        },
+        {
+          "id": 9,
+          "username": "@UrbanCourtyard",
+          "summary": "Dense",
+          "date": "2025-11-26",
+          "link": " walkable neighborhoods connected by extensive passenger rail to solve urban issues."
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "topic": "Housing",
+      "name": "Sidewalk Width Reform",
+      "summary": "1 citizens advocating for housing improvements",
+      "action": "Review and prioritize these housing-related suggestions",
+      "consensus": "Medium",
+      "node_count": 1,
+      "nodes": [
+        {
+          "id": 16,
+          "username": "@TransAlt",
+          "summary": "Set minimum sidewalk width of 8 feet tied to zoning; fund widening program for substandard sidewalks.",
+          "date": "2022-11-22",
+          "link": "https://x.com/TransAlt/status/1595137036037636107"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "topic": "Other",
+      "name": "Urban Improvements",
+      "summary": "1 citizens advocating for other improvements",
+      "action": "Review and prioritize these other-related suggestions",
+      "consensus": "Medium",
+      "node_count": 1,
+      "nodes": [
+        {
+          "id": 2,
+          "username": "@AriReddy",
+          "summary": "Highlighting past high permitting in Manhattan (13",
+          "date": "2025-12-05",
+          "link": "000 units in 1960 vs low in 1990s) to argue for less restrictive regulations to allow more housing."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "topic": "Sidewalks",
+      "name": "Pedestrian Infrastructure",
+      "summary": "8 citizens advocating for sidewalks improvements",
+      "action": "Review and prioritize these sidewalks-related suggestions",
+      "consensus": "High",
+      "node_count": 8,
+      "nodes": [
+        {
+          "id": 10,
+          "username": "@UrbanCourtyard",
+          "summary": "Narrow streets",
+          "date": "2025-06-06",
+          "link": " widen sidewalks"
+        },
+        {
+          "id": 11,
+          "username": "@catculley",
+          "summary": "Fantastic opportunity for human-focused street redesign: wide sidewalks",
+          "date": "2025-01-11",
+          "link": " trees"
+        },
+        {
+          "id": 13,
+          "username": "@BrentToderian",
+          "summary": "Make sidewalks bigger and better (double-loaded sidewalks).",
+          "date": "2024-11-09",
+          "link": "https://x.com/BrentToderian/status/1855292918736773311"
+        },
+        {
+          "id": 24,
+          "username": "@UrbanCourtyard",
+          "summary": "Support walkable urban neighborhoods with social interest",
+          "date": "2025-02-05",
+          "link": " public conveniences"
+        },
+        {
+          "id": 25,
+          "username": "@signulll",
+          "summary": "Pedestrianize 5th Ave with trees/gardens",
+          "date": "2025-01-15",
+          "link": " light rail on 6th Ave"
+        },
+        {
+          "id": 17,
+          "username": "@BrentToderian",
+          "summary": "Implement \u201cschool streets\u201d (car-free blocks beside schools during drop-off/pick-up) for safety and enjoyment.",
+          "date": "2021-12-16",
+          "link": "https://x.com/BrentToderian/status/1471276645503827970"
+        },
+        {
+          "id": 18,
+          "username": "@BrentToderian",
+          "summary": "Implement \u201cschool streets\u201d (car-free blocks beside schools).",
+          "date": "2021-11-06",
+          "link": "https://x.com/BrentToderian/status/1457008377104519168"
+        },
+        {
+          "id": 22,
+          "username": "@MS_Neg",
+          "summary": "Urbanize with connecting sidewalks",
+          "date": "2025-12-03",
+          "link": " updated crosswalks"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "topic": "Safety",
+      "name": "Public Safety",
+      "summary": "2 citizens advocating for safety improvements",
+      "action": "Review and prioritize these safety-related suggestions",
+      "consensus": "Medium",
+      "node_count": 2,
+      "nodes": [
+        {
+          "id": 12,
+          "username": "@jasonc_nc",
+          "summary": "Focus on safety (more officers",
+          "date": "2024-12-10",
+          "link": " stop panhandling)"
+        },
+        {
+          "id": 21,
+          "username": "@RolandB3",
+          "summary": "More cops/tickets",
+          "date": "2025-12-04",
+          "link": " red light/speed cameras"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "topic": "Green Space",
+      "name": "Green Infrastructure",
+      "summary": "2 citizens advocating for green space improvements",
+      "action": "Review and prioritize these green space-related suggestions",
+      "consensus": "Medium",
+      "node_count": 2,
+      "nodes": [
+        {
+          "id": 14,
+          "username": "@TransAlt",
+          "summary": "Increase permeable infrastructure/replace car space with green space in flood-prone areas for resilience.",
+          "date": "2023-09-29",
+          "link": "https://x.com/TransAlt/status/1707858007583822153"
+        },
+        {
+          "id": 19,
+          "username": "@bikesnobnyc",
+          "summary": "Parking/delivery reform",
+          "date": "2019-07-25",
+          "link": " automated enforcement"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "topic": "Transit",
+      "name": "Bus Lane Expansion",
+      "summary": "3 citizens advocating for transit improvements",
+      "action": "Review and prioritize these transit-related suggestions",
+      "consensus": "High",
+      "node_count": 3,
+      "nodes": [
+        {
+          "id": 15,
+          "username": "@rustbeltenjoyer",
+          "summary": "More buses/routes",
+          "date": "2023-07-13",
+          "link": " turn dead malls into community centers/art spaces/indoor plazas"
+        },
+        {
+          "id": 26,
+          "username": "@DaveCoIon",
+          "summary": "100 miles bus lanes in two years",
+          "date": "2020-08-07",
+          "link": " subsidize e-bikes"
+        },
+        {
+          "id": 20,
+          "username": "@JohnnyWalsh__",
+          "summary": "N-S bus lanes",
+          "date": "2025-12-04",
+          "link": " expanded elevated bike lanes"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "topic": "Transit",
+      "name": "Sidewalk Width Reform",
+      "summary": "1 citizens advocating for transit improvements",
+      "action": "Review and prioritize these transit-related suggestions",
+      "consensus": "Medium",
+      "node_count": 1,
+      "nodes": [
+        {
+          "id": 23,
+          "username": "@JohnSurico",
+          "summary": "Repurpose space near subway stations with wider sidewalks",
+          "date": "2025-11-30",
+          "link": " larger bus shelters"
+        }
+      ]
+    }
+  ]
+}

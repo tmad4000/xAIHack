@@ -1,8 +1,34 @@
-# xAI Hack - Related Issues Graph
+# CityVoice - AI-Powered Citizen Suggestion Clustering
 
-Find related suggestions/issues from locality-based tweet collections using AI.
+**xAI Hackathon 2025**
 
-## Quick Start
+CityVoice discovers and clusters citizen suggestions from social media, helping city officials understand what residents want and identify actionable improvements.
+
+## Features
+
+- **AI-Powered Connection Discovery**: Finds related ideas using Claude/GPT
+- **Interactive Graph Visualization**: Force-directed graph with D3.js
+- **Automatic Clustering**: Groups similar suggestions by topic and idea
+- **Actionable Summary**: Prioritized list of citizen demands with consensus levels
+- **Export Reports**: Generate markdown reports for stakeholders
+
+## Quick Start - Visualization
+
+```bash
+# Start the visualization server
+python3 server.py
+
+# Opens browser to http://localhost:7847
+```
+
+The visualization includes:
+- **Left Panel**: Interactive force-directed graph with zoom/pan
+- **Right Panel**: Clusters, actionable items, and node details
+- **Legend**: Topic-based color coding with counts
+- **Search**: Filter nodes by keyword
+- **Export**: Download consolidated markdown report
+
+## Generate Connection Data
 
 ```bash
 # Install dependencies
@@ -11,8 +37,11 @@ pip install anthropic
 # Set API key
 export ANTHROPIC_API_KEY="your-key-here"
 
-# Run the script
+# Run the analysis script
 python find_related_items.py data/geodatanyc.csv
+
+# Enhance clusters with AI-generated summaries (optional)
+python enhance_clusters.py
 ```
 
 ## Output Files

@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityVoice - AI-Powered Citizen Suggestion Clustering | xAI Hackathon</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%);
+            color: #e0e0e0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .graph-panel {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #graph {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+
+        #graph:active {
+            cursor: grabbing;
+        }
+
+        /* Animated background gradient */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .graph-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(100, 181, 246, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(206, 147, 216, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            animation: gradientShift 10s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        /* Node glow effects */
+        .node circle {
+            filter: drop-shadow(0 0 3px currentColor);
+            transition: all 0.3s ease;
+        }
+
+        .node:hover circle {
+            filter: drop-shadow(0 0 8px currentColor);
+            transform: scale(1.2);
+        }
+
+        /* Pulse animation for high-consensus clusters */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .side-panel {
+            width: 420px;
+            background: rgba(20, 20, 40, 0.95);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        .panel-header {
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(100, 100, 255, 0.2) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        .panel-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #64b5f6, #ce93d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0;
+        }
+
+        .panel-header p {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .powered-by {
+            font-size: 0.7rem;
+            color: #555;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab.active {
+            color: #64b5f6;
+            border-bottom: 2px solid #64b5f6;
+            background: rgba(100, 181, 246, 0.1);
+        }
+
+        .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .cluster-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cluster-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .cluster-card.selected {
+            border-color: #64b5f6;
+            box-shadow: 0 0 20px rgba(100, 181, 246, 0.2);
+        }
+
+        .cluster-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cluster-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .cluster-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .cluster-count {
+            font-size: 0.75rem;
+            color: #888;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: auto;
+        }
+
+        .cluster-summary {
+            font-size: 0.85rem;
+            color: #aaa;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .consensus-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .consensus-badge.high {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .consensus-badge.medium {
+            background: rgba(249, 115, 22, 0.2);
+            color: #f97316;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .consensus-badge.low {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .cluster-action {
+            font-size: 0.8rem;
+            color: #64b5f6;
+            padding: 8px;
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 3px solid #64b5f6;
+        }
+
+        .cluster-items {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cluster-card.expanded .cluster-items {
+            display: block;
+        }
+
+        .item-mini {
+            font-size: 0.8rem;
+            color: #888;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            margin-bottom: 6px;
+        }
+
+        .item-mini .username {
+            color: #64b5f6;
+            font-weight: 500;
+        }
+
+        .node-detail {
+            padding: 15px;
+        }
+
+        .node-detail h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #64b5f6;
+        }
+
+        .node-detail .date {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .node-detail .summary {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .node-detail .connections-header {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .connection-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid #64b5f6;
+        }
+
+        .connection-item .reason {
+            font-size: 0.8rem;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .link-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #64b5f6, #ce93d8);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .link-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #64b5f6, #ce93d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(20, 20, 40, 0.8);
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            background: rgba(100, 181, 246, 0.3);
+            border-color: #64b5f6;
+        }
+
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(20, 20, 40, 0.9);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .legend h4 {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .legend-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(20, 20, 40, 0.95);
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.85rem;
+            max-width: 300px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+        }
+
+        .tooltip .username {
+            color: #64b5f6;
+            font-weight: 600;
+        }
+
+        .export-section {
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .export-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #64b5f6, #ce93d8);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .export-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .search-box {
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #64b5f6;
+        }
+
+        .search-input::placeholder {
+            color: #666;
+        }
+
+        .actionable-list {
+            padding: 0;
+        }
+
+        .actionable-header {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .actionable-header h3 {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .actionable-header p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .actionable-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .actionable-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .actionable-rank {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #444;
+            min-width: 40px;
+        }
+
+        .actionable-content {
+            flex: 1;
+        }
+
+        .actionable-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .actionable-item h4 {
+            font-size: 0.95rem;
+            margin: 0;
+            color: #fff;
+        }
+
+        .topic-tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .support-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 6px;
+            overflow: hidden;
+        }
+
+        .support-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.5s ease-out;
+        }
+
+        .support-text {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .action-text {
+            font-size: 0.85rem;
+            color: #64b5f6;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .actionable-item .description {
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="graph-panel">
+            <svg id="graph"></svg>
+
+            <div class="controls">
+                <button class="control-btn" id="zoomIn" title="Zoom In">+</button>
+                <button class="control-btn" id="zoomOut" title="Zoom Out">-</button>
+                <button class="control-btn" id="resetView" title="Reset View">⌖</button>
+                <button class="control-btn" id="toggleLabels" title="Toggle Labels">T</button>
+            </div>
+
+            <div class="legend" id="legend">
+                <h4>Topics</h4>
+            </div>
+
+            <div class="tooltip" id="tooltip"></div>
+        </div>
+
+        <div class="side-panel">
+            <div class="panel-header">
+                <div class="logo-row">
+                    <span class="logo-icon">🏙️</span>
+                    <h1>CityVoice</h1>
+                </div>
+                <p>AI-powered citizen suggestion clustering</p>
+                <div class="powered-by">Powered by xAI Grok</div>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-value" id="totalIdeas">0</div>
+                    <div class="stat-label">Ideas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="totalConnections">0</div>
+                    <div class="stat-label">Connections</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="totalClusters">0</div>
+                    <div class="stat-label">Clusters</div>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search ideas...">
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="clusters">Clusters</button>
+                <button class="tab" data-tab="actionable">Actionable</button>
+                <button class="tab" data-tab="detail">Detail</button>
+            </div>
+
+            <div class="panel-content">
+                <div class="tab-content active" id="clusters-tab">
+                    <div id="clusterList"></div>
+                </div>
+
+                <div class="tab-content" id="actionable-tab">
+                    <div id="actionableList" class="actionable-list"></div>
+                </div>
+
+                <div class="tab-content" id="detail-tab">
+                    <div id="nodeDetail" class="empty-state">
+                        <p>Click on a node in the graph to see details</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="export-section">
+                <button class="export-btn" id="exportBtn">Export Consolidated Report</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Graph data will be loaded from JSON
+        let graphData = null;
+        let enhancedClusters = null;
+        let clusters = [];
+        let simulation = null;
+        let showLabels = true;
+        let selectedCluster = null;
+        let selectedNode = null;
+
+        // Color palette for clusters - vibrant and distinct
+        const clusterColors = {
+            'Housing': '#f97316',      // Orange
+            'Transit': '#3b82f6',      // Blue
+            'Sidewalks': '#22c55e',    // Green
+            'Safety': '#ef4444',       // Red
+            'Green Space': '#10b981',  // Emerald
+            'Schools': '#a855f7',      // Purple
+            'Other': '#6b7280'         // Gray
+        };
+
+        const fallbackColors = [
+            '#64b5f6', '#ce93d8', '#81c784', '#ffb74d', '#f06292',
+            '#4dd0e1', '#aed581', '#ff8a65', '#ba68c8', '#4fc3f7'
+        ];
+
+        // Topic keywords for classification
+        const topicKeywords = {
+            'Housing': ['housing', 'home', 'apartment', 'ADU', 'dwelling', 'zoning', 'residential', 'units', 'building', 'dense', 'homes'],
+            'Transit': ['bus', 'subway', 'transit', 'rail', 'train', 'metro', 'transport', 'commute', 'lane'],
+            'Sidewalks': ['sidewalk', 'pedestrian', 'street', 'walk', 'crosswalk', 'curb', 'wider'],
+            'Safety': ['safety', 'safe', 'police', 'officer', 'crime', 'security', 'enforcement', 'cops'],
+            'Green Space': ['green', 'tree', 'park', 'garden', 'nature', 'permeable', 'flood'],
+            'Bike Infrastructure': ['bike', 'bicycle', 'cycling'],
+            'Schools': ['school', 'student', 'children', 'kids']
+        };
+
+        // Load and process data
+        async function loadData() {
+            try {
+                // Load both data files in parallel
+                const [graphResponse, clustersResponse] = await Promise.all([
+                    fetch('/data/connections.json'),
+                    fetch('/data/enhanced_clusters.json').catch(() => null)
+                ]);
+
+                graphData = await graphResponse.json();
+
+                // Try to load enhanced clusters
+                if (clustersResponse && clustersResponse.ok) {
+                    enhancedClusters = await clustersResponse.json();
+                    console.log('Loaded enhanced clusters:', enhancedClusters);
+                }
+
+                // Classify nodes by topic
+                graphData.nodes.forEach(node => {
+                    node.topics = classifyNode(node);
+                    node.primaryTopic = node.topics[0] || 'Other';
+                });
+
+                // Use enhanced clusters if available, otherwise detect them
+                if (enhancedClusters) {
+                    useEnhancedClusters();
+                } else {
+                    detectClusters();
+                }
+
+                // Initialize visualization
+                initGraph();
+                updateStats();
+                renderClusters();
+                renderActionable();
+                setupLegend();
+
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        function useEnhancedClusters() {
+            // Build cluster assignments from enhanced clusters
+            const nodeToCluster = new Map();
+            let colorIdx = 0;
+
+            clusters = enhancedClusters.clusters.map(ec => {
+                const color = clusterColors[ec.topic] || fallbackColors[colorIdx++ % fallbackColors.length];
+
+                ec.nodes.forEach(n => {
+                    nodeToCluster.set(n.id, {
+                        clusterId: ec.id,
+                        color: color
+                    });
+                });
+
+                return {
+                    id: ec.id,
+                    name: ec.name,
+                    topic: ec.topic,
+                    color: color,
+                    nodes: ec.nodes.map(n => graphData.nodes.find(gn => gn.id === n.id) || n),
+                    summary: ec.summary,
+                    action: ec.action,
+                    consensus: ec.consensus
+                };
+            });
+
+            // Assign cluster info to nodes
+            graphData.nodes.forEach(node => {
+                const info = nodeToCluster.get(node.id);
+                if (info) {
+                    node.cluster = info.clusterId;
+                    node.clusterColor = info.color;
+                } else {
+                    node.cluster = -1;
+                    node.clusterColor = '#6b7280';
+                }
+            });
+        }
+
+        function classifyNode(node) {
+            const text = (node.summary || '').toLowerCase();
+            const topics = [];
+
+            for (const [topic, keywords] of Object.entries(topicKeywords)) {
+                if (keywords.some(kw => text.includes(kw))) {
+                    topics.push(topic);
+                }
+            }
+
+            return topics.length > 0 ? topics : ['Other'];
+        }
+
+        // Simple community detection using connected components and edge density
+        function detectClusters() {
+            const nodes = graphData.nodes;
+            const edges = graphData.edges;
+
+            // Build adjacency map with weights (connection count)
+            const adjacency = new Map();
+            nodes.forEach(n => adjacency.set(n.id, new Set()));
+
+            edges.forEach(e => {
+                adjacency.get(e.source_id).add(e.target_id);
+                adjacency.get(e.target_id).add(e.source_id);
+            });
+
+            // Group by primary topic first, then subdivide by connectivity
+            const topicGroups = new Map();
+            nodes.forEach(node => {
+                const topic = node.primaryTopic;
+                if (!topicGroups.has(topic)) {
+                    topicGroups.set(topic, []);
+                }
+                topicGroups.get(topic).push(node);
+            });
+
+            let clusterIndex = 0;
+            clusters = [];
+
+            topicGroups.forEach((topicNodes, topic) => {
+                // For each topic group, find sub-clusters based on connectivity
+                const subClusters = findSubClusters(topicNodes, adjacency);
+
+                subClusters.forEach(subCluster => {
+                    const color = clusterColors[clusterIndex % clusterColors.length];
+                    const clusterObj = {
+                        id: clusterIndex,
+                        name: generateClusterName(subCluster, topic),
+                        topic: topic,
+                        color: color,
+                        nodes: subCluster,
+                        summary: generateClusterSummary(subCluster)
+                    };
+
+                    subCluster.forEach(node => {
+                        node.cluster = clusterIndex;
+                        node.clusterColor = color;
+                    });
+
+                    clusters.push(clusterObj);
+                    clusterIndex++;
+                });
+            });
+        }
+
+        function findSubClusters(topicNodes, adjacency) {
+            if (topicNodes.length <= 2) {
+                return [topicNodes];
+            }
+
+            // Simple greedy clustering: group nodes that share edges
+            const visited = new Set();
+            const subClusters = [];
+
+            topicNodes.forEach(node => {
+                if (visited.has(node.id)) return;
+
+                const cluster = [node];
+                visited.add(node.id);
+
+                const neighbors = adjacency.get(node.id);
+                topicNodes.forEach(other => {
+                    if (!visited.has(other.id) && neighbors.has(other.id)) {
+                        cluster.push(other);
+                        visited.add(other.id);
+                    }
+                });
+
+                subClusters.push(cluster);
+            });
+
+            // Merge small clusters
+            const merged = [];
+            let currentMerge = [];
+
+            subClusters.forEach(cluster => {
+                if (cluster.length >= 2) {
+                    merged.push(cluster);
+                } else {
+                    currentMerge = currentMerge.concat(cluster);
+                    if (currentMerge.length >= 2) {
+                        merged.push(currentMerge);
+                        currentMerge = [];
+                    }
+                }
+            });
+
+            if (currentMerge.length > 0) {
+                if (merged.length > 0) {
+                    merged[merged.length - 1] = merged[merged.length - 1].concat(currentMerge);
+                } else {
+                    merged.push(currentMerge);
+                }
+            }
+
+            return merged.length > 0 ? merged : [topicNodes];
+        }
+
+        function generateClusterName(nodes, topic) {
+            // Extract key themes from summaries
+            const allText = nodes.map(n => n.summary || '').join(' ').toLowerCase();
+
+            // Find specific sub-themes
+            if (allText.includes('staten island')) return `Staten Island ${topic}`;
+            if (allText.includes('school')) return `School ${topic}`;
+            if (allText.includes('wider') || allText.includes('width')) return `Sidewalk Width Reform`;
+            if (allText.includes('bus lane')) return `Bus Lane Expansion`;
+            if (allText.includes('dense') || allText.includes('density')) return `Dense Development`;
+            if (allText.includes('pedestrian')) return `Pedestrianization`;
+
+            return topic;
+        }
+
+        function generateClusterSummary(nodes) {
+            // Create consolidated summary from node summaries
+            const ideas = nodes.map(n => n.summary).filter(s => s && s.length > 10);
+            if (ideas.length === 0) return 'Various related suggestions';
+
+            if (ideas.length === 1) return ideas[0];
+
+            // Find common themes
+            return `${nodes.length} related suggestions: ${ideas[0].substring(0, 100)}...`;
+        }
+
+        function initGraph() {
+            const svg = d3.select('#graph');
+            const container = svg.node().parentElement;
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            svg.attr('viewBox', [0, 0, width, height]);
+
+            // Create container for zoom
+            const g = svg.append('g').attr('class', 'graph-container');
+
+            // Setup zoom
+            const zoom = d3.zoom()
+                .scaleExtent([0.2, 4])
+                .on('zoom', (event) => {
+                    g.attr('transform', event.transform);
+                });
+
+            svg.call(zoom);
+
+            // Setup controls
+            d3.select('#zoomIn').on('click', () => svg.transition().call(zoom.scaleBy, 1.3));
+            d3.select('#zoomOut').on('click', () => svg.transition().call(zoom.scaleBy, 0.7));
+            d3.select('#resetView').on('click', () => svg.transition().call(zoom.transform, d3.zoomIdentity));
+            d3.select('#toggleLabels').on('click', () => {
+                showLabels = !showLabels;
+                g.selectAll('.node-label').style('opacity', showLabels ? 1 : 0);
+            });
+
+            // Prepare edge data with node references
+            const nodeMap = new Map(graphData.nodes.map(n => [n.id, n]));
+            const links = graphData.edges.map(e => ({
+                source: nodeMap.get(e.source_id),
+                target: nodeMap.get(e.target_id),
+                reason: e.reason
+            }));
+
+            // Create force simulation
+            simulation = d3.forceSimulation(graphData.nodes)
+                .force('link', d3.forceLink(links).id(d => d.id).distance(80).strength(0.5))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(30));
+
+            // Draw edges
+            const link = g.append('g')
+                .attr('class', 'links')
+                .selectAll('line')
+                .data(links)
+                .enter().append('line')
+                .attr('stroke', '#ffffff')
+                .attr('stroke-opacity', 0.1)
+                .attr('stroke-width', 1);
+
+            // Draw nodes
+            const node = g.append('g')
+                .attr('class', 'nodes')
+                .selectAll('g')
+                .data(graphData.nodes)
+                .enter().append('g')
+                .attr('class', 'node')
+                .call(d3.drag()
+                    .on('start', dragstarted)
+                    .on('drag', dragged)
+                    .on('end', dragended));
+
+            // Node circles
+            node.append('circle')
+                .attr('r', d => 8 + (adjacencyCount(d.id) * 0.5))
+                .attr('fill', d => d.clusterColor || '#64b5f6')
+                .attr('stroke', '#fff')
+                .attr('stroke-width', 2)
+                .attr('stroke-opacity', 0.5)
+                .style('cursor', 'pointer')
+                .on('mouseover', handleMouseOver)
+                .on('mouseout', handleMouseOut)
+                .on('click', handleNodeClick);
+
+            // Node labels
+            node.append('text')
+                .attr('class', 'node-label')
+                .attr('dy', 20)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#888')
+                .attr('font-size', '10px')
+                .text(d => d.username);
+
+            // Update positions on tick
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+
+                node.attr('transform', d => `translate(${d.x},${d.y})`);
+            });
+
+            function adjacencyCount(id) {
+                return graphData.edges.filter(e => e.source_id === id || e.target_id === id).length;
+            }
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        }
+
+        function handleMouseOver(event, d) {
+            const tooltip = d3.select('#tooltip');
+            tooltip
+                .html(`<span class="username">${d.username}</span><br>${d.summary || 'No summary'}`)
+                .style('left', (event.pageX + 15) + 'px')
+                .style('top', (event.pageY - 10) + 'px')
+                .classed('visible', true);
+
+            // Highlight connected nodes
+            const connected = new Set();
+            graphData.edges.forEach(e => {
+                if (e.source_id === d.id) connected.add(e.target_id);
+                if (e.target_id === d.id) connected.add(e.source_id);
+            });
+
+            d3.selectAll('.node circle')
+                .attr('opacity', n => n.id === d.id || connected.has(n.id) ? 1 : 0.3);
+
+            d3.selectAll('.links line')
+                .attr('stroke-opacity', l =>
+                    (l.source.id === d.id || l.target.id === d.id) ? 0.6 : 0.05
+                );
+        }
+
+        function handleMouseOut() {
+            d3.select('#tooltip').classed('visible', false);
+            d3.selectAll('.node circle').attr('opacity', 1);
+            d3.selectAll('.links line').attr('stroke-opacity', 0.1);
+        }
+
+        function handleNodeClick(event, d) {
+            selectedNode = d;
+            showNodeDetail(d);
+
+            // Switch to detail tab
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-tab="detail"]').classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('detail-tab').classList.add('active');
+        }
+
+        function showNodeDetail(node) {
+            const connections = graphData.edges
+                .filter(e => e.source_id === node.id || e.target_id === node.id)
+                .map(e => {
+                    const otherId = e.source_id === node.id ? e.target_id : e.source_id;
+                    const other = graphData.nodes.find(n => n.id === otherId);
+                    return { node: other, reason: e.reason };
+                });
+
+            const detailHtml = `
+                <div class="node-detail">
+                    <h3>${node.username}</h3>
+                    <div class="date">${node.date}</div>
+                    <div class="summary">${node.summary || 'No summary available'}</div>
+                    ${node.link && node.link.startsWith('http') ?
+                        `<a href="${node.link}" target="_blank" class="link-btn">View Original Tweet</a>` : ''}
+
+                    <div class="connections-header" style="margin-top: 20px;">
+                        ${connections.length} Connected Ideas
+                    </div>
+                    ${connections.map(c => `
+                        <div class="connection-item">
+                            <strong>${c.node.username}</strong>: ${c.node.summary || 'No summary'}
+                            <div class="reason">${c.reason}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            document.getElementById('nodeDetail').innerHTML = detailHtml;
+        }
+
+        function updateStats() {
+            document.getElementById('totalIdeas').textContent = graphData.nodes.length;
+            document.getElementById('totalConnections').textContent = graphData.edges.length;
+            document.getElementById('totalClusters').textContent = clusters.length;
+        }
+
+        function renderClusters() {
+            const container = document.getElementById('clusterList');
+
+            // Sort by node count descending
+            const sortedClusters = [...clusters].sort((a, b) => b.nodes.length - a.nodes.length);
+
+            container.innerHTML = sortedClusters.map(cluster => `
+                <div class="cluster-card" data-cluster="${cluster.id}">
+                    <div class="cluster-header">
+                        <div class="cluster-color" style="background: ${cluster.color}"></div>
+                        <div class="cluster-title">${cluster.name}</div>
+                        <div class="cluster-count">${cluster.nodes.length} ${cluster.nodes.length === 1 ? 'voice' : 'voices'}</div>
+                    </div>
+                    ${cluster.consensus ? `
+                        <div class="consensus-badge ${cluster.consensus.toLowerCase()}">
+                            ${cluster.consensus} Consensus
+                        </div>
+                    ` : ''}
+                    <div class="cluster-summary">${cluster.summary}</div>
+                    ${cluster.action ? `
+                        <div class="cluster-action">
+                            <strong>Action:</strong> ${cluster.action}
+                        </div>
+                    ` : ''}
+                    <div class="cluster-items">
+                        ${cluster.nodes.map(n => `
+                            <div class="item-mini" data-node-id="${n.id}">
+                                <span class="username">${n.username}</span>: ${(n.summary || '').substring(0, 100)}${(n.summary || '').length > 100 ? '...' : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // Add click handlers
+            container.querySelectorAll('.cluster-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Don't toggle if clicking on an item
+                    if (e.target.closest('.item-mini')) {
+                        const nodeId = parseInt(e.target.closest('.item-mini').dataset.nodeId);
+                        const node = graphData.nodes.find(n => n.id === nodeId);
+                        if (node) {
+                            handleNodeClick(null, node);
+                        }
+                        return;
+                    }
+                    const clusterId = parseInt(card.dataset.cluster);
+                    card.classList.toggle('expanded');
+                    highlightCluster(clusterId);
+                });
+            });
+        }
+
+        function highlightCluster(clusterId) {
+            const cluster = clusters.find(c => c.id === clusterId);
+            if (!cluster) return;
+
+            const clusterNodeIds = new Set(cluster.nodes.map(n => n.id));
+
+            d3.selectAll('.node circle')
+                .attr('opacity', n => clusterNodeIds.has(n.id) ? 1 : 0.2)
+                .attr('r', n => clusterNodeIds.has(n.id) ? 12 + (n.cluster === clusterId ? 3 : 0) : 6);
+
+            d3.selectAll('.links line')
+                .attr('stroke-opacity', l =>
+                    clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? 0.5 : 0.02
+                );
+
+            // Reset after delay
+            setTimeout(() => {
+                d3.selectAll('.node circle')
+                    .attr('opacity', 1)
+                    .attr('r', d => 8);
+                d3.selectAll('.links line')
+                    .attr('stroke-opacity', 0.1);
+            }, 3000);
+        }
+
+        function renderActionable() {
+            const container = document.getElementById('actionableList');
+
+            // Generate actionable items from clusters, sorted by support
+            const actionable = clusters
+                .filter(c => c.nodes.length > 0)
+                .sort((a, b) => b.nodes.length - a.nodes.length)
+                .map((cluster, idx) => ({
+                    rank: idx + 1,
+                    title: cluster.name,
+                    topic: cluster.topic,
+                    support: cluster.nodes.length,
+                    consensus: cluster.consensus || 'Medium',
+                    action: cluster.action || `Review ${cluster.nodes.length} suggestions about ${cluster.topic.toLowerCase()}`,
+                    description: consolidateIdeas(cluster.nodes),
+                    color: cluster.color,
+                    nodes: cluster.nodes
+                }));
+
+            container.innerHTML = `
+                <div class="actionable-header">
+                    <h3>Priority Actions for City Officials</h3>
+                    <p>Ranked by citizen support level</p>
+                </div>
+                ${actionable.map(item => `
+                    <div class="actionable-item" data-cluster-id="${clusters.find(c => c.name === item.title)?.id}">
+                        <div class="actionable-rank">#${item.rank}</div>
+                        <div class="actionable-content">
+                            <div class="actionable-title-row">
+                                <h4 style="border-left: 3px solid ${item.color}; padding-left: 10px;">${item.title}</h4>
+                                <span class="topic-tag" style="background: ${item.color}20; color: ${item.color}; border: 1px solid ${item.color}40;">${item.topic}</span>
+                            </div>
+                            <div class="support-bar">
+                                <div class="support-fill" style="width: ${Math.min(100, item.support * 12)}%; background: ${item.color};"></div>
+                            </div>
+                            <div class="support-text">${item.support} citizen${item.support === 1 ? '' : 's'} • ${item.consensus} consensus</div>
+                            <div class="action-text">${item.action}</div>
+                            <div class="description">${item.description}</div>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+
+            // Add click handlers to highlight clusters
+            container.querySelectorAll('.actionable-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const clusterId = parseInt(item.dataset.clusterId);
+                    if (!isNaN(clusterId)) {
+                        highlightCluster(clusterId);
+                    }
+                });
+            });
+        }
+
+        function consolidateIdeas(nodes) {
+            const summaries = nodes.map(n => n.summary).filter(s => s && s.length > 10);
+            if (summaries.length === 0) return 'Various related urban improvement suggestions.';
+
+            if (summaries.length === 1) return summaries[0];
+
+            // Create bullet points
+            return summaries.slice(0, 3).map(s => `• ${s.substring(0, 150)}${s.length > 150 ? '...' : ''}`).join('<br>');
+        }
+
+        function setupLegend() {
+            const legend = document.getElementById('legend');
+            const topics = [...new Set(graphData.nodes.map(n => n.primaryTopic))];
+
+            topics.forEach((topic) => {
+                const color = clusterColors[topic] || fallbackColors[0];
+                const count = graphData.nodes.filter(n => n.primaryTopic === topic).length;
+                const item = document.createElement('div');
+                item.className = 'legend-item';
+                item.innerHTML = `
+                    <div class="legend-color" style="background: ${color}"></div>
+                    <span>${topic}</span>
+                    <span style="color: #666; font-size: 0.75rem; margin-left: auto;">${count}</span>
+                `;
+                item.addEventListener('click', () => highlightTopic(topic));
+                legend.appendChild(item);
+            });
+        }
+
+        function highlightTopic(topic) {
+            d3.selectAll('.node circle')
+                .attr('opacity', n => n.primaryTopic === topic ? 1 : 0.2);
+
+            setTimeout(() => {
+                d3.selectAll('.node circle').attr('opacity', 1);
+            }, 2000);
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(`${tab.dataset.tab}-tab`).classList.add('active');
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+
+            if (!query) {
+                d3.selectAll('.node circle').attr('opacity', 1);
+                return;
+            }
+
+            d3.selectAll('.node circle')
+                .attr('opacity', n => {
+                    const text = `${n.username} ${n.summary}`.toLowerCase();
+                    return text.includes(query) ? 1 : 0.1;
+                });
+        });
+
+        // Export functionality
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            const report = generateReport();
+            downloadReport(report);
+        });
+
+        function generateReport() {
+            let report = `# NYC Urban Ideas - Consolidated Report\n`;
+            report += `Generated: ${new Date().toLocaleDateString()}\n\n`;
+            report += `## Summary\n`;
+            report += `- Total Ideas: ${graphData.nodes.length}\n`;
+            report += `- Total Connections: ${graphData.edges.length}\n`;
+            report += `- Identified Clusters: ${clusters.length}\n\n`;
+
+            report += `## Actionable Clusters\n\n`;
+
+            clusters.sort((a, b) => b.nodes.length - a.nodes.length).forEach(cluster => {
+                report += `### ${cluster.name} (${cluster.nodes.length} supporters)\n\n`;
+                report += `**Topic:** ${cluster.topic}\n\n`;
+                report += `**Ideas:**\n`;
+                cluster.nodes.forEach(node => {
+                    report += `- @${node.username}: ${node.summary || 'No summary'}\n`;
+                });
+                report += `\n`;
+            });
+
+            report += `## All Ideas by Date\n\n`;
+            graphData.nodes.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(node => {
+                report += `- [${node.date}] @${node.username}: ${node.summary || 'No summary'}\n`;
+            });
+
+            return report;
+        }
+
+        function downloadReport(content) {
+            const blob = new Blob([content], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `nyc-urban-ideas-report-${new Date().toISOString().split('T')[0]}.md`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
