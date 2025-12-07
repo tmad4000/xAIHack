@@ -36,9 +36,17 @@ except ImportError:
     HAS_OPENAI = False
 
 
+def get_data_path():
+    """Get the path to the data directory."""
+    env_path = os.environ.get('CITYVOICE_DATA_PATH')
+    if env_path:
+        return Path(env_path)
+    return Path(__file__).parent / 'data'
+
+
 def load_data():
     """Load the graph data."""
-    data_path = Path(__file__).parent / 'data' / 'connections.json'
+    data_path = get_data_path() / 'connections.json'
     with open(data_path, 'r') as f:
         return json.load(f)
 
@@ -393,7 +401,7 @@ def enhance_clusters(use_ai=True):
         })
 
     # Save enhanced clusters
-    output_path = Path(__file__).parent / 'data' / 'enhanced_clusters.json'
+    output_path = get_data_path() / 'enhanced_clusters.json'
     with open(output_path, 'w') as f:
         json.dump({
             'total_ideas': len(data['nodes']),

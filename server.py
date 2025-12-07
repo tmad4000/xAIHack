@@ -84,6 +84,47 @@ def create_project(name):
     return safe_name
 
 
+def rename_project(old_name, new_name):
+    """Rename a project."""
+    if old_name == DEFAULT_PROJECT:
+        raise ValueError("Cannot rename the default project")
+
+    # Sanitize new name
+    safe_new_name = re.sub(r'[^a-zA-Z0-9_-]', '_', new_name.lower().strip())
+    if not safe_new_name:
+        raise ValueError("Invalid project name")
+
+    old_dir = PROJECTS_DIR / old_name
+    new_dir = PROJECTS_DIR / safe_new_name
+
+    if not old_dir.exists():
+        raise ValueError(f"Project '{old_name}' not found")
+
+    if new_dir.exists() and old_dir != new_dir:
+        raise ValueError(f"Project '{safe_new_name}' already exists")
+
+    if old_dir != new_dir:
+        old_dir.rename(new_dir)
+
+    return safe_new_name
+
+
+def delete_project(name):
+    """Delete a project."""
+    if name == DEFAULT_PROJECT:
+        raise ValueError("Cannot delete the default project")
+
+    project_dir = PROJECTS_DIR / name
+
+    if not project_dir.exists():
+        raise ValueError(f"Project '{name}' not found")
+
+    # Remove directory and all contents
+    shutil.rmtree(project_dir)
+
+    return True
+
+
 def add_nodes_to_project(project_name, rows):
     """Add nodes from Grok search results to a project."""
     project_path = get_project_path(project_name)
@@ -241,10 +282,43 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
                 self.handle_run_clustering(project_name)
                 return
 
+        # API: Rename project
+        if parsed.path.endswith('/rename') and parsed.path.startswith('/api/projects/'):
+            parts = parsed.path.split('/')
+            if len(parts) == 5:  # ['', 'api', 'projects', 'name', 'rename']
+                project_name = parts[3]
+                self.handle_rename_project(project_name)
+                return
+
         self.send_response(404)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
         self.wfile.write(json.dumps({'error': 'Not found'}).encode())
+
+    def do_DELETE(self):
+        """Handle DELETE requests for API endpoints."""
+        parsed = urlparse(self.path)
+
+        # API: Delete project
+        if parsed.path.startswith('/api/projects/'):
+            parts = parsed.path.split('/')
+            if len(parts) == 4:  # ['', 'api', 'projects', 'name']
+                project_name = parts[3]
+                self.handle_delete_project(project_name)
+                return
+
+        self.send_response(404)
+        self.send_header('Content-Type', 'application/json')
+        self.end_headers()
+        self.wfile.write(json.dumps({'error': 'Not found'}).encode())
+
+    def do_OPTIONS(self):
+        """Handle CORS preflight requests."""
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.end_headers()
 
     def send_cluster_summary(self):
         """Generate and send cluster summary as JSON."""
@@ -402,6 +476,37 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
 
             safe_name = create_project(name)
             self._send_json(201, {'name': safe_name, 'message': f"Project '{safe_name}' created"})
+
+        except ValueError as e:
+            self._send_json(400, {'error': str(e)})
+        except Exception as e:
+            self._send_json(500, {'error': str(e)})
+
+    def handle_rename_project(self, project_name):
+        """Rename a project."""
+        try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            raw_body = self.rfile.read(content_length) if content_length else b''
+            payload = json.loads(raw_body.decode('utf-8')) if raw_body else {}
+
+            new_name = payload.get('newName', '').strip()
+            if not new_name:
+                self._send_json(400, {'error': 'New name is required'})
+                return
+
+            safe_new_name = rename_project(project_name, new_name)
+            self._send_json(200, {'newName': safe_new_name, 'message': f"Project renamed to '{safe_new_name}'"})
+
+        except ValueError as e:
+            self._send_json(400, {'error': str(e)})
+        except Exception as e:
+            self._send_json(500, {'error': str(e)})
+
+    def handle_delete_project(self, project_name):
+        """Delete a project."""
+        try:
+            delete_project(project_name)
+            self._send_json(200, {'message': f"Project '{project_name}' deleted"})
 
         except ValueError as e:
             self._send_json(400, {'error': str(e)})

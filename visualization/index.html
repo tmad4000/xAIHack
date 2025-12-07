@@ -892,34 +892,41 @@
         /* Project Selector Styles */
         .project-selector {
             border-bottom: 1px solid #21262d;
+            padding: 8px 12px;
         }
 
         .project-selector-header {
+            flex: 1;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
+            gap: 6px;
+            padding: 6px 10px;
             cursor: pointer;
             transition: background 0.2s;
+            border-radius: 6px;
+            background: rgba(88, 166, 255, 0.05);
+            border: 1px solid rgba(88, 166, 255, 0.15);
         }
 
         .project-selector-header:hover {
-            background: rgba(88, 166, 255, 0.1);
+            background: rgba(88, 166, 255, 0.12);
+            border-color: rgba(88, 166, 255, 0.25);
         }
 
         .project-toggle-icon {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: #8b949e;
             transition: transform 0.2s;
+            margin-left: 2px;
         }
 
         .project-selector.expanded .project-toggle-icon {
-            transform: rotate(90deg);
+            transform: rotate(180deg);
         }
 
         .project-current-name {
             flex: 1;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             color: #e6edf3;
             white-space: nowrap;
@@ -927,15 +934,74 @@
             text-overflow: ellipsis;
         }
 
-        .project-switch-hint {
-            font-size: 0.7rem;
-            color: #58a6ff;
-            opacity: 0.7;
+        .project-more-btn {
+            padding: 2px 6px;
+            background: transparent;
+            border: none;
+            color: #8b949e;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            line-height: 1;
+            transition: all 0.2s;
+        }
+
+        .project-more-btn:hover {
+            background: rgba(139, 148, 158, 0.2);
+            color: #e6edf3;
+        }
+
+        .project-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            z-index: 1000;
+            min-width: 140px;
+            display: none;
+            overflow: hidden;
+        }
+
+        .project-menu.show {
+            display: block;
+        }
+
+        .project-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            color: #c9d1d9;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .project-menu-item:hover {
+            background: rgba(88, 166, 255, 0.15);
+        }
+
+        .project-menu-item.danger {
+            color: #f85149;
+        }
+
+        .project-menu-item.danger:hover {
+            background: rgba(248, 81, 73, 0.15);
+        }
+
+        .project-header-row {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .project-selector-content {
             display: none;
-            padding: 0 12px 12px;
+            padding: 8px 0 0;
         }
 
         .project-selector.expanded .project-selector-content {
@@ -2120,10 +2186,20 @@
 
             <!-- Project Selector (Collapsible) -->
             <div class="project-selector">
-                <div class="project-selector-header" onclick="toggleProjectSelector()">
-                    <span class="project-toggle-icon">▶</span>
-                    <span class="project-current-name" id="currentProjectName">NYC Urbanist Ideas</span>
-                    <span class="project-switch-hint">Switch</span>
+                <div class="project-header-row">
+                    <div class="project-selector-header" onclick="toggleProjectSelector()">
+                        <span class="project-current-name" id="currentProjectName">NYC Urbanist Ideas</span>
+                        <span class="project-toggle-icon">▼</span>
+                    </div>
+                    <button class="project-more-btn" onclick="toggleProjectMenu(event)" title="More options">⋯</button>
+                    <div class="project-menu" id="projectMenu">
+                        <div class="project-menu-item" onclick="renameCurrentProject()">
+                            <span>Rename</span>
+                        </div>
+                        <div class="project-menu-item danger" onclick="deleteCurrentProject()">
+                            <span>Delete</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-selector-content" id="projectSelectorContent">
                     <div class="project-list" id="projectList">
@@ -2331,6 +2407,86 @@
             selector.classList.toggle('expanded');
             if (selector.classList.contains('expanded')) {
                 loadProjectsList();
+            }
+        }
+
+        function toggleProjectMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('projectMenu');
+            menu.classList.toggle('show');
+
+            // Close menu when clicking elsewhere
+            if (menu.classList.contains('show')) {
+                setTimeout(() => {
+                    document.addEventListener('click', closeProjectMenu);
+                }, 0);
+            }
+        }
+
+        function closeProjectMenu() {
+            const menu = document.getElementById('projectMenu');
+            menu.classList.remove('show');
+            document.removeEventListener('click', closeProjectMenu);
+        }
+
+        async function renameCurrentProject() {
+            closeProjectMenu();
+
+            if (currentProject === 'default') {
+                alert('Cannot rename the default project');
+                return;
+            }
+
+            const newName = prompt('Enter new name for project:', currentProject.replace(/_/g, ' '));
+            if (!newName || newName.trim() === '') return;
+
+            try {
+                const response = await fetch(`/api/projects/${currentProject}/rename`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ newName: newName.trim() })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to rename project');
+                }
+
+                const data = await response.json();
+                await switchProject(data.newName, true, true);
+                loadProjectsList();
+            } catch (error) {
+                alert('Failed to rename project: ' + error.message);
+            }
+        }
+
+        async function deleteCurrentProject() {
+            closeProjectMenu();
+
+            if (currentProject === 'default') {
+                alert('Cannot delete the default project');
+                return;
+            }
+
+            if (!confirm(`Are you sure you want to delete "${currentProject.replace(/_/g, ' ')}"? This cannot be undone.`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/projects/${currentProject}`, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to delete project');
+                }
+
+                // Switch to default project
+                await switchProject('default', true, true);
+                loadProjectsList();
+            } catch (error) {
+                alert('Failed to delete project: ' + error.message);
             }
         }
 

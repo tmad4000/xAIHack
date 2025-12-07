@@ -257,12 +257,36 @@ def save_full_graph(items: list[dict], connections: list[dict], filepath: str):
     print(f"Saved full graph to {filepath}")
 
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python find_related_items.py <input.csv> [--provider anthropic|openai]")
-        sys.exit(1)
+def load_from_connections_json(filepath: str) -> list[dict]:
+    """Load items from an existing connections.json file."""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data.get('nodes', [])
 
-    input_file = sys.argv[1]
+
+def update_connections_json(filepath: str, connections: list[dict]):
+    """Update an existing connections.json file with new edges."""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    # Convert connections to edges format
+    edges = []
+    for conn in connections:
+        edges.append({
+            'source_id': conn['source_id'],
+            'target_id': conn['target_id'],
+            'reason': conn['reason']
+        })
+
+    data['edges'] = edges
+
+    with open(filepath, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2)
+
+
+def main():
+    # Check for CITYVOICE_DATA_PATH environment variable (for project support)
+    data_path = os.environ.get('CITYVOICE_DATA_PATH')
 
     # Parse provider argument
     provider = "anthropic"
@@ -287,24 +311,49 @@ def main():
         print("Error: OPENAI_API_KEY environment variable not set")
         sys.exit(1)
 
-    print(f"Loading {input_file}...")
-    items = load_csv(input_file)
-    print(f"Loaded {len(items)} items")
+    if data_path:
+        # Project mode: read from connections.json
+        connections_file = Path(data_path) / "connections.json"
+        print(f"Loading from project: {connections_file}...")
+        items = load_from_connections_json(str(connections_file))
+        print(f"Loaded {len(items)} items")
 
-    print(f"\nFinding relations using {provider}...")
-    connections = find_all_relations(items, provider)
+        if len(items) < 2:
+            print("Need at least 2 items to find connections")
+            sys.exit(0)
 
-    # Determine output paths
-    input_path = Path(input_file)
-    output_dir = input_path.parent
+        print(f"\nFinding relations using {provider}...")
+        connections = find_all_relations(items, provider)
 
-    csv_output = output_dir / "connections.csv"
-    json_output = output_dir / "connections.json"
+        # Update the connections.json with edges
+        update_connections_json(str(connections_file), connections)
+        print(f"\nDone! Found {len(connections)} connections.")
+    else:
+        # Legacy mode: read from CSV file
+        if len(sys.argv) < 2:
+            print("Usage: python find_related_items.py <input.csv> [--provider anthropic|openai]")
+            print("Or set CITYVOICE_DATA_PATH environment variable for project mode")
+            sys.exit(1)
 
-    save_connections_csv(connections, str(csv_output))
-    save_full_graph(items, connections, str(json_output))
+        input_file = sys.argv[1]
+        print(f"Loading {input_file}...")
+        items = load_csv(input_file)
+        print(f"Loaded {len(items)} items")
 
-    print(f"\nDone! Found {len(connections)} connections.")
+        print(f"\nFinding relations using {provider}...")
+        connections = find_all_relations(items, provider)
+
+        # Determine output paths
+        input_path = Path(input_file)
+        output_dir = input_path.parent
+
+        csv_output = output_dir / "connections.csv"
+        json_output = output_dir / "connections.json"
+
+        save_connections_csv(connections, str(csv_output))
+        save_full_graph(items, connections, str(json_output))
+
+        print(f"\nDone! Found {len(connections)} connections.")
 
 
 if __name__ == "__main__":
