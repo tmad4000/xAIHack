@@ -148,8 +148,8 @@
         }
 
         .tab.active {
-            color: #ff7b54;
-            border-bottom-color: #ff7b54;
+            color: #e07a5f;
+            border-bottom-color: #e07a5f;
             background: transparent;
         }
 
@@ -175,8 +175,8 @@
         }
 
         .cluster-card.selected {
-            border-color: #ff7b54;
-            box-shadow: 0 0 20px rgba(255, 123, 84, 0.15);
+            border-color: #e07a5f;
+            box-shadow: 0 0 20px rgba(224, 122, 95, 0.15);
         }
 
         .cluster-header {
@@ -312,7 +312,14 @@
             padding: 10px;
             border-radius: 8px;
             margin-bottom: 8px;
-            border-left: 3px solid #ff7b54;
+            border-left: 3px solid #e07a5f;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .connection-item:hover {
+            background: #30363d;
+            transform: translateX(4px);
         }
 
         .connection-item .reason {
@@ -325,17 +332,17 @@
             display: inline-block;
             margin-top: 10px;
             padding: 8px 16px;
-            background: #ff7b54;
+            background: #e07a5f;
             color: white;
             text-decoration: none;
             border-radius: 6px;
             font-size: 0.85rem;
-            transition: all 0.3s;
+            transition: all 0.2s;
             font-weight: 500;
         }
 
         .link-btn:hover {
-            background: #ff9b7a;
+            background: #c96a50;
             transform: translateY(-1px);
         }
 
@@ -434,7 +441,7 @@
 
         .force-control input[type="range"] {
             width: 80px;
-            accent-color: #ff7b54;
+            accent-color: #e07a5f;
             height: 4px;
         }
 
@@ -514,8 +521,57 @@
         }
 
         .tooltip .username {
-            color: #ff7b54;
+            color: #e07a5f;
             font-weight: 600;
+        }
+
+        /* Cluster overlay labels - Google Maps style */
+        .cluster-overlay {
+            position: absolute;
+            pointer-events: none;
+            z-index: 50;
+            transition: opacity 0.3s ease;
+        }
+
+        .cluster-label {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background: rgba(13, 17, 23, 0.85);
+            color: #f0f6fc;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cluster-label:hover {
+            background: rgba(33, 38, 45, 0.95);
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .cluster-label .count {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2px 6px;
+            border-radius: 8px;
+            margin-left: 6px;
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+
+        .cluster-label .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
         }
 
         .export-section {
@@ -527,7 +583,7 @@
         .export-btn {
             width: 100%;
             padding: 10px 16px;
-            background: linear-gradient(135deg, #ff7b54 0%, #ff6b3d 100%);
+            background: linear-gradient(135deg, #e07a5f 0%, #c96a50 100%);
             border: none;
             border-radius: 8px;
             color: white;
@@ -535,13 +591,13 @@
             font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(255, 123, 84, 0.25);
+            box-shadow: 0 2px 8px rgba(224, 122, 95, 0.25);
         }
 
         .export-btn:hover {
-            background: linear-gradient(135deg, #ff8f6d 0%, #ff7b54 100%);
+            background: linear-gradient(135deg, #c96a50 0%, #b05a42 100%);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(255, 123, 84, 0.35);
+            box-shadow: 0 4px 12px rgba(224, 122, 95, 0.35);
         }
 
         .export-btn:active {
@@ -566,9 +622,9 @@
 
         .search-input:focus {
             outline: none;
-            border-color: #ff7b54;
+            border-color: #e07a5f;
             background: #21262d;
-            box-shadow: 0 0 0 3px rgba(255, 123, 84, 0.1);
+            box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.1);
         }
 
         .search-input::placeholder {
@@ -748,6 +804,8 @@
                 <h4>Topics</h4>
             </div>
 
+            <div class="cluster-overlay" id="clusterOverlay"></div>
+
             <div class="tooltip" id="tooltip"></div>
         </div>
 
@@ -881,6 +939,8 @@
                 renderClusters();
                 renderActionable();
                 setupLegend();
+                setupClusterOverlay();
+                hookClusterLabelUpdates();
 
             } catch (error) {
                 console.error('Error loading data:', error);
@@ -1088,6 +1148,10 @@
                 .scaleExtent([0.2, 4])
                 .on('zoom', (event) => {
                     g.attr('transform', event.transform);
+                    // Update cluster overlay labels on zoom
+                    if (typeof updateClusterLabelPositions === 'function') {
+                        updateClusterLabelPositions();
+                    }
                 });
 
             svg.call(zoom);
@@ -1353,7 +1417,7 @@
 
             d3.selectAll('.links line')
                 .attr('stroke', l =>
-                    (l.source.id === d.id || l.target.id === d.id) ? '#ff7b54' : '#4a5568'
+                    (l.source.id === d.id || l.target.id === d.id) ? '#e07a5f' : '#4a5568'
                 )
                 .attr('stroke-opacity', l =>
                     (l.source.id === d.id || l.target.id === d.id) ? 1 : 0.2
@@ -1412,7 +1476,7 @@
                         ${connections.length} Connected Ideas
                     </div>
                     ${connections.map(c => `
-                        <div class="connection-item">
+                        <div class="connection-item clickable-connection" data-node-id="${c.node.id}">
                             <strong>${c.node.username}</strong>: ${c.node.summary || 'No summary'}
                             <div class="reason">${c.reason}</div>
                         </div>
@@ -1421,6 +1485,27 @@
             `;
 
             document.getElementById('nodeDetail').innerHTML = detailHtml;
+
+            // Add click handlers to connections
+            document.querySelectorAll('.clickable-connection').forEach(item => {
+                item.addEventListener('click', () => {
+                    const nodeId = parseInt(item.dataset.nodeId);
+                    const targetNode = graphData.nodes.find(n => n.id === nodeId);
+                    if (targetNode) {
+                        panToNode(nodeId);
+                        showNodeDetail(targetNode);
+                        // Highlight the node briefly
+                        d3.selectAll('.node-bg')
+                            .attr('stroke-width', n => n.id === nodeId ? 4 : 2)
+                            .attr('opacity', n => n.id === nodeId ? 1 : 0.5);
+                        setTimeout(() => {
+                            d3.selectAll('.node-bg')
+                                .attr('stroke-width', 2)
+                                .attr('opacity', 1);
+                        }, 2000);
+                    }
+                });
+            });
         }
 
         function updateStats() {
@@ -1501,7 +1586,7 @@
 
             d3.selectAll('.links line')
                 .attr('stroke', l =>
-                    clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? '#ff7b54' : '#4a5568'
+                    clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? '#e07a5f' : '#4a5568'
                 )
                 .attr('stroke-opacity', l =>
                     clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? 1 : 0.15
@@ -1604,6 +1689,78 @@
                 item.addEventListener('click', () => highlightTopic(topic));
                 legend.appendChild(item);
             });
+        }
+
+        // Cluster overlay labels (Google Maps style)
+        let clusterLabels = [];
+        let currentZoomScale = 1;
+
+        function setupClusterOverlay() {
+            const overlay = document.getElementById('clusterOverlay');
+            overlay.innerHTML = '';
+            clusterLabels = [];
+
+            // Create a label for each cluster with 2+ nodes
+            clusters.filter(c => c.nodes.length >= 2).forEach(cluster => {
+                const label = document.createElement('div');
+                label.className = 'cluster-label';
+                label.innerHTML = `
+                    <span class="dot" style="background: ${cluster.color}"></span>
+                    ${cluster.name}
+                    <span class="count">${cluster.nodes.length}</span>
+                `;
+                label.addEventListener('click', () => {
+                    highlightCluster(cluster.id);
+                });
+                overlay.appendChild(label);
+                clusterLabels.push({ element: label, cluster: cluster });
+            });
+
+            updateClusterLabelPositions();
+        }
+
+        function getClusterCentroid(cluster) {
+            const nodes = cluster.nodes.map(n => graphData.nodes.find(gn => gn.id === n.id) || n);
+            const validNodes = nodes.filter(n => n.x !== undefined && n.y !== undefined);
+            if (validNodes.length === 0) return { x: 0, y: 0 };
+
+            const sumX = validNodes.reduce((sum, n) => sum + n.x, 0);
+            const sumY = validNodes.reduce((sum, n) => sum + n.y, 0);
+            return {
+                x: sumX / validNodes.length,
+                y: sumY / validNodes.length
+            };
+        }
+
+        function updateClusterLabelPositions() {
+            if (!window.svgElement) return;
+
+            const transform = d3.zoomTransform(window.svgElement.node());
+            currentZoomScale = transform.k;
+
+            // Show labels when zoomed out, hide when zoomed in
+            const overlay = document.getElementById('clusterOverlay');
+            overlay.style.opacity = currentZoomScale < 0.8 ? 1 : 0;
+
+            clusterLabels.forEach(({ element, cluster }) => {
+                const centroid = getClusterCentroid(cluster);
+                // Apply the same transform as the graph
+                const screenX = centroid.x * transform.k + transform.x;
+                const screenY = centroid.y * transform.k + transform.y;
+                element.style.left = `${screenX}px`;
+                element.style.top = `${screenY}px`;
+            });
+        }
+
+        // Hook into simulation tick to update label positions
+        function hookClusterLabelUpdates() {
+            if (window.simulation) {
+                const originalTick = window.simulation.on('tick');
+                window.simulation.on('tick', () => {
+                    if (originalTick) originalTick();
+                    updateClusterLabelPositions();
+                });
+            }
         }
 
         function highlightTopic(topic) {
