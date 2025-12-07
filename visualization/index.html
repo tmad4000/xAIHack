@@ -1710,7 +1710,9 @@
                     nodes: ec.nodes.map(n => graphData.nodes.find(gn => gn.id === n.id) || n),
                     summary: ec.summary,
                     action: ec.action,
-                    consensus: ec.consensus
+                    consensus: ec.consensus,
+                    demands: ec.demands || [],
+                    synthesized_actions: ec.synthesized_actions || []
                 };
             });
 
