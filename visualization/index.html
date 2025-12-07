@@ -2209,7 +2209,9 @@
                 </div>
             `;
 
-            document.getElementById('nodeDetail').innerHTML = detailHtml;
+            const nodeDetailEl = document.getElementById('nodeDetail');
+            nodeDetailEl.classList.remove('empty-state');
+            nodeDetailEl.innerHTML = detailHtml;
 
             // Scroll detail panel to top
             document.querySelector('.panel-content').scrollTop = 0;
