@@ -191,7 +191,7 @@ def run_grok_search_responses_api(
     *,
     count: int = 10,
     model: str = "grok-4-1-fast",
-    timeout: int = 90,
+    timeout: int = 180,
 ) -> Dict[str, Any]:
     """Execute x_search using the direct Responses API (often faster/more reliable)."""
     import requests
@@ -362,7 +362,7 @@ def run_grok_search(
                 location,
                 count=count,
                 model=model,
-                timeout=90,
+                timeout=180,
             )
             print("[grok] Responses API succeeded", file=sys.stderr)
             return result
