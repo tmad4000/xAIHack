@@ -290,7 +290,37 @@
         .node-detail .date {
             font-size: 0.8rem;
             color: #484f58;
+            margin-bottom: 12px;
+        }
+
+        .node-clusters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-bottom: 16px;
+        }
+
+        .node-cluster-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .node-cluster-tag:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+        }
+
+        .node-cluster-tag .cluster-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
         }
 
         .node-detail .summary {
@@ -1623,10 +1653,25 @@
                     return { node: other, reason: e.reason };
                 });
 
+            // Find clusters this node belongs to
+            const nodeClusters = clusters.filter(c =>
+                c.nodes.some(n => n.id === node.id)
+            );
+
             const detailHtml = `
                 <div class="node-detail">
                     <h3>${node.username}</h3>
                     <div class="date">${node.date}</div>
+                    ${nodeClusters.length > 0 ? `
+                        <div class="node-clusters">
+                            ${nodeClusters.map(c => `
+                                <span class="node-cluster-tag" data-cluster-id="${c.id}" style="background: ${c.color}20; color: ${c.color}; border: 1px solid ${c.color}40;">
+                                    <span class="cluster-dot" style="background: ${c.color}"></span>
+                                    ${c.name}
+                                </span>
+                            `).join('')}
+                        </div>
+                    ` : ''}
                     <div class="summary">${node.summary || 'No summary available'}</div>
                     ${node.link && node.link.startsWith('http') ?
                         `<a href="${node.link}" target="_blank" class="link-btn">View Original Tweet</a>` : ''}
@@ -1644,6 +1689,15 @@
             `;
 
             document.getElementById('nodeDetail').innerHTML = detailHtml;
+
+            // Add click handlers to cluster tags
+            document.querySelectorAll('.node-cluster-tag').forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const clusterId = parseInt(tag.dataset.clusterId);
+                    highlightCluster(clusterId);
+                    showClusterInSidebar(clusterId);
+                });
+            });
 
             // Add click handlers to connections
             document.querySelectorAll('.clickable-connection').forEach(item => {
