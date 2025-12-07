@@ -4,11 +4,13 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
+from io import StringIO
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Callable, Dict, Iterable, List, Optional
 
 _ENV_CACHE: Optional[Dict[str, str]] = None
 
@@ -111,6 +113,23 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def _extract_response_text(response: Any) -> str:
+    """Extract plain text from the SDK response object."""
+    if response is None:
+        return ""
+    if getattr(response, "output_text", None):
+        return response.output_text
+    content = getattr(response, "content", "")
+    if isinstance(content, str):
+        return content
+    text_blocks = []
+    for block in content or []:
+        text = getattr(block, "text", "")
+        if text:
+            text_blocks.append(text)
+    return "".join(text_blocks)
+
+
 def to_jsonable(value: Any) -> Any:
     """Best-effort conversion of SDK objects (e.g., repeated containers) to JSON."""
     if value is None or isinstance(value, (str, int, float, bool)):
@@ -130,23 +149,33 @@ def to_jsonable(value: Any) -> Any:
     return str(value)
 
 
-def main() -> None:
-    args = parse_args()
+def run_grok_search(
+    location: str,
+    *,
+    count: int = 10,
+    allowed_handles: Optional[List[str]] = None,
+    excluded_handles: Optional[List[str]] = None,
+    from_date: Optional[datetime] = None,
+    to_date: Optional[datetime] = None,
+    model: str = "grok-4-1-fast",
+    chunk_callback: Optional[Callable[[str], None]] = None,
+    tool_callback: Optional[Callable[[Dict[str, Any]], None]] = None,
+) -> Dict[str, Any]:
+    """Execute an x_search-powered Grok query and return structured results."""
+    if allowed_handles and excluded_handles:
+        raise ValueError("Specify either allowed_handles or excluded_handles, not both.")
+
     api_key = get_env("XAI_API_KEY")
     if not api_key:
         raise SystemExit("Set XAI_API_KEY in your environment or .env file.")
 
     Client, user, x_search = ensure_sdk()
 
-    tool_kwargs = {}
-    allowed = parse_handles(args.allowed_handles)
-    excluded = parse_handles(args.excluded_handles)
-    if allowed:
-        tool_kwargs["allowed_x_handles"] = allowed
-    if excluded:
-        tool_kwargs["excluded_x_handles"] = excluded
-    from_date = parse_date(args.from_date)
-    to_date = parse_date(args.to_date)
+    tool_kwargs: Dict[str, Any] = {}
+    if allowed_handles:
+        tool_kwargs["allowed_x_handles"] = allowed_handles
+    if excluded_handles:
+        tool_kwargs["excluded_x_handles"] = excluded_handles
     if from_date:
         tool_kwargs["from_date"] = from_date
     if to_date:
@@ -154,10 +183,10 @@ def main() -> None:
 
     tool = x_search(**tool_kwargs)
     client = Client(api_key=api_key)
-    chat = client.chat.create(model=args.model, tools=[tool])
+    chat = client.chat.create(model=model, tools=[tool])
 
     prompt = (
-        f"Use the X search tool to find {args.count} recent posts mentioning {args.location}. "
+        f"Use the X search tool to find {count} recent posts mentioning {location}. "
         "Return ONLY CSV text with the exact header:\n"
         "Date,Username,Summary/Quote,Link\n"
         "For each row:\n"
@@ -166,45 +195,103 @@ def main() -> None:
         "- Summary/Quote: 1-2 sentences capturing the proposal/problem details, matching the specificity found in curated civic planning datasets (e.g., mention numbers, locations, specific improvements, concrete requests)\n"
         "- Link: canonical https://x.com/... status URL\n"
         "Write rich summaries similar in detail to analytical civic planning notes (see geodatanyc.csv). "
-        "No numbering, no extra commentary—just the header and rows."
+        "No numbering, no extra commentary-just the header and rows."
     )
     chat.append(user(prompt))
 
-    final_response = None
-    csv_buffer = []
-    print("Querying Grok with x_search...")
+    csv_buffer: List[str] = []
+    tool_calls: List[Dict[str, Any]] = []
+    final_response: Any = None
+
     for response, chunk in chat.stream():
         if chunk.tool_calls:
             for tool_call in chunk.tool_calls:
-                name = getattr(tool_call.function, "name", "unknown")
-                arguments = getattr(tool_call.function, "arguments", {})
-                print(f"[tool] {name}: {json.dumps(arguments)}")
+                entry = {
+                    "name": getattr(getattr(tool_call, "function", None), "name", "unknown"),
+                    "arguments": getattr(getattr(tool_call, "function", None), "arguments", {}),
+                }
+                tool_calls.append(entry)
+                if tool_callback:
+                    tool_callback(entry)
+
         if chunk.content:
-            print(chunk.content, end="", flush=True)
             csv_buffer.append(chunk.content)
+            if chunk_callback:
+                chunk_callback(chunk.content)
+
         final_response = response
+
+    csv_text = "".join(csv_buffer).strip()
+    rows: List[Dict[str, str]] = []
+
+    if csv_text:
+        try:
+            reader = csv.DictReader(StringIO(csv_text))
+            for row in reader:
+                clean_row = {k: (v.strip() if isinstance(v, str) else v) for k, v in row.items()}
+                if any(clean_row.values()):
+                    rows.append(clean_row)
+        except Exception:
+            # If parsing fails, still return the raw CSV text
+            rows = []
+
+    result = {
+        "csv_text": csv_text,
+        "rows": rows,
+        "response_text": _extract_response_text(final_response),
+        "usage": to_jsonable(getattr(final_response, "usage", None)),
+        "citations": to_jsonable(getattr(final_response, "citations", None)),
+        "tool_calls": tool_calls,
+        "model": model,
+        "location": location,
+        "count": count,
+    }
+
+    return result
+
+
+def main() -> None:
+    args = parse_args()
+    allowed = parse_handles(args.allowed_handles)
+    excluded = parse_handles(args.excluded_handles)
+    from_date = parse_date(args.from_date)
+    to_date = parse_date(args.to_date)
+
+    def chunk_logger(text: str) -> None:
+        print(text, end="", flush=True)
+
+    def tool_logger(entry: Dict[str, Any]) -> None:
+        print(f"[tool] {entry['name']}: {json.dumps(entry['arguments'])}")
+
+    print("Querying Grok with x_search...")
+    result = run_grok_search(
+        args.location,
+        count=args.count,
+        allowed_handles=allowed,
+        excluded_handles=excluded,
+        from_date=from_date,
+        to_date=to_date,
+        model=args.model,
+        chunk_callback=chunk_logger,
+        tool_callback=tool_logger,
+    )
     print()
 
     if args.csv_out:
-        csv_text = "".join(csv_buffer).strip()
+        csv_text = result["csv_text"]
         if csv_text:
             args.csv_out.write_text(csv_text + ("\n" if not csv_text.endswith("\n") else ""), encoding="utf-8")
             print(f"Saved CSV to {args.csv_out}")
 
-    if args.json_out and final_response:
-        content = ""
-        if getattr(final_response, "output_text", None):
-            content = final_response.output_text
-        elif getattr(final_response, "content", None):
-            # content may be a string or list depending on SDK version
-            if isinstance(final_response.content, str):
-                content = final_response.content
-            else:
-                content = "".join(getattr(block, "text", "") for block in final_response.content)
+    if args.json_out:
         payload = {
-            "response": content,
-            "citations": to_jsonable(getattr(final_response, "citations", None)),
-            "usage": to_jsonable(getattr(final_response, "usage", None)),
+            "response": result["response_text"],
+            "citations": result["citations"],
+            "usage": result["usage"],
+            "tool_calls": result["tool_calls"],
+            "location": result["location"],
+            "count": result["count"],
+            "model": result["model"],
         }
         args.json_out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         print(f"Wrote Grok response to {args.json_out}")

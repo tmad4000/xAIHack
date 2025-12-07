@@ -940,6 +940,200 @@
             display: block;
         }
 
+        .grok-chat {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+        }
+
+        .grok-chat-history {
+            flex: 1;
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 12px;
+            overflow-y: auto;
+            min-height: 160px;
+        }
+
+        .grok-chat-hint {
+            font-size: 0.8rem;
+            color: #8b949e;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .grok-chat-message {
+            margin-bottom: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            border: 1px solid #30363d;
+        }
+
+        .grok-chat-message.user {
+            background: rgba(88, 166, 255, 0.08);
+            border-color: rgba(88, 166, 255, 0.2);
+        }
+
+        .grok-chat-message.assistant {
+            background: rgba(224, 122, 95, 0.08);
+            border-color: rgba(224, 122, 95, 0.15);
+        }
+
+        .grok-chat-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .grok-chat-form textarea {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            background: #0d1117;
+            color: #e6edf3;
+            padding: 10px 12px;
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .grok-chat-form textarea:focus {
+            outline: none;
+            border-color: #e07a5f;
+            box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.15);
+        }
+
+        .grok-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .grok-form-grid input {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            background: #0d1117;
+            color: #e6edf3;
+            padding: 8px 10px;
+            font-size: 0.8rem;
+        }
+
+        .grok-form-grid label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #6e7681;
+        }
+
+        .grok-form-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .grok-form-row > div {
+            flex: 1 1 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .grok-form-row label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #6e7681;
+        }
+
+        .grok-form-row input,
+        .grok-form-row select {
+            flex: 1;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            background: #0d1117;
+            color: #e6edf3;
+            padding: 8px 10px;
+        }
+
+        .grok-send-btn {
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #e07a5f 0%, #c96a50 100%);
+            color: #fff;
+            padding: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .grok-send-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .grok-status {
+            font-size: 0.75rem;
+            color: #8b949e;
+            min-height: 18px;
+        }
+
+        .grok-result {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .grok-result-meta {
+            font-size: 0.75rem;
+            color: #8b949e;
+        }
+
+        .grok-row {
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            padding: 10px 12px;
+            background: #0d1117;
+            margin-bottom: 8px;
+        }
+
+        .grok-row-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #8b949e;
+            margin-bottom: 6px;
+        }
+
+        .grok-row-link {
+            font-size: 0.75rem;
+            display: inline-flex;
+            gap: 6px;
+            color: #58a6ff;
+            text-decoration: none;
+            margin-top: 6px;
+        }
+
+        .grok-row-link:hover {
+            text-decoration: underline;
+        }
+
+        .grok-error {
+            color: #ef4444;
+        }
+
+        .grok-raw {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 0.75rem;
+            overflow-x: auto;
+        }
+
         .empty-state {
             text-align: center;
             padding: 40px 20px;
@@ -1045,6 +1239,7 @@
             <div class="tabs">
                 <button class="tab active" data-tab="clusters">Clusters</button>
                 <button class="tab" data-tab="actionable">Actionable</button>
+                <button class="tab" data-tab="grok">Grok Search</button>
                 <button class="tab" data-tab="detail">Detail</button>
             </div>
 
@@ -1055,6 +1250,45 @@
 
                 <div class="tab-content" id="actionable-tab">
                     <div id="actionableList" class="actionable-list"></div>
+                </div>
+
+                <div class="tab-content" id="grok-tab">
+                    <div class="grok-chat">
+                        <div class="grok-chat-history" id="grokChatHistory">
+                            <div class="grok-chat-hint">
+                                Ask Grok to pull the latest city planning posts from X. Provide a location or topic and optional handle filters.
+                            </div>
+                        </div>
+                        <form class="grok-chat-form" id="grokChatForm">
+                            <textarea id="grokPrompt" placeholder="e.g., Recent protected bike lane proposals in Manhattan" required></textarea>
+                            <div class="grok-form-row">
+                                <div>
+                                    <label for="grokCount">Posts</label>
+                                    <input type="number" id="grokCount" min="1" max="25" value="10">
+                                </div>
+                                <div>
+                                    <label for="grokFromDate">From</label>
+                                    <input type="date" id="grokFromDate">
+                                </div>
+                                <div>
+                                    <label for="grokToDate">To</label>
+                                    <input type="date" id="grokToDate">
+                                </div>
+                            </div>
+                            <div class="grok-form-grid">
+                                <div>
+                                    <label for="grokAllowed">Allowed handles</label>
+                                    <input type="text" id="grokAllowed" placeholder="Comma-separated (optional)">
+                                </div>
+                                <div>
+                                    <label for="grokExcluded">Exclude handles</label>
+                                    <input type="text" id="grokExcluded" placeholder="@handles to skip">
+                                </div>
+                            </div>
+                            <button type="submit" class="grok-send-btn" id="grokSendBtn">Send to Grok</button>
+                        </form>
+                        <div class="grok-status" id="grokStatus"></div>
+                    </div>
                 </div>
 
                 <div class="tab-content" id="detail-tab">
@@ -2287,6 +2521,130 @@
                     return text.includes(query) ? 1 : 0.2;
                 });
         });
+
+        // Grok chat handling
+        const grokChatForm = document.getElementById('grokChatForm');
+        const grokChatHistory = document.getElementById('grokChatHistory');
+        const grokPromptInput = document.getElementById('grokPrompt');
+        const grokCountInput = document.getElementById('grokCount');
+        const grokAllowedInput = document.getElementById('grokAllowed');
+        const grokExcludedInput = document.getElementById('grokExcluded');
+        const grokFromInput = document.getElementById('grokFromDate');
+        const grokToInput = document.getElementById('grokToDate');
+        const grokStatusEl = document.getElementById('grokStatus');
+        const grokSendBtn = document.getElementById('grokSendBtn');
+
+        function escapeHtml(str) {
+            if (!str && str !== 0) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function parseHandleInput(value) {
+            if (!value) return null;
+            const handles = value
+                .split(',')
+                .map(h => h.trim().replace(/^@/, ''))
+                .filter(Boolean);
+            return handles.length ? handles : null;
+        }
+
+        function appendGrokMessage(role, contentHtml) {
+            if (!grokChatHistory) return;
+            const hint = grokChatHistory.querySelector('.grok-chat-hint');
+            if (hint) hint.remove();
+            const message = document.createElement('div');
+            message.className = `grok-chat-message ${role}`;
+            message.innerHTML = contentHtml;
+            grokChatHistory.appendChild(message);
+            grokChatHistory.scrollTop = grokChatHistory.scrollHeight;
+        }
+
+        function renderGrokResponse(data) {
+            const rows = Array.isArray(data?.rows) ? data.rows : [];
+            if (rows.length > 0) {
+                const intro = data.location
+                    ? `${rows.length} posts mentioning "${escapeHtml(data.location)}"`
+                    : `${rows.length} posts retrieved`;
+                return `
+                    <div class="grok-result">
+                        <div class="grok-result-meta">${intro}</div>
+                        ${rows.map(row => `
+                            <div class="grok-row">
+                                <div class="grok-row-header">
+                                    <span>${escapeHtml(row.Date || row.date || '')}</span>
+                                    <span>@${escapeHtml((row.Username || row.username || '').replace(/^@/, ''))}</span>
+                                </div>
+                                <p>${escapeHtml(row['Summary/Quote'] || row.summary || '')}</p>
+                                ${row.Link ? `<a class="grok-row-link" href="${escapeHtml(row.Link)}" target="_blank" rel="noopener">Open post</a>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            if (data.csv_text) {
+                return `<pre class="grok-raw">${escapeHtml(data.csv_text)}</pre>`;
+            }
+
+            if (data.error) {
+                return `<span class="grok-error">⚠️ ${escapeHtml(data.error)}</span>`;
+            }
+
+            return `<span>No data returned from Grok.</span>`;
+        }
+
+        function setGrokStatus(message, isError = false) {
+            if (!grokStatusEl) return;
+            grokStatusEl.textContent = message || '';
+            grokStatusEl.style.color = isError ? '#ef4444' : '#8b949e';
+        }
+
+        if (grokChatForm) {
+            grokChatForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const prompt = (grokPromptInput?.value || '').trim();
+                if (!prompt) return;
+
+                appendGrokMessage('user', escapeHtml(prompt));
+                setGrokStatus('Contacting Grok for the latest X posts...');
+                if (grokSendBtn) grokSendBtn.disabled = true;
+
+                const payload = { prompt };
+                const countValue = parseInt(grokCountInput?.value || '10', 10);
+                payload.count = Number.isNaN(countValue) ? 10 : countValue;
+
+                const allowed = parseHandleInput(grokAllowedInput?.value);
+                if (allowed) payload.allowed_handles = allowed;
+                const excluded = parseHandleInput(grokExcludedInput?.value);
+                if (excluded) payload.excluded_handles = excluded;
+                if (grokFromInput?.value) payload.from_date = grokFromInput.value;
+                if (grokToInput?.value) payload.to_date = grokToInput.value;
+
+                try {
+                    const response = await fetch('/api/grok-search', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await response.json();
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Grok search failed');
+                    }
+                    appendGrokMessage('assistant', renderGrokResponse(data));
+                    setGrokStatus(`Completed via ${data.model || 'grok-4-1-fast'}.`);
+                } catch (err) {
+                    appendGrokMessage('assistant', `<span class="grok-error">⚠️ ${escapeHtml(err.message || String(err))}</span>`);
+                    setGrokStatus(err.message || 'Unexpected error', true);
+                } finally {
+                    if (grokSendBtn) grokSendBtn.disabled = false;
+                }
+            });
+        }
 
         // Export functionality
         document.getElementById('exportBtn').addEventListener('click', () => {
