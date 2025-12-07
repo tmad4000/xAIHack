@@ -1926,7 +1926,8 @@
                 showOverlay = currentZoomScale < 0.7;
             }
             overlay.style.opacity = showOverlay ? 1 : 0;
-            overlay.style.pointerEvents = showOverlay ? 'auto' : 'none';
+            // Keep overlay pointer-events: none so panning works
+            // Individual labels have pointer-events: auto via CSS
 
             // Toggle overview mode visual effect
             if (showOverlay) {
