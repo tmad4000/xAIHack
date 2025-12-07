@@ -1787,7 +1787,6 @@
         }
 
         .grok-search-box {
-            position: relative;
             display: flex;
             align-items: flex-end;
             gap: 12px;
@@ -1804,19 +1803,7 @@
         }
 
         .grok-search-icon {
-            position: absolute;
-            top: 14px;
-            left: 16px;
-            color: #6e7681;
-            display: flex;
-            align-items: center;
-            pointer-events: none;
-            z-index: 1;
-            transition: opacity 0.2s ease;
-        }
-
-        .grok-search-box:focus-within .grok-search-icon {
-            opacity: 0;
+            display: none;
         }
 
         .grok-search-box textarea {
@@ -1831,13 +1818,7 @@
             min-height: 24px;
             max-height: 120px;
             padding: 0;
-            padding-left: 28px;
             line-height: 1.5;
-            transition: padding 0.2s ease;
-        }
-
-        .grok-search-box:focus-within textarea {
-            padding-left: 0;
         }
 
         .grok-search-box textarea:focus {
@@ -2606,7 +2587,7 @@
             </div>
 
             <div class="export-section">
-                <button class="export-btn" id="exportBtn">Export Consolidated Report</button>
+                <button class="export-btn" id="exportBtn">View Consolidated Report</button>
             </div>
         </div>
     </div>
