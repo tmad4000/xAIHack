@@ -937,6 +937,34 @@
             border-bottom: 1px solid #30363d;
         }
 
+        .markdown-loading {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: #8b949e;
+            padding: 10px 20px 0 20px;
+        }
+
+        .markdown-loading.active {
+            display: flex;
+        }
+
+        .markdown-loading .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(224, 122, 95, 0.2);
+            border-top-color: #e07a5f;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         .markdown-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -2769,6 +2797,10 @@
                     <button class="markdown-download-btn" id="markdownDownloadBtn">Download .md</button>
                     <button class="markdown-close-btn" id="markdownCloseBtn">Close</button>
                 </div>
+            </div>
+            <div class="markdown-loading" id="markdownLoading">
+                <span class="spinner" aria-hidden="true"></span>
+                <span class="markdown-loading-text">Generating Grok insights...</span>
             </div>
             <div class="markdown-content" id="markdownContent"></div>
         </div>
@@ -5495,14 +5527,22 @@
         // Export functionality - show preview overlay with Grok insights
         let currentReportMarkdown = '';
 
+        const markdownLoadingEl = document.getElementById('markdownLoading');
+        const markdownLoadingTextEl = document.querySelector('.markdown-loading-text');
+
         document.getElementById('exportBtn').addEventListener('click', async () => {
             const baseReport = generateReport();
             currentReportMarkdown = baseReport;
             showMarkdownPreview(baseReport);
+            setMarkdownLoading(true, 'Generating Grok insights...');
 
-            const enhancedReport = await appendGrokInsights(baseReport);
-            currentReportMarkdown = enhancedReport;
-            updateMarkdownPreview(enhancedReport);
+            try {
+                const enhancedReport = await appendGrokInsights(baseReport);
+                currentReportMarkdown = enhancedReport;
+                updateMarkdownPreview(enhancedReport);
+            } finally {
+                setMarkdownLoading(false);
+            }
         });
 
         function generateReport() {
@@ -5593,6 +5633,7 @@
 
         function hideMarkdownPreview() {
             document.getElementById('markdownOverlay').classList.remove('active');
+            setMarkdownLoading(false);
         }
 
         function downloadReport(content) {
@@ -5649,6 +5690,14 @@
                 return insertSection(markdown, section);
             }
             return markdown;
+        }
+
+        function setMarkdownLoading(isLoading, message) {
+            if (!markdownLoadingEl) return;
+            if (message && markdownLoadingTextEl) {
+                markdownLoadingTextEl.textContent = message;
+            }
+            markdownLoadingEl.classList.toggle('active', !!isLoading);
         }
 
         // Prompt modal functions
