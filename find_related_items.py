@@ -36,13 +36,72 @@ CONTEXT_WINDOW_THRESHOLD = 100  # Switch to embeddings above this
 
 
 def load_csv(filepath: str) -> list[dict]:
-    """Load CSV file and return list of dicts with id added."""
+    """Load CSV file and return list of dicts with id added.
+
+    Handles CSV files where Summary/Quote field contains commas but isn't quoted.
+    Uses the URL pattern (https://) to properly detect the Link column.
+    """
     items = []
     with open(filepath, 'r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for i, row in enumerate(reader):
-            row['id'] = i + 1  # 1-indexed
-            items.append(row)
+        lines = f.readlines()
+
+    if not lines:
+        return items
+
+    # Parse header
+    header = lines[0].strip().split(',')
+
+    for i, line in enumerate(lines[1:], start=1):
+        line = line.strip()
+        if not line:
+            continue
+
+        # Find the URL (Link column) - it starts with https://
+        url_match_pos = line.find('https://')
+        if url_match_pos == -1:
+            url_match_pos = line.find('http://')
+
+        if url_match_pos != -1:
+            # Everything before the URL (minus the comma) is the first 3 columns
+            before_url = line[:url_match_pos].rstrip(',')
+            url = line[url_match_pos:]
+
+            # Split the part before URL - we expect: Date,Username,Summary/Quote
+            # Find first two commas to separate Date and Username
+            first_comma = before_url.find(',')
+            if first_comma != -1:
+                date = before_url[:first_comma]
+                rest = before_url[first_comma + 1:]
+                second_comma = rest.find(',')
+                if second_comma != -1:
+                    username = rest[:second_comma]
+                    summary = rest[second_comma + 1:]
+                else:
+                    username = rest
+                    summary = ""
+            else:
+                date = before_url
+                username = ""
+                summary = ""
+
+            items.append({
+                'id': i,
+                'Date': date.strip(),
+                'Username': username.strip(),
+                'Summary/Quote': summary.strip(),
+                'Link': url.strip()
+            })
+        else:
+            # No URL found, fall back to simple split (might be incomplete data)
+            parts = line.split(',')
+            items.append({
+                'id': i,
+                'Date': parts[0] if len(parts) > 0 else '',
+                'Username': parts[1] if len(parts) > 1 else '',
+                'Summary/Quote': ','.join(parts[2:-1]) if len(parts) > 3 else (parts[2] if len(parts) > 2 else ''),
+                'Link': parts[-1] if len(parts) > 3 else ''
+            })
+
     return items
 
 
