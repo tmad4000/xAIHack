@@ -228,8 +228,11 @@ def main():
     else:
         print(f"Visit: {url}")
 
-    # Start server
-    with socketserver.TCPServer(("", port), CityIdeasHandler) as httpd:
+    # Start server with SO_REUSEADDR to allow quick restart
+    class ReusableTCPServer(socketserver.TCPServer):
+        allow_reuse_address = True
+
+    with ReusableTCPServer(("", port), CityIdeasHandler) as httpd:
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
