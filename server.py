@@ -259,9 +259,8 @@ def run_clustering(project_name):
     script_dir = Path(__file__).parent
     env = os.environ.copy()
 
-    # Set the data path for the scripts
-    if project_name != DEFAULT_PROJECT:
-        env['CITYVOICE_DATA_PATH'] = str(project_path)
+    # Set the data path for the scripts (required even for default project)
+    env['CITYVOICE_DATA_PATH'] = str(project_path)
 
     # Set the context for prompts
     env['CITYVOICE_CONTEXT'] = project_context
@@ -276,7 +275,10 @@ def run_clustering(project_name):
     )
 
     if result.returncode != 0:
-        raise RuntimeError(f"Edge generation failed: {result.stderr}")
+        stderr = result.stderr.strip()
+        stdout = result.stdout.strip()
+        message = stderr or stdout or "Unknown error"
+        raise RuntimeError(f"Edge generation failed: {message}")
 
     # Run cluster enhancement
     result = subprocess.run(
@@ -288,7 +290,10 @@ def run_clustering(project_name):
     )
 
     if result.returncode != 0:
-        raise RuntimeError(f"Clustering failed: {result.stderr}")
+        stderr = result.stderr.strip()
+        stdout = result.stdout.strip()
+        message = stderr or stdout or "Unknown error"
+        raise RuntimeError(f"Clustering failed: {message}")
 
     return {'status': 'completed'}
 

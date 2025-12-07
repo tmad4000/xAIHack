@@ -67,6 +67,9 @@ python find_related_items.py data/geodatanyc.csv
 pip install openai
 export OPENAI_API_KEY="your-key-here"
 python find_related_items.py data/geodatanyc.csv --provider openai
+
+# Lightweight keyword matching fallback (no API keys required)
+python find_related_items.py data/geodatanyc.csv --provider keyword
 ```
 
 ## How It Works
@@ -88,6 +91,8 @@ Input CSV should have these columns:
 Date,Username,Summary/Quote,Link
 2025-12-05,@NYCPlanning,ADUs are a proven way to create housing...,https://x.com/...
 ```
+
+If neither Anthropic nor OpenAI credentials are available, the relation finder automatically falls back to a keyword-overlap heuristic so clustering can still run (albeit with simpler reasoning).
 
 ## Gather Fresh Posts with Grok X Search
 

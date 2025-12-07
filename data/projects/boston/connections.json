@@ -141,5 +141,506 @@
       "link": "https://x.com/okaythenfuture/status/1996914155270349014"
     }
   ],
-  "edges": []
+  "edges": [
+    {
+      "source_id": 1,
+      "target_id": 11,
+      "reason": "Shares keywords: become, businesses, crime, disruptive, due, dysfunctional, estate, investing, leading, protests, question, rampant, rats, real, residents, subways, there, unchecked, unlivable, unsafe"
+    },
+    {
+      "source_id": 1,
+      "target_id": 9,
+      "reason": "Shares keywords: rampant, residents, subways"
+    },
+    {
+      "source_id": 1,
+      "target_id": 19,
+      "reason": "Shares keywords: rampant, residents, subways"
+    },
+    {
+      "source_id": 1,
+      "target_id": 5,
+      "reason": "Shares keywords: crime, subways"
+    },
+    {
+      "source_id": 1,
+      "target_id": 7,
+      "reason": "Shares keywords: due, subways"
+    },
+    {
+      "source_id": 2,
+      "target_id": 12,
+      "reason": "Shares keywords: commuters, congestion, corrupt, crime, daily, face, filthiness, funds, mta, pricing, seemingly, skyrocketing, subway, traffic, wasted, worsening"
+    },
+    {
+      "source_id": 2,
+      "target_id": 1,
+      "reason": "Shares keywords: crime"
+    },
+    {
+      "source_id": 2,
+      "target_id": 4,
+      "reason": "Shares keywords: daily"
+    },
+    {
+      "source_id": 2,
+      "target_id": 5,
+      "reason": "Shares keywords: crime"
+    },
+    {
+      "source_id": 2,
+      "target_id": 11,
+      "reason": "Shares keywords: crime"
+    },
+    {
+      "source_id": 3,
+      "target_id": 13,
+      "reason": "Shares keywords: costs, exorbitant, garbage, high, landlords, live, making, neglectful, overwhelmed, pervasive, place, smell, subways, taxes, theft, unredeemable, violent, weed"
+    },
+    {
+      "source_id": 3,
+      "target_id": 6,
+      "reason": "Shares keywords: high, taxes"
+    },
+    {
+      "source_id": 3,
+      "target_id": 7,
+      "reason": "Shares keywords: costs, subways"
+    },
+    {
+      "source_id": 3,
+      "target_id": 9,
+      "reason": "Shares keywords: live, subways"
+    },
+    {
+      "source_id": 3,
+      "target_id": 16,
+      "reason": "Shares keywords: high, taxes"
+    },
+    {
+      "source_id": 4,
+      "target_id": 14,
+      "reason": "Shares keywords: alien, conditions, criminal, daily, decent, gangs, hell, hole, homegrown, illegal, making, outnumbered, overrun, people, unsafe, where, worsen"
+    },
+    {
+      "source_id": 4,
+      "target_id": 2,
+      "reason": "Shares keywords: daily"
+    },
+    {
+      "source_id": 4,
+      "target_id": 12,
+      "reason": "Shares keywords: daily"
+    },
+    {
+      "source_id": 4,
+      "target_id": 1,
+      "reason": "Shares keywords: unsafe"
+    },
+    {
+      "source_id": 4,
+      "target_id": 3,
+      "reason": "Shares keywords: making"
+    },
+    {
+      "source_id": 5,
+      "target_id": 15,
+      "reason": "Shares keywords: burden, crime, dangerous, daylight, deteriorated, drug, exploding, government, homelessness, low, misery, oppressive, prices, subways, tolls, unaffordable, use, wage, workers"
+    },
+    {
+      "source_id": 5,
+      "target_id": 9,
+      "reason": "Shares keywords: dangerous, subways, tolls"
+    },
+    {
+      "source_id": 5,
+      "target_id": 19,
+      "reason": "Shares keywords: dangerous, subways, tolls"
+    },
+    {
+      "source_id": 5,
+      "target_id": 1,
+      "reason": "Shares keywords: crime, subways"
+    },
+    {
+      "source_id": 5,
+      "target_id": 7,
+      "reason": "Shares keywords: dangerous, subways"
+    },
+    {
+      "source_id": 6,
+      "target_id": 16,
+      "reason": "Shares keywords: cities, city's, compared, construction, cultural, government, high, housing, ineffective, insufficient, issues, london, paris, resulting, scene, stem, taxes, thriving, vibrant"
+    },
+    {
+      "source_id": 6,
+      "target_id": 3,
+      "reason": "Shares keywords: high, taxes"
+    },
+    {
+      "source_id": 6,
+      "target_id": 13,
+      "reason": "Shares keywords: high, taxes"
+    },
+    {
+      "source_id": 6,
+      "target_id": 5,
+      "reason": "Shares keywords: government"
+    },
+    {
+      "source_id": 6,
+      "target_id": 15,
+      "reason": "Shares keywords: government"
+    },
+    {
+      "source_id": 7,
+      "target_id": 17,
+      "reason": "Shares keywords: accommodations, broadway, compelling, costs, dangerous, deterred, due, harassment, individuals, justifying, lack, mentally, overpriced, risks, shows, subways, tourists, unstable, visiting"
+    },
+    {
+      "source_id": 7,
+      "target_id": 3,
+      "reason": "Shares keywords: costs, subways"
+    },
+    {
+      "source_id": 7,
+      "target_id": 13,
+      "reason": "Shares keywords: costs, subways"
+    },
+    {
+      "source_id": 7,
+      "target_id": 1,
+      "reason": "Shares keywords: due, subways"
+    },
+    {
+      "source_id": 7,
+      "target_id": 5,
+      "reason": "Shares keywords: dangerous, subways"
+    },
+    {
+      "source_id": 8,
+      "target_id": 18,
+      "reason": "Shares keywords: abuse, degrading, disorder, drug, encampments, failures, fostering, francisco's, homeless, life, policies, progressive, public, quality, severely, similar, unsightly, violence"
+    },
+    {
+      "source_id": 8,
+      "target_id": 10,
+      "reason": "Shares keywords: encampments, homeless, policies"
+    },
+    {
+      "source_id": 8,
+      "target_id": 20,
+      "reason": "Shares keywords: encampments, homeless, policies"
+    },
+    {
+      "source_id": 8,
+      "target_id": 5,
+      "reason": "Shares keywords: drug"
+    },
+    {
+      "source_id": 8,
+      "target_id": 15,
+      "reason": "Shares keywords: drug"
+    },
+    {
+      "source_id": 9,
+      "target_id": 19,
+      "reason": "Shares keywords: abiding, amid, children's, constant, criminals, dangerous, entry, fear, flee, law, live, must, offenders, parents, questioning, rampant, residents, risky, safety, subways, thrive, tolls, while, why"
+    },
+    {
+      "source_id": 9,
+      "target_id": 5,
+      "reason": "Shares keywords: dangerous, subways, tolls"
+    },
+    {
+      "source_id": 9,
+      "target_id": 15,
+      "reason": "Shares keywords: dangerous, subways, tolls"
+    },
+    {
+      "source_id": 9,
+      "target_id": 1,
+      "reason": "Shares keywords: rampant, residents, subways"
+    },
+    {
+      "source_id": 9,
+      "target_id": 11,
+      "reason": "Shares keywords: rampant, residents, subways"
+    },
+    {
+      "source_id": 10,
+      "target_id": 20,
+      "reason": "Shares keywords: 2010, devolved, disorderly, encampments, greatest, homeless, increasingly, liberal, longer, policies, rampant, rendering, since, squalor"
+    },
+    {
+      "source_id": 10,
+      "target_id": 8,
+      "reason": "Shares keywords: encampments, homeless, policies"
+    },
+    {
+      "source_id": 10,
+      "target_id": 18,
+      "reason": "Shares keywords: encampments, homeless, policies"
+    },
+    {
+      "source_id": 10,
+      "target_id": 1,
+      "reason": "Shares keywords: rampant"
+    },
+    {
+      "source_id": 10,
+      "target_id": 9,
+      "reason": "Shares keywords: rampant"
+    },
+    {
+      "source_id": 11,
+      "target_id": 1,
+      "reason": "Shares keywords: become, businesses, crime, disruptive, due, dysfunctional, estate, investing, leading, protests, question, rampant, rats, real, residents, subways, there, unchecked, unlivable, unsafe"
+    },
+    {
+      "source_id": 11,
+      "target_id": 9,
+      "reason": "Shares keywords: rampant, residents, subways"
+    },
+    {
+      "source_id": 11,
+      "target_id": 19,
+      "reason": "Shares keywords: rampant, residents, subways"
+    },
+    {
+      "source_id": 11,
+      "target_id": 5,
+      "reason": "Shares keywords: crime, subways"
+    },
+    {
+      "source_id": 11,
+      "target_id": 7,
+      "reason": "Shares keywords: due, subways"
+    },
+    {
+      "source_id": 12,
+      "target_id": 2,
+      "reason": "Shares keywords: commuters, congestion, corrupt, crime, daily, face, filthiness, funds, mta, pricing, seemingly, skyrocketing, subway, traffic, wasted, worsening"
+    },
+    {
+      "source_id": 12,
+      "target_id": 1,
+      "reason": "Shares keywords: crime"
+    },
+    {
+      "source_id": 12,
+      "target_id": 4,
+      "reason": "Shares keywords: daily"
+    },
+    {
+      "source_id": 12,
+      "target_id": 5,
+      "reason": "Shares keywords: crime"
+    },
+    {
+      "source_id": 12,
+      "target_id": 11,
+      "reason": "Shares keywords: crime"
+    },
+    {
+      "source_id": 13,
+      "target_id": 3,
+      "reason": "Shares keywords: costs, exorbitant, garbage, high, landlords, live, making, neglectful, overwhelmed, pervasive, place, smell, subways, taxes, theft, unredeemable, violent, weed"
+    },
+    {
+      "source_id": 13,
+      "target_id": 6,
+      "reason": "Shares keywords: high, taxes"
+    },
+    {
+      "source_id": 13,
+      "target_id": 7,
+      "reason": "Shares keywords: costs, subways"
+    },
+    {
+      "source_id": 13,
+      "target_id": 9,
+      "reason": "Shares keywords: live, subways"
+    },
+    {
+      "source_id": 13,
+      "target_id": 16,
+      "reason": "Shares keywords: high, taxes"
+    },
+    {
+      "source_id": 14,
+      "target_id": 4,
+      "reason": "Shares keywords: alien, conditions, criminal, daily, decent, gangs, hell, hole, homegrown, illegal, making, outnumbered, overrun, people, unsafe, where, worsen"
+    },
+    {
+      "source_id": 14,
+      "target_id": 2,
+      "reason": "Shares keywords: daily"
+    },
+    {
+      "source_id": 14,
+      "target_id": 12,
+      "reason": "Shares keywords: daily"
+    },
+    {
+      "source_id": 14,
+      "target_id": 1,
+      "reason": "Shares keywords: unsafe"
+    },
+    {
+      "source_id": 14,
+      "target_id": 3,
+      "reason": "Shares keywords: making"
+    },
+    {
+      "source_id": 15,
+      "target_id": 5,
+      "reason": "Shares keywords: burden, crime, dangerous, daylight, deteriorated, drug, exploding, government, homelessness, low, misery, oppressive, prices, subways, tolls, unaffordable, use, wage, workers"
+    },
+    {
+      "source_id": 15,
+      "target_id": 9,
+      "reason": "Shares keywords: dangerous, subways, tolls"
+    },
+    {
+      "source_id": 15,
+      "target_id": 19,
+      "reason": "Shares keywords: dangerous, subways, tolls"
+    },
+    {
+      "source_id": 15,
+      "target_id": 1,
+      "reason": "Shares keywords: crime, subways"
+    },
+    {
+      "source_id": 15,
+      "target_id": 7,
+      "reason": "Shares keywords: dangerous, subways"
+    },
+    {
+      "source_id": 16,
+      "target_id": 6,
+      "reason": "Shares keywords: cities, city's, compared, construction, cultural, government, high, housing, ineffective, insufficient, issues, london, paris, resulting, scene, stem, taxes, thriving, vibrant"
+    },
+    {
+      "source_id": 16,
+      "target_id": 3,
+      "reason": "Shares keywords: high, taxes"
+    },
+    {
+      "source_id": 16,
+      "target_id": 13,
+      "reason": "Shares keywords: high, taxes"
+    },
+    {
+      "source_id": 16,
+      "target_id": 5,
+      "reason": "Shares keywords: government"
+    },
+    {
+      "source_id": 16,
+      "target_id": 15,
+      "reason": "Shares keywords: government"
+    },
+    {
+      "source_id": 17,
+      "target_id": 7,
+      "reason": "Shares keywords: accommodations, broadway, compelling, costs, dangerous, deterred, due, harassment, individuals, justifying, lack, mentally, overpriced, risks, shows, subways, tourists, unstable, visiting"
+    },
+    {
+      "source_id": 17,
+      "target_id": 3,
+      "reason": "Shares keywords: costs, subways"
+    },
+    {
+      "source_id": 17,
+      "target_id": 13,
+      "reason": "Shares keywords: costs, subways"
+    },
+    {
+      "source_id": 17,
+      "target_id": 1,
+      "reason": "Shares keywords: due, subways"
+    },
+    {
+      "source_id": 17,
+      "target_id": 5,
+      "reason": "Shares keywords: dangerous, subways"
+    },
+    {
+      "source_id": 18,
+      "target_id": 8,
+      "reason": "Shares keywords: abuse, degrading, disorder, drug, encampments, failures, fostering, francisco's, homeless, life, policies, progressive, public, quality, severely, similar, unsightly, violence"
+    },
+    {
+      "source_id": 18,
+      "target_id": 10,
+      "reason": "Shares keywords: encampments, homeless, policies"
+    },
+    {
+      "source_id": 18,
+      "target_id": 20,
+      "reason": "Shares keywords: encampments, homeless, policies"
+    },
+    {
+      "source_id": 18,
+      "target_id": 5,
+      "reason": "Shares keywords: drug"
+    },
+    {
+      "source_id": 18,
+      "target_id": 15,
+      "reason": "Shares keywords: drug"
+    },
+    {
+      "source_id": 19,
+      "target_id": 9,
+      "reason": "Shares keywords: abiding, amid, children's, constant, criminals, dangerous, entry, fear, flee, law, live, must, offenders, parents, questioning, rampant, residents, risky, safety, subways, thrive, tolls, while, why"
+    },
+    {
+      "source_id": 19,
+      "target_id": 5,
+      "reason": "Shares keywords: dangerous, subways, tolls"
+    },
+    {
+      "source_id": 19,
+      "target_id": 15,
+      "reason": "Shares keywords: dangerous, subways, tolls"
+    },
+    {
+      "source_id": 19,
+      "target_id": 1,
+      "reason": "Shares keywords: rampant, residents, subways"
+    },
+    {
+      "source_id": 19,
+      "target_id": 11,
+      "reason": "Shares keywords: rampant, residents, subways"
+    },
+    {
+      "source_id": 20,
+      "target_id": 10,
+      "reason": "Shares keywords: 2010, devolved, disorderly, encampments, greatest, homeless, increasingly, liberal, longer, policies, rampant, rendering, since, squalor"
+    },
+    {
+      "source_id": 20,
+      "target_id": 8,
+      "reason": "Shares keywords: encampments, homeless, policies"
+    },
+    {
+      "source_id": 20,
+      "target_id": 18,
+      "reason": "Shares keywords: encampments, homeless, policies"
+    },
+    {
+      "source_id": 20,
+      "target_id": 1,
+      "reason": "Shares keywords: rampant"
+    },
+    {
+      "source_id": 20,
+      "target_id": 9,
+      "reason": "Shares keywords: rampant"
+    }
+  ]
 }

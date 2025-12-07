@@ -181,568 +181,946 @@
       "summary": "100 miles bus lanes in two years, subsidize e-bikes, expand sidewalks, install public sidewalk seating/bathrooms.",
       "date": "2020-08-07",
       "link": "https://x.com/DaveCoIon/status/1291816245436862464"
+    },
+    {
+      "id": 27,
+      "username": "JCHudsonMedia",
+      "summary": "Radio discussion on proposal to remove existing protected bike lane in unspecified Brooklyn location",
+      "date": "2025-07-14",
+      "link": "contextualized alongside school funding debates",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 28,
+      "username": "StreetsblogNYC",
+      "summary": "Brooklyn judge halts NYC DOT's plan to tear up three blocks of protected bike lane on Bedford Avenue in Williamsburg",
+      "date": "2025-06-18",
+      "link": "preserving the infrastructure amid community and safety concerns near residential areas including schools.",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 29,
+      "username": "UnitedJewish",
+      "summary": "United Jewish Organizations statement criticizes NYC DOT's redesigned protected bike lane on Bedford Avenue in Williamsburg and North Brooklyn for failing to address pedestrian safety risks",
+      "date": "2024-10-29",
+      "link": "particularly for school children crossing the street.",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 30,
+      "username": "TransAlt",
+      "summary": "Protected bike lane proposal on Brooklyn and Kingston Avenues in East Flatbush (Community Board 9) deemed essential due to 10 schools within one block; project establishes first protected bike connections in area lacking such infrastructure.",
+      "date": "2024-10-02",
+      "link": "https://x.com/TransAlt/status/1841481139149512831",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 31,
+      "username": "NYDailyNews",
+      "summary": "Reinstated city plan for southern McGuinness Boulevard in Greenpoint",
+      "date": "2024-10-02",
+      "link": "Brooklyn",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 32,
+      "username": "NYC_DOT",
+      "summary": "Construction underway for 1.5-mile parking-protected bike lane on Bedford Avenue in Bed-Stuy",
+      "date": "2024-09-10",
+      "link": "Brooklyn",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 33,
+      "username": "BikeSouthBklyn",
+      "summary": "NYC DOT school safety project proposes two-way protected bike lane on 7th Avenue between 86th Street and Poly Place in southern Brooklyn (CB 10)",
+      "date": "2024-06-11",
+      "link": "focusing on improved crossings and separation for students commuting by bike.",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 34,
+      "username": "VickieforNYC",
+      "summary": "Incident highlights dangers in protected bike lanes near stopped school buses where children are active; calls for registration",
+      "date": "2024-11-13",
+      "link": "licensing",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 35,
+      "username": "PeteSikora1",
+      "summary": "Completed protected bike lane on Court Street in Brooklyn (near downtown schools) reduces car speeds",
+      "date": "2025-12-03",
+      "link": "improves crosswalks",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 36,
+      "username": "infopobn",
+      "summary": "Ongoing litigation challenges NYC DOT protected bike lane on Court Street in Brooklyn",
+      "date": "2025-12-06",
+      "link": "strengthened by Queens precedent requiring removal of 31st Street bike lane",
+      "status": "committed",
+      "source": "grok_search"
     }
   ],
   "edges": [
     {
       "source_id": 1,
-      "target_id": 3,
-      "reason": "Both propose large-scale housing creation, with ADUs as distributed approach vs concentrated Bronx development"
+      "target_id": 4,
+      "reason": "Shares keywords: build, housing, island, staten"
     },
     {
       "source_id": 1,
-      "target_id": 4,
-      "reason": "Both focus on Staten Island housing solutions - ADUs as current tool vs subway enabling future housing"
+      "target_id": 7,
+      "reason": "Shares keywords: build, housing, island"
+    },
+    {
+      "source_id": 1,
+      "target_id": 8,
+      "reason": "Shares keywords: build, housing"
     },
     {
       "source_id": 1,
       "target_id": 5,
-      "reason": "Both target Staten Island for housing policy changes - ADUs implementation vs zoning reform experiment"
+      "reason": "Shares keywords: island, staten"
     },
     {
       "source_id": 1,
       "target_id": 6,
-      "reason": "Addresses housing location strategy - ADUs in existing neighborhoods aligns with criticism of inconvenient island development"
+      "reason": "Shares keywords: build, housing"
     },
     {
       "source_id": 2,
       "target_id": 1,
-      "reason": "Both discuss housing creation mechanisms - ADUs vs high permitting volumes"
+      "reason": "Shares keywords: housing, units"
     },
     {
       "source_id": 2,
-      "target_id": 3,
-      "reason": "Both focus on housing production/permitting, with item 3 proposing specific housing numbers for Bronx"
-    },
-    {
-      "source_id": 2,
-      "target_id": 4,
-      "reason": "Relates to housing enablement through infrastructure, complementing high permitting with transit access"
-    },
-    {
-      "source_id": 2,
-      "target_id": 6,
-      "reason": "Addresses housing distribution and permitting patterns across different NYC areas"
-    },
-    {
-      "source_id": 3,
-      "target_id": 1,
-      "reason": "Both focus on creating more housing units, with ADUs as another housing solution"
-    },
-    {
-      "source_id": 3,
-      "target_id": 4,
-      "reason": "Proposes enabling more housing on Staten Island through improved transit access"
-    },
-    {
-      "source_id": 3,
-      "target_id": 6,
-      "reason": "Discusses housing development strategy and criticizes lack of housing in existing neighborhoods"
-    },
-    {
-      "source_id": 3,
       "target_id": 8,
-      "reason": "Advocates for dense development which complements large-scale housing proposals"
+      "reason": "Shares keywords: housing"
+    },
+    {
+      "source_id": 2,
+      "target_id": 4,
+      "reason": "Shares keywords: housing"
+    },
+    {
+      "source_id": 2,
+      "target_id": 7,
+      "reason": "Shares keywords: housing"
+    },
+    {
+      "source_id": 2,
+      "target_id": 6,
+      "reason": "Shares keywords: housing"
     },
     {
       "source_id": 3,
-      "target_id": 9,
-      "reason": "Supports dense development approach that would be needed for 150k homes"
+      "target_id": 4,
+      "reason": "Shares keywords: island, staten"
+    },
+    {
+      "source_id": 3,
+      "target_id": 14,
+      "reason": "Shares keywords: green, space"
+    },
+    {
+      "source_id": 3,
+      "target_id": 5,
+      "reason": "Shares keywords: island, staten"
+    },
+    {
+      "source_id": 3,
+      "target_id": 1,
+      "reason": "Shares keywords: island, staten"
+    },
+    {
+      "source_id": 3,
+      "target_id": 10,
+      "reason": "Shares keywords: space"
+    },
+    {
+      "source_id": 4,
+      "target_id": 1,
+      "reason": "Shares keywords: build, housing, island, staten"
     },
     {
       "source_id": 4,
       "target_id": 5,
-      "reason": "Both focus specifically on Staten Island development - transit tunnel enables housing, zoning experiment enables development"
+      "reason": "Shares keywords: island, staten, subway"
     },
     {
       "source_id": 4,
-      "target_id": 1,
-      "reason": "Complementary housing solutions - ADUs provide incremental housing while subway tunnel enables larger scale Staten Island housing development"
+      "target_id": 7,
+      "reason": "Shares keywords: build, housing, island"
     },
     {
       "source_id": 4,
-      "target_id": 15,
-      "reason": "Both address transit expansion needs - subway tunnel and more bus routes/services are complementary transit infrastructure improvements"
-    },
-    {
-      "source_id": 4,
-      "target_id": 26,
-      "reason": "Both propose major transit infrastructure expansion - subway tunnel and extensive bus lane network address different scales of transit connectivity"
-    },
-    {
-      "source_id": 5,
-      "target_id": 4,
-      "reason": "Both focus specifically on Staten Island development - transit infrastructure complements zoning reform"
-    },
-    {
-      "source_id": 5,
-      "target_id": 1,
-      "reason": "Tokyo-style zoning typically allows more flexible housing types like ADUs mentioned here"
-    },
-    {
-      "source_id": 5,
       "target_id": 8,
-      "reason": "Tokyo zoning enables dense development which aligns with this density advocacy"
+      "reason": "Shares keywords: build, housing"
+    },
+    {
+      "source_id": 4,
+      "target_id": 3,
+      "reason": "Shares keywords: island, staten"
     },
     {
       "source_id": 5,
-      "target_id": 9,
-      "reason": "Tokyo-style zoning supports dense urban form that this user advocates for"
+      "target_id": 4,
+      "reason": "Shares keywords: island, staten, subway"
     },
     {
-      "source_id": 6,
+      "source_id": 5,
+      "target_id": 10,
+      "reason": "Shares keywords: extend, lines, revenue"
+    },
+    {
+      "source_id": 5,
       "target_id": 1,
-      "reason": "Discusses ADUs as housing solution in existing neighborhoods across boroughs"
+      "reason": "Shares keywords: island, staten"
+    },
+    {
+      "source_id": 5,
+      "target_id": 3,
+      "reason": "Shares keywords: island, staten"
+    },
+    {
+      "source_id": 5,
+      "target_id": 7,
+      "reason": "Shares keywords: island"
     },
     {
       "source_id": 6,
-      "target_id": 3,
-      "reason": "Proposes large-scale housing development in existing borough (Bronx)"
+      "target_id": 8,
+      "reason": "Shares keywords: build, housing"
     },
     {
       "source_id": 6,
       "target_id": 4,
-      "reason": "Proposes housing on Staten Island, which could be seen as an 'inconvenient island' that CelestinAustin criticizes"
+      "reason": "Shares keywords: build, housing"
     },
     {
       "source_id": 6,
       "target_id": 7,
-      "reason": "Satirically proposes housing on Governor's Island, another example of housing on inconvenient islands that CelestinAustin opposes"
+      "reason": "Shares keywords: build, housing"
     },
     {
-      "source_id": 7,
+      "source_id": 6,
       "target_id": 1,
-      "reason": "Both discuss housing solutions, specifically affordable/accessory dwelling units"
+      "reason": "Shares keywords: build, housing"
+    },
+    {
+      "source_id": 6,
+      "target_id": 9,
+      "reason": "Shares keywords: neighborhoods"
     },
     {
       "source_id": 7,
-      "target_id": 3,
-      "reason": "Both propose large-scale housing development in NYC boroughs"
-    },
-    {
-      "source_id": 7,
-      "target_id": 6,
-      "reason": "Both address housing location strategies and critique of building in inconvenient/remote locations"
+      "target_id": 8,
+      "reason": "Shares keywords: affordable, build, housing"
     },
     {
       "source_id": 7,
       "target_id": 4,
-      "reason": "Both discuss housing development on islands with infrastructure considerations"
+      "reason": "Shares keywords: build, housing, island"
+    },
+    {
+      "source_id": 7,
+      "target_id": 1,
+      "reason": "Shares keywords: build, housing, island"
+    },
+    {
+      "source_id": 7,
+      "target_id": 6,
+      "reason": "Shares keywords: build, housing"
+    },
+    {
+      "source_id": 7,
+      "target_id": 24,
+      "reason": "Shares keywords: support"
     },
     {
       "source_id": 8,
-      "target_id": 9,
-      "reason": "Identical concept - both advocating for dense development"
-    },
-    {
-      "source_id": 8,
-      "target_id": 3,
-      "reason": "Specific implementation of dense housing with concrete proposal for 150k homes in Bronx"
+      "target_id": 7,
+      "reason": "Shares keywords: affordable, build, housing"
     },
     {
       "source_id": 8,
       "target_id": 1,
-      "reason": "Complementary housing density strategy through ADUs as proven method to increase housing supply"
+      "reason": "Shares keywords: build, housing"
     },
     {
       "source_id": 8,
-      "target_id": 5,
-      "reason": "Tokyo-style zoning enables high-density development, directly supporting dense building goals"
+      "target_id": 4,
+      "reason": "Shares keywords: build, housing"
+    },
+    {
+      "source_id": 8,
+      "target_id": 6,
+      "reason": "Shares keywords: build, housing"
+    },
+    {
+      "source_id": 8,
+      "target_id": 2,
+      "reason": "Shares keywords: housing"
+    },
+    {
+      "source_id": 9,
+      "target_id": 24,
+      "reason": "Shares keywords: neighborhoods, urban, walkable"
     },
     {
       "source_id": 9,
       "target_id": 8,
-      "reason": "Exact same concept - both advocate for dense development"
+      "reason": "Shares keywords: dense"
     },
     {
       "source_id": 9,
-      "target_id": 3,
-      "reason": "Specific proposal for dense housing development (150k homes in Bronx)"
+      "target_id": 6,
+      "reason": "Shares keywords: neighborhoods"
     },
     {
       "source_id": 9,
-      "target_id": 1,
-      "reason": "ADUs are a tool for creating denser housing within existing neighborhoods"
-    },
-    {
-      "source_id": 9,
-      "target_id": 24,
-      "reason": "Walkable urban neighborhoods are typically achieved through dense development patterns"
-    },
-    {
-      "source_id": 10,
-      "target_id": 11,
-      "reason": "Complementary street design approach - narrow streets paired with wide sidewalks creates pedestrian-focused streetscape"
-    },
-    {
-      "source_id": 10,
-      "target_id": 13,
-      "reason": "Both focus on optimizing street cross-section design for pedestrians rather than cars"
-    },
-    {
-      "source_id": 10,
-      "target_id": 16,
-      "reason": "Related street design reform - narrowing streets can provide space for wider sidewalks with minimum width standards"
-    },
-    {
-      "source_id": 10,
       "target_id": 25,
-      "reason": "Similar pedestrian-focused street design philosophy - both prioritize people over vehicle space"
+      "reason": "Shares keywords: rail"
     },
     {
       "source_id": 10,
-      "target_id": 24,
-      "reason": "Narrow streets are a key component of walkable urban neighborhood design"
+      "target_id": 5,
+      "reason": "Shares keywords: extend, lines, revenue"
     },
     {
-      "source_id": 11,
-      "target_id": 13,
-      "reason": "Both specifically advocate for bigger and better sidewalks"
-    },
-    {
-      "source_id": 11,
-      "target_id": 16,
-      "reason": "Proposes concrete policy for sidewalk width standards and funding for widening"
-    },
-    {
-      "source_id": 11,
-      "target_id": 23,
-      "reason": "Also focuses on wider sidewalks, specifically near transit infrastructure"
-    },
-    {
-      "source_id": 11,
-      "target_id": 10,
-      "reason": "Narrow streets complement wide sidewalks in human-focused street design"
-    },
-    {
-      "source_id": 11,
-      "target_id": 25,
-      "reason": "Pedestrianization with trees/gardens is complementary human-focused street redesign"
-    },
-    {
-      "source_id": 12,
-      "target_id": 17,
-      "reason": "Both focus on school safety - officers complement car-free school zones"
-    },
-    {
-      "source_id": 12,
-      "target_id": 18,
-      "reason": "Same school safety focus - enforcement needed for car-free school streets"
-    },
-    {
-      "source_id": 12,
+      "source_id": 10,
       "target_id": 21,
-      "reason": "Direct match - both propose more police enforcement for safety"
+      "reason": "Shares keywords: narrow, sidewalks"
+    },
+    {
+      "source_id": 10,
+      "target_id": 23,
+      "reason": "Shares keywords: sidewalks, space"
+    },
+    {
+      "source_id": 10,
+      "target_id": 13,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 10,
+      "target_id": 18,
+      "reason": "Shares keywords: streets"
+    },
+    {
+      "source_id": 11,
+      "target_id": 13,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 11,
+      "target_id": 12,
+      "reason": "Shares keywords: dining, outdoor"
+    },
+    {
+      "source_id": 11,
+      "target_id": 21,
+      "reason": "Shares keywords: sidewalks, street"
+    },
+    {
+      "source_id": 11,
+      "target_id": 23,
+      "reason": "Shares keywords: benches, sidewalks"
+    },
+    {
+      "source_id": 11,
+      "target_id": 22,
+      "reason": "Shares keywords: sidewalks"
     },
     {
       "source_id": 12,
-      "target_id": 13,
-      "reason": "Bigger sidewalks improve pedestrian safety, complementing officer presence"
+      "target_id": 11,
+      "reason": "Shares keywords: dining, outdoor"
     },
     {
       "source_id": 12,
-      "target_id": 16,
-      "reason": "Minimum sidewalk widths address pedestrian safety infrastructure"
-    },
-    {
-      "source_id": 13,
-      "target_id": 16,
-      "reason": "Directly addresses sidewalk width standards and funding for widening substandard sidewalks"
-    },
-    {
-      "source_id": 13,
-      "target_id": 11,
-      "reason": "Advocates for wide sidewalks as part of human-focused street redesign"
-    },
-    {
-      "source_id": 13,
-      "target_id": 23,
-      "reason": "Proposes wider sidewalks specifically near subway stations"
-    },
-    {
-      "source_id": 13,
-      "target_id": 14,
-      "reason": "Complementary approach to reclaim car space for pedestrian infrastructure and green space"
-    },
-    {
-      "source_id": 13,
-      "target_id": 22,
-      "reason": "Supports connecting sidewalks as part of urbanization efforts"
-    },
-    {
-      "source_id": 14,
-      "target_id": 11,
-      "reason": "Both focus on street redesign prioritizing human needs over car space"
-    },
-    {
-      "source_id": 14,
-      "target_id": 13,
-      "reason": "Both advocate for taking car space and repurposing it for pedestrian infrastructure"
-    },
-    {
-      "source_id": 14,
-      "target_id": 16,
-      "reason": "Both propose systematic improvements to pedestrian infrastructure through space reallocation"
-    },
-    {
-      "source_id": 14,
-      "target_id": 25,
-      "reason": "Both suggest replacing car-dominated spaces with green/pedestrian-friendly infrastructure"
-    },
-    {
-      "source_id": 15,
-      "target_id": 20,
-      "reason": "Both focus on bus transit improvements - bus routes and bus lanes are complementary transit solutions"
-    },
-    {
-      "source_id": 15,
       "target_id": 26,
-      "reason": "Both address bus system enhancement - more routes work together with expanded bus lane infrastructure"
+      "reason": "Shares keywords: expand, public"
     },
     {
-      "source_id": 15,
-      "target_id": 14,
-      "reason": "Both propose replacing car-focused infrastructure with alternative uses - buses reduce car dependency while green space replaces car space"
-    },
-    {
-      "source_id": 16,
-      "target_id": 11,
-      "reason": "Both focus on making sidewalks wider for human-focused street design"
-    },
-    {
-      "source_id": 16,
-      "target_id": 13,
-      "reason": "Both propose making sidewalks bigger and better infrastructure"
-    },
-    {
-      "source_id": 16,
-      "target_id": 23,
-      "reason": "Both address widening sidewalks, specifically near transit infrastructure"
-    },
-    {
-      "source_id": 16,
-      "target_id": 22,
-      "reason": "Both emphasize connecting sidewalk infrastructure for urbanization"
-    },
-    {
-      "source_id": 16,
-      "target_id": 25,
-      "reason": "Pedestrianization complements wider sidewalk infrastructure for walkability"
-    },
-    {
-      "source_id": 17,
-      "target_id": 18,
-      "reason": "Identical proposal for school streets implementation"
-    },
-    {
-      "source_id": 17,
-      "target_id": 12,
-      "reason": "Both address safety concerns around schools and public spaces"
-    },
-    {
-      "source_id": 17,
-      "target_id": 16,
-      "reason": "Complementary pedestrian infrastructure - wider sidewalks support car-free school streets"
-    },
-    {
-      "source_id": 17,
-      "target_id": 13,
-      "reason": "Enhanced sidewalk infrastructure that would benefit car-free school street implementation"
-    },
-    {
-      "source_id": 17,
-      "target_id": 11,
-      "reason": "Human-focused street redesign aligns with car-free school street concept"
-    },
-    {
-      "source_id": 18,
-      "target_id": 17,
-      "reason": "Identical proposal for school streets implementation, just with additional detail about safety and enjoyment benefits"
-    },
-    {
-      "source_id": 18,
-      "target_id": 13,
-      "reason": "Complementary sidewalk improvement proposal that would enhance the pedestrian-friendly environment around schools"
-    },
-    {
-      "source_id": 18,
-      "target_id": 16,
-      "reason": "Related sidewalk infrastructure improvement that supports walkable school zones with proper pedestrian space"
-    },
-    {
-      "source_id": 18,
-      "target_id": 11,
-      "reason": "Shares focus on human-centered street design with wider sidewalks that would complement car-free school areas"
-    },
-    {
-      "source_id": 19,
-      "target_id": 20,
-      "reason": "Both focus on improving street space allocation - bus lanes complement delivery reform by organizing vehicle priorities"
-    },
-    {
-      "source_id": 19,
-      "target_id": 26,
-      "reason": "Bus lane implementation would require coordinated parking/delivery reform to be effective"
-    },
-    {
-      "source_id": 19,
-      "target_id": 17,
-      "reason": "School streets implementation requires managing parking and delivery access during restricted hours"
-    },
-    {
-      "source_id": 19,
-      "target_id": 18,
-      "reason": "Car-free school blocks need delivery reform policies to maintain access for essential services"
-    },
-    {
-      "source_id": 20,
-      "target_id": 15,
-      "reason": "Both focus on improving bus transit - more routes complements dedicated bus lanes"
-    },
-    {
-      "source_id": 20,
-      "target_id": 26,
-      "reason": "Both propose bus lane infrastructure - 100 miles of bus lanes would include N-S corridors"
-    },
-    {
-      "source_id": 20,
-      "target_id": 19,
-      "reason": "Parking/delivery reform would support bus lane effectiveness by reducing conflicts"
-    },
-    {
-      "source_id": 20,
-      "target_id": 14,
-      "reason": "Both involve reallocating street space - bus lanes and green infrastructure both replace car space"
-    },
-    {
-      "source_id": 21,
-      "target_id": 12,
-      "reason": "Both propose increasing police presence as a safety solution"
-    },
-    {
-      "source_id": 21,
-      "target_id": 17,
-      "reason": "Both focus on safety measures, though different approaches - enforcement vs infrastructure"
-    },
-    {
-      "source_id": 21,
-      "target_id": 18,
-      "reason": "Both address safety concerns around schools and pedestrian areas"
-    },
-    {
-      "source_id": 22,
-      "target_id": 11,
-      "reason": "Both focus on sidewalk improvements for pedestrian experience"
-    },
-    {
-      "source_id": 22,
-      "target_id": 13,
-      "reason": "Both advocate for better sidewalk infrastructure and pedestrian connectivity"
-    },
-    {
-      "source_id": 22,
-      "target_id": 16,
-      "reason": "Both address sidewalk standards and infrastructure improvements"
-    },
-    {
-      "source_id": 22,
-      "target_id": 23,
-      "reason": "Both propose sidewalk enhancements to improve pedestrian connections"
-    },
-    {
-      "source_id": 22,
+      "source_id": 12,
       "target_id": 24,
-      "reason": "Both support walkable urban development with pedestrian infrastructure"
+      "reason": "Shares keywords: public"
     },
     {
-      "source_id": 23,
+      "source_id": 12,
+      "target_id": 20,
+      "reason": "Shares keywords: improvements"
+    },
+    {
+      "source_id": 12,
+      "target_id": 17,
+      "reason": "Shares keywords: safety"
+    },
+    {
+      "source_id": 13,
+      "target_id": 10,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 13,
       "target_id": 11,
-      "reason": "Both propose wider sidewalks for human-focused street design"
+      "reason": "Shares keywords: sidewalks"
     },
     {
-      "source_id": 23,
-      "target_id": 13,
-      "reason": "Both advocate for bigger and better sidewalks with specific improvements"
-    },
-    {
-      "source_id": 23,
+      "source_id": 13,
       "target_id": 16,
-      "reason": "Both focus on sidewalk width standards and widening substandard sidewalks"
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 13,
+      "target_id": 21,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 13,
+      "target_id": 22,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 14,
+      "target_id": 3,
+      "reason": "Shares keywords: green, space"
+    },
+    {
+      "source_id": 14,
+      "target_id": 18,
+      "reason": "Shares keywords: car"
+    },
+    {
+      "source_id": 14,
+      "target_id": 10,
+      "reason": "Shares keywords: space"
+    },
+    {
+      "source_id": 14,
+      "target_id": 17,
+      "reason": "Shares keywords: car"
+    },
+    {
+      "source_id": 14,
+      "target_id": 21,
+      "reason": "Shares keywords: infrastructure"
+    },
+    {
+      "source_id": 15,
+      "target_id": 34,
+      "reason": "Shares keywords: buses"
+    },
+    {
+      "source_id": 15,
+      "target_id": 30,
+      "reason": "Shares keywords: community"
+    },
+    {
+      "source_id": 16,
+      "target_id": 13,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 16,
+      "target_id": 26,
+      "reason": "Shares keywords: sidewalk, sidewalks"
+    },
+    {
+      "source_id": 16,
+      "target_id": 22,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 16,
+      "target_id": 10,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 16,
+      "target_id": 5,
+      "reason": "Shares keywords: zoning"
+    },
+    {
+      "source_id": 17,
+      "target_id": 18,
+      "reason": "Shares keywords: beside, blocks, car, free, implement, school, schools, streets"
+    },
+    {
+      "source_id": 17,
+      "target_id": 35,
+      "reason": "Shares keywords: car, schools"
+    },
+    {
+      "source_id": 17,
+      "target_id": 33,
+      "reason": "Shares keywords: safety, school"
+    },
+    {
+      "source_id": 17,
+      "target_id": 10,
+      "reason": "Shares keywords: streets"
+    },
+    {
+      "source_id": 17,
+      "target_id": 14,
+      "reason": "Shares keywords: car"
+    },
+    {
+      "source_id": 18,
+      "target_id": 17,
+      "reason": "Shares keywords: beside, blocks, car, free, implement, school, schools, streets"
+    },
+    {
+      "source_id": 18,
+      "target_id": 35,
+      "reason": "Shares keywords: car, schools"
+    },
+    {
+      "source_id": 18,
+      "target_id": 10,
+      "reason": "Shares keywords: streets"
+    },
+    {
+      "source_id": 18,
+      "target_id": 14,
+      "reason": "Shares keywords: car"
+    },
+    {
+      "source_id": 18,
+      "target_id": 28,
+      "reason": "Shares keywords: blocks"
+    },
+    {
+      "source_id": 19,
+      "target_id": 32,
+      "reason": "Shares keywords: parking"
+    },
+    {
+      "source_id": 19,
+      "target_id": 16,
+      "reason": "Shares keywords: set"
+    },
+    {
+      "source_id": 19,
+      "target_id": 23,
+      "reason": "Shares keywords: parking"
+    },
+    {
+      "source_id": 20,
+      "target_id": 36,
+      "reason": "Shares keywords: bike, nyc"
+    },
+    {
+      "source_id": 20,
+      "target_id": 21,
+      "reason": "Shares keywords: bike, lanes"
+    },
+    {
+      "source_id": 20,
+      "target_id": 23,
+      "reason": "Shares keywords: bike, bus"
+    },
+    {
+      "source_id": 20,
+      "target_id": 26,
+      "reason": "Shares keywords: bus, lanes"
+    },
+    {
+      "source_id": 20,
+      "target_id": 28,
+      "reason": "Shares keywords: bike, nyc"
+    },
+    {
+      "source_id": 21,
+      "target_id": 10,
+      "reason": "Shares keywords: narrow, sidewalks"
+    },
+    {
+      "source_id": 21,
+      "target_id": 13,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 21,
+      "target_id": 36,
+      "reason": "Shares keywords: bike, street"
+    },
+    {
+      "source_id": 21,
+      "target_id": 11,
+      "reason": "Shares keywords: sidewalks, street"
+    },
+    {
+      "source_id": 21,
+      "target_id": 20,
+      "reason": "Shares keywords: bike, lanes"
+    },
+    {
+      "source_id": 22,
+      "target_id": 13,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 22,
+      "target_id": 10,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 22,
+      "target_id": 11,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 22,
+      "target_id": 16,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 22,
+      "target_id": 21,
+      "reason": "Shares keywords: sidewalks"
     },
     {
       "source_id": 23,
       "target_id": 10,
-      "reason": "Narrow streets complement wider sidewalks in pedestrian-focused street design"
+      "reason": "Shares keywords: sidewalks, space"
     },
     {
       "source_id": 23,
-      "target_id": 24,
-      "reason": "Both support walkable urban infrastructure improvements"
+      "target_id": 13,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 23,
+      "target_id": 26,
+      "reason": "Shares keywords: bus, public, sidewalks"
+    },
+    {
+      "source_id": 23,
+      "target_id": 32,
+      "reason": "Shares keywords: bike, parking"
+    },
+    {
+      "source_id": 23,
+      "target_id": 11,
+      "reason": "Shares keywords: benches, sidewalks"
     },
     {
       "source_id": 24,
-      "target_id": 10,
-      "reason": "Both promote walkable urban design - narrow streets complement walkable neighborhoods"
+      "target_id": 9,
+      "reason": "Shares keywords: neighborhoods, urban, walkable"
+    },
+    {
+      "source_id": 24,
+      "target_id": 6,
+      "reason": "Shares keywords: neighborhoods"
+    },
+    {
+      "source_id": 24,
+      "target_id": 7,
+      "reason": "Shares keywords: support"
     },
     {
       "source_id": 24,
       "target_id": 11,
-      "reason": "Wide sidewalks directly support walkable neighborhoods by improving pedestrian infrastructure"
+      "reason": "Shares keywords: street"
     },
     {
       "source_id": 24,
-      "target_id": 13,
-      "reason": "Better sidewalks are essential infrastructure for creating walkable urban environments"
+      "target_id": 12,
+      "reason": "Shares keywords: public"
     },
     {
-      "source_id": 24,
-      "target_id": 22,
-      "reason": "Connecting sidewalks and urbanization directly enable walkable neighborhood connectivity"
-    },
-    {
-      "source_id": 24,
-      "target_id": 25,
-      "reason": "Pedestrianizing streets with green space creates walkable areas that enhance social interaction"
+      "source_id": 25,
+      "target_id": 9,
+      "reason": "Shares keywords: rail"
     },
     {
       "source_id": 25,
       "target_id": 11,
-      "reason": "Both focus on human-centered street redesign with wider pedestrian spaces"
+      "reason": "Shares keywords: trees"
     },
     {
       "source_id": 25,
-      "target_id": 13,
-      "reason": "Complementary approach of making sidewalks bigger and better for pedestrians"
-    },
-    {
-      "source_id": 25,
-      "target_id": 16,
-      "reason": "Related sidewalk improvement initiative with specific width standards"
-    },
-    {
-      "source_id": 25,
-      "target_id": 23,
-      "reason": "Similar concept of repurposing street space for wider pedestrian areas"
-    },
-    {
-      "source_id": 25,
-      "target_id": 17,
-      "reason": "Complementary car-free street initiative that could work alongside pedestrianized areas"
+      "target_id": 21,
+      "reason": "Shares keywords: light"
     },
     {
       "source_id": 26,
-      "target_id": 15,
-      "reason": "Both focus on improving bus transit - more routes complements more bus lanes"
+      "target_id": 13,
+      "reason": "Shares keywords: sidewalks"
+    },
+    {
+      "source_id": 26,
+      "target_id": 23,
+      "reason": "Shares keywords: bus, public, sidewalks"
+    },
+    {
+      "source_id": 26,
+      "target_id": 16,
+      "reason": "Shares keywords: sidewalk, sidewalks"
     },
     {
       "source_id": 26,
       "target_id": 20,
-      "reason": "Both about bus infrastructure - N-S bus lanes and 100 miles of bus lanes are complementary transit improvements"
+      "reason": "Shares keywords: bus, lanes"
     },
     {
       "source_id": 26,
-      "target_id": 14,
-      "reason": "Bus lanes can incorporate green infrastructure and reduce car space, supporting flood resilience goals"
+      "target_id": 12,
+      "reason": "Shares keywords: expand, public"
+    },
+    {
+      "source_id": 27,
+      "target_id": 30,
+      "reason": "Shares keywords: bike, brooklyn, lane, proposal, protected"
+    },
+    {
+      "source_id": 27,
+      "target_id": 28,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 27,
+      "target_id": 29,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 27,
+      "target_id": 33,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 27,
+      "target_id": 35,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 28,
+      "target_id": 29,
+      "reason": "Shares keywords: avenue, bedford, bike, brooklyn, dot's, lane, nyc, protected, williamsburg"
+    },
+    {
+      "source_id": 28,
+      "target_id": 32,
+      "reason": "Shares keywords: avenue, bedford, bike, lane, protected"
+    },
+    {
+      "source_id": 28,
+      "target_id": 36,
+      "reason": "Shares keywords: bike, brooklyn, lane, nyc, protected"
+    },
+    {
+      "source_id": 28,
+      "target_id": 33,
+      "reason": "Shares keywords: avenue, bike, brooklyn, lane, nyc, protected"
+    },
+    {
+      "source_id": 28,
+      "target_id": 27,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 29,
+      "target_id": 28,
+      "reason": "Shares keywords: avenue, bedford, bike, brooklyn, dot's, lane, nyc, protected, williamsburg"
+    },
+    {
+      "source_id": 29,
+      "target_id": 32,
+      "reason": "Shares keywords: avenue, bedford, bike, lane, protected"
+    },
+    {
+      "source_id": 29,
+      "target_id": 36,
+      "reason": "Shares keywords: bike, brooklyn, lane, nyc, protected"
+    },
+    {
+      "source_id": 29,
+      "target_id": 33,
+      "reason": "Shares keywords: avenue, bike, brooklyn, lane, nyc, protected, safety"
+    },
+    {
+      "source_id": 29,
+      "target_id": 27,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 30,
+      "target_id": 27,
+      "reason": "Shares keywords: bike, brooklyn, lane, proposal, protected"
+    },
+    {
+      "source_id": 30,
+      "target_id": 35,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected, schools"
+    },
+    {
+      "source_id": 30,
+      "target_id": 36,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 30,
+      "target_id": 32,
+      "reason": "Shares keywords: bike, lane, protected"
+    },
+    {
+      "source_id": 30,
+      "target_id": 28,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 31,
+      "target_id": 28,
+      "reason": "Shares keywords: plan"
+    },
+    {
+      "source_id": 31,
+      "target_id": 33,
+      "reason": "Shares keywords: southern"
+    },
+    {
+      "source_id": 32,
+      "target_id": 28,
+      "reason": "Shares keywords: avenue, bedford, bike, lane, protected"
+    },
+    {
+      "source_id": 32,
+      "target_id": 29,
+      "reason": "Shares keywords: avenue, bedford, bike, lane, protected"
+    },
+    {
+      "source_id": 32,
+      "target_id": 33,
+      "reason": "Shares keywords: avenue, bike, lane, protected"
+    },
+    {
+      "source_id": 32,
+      "target_id": 27,
+      "reason": "Shares keywords: bike, lane, protected"
+    },
+    {
+      "source_id": 32,
+      "target_id": 30,
+      "reason": "Shares keywords: bike, lane, protected"
+    },
+    {
+      "source_id": 33,
+      "target_id": 36,
+      "reason": "Shares keywords: bike, brooklyn, dot, lane, nyc, protected, street"
+    },
+    {
+      "source_id": 33,
+      "target_id": 28,
+      "reason": "Shares keywords: avenue, bike, brooklyn, lane, nyc, protected"
+    },
+    {
+      "source_id": 33,
+      "target_id": 35,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected, street"
+    },
+    {
+      "source_id": 33,
+      "target_id": 29,
+      "reason": "Shares keywords: avenue, bike, brooklyn, lane, nyc, protected, safety"
+    },
+    {
+      "source_id": 33,
+      "target_id": 27,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 34,
+      "target_id": 35,
+      "reason": "Shares keywords: bike, near, protected"
+    },
+    {
+      "source_id": 34,
+      "target_id": 33,
+      "reason": "Shares keywords: bike, protected, school"
+    },
+    {
+      "source_id": 34,
+      "target_id": 27,
+      "reason": "Shares keywords: bike, protected"
+    },
+    {
+      "source_id": 34,
+      "target_id": 32,
+      "reason": "Shares keywords: bike, protected"
+    },
+    {
+      "source_id": 34,
+      "target_id": 36,
+      "reason": "Shares keywords: bike, protected"
+    },
+    {
+      "source_id": 35,
+      "target_id": 36,
+      "reason": "Shares keywords: bike, brooklyn, court, lane, protected, street"
+    },
+    {
+      "source_id": 35,
+      "target_id": 30,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected, schools"
+    },
+    {
+      "source_id": 35,
+      "target_id": 33,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected, street"
+    },
+    {
+      "source_id": 35,
+      "target_id": 27,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 35,
+      "target_id": 28,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 36,
+      "target_id": 33,
+      "reason": "Shares keywords: bike, brooklyn, dot, lane, nyc, protected, street"
+    },
+    {
+      "source_id": 36,
+      "target_id": 35,
+      "reason": "Shares keywords: bike, brooklyn, court, lane, protected, street"
+    },
+    {
+      "source_id": 36,
+      "target_id": 28,
+      "reason": "Shares keywords: bike, brooklyn, lane, nyc, protected"
+    },
+    {
+      "source_id": 36,
+      "target_id": 29,
+      "reason": "Shares keywords: bike, brooklyn, lane, nyc, protected"
+    },
+    {
+      "source_id": 36,
+      "target_id": 27,
+      "reason": "Shares keywords: bike, brooklyn, lane, protected"
     }
-  ]
+  ],
+  "metadata": {
+    "context": "civic"
+  }
 }

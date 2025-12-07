@@ -16,6 +16,7 @@ Output:
 import csv
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -33,6 +34,15 @@ except ImportError:
     HAS_OPENAI = False
 
 CONTEXT_WINDOW_THRESHOLD = 100  # Switch to embeddings above this
+
+STOPWORDS = {
+    'the', 'and', 'for', 'with', 'that', 'this', 'from', 'are', 'was', 'were', 'have', 'has',
+    'had', 'but', 'not', 'you', 'your', 'our', 'their', 'they', 'them', 'his', 'her', 'its',
+    'into', 'onto', 'about', 'after', 'before', 'over', 'under', 'between', 'across', 'into',
+    'more', 'less', 'than', 'then', 'also', 'will', 'would', 'could', 'should', 'can', 'may',
+    'might', 'just', 'like', 'time', 'year', 'month', 'city', 'new', 'york', 'san', 'francisco',
+    'make', 'need', 'want', 'much', 'many', 'some', 'most', 'other', 'same', 'very', 'really'
+}
 
 
 def load_csv(filepath: str) -> list[dict]:
@@ -199,13 +209,64 @@ Only include items that have meaningful connections. If fewer than 3 items are r
     return result.get("related", [])
 
 
+def tokenize_summary(text: str) -> set[str]:
+    """Tokenize summary text into meaningful keywords."""
+    tokens = re.findall(r"[a-z0-9']+", (text or "").lower())
+    keywords = {
+        token.strip("'")
+        for token in tokens
+        if len(token.strip("'")) >= 3 and token not in STOPWORDS
+    }
+    return keywords
+
+
+def find_relations_keyword(items: list[dict], target_item: dict) -> list[dict]:
+    """Fallback relation finder using keyword overlap (no external API)."""
+    target_tokens = tokenize_summary(target_item.get('Summary/Quote', ''))
+    if not target_tokens:
+        return []
+
+    similarities = []
+    for item in items:
+        if item['id'] == target_item['id']:
+            continue
+        candidate_tokens = tokenize_summary(item.get('Summary/Quote', ''))
+        if not candidate_tokens:
+            continue
+        overlap = target_tokens & candidate_tokens
+        if not overlap:
+            continue
+        score = len(overlap) / min(len(target_tokens), len(candidate_tokens))
+        similarities.append((score, overlap, item))
+
+    similarities.sort(key=lambda x: x[0], reverse=True)
+    top_matches = similarities[:5]
+
+    relations = []
+    for score, overlap, item in top_matches:
+        reason_keywords = ", ".join(sorted(overlap))
+        relations.append({
+            "id": item['id'],
+            "reason": f"Shares keywords: {reason_keywords}"
+        })
+
+    return relations
+
+
 def find_all_relations(items: list[dict], provider: str = "anthropic") -> list[dict]:
     """Find relations for all items."""
     if len(items) > CONTEXT_WINDOW_THRESHOLD:
         print(f"WARNING: {len(items)} items exceeds threshold of {CONTEXT_WINDOW_THRESHOLD}.")
         print("Consider implementing embeddings approach (see PLAN_EMBEDDINGS.md)")
 
-    find_fn = find_relations_anthropic if provider == "anthropic" else find_relations_openai
+    if provider == "anthropic":
+        find_fn = find_relations_anthropic
+    elif provider == "openai":
+        find_fn = find_relations_openai
+    elif provider == "keyword":
+        find_fn = find_relations_keyword
+    else:
+        raise ValueError(f"Unsupported provider '{provider}'. Expected anthropic, openai, or keyword.")
 
     all_connections = []
 
@@ -319,21 +380,28 @@ def main():
         if idx + 1 < len(sys.argv):
             provider = sys.argv[idx + 1]
 
-    # Check API availability
-    if provider == "anthropic" and not HAS_ANTHROPIC:
-        print("Error: anthropic library not installed. Run: pip install anthropic")
-        sys.exit(1)
-    if provider == "openai" and not HAS_OPENAI:
-        print("Error: openai library not installed. Run: pip install openai")
-        sys.exit(1)
+    # Auto provider selection if requested
+    provider = os.environ.get('CITYVOICE_RELATION_PROVIDER', provider)
 
-    # Check API key
-    if provider == "anthropic" and not os.environ.get("ANTHROPIC_API_KEY"):
-        print("Error: ANTHROPIC_API_KEY environment variable not set")
-        sys.exit(1)
-    if provider == "openai" and not os.environ.get("OPENAI_API_KEY"):
-        print("Error: OPENAI_API_KEY environment variable not set")
-        sys.exit(1)
+    # Check API availability and fall back to keyword matching if necessary
+    if provider == "anthropic":
+        if not HAS_ANTHROPIC:
+            print("Warning: anthropic library not installed. Falling back to keyword matching.")
+            provider = "keyword"
+        elif not os.environ.get("ANTHROPIC_API_KEY"):
+            print("Warning: ANTHROPIC_API_KEY not set. Falling back to keyword matching.")
+            provider = "keyword"
+    elif provider == "openai":
+        if not HAS_OPENAI:
+            print("Warning: openai library not installed. Falling back to keyword matching.")
+            provider = "keyword"
+        elif not os.environ.get("OPENAI_API_KEY"):
+            print("Warning: OPENAI_API_KEY not set. Falling back to keyword matching.")
+            provider = "keyword"
+
+    if provider not in {"anthropic", "openai", "keyword"}:
+        print(f"Warning: Unknown provider '{provider}', using keyword fallback.")
+        provider = "keyword"
 
     if data_path:
         # Project mode: read from connections.json
