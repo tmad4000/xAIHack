@@ -36,7 +36,7 @@ python find_related_items.py data/geodatanyc.csv
 
 **Output:**
 - `connections.csv` - Edge list with `source_id`, `target_id`, `reason`
-- `connections.json` - Full graph with nodes and edges (for visualization)
+- `connections.json` - Full graph with nodes and edges
 
 **Options:**
 - `--provider anthropic` (default) - Use Claude
@@ -44,19 +44,69 @@ python find_related_items.py data/geodatanyc.csv
 
 ---
 
+### 2. `add_topics.py` - Add Topic Clusters
+
+**Purpose:** Detects communities in the connection graph using NetworkX, then uses AI to label each cluster with a topic name.
+
+**Usage:**
+```bash
+pip install networkx  # Required dependency
+python add_topics.py <connections.json>
+```
+
+**Example:**
+```bash
+python add_topics.py data/connections.json
+```
+
+**Input:** `connections.json` from step 1
+
+**Output:**
+- `connections_with_topics.json` - Graph data with `topic_id` and `topic_label` added to each node
+- Also copies to `frontend/src/data/` if frontend exists
+
+**Notes:**
+- Uses Greedy Modularity community detection
+- Falls back to keyword-based labeling if no API key is set
+
+---
+
+## Frontend
+
+A React + Vite frontend for visualizing the graph.
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
 ## Workflow
 
 ```
-┌─────────────────┐     ┌──────────────────────┐     ┌─────────────────┐
-│  Input CSV      │────>│ find_related_items.py│────>│ connections.csv │
-│  (tweets/ideas) │     │                      │     │ connections.json│
-└─────────────────┘     └──────────────────────┘     └─────────────────┘
+┌─────────────┐    ┌──────────────────────┐    ┌─────────────────┐    ┌─────────────────────────┐
+│  Input CSV  │───>│ find_related_items.py│───>│ connections.json│───>│     add_topics.py       │
+│  (tweets)   │    │                      │    │                 │    │                         │
+└─────────────┘    └──────────────────────┘    └─────────────────┘    └───────────┬─────────────┘
+                                                                                   │
+                                                                                   v
+                                                                      ┌───────────────────────────┐
+                                                                      │ connections_with_topics.json│
+                                                                      └───────────┬───────────────┘
+                                                                                   │
+                                                                                   v
+                                                                      ┌───────────────────────────┐
+                                                                      │    Frontend (React)       │
+                                                                      └───────────────────────────┘
 ```
 
 **Order of operations:**
 1. Prepare your input CSV with suggestions/issues
 2. Run `find_related_items.py` to generate the connection graph
-3. Use output files for visualization or further analysis
+3. Run `add_topics.py` to detect and label topic clusters
+4. Run the frontend to visualize the graph
 
 ## Data Format
 
