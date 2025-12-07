@@ -324,49 +324,66 @@
         }
 
         .node-detail .summary {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            color: #e6edf3;
-            padding: 14px;
-            background: #161b22;
-            border-radius: 8px;
-            border-left: 3px solid #30363d;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: #c9d1d9;
         }
 
         .node-detail .connections-header {
-            font-size: 0.85rem;
-            color: #8b949e;
-            margin-bottom: 12px;
-            margin-top: 24px;
-            font-weight: 500;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #21262d;
+            font-size: 0.7rem;
+            color: #6e7681;
+            margin-bottom: 14px;
+            margin-top: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .connections-list {
+            border-top: 1px solid #21262d;
+            padding-top: 12px;
         }
 
         .connection-item {
-            background: #161b22;
-            padding: 12px 14px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            border-left: 3px solid #e07a5f;
+            padding: 14px 0;
+            border-bottom: 1px solid #21262d;
             cursor: pointer;
             transition: all 0.2s;
         }
 
+        .connection-item:last-child {
+            border-bottom: none;
+        }
+
         .connection-item:hover {
-            background: #21262d;
-            border-left-width: 4px;
-            transform: translateX(2px);
+            background: rgba(33, 38, 45, 0.5);
+            margin: 0 -12px;
+            padding: 14px 12px;
+            border-radius: 6px;
+        }
+
+        .connection-item .connection-author {
+            font-size: 0.8rem;
+            color: #58a6ff;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .connection-item .connection-text {
+            font-size: 0.85rem;
+            color: #c9d1d9;
+            line-height: 1.5;
         }
 
         .connection-item .reason {
             font-size: 0.75rem;
-            color: #6e7681;
-            font-style: italic;
-            margin-top: 6px;
-            padding-top: 6px;
-            border-top: 1px solid #21262d;
+            color: #8b949e;
+            margin-top: 8px;
+            padding: 6px 10px;
+            background: rgba(139, 148, 158, 0.1);
+            border-radius: 4px;
+            border-left: 2px solid #30363d;
         }
 
         .link-btn {
@@ -1676,15 +1693,18 @@
                     ${node.link && node.link.startsWith('http') ?
                         `<a href="${node.link}" target="_blank" class="link-btn">View Original Tweet</a>` : ''}
 
-                    <div class="connections-header" style="margin-top: 20px;">
-                        ${connections.length} Connected Ideas
+                    <div class="connections-header">
+                        ${connections.length} Connected Idea${connections.length !== 1 ? 's' : ''}
                     </div>
-                    ${connections.map(c => `
-                        <div class="connection-item clickable-connection" data-node-id="${c.node.id}">
-                            <strong>${c.node.username}</strong>: ${c.node.summary || 'No summary'}
-                            <div class="reason">${c.reason}</div>
-                        </div>
-                    `).join('')}
+                    <div class="connections-list">
+                        ${connections.map(c => `
+                            <div class="connection-item clickable-connection" data-node-id="${c.node.id}">
+                                <div class="connection-author">${c.node.username}</div>
+                                <div class="connection-text">${c.node.summary || 'No summary'}</div>
+                                <div class="reason">${c.reason}</div>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
             `;
 
