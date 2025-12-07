@@ -529,9 +529,14 @@
         /* Cluster overlay labels - Google Maps style */
         .cluster-overlay {
             position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 50;
             transition: opacity 0.3s ease;
+            overflow: visible;
         }
 
         .cluster-label {
@@ -1797,15 +1802,21 @@
         }
 
         function getClusterCentroid(cluster) {
-            const nodes = cluster.nodes.map(n => graphData.nodes.find(gn => gn.id === n.id) || n);
-            const validNodes = nodes.filter(n => n.x !== undefined && n.y !== undefined);
-            if (validNodes.length === 0) return { x: 0, y: 0 };
+            // Get actual node objects from graphData (they have x/y from simulation)
+            const nodes = cluster.nodes
+                .map(n => graphData.nodes.find(gn => gn.id === n.id))
+                .filter(n => n && n.x !== undefined && n.y !== undefined);
 
-            const sumX = validNodes.reduce((sum, n) => sum + n.x, 0);
-            const sumY = validNodes.reduce((sum, n) => sum + n.y, 0);
+            if (nodes.length === 0) {
+                // Fallback to center of screen if no positioned nodes
+                return { x: window.graphWidth / 2, y: window.graphHeight / 2 };
+            }
+
+            const sumX = nodes.reduce((sum, n) => sum + n.x + calcNodeWidth(n) / 2, 0);
+            const sumY = nodes.reduce((sum, n) => sum + n.y + calcNodeHeight(n) / 2, 0);
             return {
-                x: sumX / validNodes.length,
-                y: sumY / validNodes.length
+                x: sumX / nodes.length,
+                y: sumY / nodes.length
             };
         }
 
