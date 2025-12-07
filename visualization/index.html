@@ -3972,7 +3972,7 @@
                     highlightCluster(clusterId);
                 });
 
-                // Hover highlighting
+                // Hover highlighting for whole card
                 card.addEventListener('mouseenter', () => {
                     const clusterId = parseInt(card.dataset.cluster);
                     highlightClusterNodes(clusterId, true);
@@ -3981,6 +3981,21 @@
                 card.addEventListener('mouseleave', () => {
                     const clusterId = parseInt(card.dataset.cluster);
                     highlightClusterNodes(clusterId, false);
+                });
+            });
+
+            // Add hover handlers to individual item-mini elements
+            container.querySelectorAll('.item-mini').forEach(item => {
+                item.addEventListener('mouseenter', (e) => {
+                    e.stopPropagation();
+                    const nodeId = parseInt(item.dataset.nodeId);
+                    highlightNodeWithNeighbors(nodeId, true);
+                });
+
+                item.addEventListener('mouseleave', (e) => {
+                    e.stopPropagation();
+                    const nodeId = parseInt(item.dataset.nodeId);
+                    highlightNodeWithNeighbors(nodeId, false);
                 });
             });
         }
@@ -4259,8 +4274,10 @@
 
                 if (actionableViewMode === 'demands') {
                     // Demands view - show synthesized issues
-                    contentHtml = allDemands.map((demand, idx) => `
-                        <div class="actionable-item demand-item" data-cluster-id="${demand.clusters[0].id}" data-demand-idx="${idx}">
+                    contentHtml = allDemands.map((demand, idx) => {
+                        const tweetIds = (demand.tweets || []).map(t => t.id).filter(Boolean);
+                        return `
+                        <div class="actionable-item demand-item" data-cluster-id="${demand.clusters[0].id}" data-demand-idx="${idx}" data-tweet-ids="${tweetIds.join(',')}">
                             <div class="actionable-rank">#${idx + 1}</div>
                             <div class="actionable-content">
                                 <div class="actionable-title-row">
@@ -4293,11 +4310,28 @@
                                 ` : ''}
                             </div>
                         </div>
-                    `).join('');
+                    `}).join('');
                 } else {
                     // Proposals view - show policy proposals
-                    contentHtml = allActions.map((action, idx) => `
-                        <div class="actionable-item synthesized-action" data-cluster-id="${action.cluster.id}">
+                    contentHtml = allActions.map((action, idx) => {
+                        // Get supporting tweet IDs by looking up supporting demands
+                        const supportingTweetIds = new Set();
+                        if (action.supporting_demands) {
+                            action.supporting_demands.forEach(demandText => {
+                                const matchingDemand = allDemands.find(d => d.description === demandText);
+                                if (matchingDemand && matchingDemand.tweets) {
+                                    matchingDemand.tweets.forEach(t => {
+                                        if (t.id) supportingTweetIds.add(t.id);
+                                    });
+                                }
+                            });
+                        }
+                        // Fallback: use all nodes from the action's cluster
+                        if (supportingTweetIds.size === 0 && action.cluster && action.cluster.nodes) {
+                            action.cluster.nodes.forEach(n => supportingTweetIds.add(n.id));
+                        }
+                        return `
+                        <div class="actionable-item synthesized-action" data-cluster-id="${action.cluster.id}" data-tweet-ids="${[...supportingTweetIds].join(',')}">
                             <div class="actionable-rank">#${idx + 1}</div>
                             <div class="actionable-content">
                                 <div class="actionable-title-row">
@@ -4317,7 +4351,7 @@
                                 ` : ''}
                             </div>
                         </div>
-                    `).join('');
+                    `}).join('');
                 }
 
                 container.innerHTML = headerHtml + contentHtml;
@@ -4370,6 +4404,27 @@
                     const clusterId = parseInt(item.dataset.clusterId);
                     if (!isNaN(clusterId)) {
                         highlightCluster(clusterId);
+                    }
+                });
+
+                // Add hover handlers to highlight only specific supporting tweets
+                item.addEventListener('mouseenter', () => {
+                    const tweetIdsStr = item.dataset.tweetIds;
+                    if (tweetIdsStr) {
+                        const tweetIds = tweetIdsStr.split(',').map(id => parseInt(id)).filter(id => !isNaN(id));
+                        if (tweetIds.length > 0) {
+                            highlightSpecificNodes(tweetIds, true);
+                        }
+                    }
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    const tweetIdsStr = item.dataset.tweetIds;
+                    if (tweetIdsStr) {
+                        const tweetIds = tweetIdsStr.split(',').map(id => parseInt(id)).filter(id => !isNaN(id));
+                        if (tweetIds.length > 0) {
+                            highlightSpecificNodes(tweetIds, false);
+                        }
                     }
                 });
             });
@@ -4593,6 +4648,91 @@
                 // Remove highlight from label
                 const labelEl = clusterLabels.find(cl => cl.cluster.id === clusterId)?.element;
                 if (labelEl) labelEl.classList.remove('hovered');
+            }
+        }
+
+        // Highlight a single node and its immediate neighbors (connected via edges)
+        function highlightNodeWithNeighbors(nodeId, highlight) {
+            if (highlight) {
+                // Find immediate neighbors via edges
+                const neighborIds = new Set([nodeId]);
+                graphData.edges.forEach(edge => {
+                    if (edge.source_id === nodeId || edge.source?.id === nodeId) {
+                        neighborIds.add(edge.target_id || edge.target?.id);
+                    }
+                    if (edge.target_id === nodeId || edge.target?.id === nodeId) {
+                        neighborIds.add(edge.source_id || edge.source?.id);
+                    }
+                });
+
+                d3.selectAll('.node-bg')
+                    .attr('stroke-width', n => neighborIds.has(n.id) ? 2 : 1)
+                    .attr('opacity', n => neighborIds.has(n.id) ? 1 : 0.2);
+                d3.selectAll('.node-label')
+                    .attr('opacity', n => neighborIds.has(n.id) ? 1 : 0.1);
+
+                d3.selectAll('.links line')
+                    .attr('stroke', l => {
+                        const srcId = l.source?.id || l.source_id;
+                        const tgtId = l.target?.id || l.target_id;
+                        return (srcId === nodeId || tgtId === nodeId) ? '#e07a5f' : '#4a5568';
+                    })
+                    .attr('stroke-opacity', l => {
+                        const srcId = l.source?.id || l.source_id;
+                        const tgtId = l.target?.id || l.target_id;
+                        return (srcId === nodeId || tgtId === nodeId) ? 1 : 0.05;
+                    })
+                    .attr('stroke-width', l => {
+                        const srcId = l.source?.id || l.source_id;
+                        const tgtId = l.target?.id || l.target_id;
+                        return (srcId === nodeId || tgtId === nodeId) ? 2.5 : 1;
+                    });
+            } else {
+                // Reset highlights
+                d3.selectAll('.node-bg').attr('stroke-width', 1).attr('opacity', 1);
+                d3.selectAll('.node-label').attr('opacity', 1);
+                d3.selectAll('.links line')
+                    .attr('stroke', '#4a5568')
+                    .attr('stroke-opacity', 0.6)
+                    .attr('stroke-width', 1.5);
+            }
+        }
+
+        // Highlight a specific set of nodes (for actionable items)
+        function highlightSpecificNodes(nodeIds, highlight) {
+            const nodeIdSet = new Set(nodeIds);
+
+            if (highlight) {
+                d3.selectAll('.node-bg')
+                    .attr('stroke-width', n => nodeIdSet.has(n.id) ? 2 : 1)
+                    .attr('opacity', n => nodeIdSet.has(n.id) ? 1 : 0.2);
+                d3.selectAll('.node-label')
+                    .attr('opacity', n => nodeIdSet.has(n.id) ? 1 : 0.1);
+
+                // Only show edges between highlighted nodes
+                d3.selectAll('.links line')
+                    .attr('stroke', l => {
+                        const srcId = l.source?.id || l.source_id;
+                        const tgtId = l.target?.id || l.target_id;
+                        return (nodeIdSet.has(srcId) && nodeIdSet.has(tgtId)) ? '#e07a5f' : '#4a5568';
+                    })
+                    .attr('stroke-opacity', l => {
+                        const srcId = l.source?.id || l.source_id;
+                        const tgtId = l.target?.id || l.target_id;
+                        return (nodeIdSet.has(srcId) && nodeIdSet.has(tgtId)) ? 1 : 0.05;
+                    })
+                    .attr('stroke-width', l => {
+                        const srcId = l.source?.id || l.source_id;
+                        const tgtId = l.target?.id || l.target_id;
+                        return (nodeIdSet.has(srcId) && nodeIdSet.has(tgtId)) ? 2.5 : 1;
+                    });
+            } else {
+                d3.selectAll('.node-bg').attr('stroke-width', 1).attr('opacity', 1);
+                d3.selectAll('.node-label').attr('opacity', 1);
+                d3.selectAll('.links line')
+                    .attr('stroke', '#4a5568')
+                    .attr('stroke-opacity', 0.6)
+                    .attr('stroke-width', 1.5);
             }
         }
 
