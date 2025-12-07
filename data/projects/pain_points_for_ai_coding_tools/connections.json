@@ -1,4 +1,859 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": 1,
+      "username": "JulienBlanchon",
+      "summary": "Cursor AI increasingly generates bugs throughout the codebase and overwrites essential native key bindings with its own features, leading to user frustration and consideration of switching to Zed editor for more reliable key handling.",
+      "date": "2025-12-06",
+      "link": "https://x.com/JulienBlanchon/status/1997134506508345371",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 2,
+      "username": "mattmindshift",
+      "summary": "Cursor AI and V0 trapped non-expert vibe coder in a two-month 'doom loop' of unresolved backend errors despite repeated fix assurances, causing sleep deprivation until 2-3 AM and marital tension; Anything App Pro resolved all issues on day two, prompting immediate cancellation of Cursor and V0 subscriptions.",
+      "date": "2025-12-05",
+      "link": "https://x.com/mattmindshift/status/1996952754980347966",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 3,
+      "username": "iamcanturk",
+      "summary": "Vibe coding via Cursor and similar AI tools accelerates feature development to minutes but introduces hidden technical debt and security vulnerabilities like unhandled edge cases and injection risks if unchecked; identifies 10 specific dangers including over-reliance on AI hallucinations and lack of robust error handling.",
+      "date": "2025-12-05",
+      "link": "https://x.com/iamcanturk/status/1997040969011597697",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 4,
+      "username": "maxbooooooiiiii",
+      "summary": "Claude Code lags behind GitHub Copilot and Cursor in developer UX, lacking seamless inline edits, real-time code awareness, and intuitive 'what's happening' feedback despite superior LLM intelligence.",
+      "date": "2025-12-05",
+      "link": "https://x.com/maxbooooooiiiii/status/1996918155957223779",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 5,
+      "username": "PrajwalTomar_",
+      "summary": "Cursor generated production-ready payment system code containing undetected race condition risking double-charging users; CodeRabbit AI review flagged the flaw pre-deployment, underscoring need for dual AI-human oversight on agent outputs.",
+      "date": "2025-12-03",
+      "link": "https://x.com/PrajwalTomar_/status/1996196244394484001",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 6,
+      "username": "SYTrofimov",
+      "summary": "Cursor fails during refactoring by missing variable references across files, improperly invoking tools for pnpm scripts and git commands outside sandbox limitations, and hallucinating external changes to justify errors.",
+      "date": "2025-12-03",
+      "link": "https://x.com/SYTrofimov/status/1996216063361491256",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 7,
+      "username": "aaemartins",
+      "summary": "Vibe coding exclusively with Cursor degrades long-term system architecture and code quality, spawning cascading bugs where updates like those in Cursor or Kilo Code consistently break unrelated features.",
+      "date": "2025-12-02",
+      "link": "https://x.com/aaemartins/status/1995968256876970277",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 8,
+      "username": "joxxe274",
+      "summary": "Cursor's 'Loop of Doom' forces mid-generation interruptions when AI misinterprets prompts, requiring full reverts and reprompts comparable to redirecting a wrong-way speeding vehicle, disrupting flow.",
+      "date": "2025-12-02",
+      "link": "https://x.com/joxxe274/status/1995655366198342021",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 9,
+      "username": "glenmaddern",
+      "summary": "Cursor's sandbox environment cannot resolve private dependencies or execute full builds, yielding non-compiling code, lint-violating commit messages, and entirely broken CI pipelines.",
+      "date": "2025-12-02",
+      "link": "https://x.com/glenmaddern/status/1995712184546983981",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 10,
+      "username": "GregKara6",
+      "summary": "Cursor delivers subpar 'slop' code for complex tasks like kernel work or low-level C/CPP without $2K-4K/month ultra plan running Sonnet 4.1 (1M) and Opus 4.5 (200K) in max mode; vague prompts exacerbate issues, demanding skilled iterative prompting.",
+      "date": "2025-12-01",
+      "link": "https://x.com/GregKara6/status/1995356510445240502",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 11,
+      "username": "krtech10",
+      "summary": "AI coding tools lack holistic project context including files, documentation, and dependencies, forcing manual context injection and excessive error fixes exceeding build time; Nozomio Labs resolves by ingesting full codebase for architecture-aligned outputs.",
+      "date": "2025-11-28",
+      "link": "https://x.com/krtech10/status/1994361775869821117",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 12,
+      "username": "douglas_detoni",
+      "summary": "Cursor AI hinders WASP app development with unpredictable iteration, dirty diffs, and poor planning flows; Antigravity mitigates via structured plan-to-walkthrough, clean diffs, and reliable iteration cycles.",
+      "date": "2025-11-22",
+      "link": "https://x.com/douglas_detoni/status/1992279793262309619",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 13,
+      "username": "HeyRamjith",
+      "summary": "Vibe-coding tools facilitate rapid MVP launches but crumble under scaling demands and security requirements, necessitating reversion to expert engineers post-hype; risk obsolescence without robust production hardening.",
+      "date": "2025-11-20",
+      "link": "https://x.com/HeyRamjith/status/1991370180069584976",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 14,
+      "username": "Depthperpixel",
+      "summary": "AI coding tools struggle to synchronize consistency across multiple codebases, propagating bugs and divergent problem-solving approaches; Flutter alleviates 90% of these multi-platform agency synchronization pains.",
+      "date": "2025-11-19",
+      "link": "https://x.com/Depthperpixel/status/1991162073250734503",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 15,
+      "username": "meigen7982",
+      "summary": "Claude Code requires cumbersome mouse dragging for code copying and produces unclean output formats; lightweight cross-platform hook introduces /c commands for instant latest/history/search copying without manual cleanup.",
+      "date": "2025-11-12",
+      "link": "https://x.com/meigen7982/status/1988638965017215439",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 16,
+      "username": "pavelsvitek_",
+      "summary": "While generally skeptical, Cursor Composer slashed debugging time from 2-3 hours to 20 minutes on a complex issue, boosting productive AI coding confidence from 30% to 70% via multi-file edits.",
+      "date": "2025-12-04",
+      "link": "https://x.com/pavelsvitek_/status/1996519927021445201",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 17,
+      "username": "rschu",
+      "summary": "General-purpose AI agents overwhelm users with configuration options like temperature and chunking; Cursor, Amp, and Claude Code succeed by automating decisions akin to Steve Jobs' single-button simplicity.",
+      "date": "2025-12-01",
+      "link": "https://x.com/rschu/status/1995495822536945685",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 18,
+      "username": "no0thernath",
+      "summary": "Crypto trading platforms overload users with pain points like complexity and poor UX; AI copilot addresses by simplifying navigation, execution, and decision-making without quitting due to curiosity barriers.",
+      "date": "2025-11-22",
+      "link": "https://x.com/no0thernath/status/1996250741640503783",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 19,
+      "username": "quraAiX",
+      "summary": "AI-assisted content generation stalls at blinking cursor without audience pain point observation; prioritizes authentic insights over perfection for resonant engagement.",
+      "date": "2025-12-05",
+      "link": "https://x.com/quraAiX/status/1997081386113511871",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 20,
+      "username": "Ya5irr",
+      "summary": "AI coding handles 90% code but shifts focus to ideation, creativity, problem-solving, and pain point understanding before architecting and summoning AI.",
+      "date": "2025-12-02",
+      "link": "https://x.com/Ya5irr/status/1996293295383933092",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 21,
+      "username": "isareksopuro",
+      "summary": "Optimal OSS learning via Cursor involves fixing personal pain points in repos, prompting for implementation locations before targeted edits.",
+      "date": "2025-11-24",
+      "link": "https://x.com/isareksopuro/status/1992899681073144299",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 22,
+      "username": "ShawnZhouAI",
+      "summary": "Vibe coding comforts by solving personal pain points; widespread monetization eliminates subscription needs.",
+      "date": "2025-12-05",
+      "link": "https://x.com/ShawnZhouAI/status/1995267517825352043",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 23,
+      "username": "BuildWithDavid",
+      "summary": "Cursor 2.0 Pro excels for HTML lead funnels with multi-LLM quality checks on conversion, speed, pain-point copy, and trust branding.",
+      "date": "2025-11-12",
+      "link": "https://x.com/BuildWithDavid/status/1988735438299754570",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 24,
+      "username": "mayowaoshin",
+      "summary": "Cursor + Claude Sonnet produces subtle production bugs (e.g., unupdated totalPrice in payments risking lawsuits), inconsistent outputs varying by prompt/session, and holistic architecture-blind technical debt; treat as error-prone junior dev requiring rigorous review.",
+      "date": "2025-09-10",
+      "link": "https://x.com/mayowaoshin/status/1833557628401627245",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 25,
+      "username": "natolambert",
+      "summary": "Claude Code vastly outperforms Cursor Agents and GitHub Copilot in scripting speed/accuracy using same model, with Copilot barely functional and Cursor frustratingly slow.",
+      "date": "2025-07-23",
+      "link": "https://x.com/natolambert/status/1948021448691659130",
+      "status": "committed",
+      "source": "grok_search"
+    }
+  ],
+  "edges": [
+    {
+      "source_id": 1,
+      "target_id": 7,
+      "reason": "Shares keywords: bugs, cursor, features"
+    },
+    {
+      "source_id": 1,
+      "target_id": 12,
+      "reason": "Shares keywords: cursor, reliable"
+    },
+    {
+      "source_id": 1,
+      "target_id": 3,
+      "reason": "Shares keywords: cursor, handling"
+    },
+    {
+      "source_id": 1,
+      "target_id": 24,
+      "reason": "Shares keywords: bugs, cursor"
+    },
+    {
+      "source_id": 1,
+      "target_id": 21,
+      "reason": "Shares keywords: cursor"
+    },
+    {
+      "source_id": 2,
+      "target_id": 21,
+      "reason": "Shares keywords: cursor, prompting"
+    },
+    {
+      "source_id": 2,
+      "target_id": 23,
+      "reason": "Shares keywords: cursor, pro"
+    },
+    {
+      "source_id": 2,
+      "target_id": 10,
+      "reason": "Shares keywords: cursor, issues, prompting"
+    },
+    {
+      "source_id": 2,
+      "target_id": 12,
+      "reason": "Shares keywords: app, cursor"
+    },
+    {
+      "source_id": 2,
+      "target_id": 4,
+      "reason": "Shares keywords: cursor, despite"
+    },
+    {
+      "source_id": 3,
+      "target_id": 11,
+      "reason": "Shares keywords: coding, error, including, injection, lack, tools"
+    },
+    {
+      "source_id": 3,
+      "target_id": 16,
+      "reason": "Shares keywords: coding, cursor, minutes, via"
+    },
+    {
+      "source_id": 3,
+      "target_id": 13,
+      "reason": "Shares keywords: coding, robust, security, tools, vibe"
+    },
+    {
+      "source_id": 3,
+      "target_id": 22,
+      "reason": "Shares keywords: coding, vibe"
+    },
+    {
+      "source_id": 3,
+      "target_id": 12,
+      "reason": "Shares keywords: cursor, development, via"
+    },
+    {
+      "source_id": 4,
+      "target_id": 25,
+      "reason": "Shares keywords: claude, code, copilot, cursor, github"
+    },
+    {
+      "source_id": 4,
+      "target_id": 17,
+      "reason": "Shares keywords: claude, code, cursor"
+    },
+    {
+      "source_id": 4,
+      "target_id": 21,
+      "reason": "Shares keywords: cursor, edits"
+    },
+    {
+      "source_id": 4,
+      "target_id": 23,
+      "reason": "Shares keywords: cursor, llm"
+    },
+    {
+      "source_id": 4,
+      "target_id": 16,
+      "reason": "Shares keywords: cursor, edits"
+    },
+    {
+      "source_id": 5,
+      "target_id": 24,
+      "reason": "Shares keywords: cursor, outputs, production, review, risking"
+    },
+    {
+      "source_id": 5,
+      "target_id": 7,
+      "reason": "Shares keywords: code, cursor, system"
+    },
+    {
+      "source_id": 5,
+      "target_id": 17,
+      "reason": "Shares keywords: code, cursor, users"
+    },
+    {
+      "source_id": 5,
+      "target_id": 25,
+      "reason": "Shares keywords: code, cursor"
+    },
+    {
+      "source_id": 5,
+      "target_id": 4,
+      "reason": "Shares keywords: code, cursor"
+    },
+    {
+      "source_id": 6,
+      "target_id": 2,
+      "reason": "Shares keywords: cursor, errors"
+    },
+    {
+      "source_id": 6,
+      "target_id": 3,
+      "reason": "Shares keywords: cursor, tools"
+    },
+    {
+      "source_id": 6,
+      "target_id": 11,
+      "reason": "Shares keywords: files, tools"
+    },
+    {
+      "source_id": 6,
+      "target_id": 21,
+      "reason": "Shares keywords: cursor"
+    },
+    {
+      "source_id": 6,
+      "target_id": 19,
+      "reason": "Shares keywords: cursor"
+    },
+    {
+      "source_id": 7,
+      "target_id": 22,
+      "reason": "Shares keywords: coding, vibe"
+    },
+    {
+      "source_id": 7,
+      "target_id": 20,
+      "reason": "Shares keywords: code, coding"
+    },
+    {
+      "source_id": 7,
+      "target_id": 1,
+      "reason": "Shares keywords: bugs, cursor, features"
+    },
+    {
+      "source_id": 7,
+      "target_id": 3,
+      "reason": "Shares keywords: coding, cursor, vibe"
+    },
+    {
+      "source_id": 7,
+      "target_id": 5,
+      "reason": "Shares keywords: code, cursor, system"
+    },
+    {
+      "source_id": 8,
+      "target_id": 9,
+      "reason": "Shares keywords: cursor's, full"
+    },
+    {
+      "source_id": 8,
+      "target_id": 2,
+      "reason": "Shares keywords: doom, loop"
+    },
+    {
+      "source_id": 8,
+      "target_id": 19,
+      "reason": "Shares keywords: generation"
+    },
+    {
+      "source_id": 8,
+      "target_id": 10,
+      "reason": "Shares keywords: prompts"
+    },
+    {
+      "source_id": 8,
+      "target_id": 11,
+      "reason": "Shares keywords: full"
+    },
+    {
+      "source_id": 9,
+      "target_id": 8,
+      "reason": "Shares keywords: cursor's, full"
+    },
+    {
+      "source_id": 9,
+      "target_id": 11,
+      "reason": "Shares keywords: dependencies, full"
+    },
+    {
+      "source_id": 9,
+      "target_id": 20,
+      "reason": "Shares keywords: code"
+    },
+    {
+      "source_id": 9,
+      "target_id": 25,
+      "reason": "Shares keywords: code"
+    },
+    {
+      "source_id": 9,
+      "target_id": 2,
+      "reason": "Shares keywords: non"
+    },
+    {
+      "source_id": 10,
+      "target_id": 21,
+      "reason": "Shares keywords: cursor, prompting"
+    },
+    {
+      "source_id": 10,
+      "target_id": 19,
+      "reason": "Shares keywords: cursor, without"
+    },
+    {
+      "source_id": 10,
+      "target_id": 25,
+      "reason": "Shares keywords: code, cursor"
+    },
+    {
+      "source_id": 10,
+      "target_id": 16,
+      "reason": "Shares keywords: complex, cursor"
+    },
+    {
+      "source_id": 10,
+      "target_id": 2,
+      "reason": "Shares keywords: cursor, issues, prompting"
+    },
+    {
+      "source_id": 11,
+      "target_id": 3,
+      "reason": "Shares keywords: coding, error, including, injection, lack, tools"
+    },
+    {
+      "source_id": 11,
+      "target_id": 24,
+      "reason": "Shares keywords: architecture, error, holistic, outputs"
+    },
+    {
+      "source_id": 11,
+      "target_id": 9,
+      "reason": "Shares keywords: dependencies, full"
+    },
+    {
+      "source_id": 11,
+      "target_id": 14,
+      "reason": "Shares keywords: coding, tools"
+    },
+    {
+      "source_id": 11,
+      "target_id": 7,
+      "reason": "Shares keywords: architecture, coding"
+    },
+    {
+      "source_id": 12,
+      "target_id": 3,
+      "reason": "Shares keywords: cursor, development, via"
+    },
+    {
+      "source_id": 12,
+      "target_id": 21,
+      "reason": "Shares keywords: cursor, via"
+    },
+    {
+      "source_id": 12,
+      "target_id": 16,
+      "reason": "Shares keywords: cursor, via"
+    },
+    {
+      "source_id": 12,
+      "target_id": 1,
+      "reason": "Shares keywords: cursor, reliable"
+    },
+    {
+      "source_id": 12,
+      "target_id": 2,
+      "reason": "Shares keywords: app, cursor"
+    },
+    {
+      "source_id": 13,
+      "target_id": 3,
+      "reason": "Shares keywords: coding, robust, security, tools, vibe"
+    },
+    {
+      "source_id": 13,
+      "target_id": 22,
+      "reason": "Shares keywords: coding, vibe"
+    },
+    {
+      "source_id": 13,
+      "target_id": 14,
+      "reason": "Shares keywords: coding, tools"
+    },
+    {
+      "source_id": 13,
+      "target_id": 7,
+      "reason": "Shares keywords: coding, vibe"
+    },
+    {
+      "source_id": 13,
+      "target_id": 2,
+      "reason": "Shares keywords: expert, vibe"
+    },
+    {
+      "source_id": 14,
+      "target_id": 20,
+      "reason": "Shares keywords: coding, problem, solving"
+    },
+    {
+      "source_id": 14,
+      "target_id": 22,
+      "reason": "Shares keywords: coding, solving"
+    },
+    {
+      "source_id": 14,
+      "target_id": 16,
+      "reason": "Shares keywords: coding, multi"
+    },
+    {
+      "source_id": 14,
+      "target_id": 3,
+      "reason": "Shares keywords: coding, tools"
+    },
+    {
+      "source_id": 14,
+      "target_id": 7,
+      "reason": "Shares keywords: bugs, coding"
+    },
+    {
+      "source_id": 15,
+      "target_id": 25,
+      "reason": "Shares keywords: claude, code"
+    },
+    {
+      "source_id": 15,
+      "target_id": 4,
+      "reason": "Shares keywords: claude, code"
+    },
+    {
+      "source_id": 15,
+      "target_id": 17,
+      "reason": "Shares keywords: claude, code"
+    },
+    {
+      "source_id": 15,
+      "target_id": 10,
+      "reason": "Shares keywords: code, without"
+    },
+    {
+      "source_id": 15,
+      "target_id": 24,
+      "reason": "Shares keywords: claude, produces"
+    },
+    {
+      "source_id": 16,
+      "target_id": 3,
+      "reason": "Shares keywords: coding, cursor, minutes, via"
+    },
+    {
+      "source_id": 16,
+      "target_id": 21,
+      "reason": "Shares keywords: cursor, edits, via"
+    },
+    {
+      "source_id": 16,
+      "target_id": 23,
+      "reason": "Shares keywords: cursor, multi"
+    },
+    {
+      "source_id": 16,
+      "target_id": 4,
+      "reason": "Shares keywords: cursor, edits"
+    },
+    {
+      "source_id": 16,
+      "target_id": 7,
+      "reason": "Shares keywords: coding, cursor"
+    },
+    {
+      "source_id": 17,
+      "target_id": 25,
+      "reason": "Shares keywords: agents, claude, code, cursor"
+    },
+    {
+      "source_id": 17,
+      "target_id": 4,
+      "reason": "Shares keywords: claude, code, cursor"
+    },
+    {
+      "source_id": 17,
+      "target_id": 5,
+      "reason": "Shares keywords: code, cursor, users"
+    },
+    {
+      "source_id": 17,
+      "target_id": 7,
+      "reason": "Shares keywords: code, cursor"
+    },
+    {
+      "source_id": 17,
+      "target_id": 10,
+      "reason": "Shares keywords: code, cursor"
+    },
+    {
+      "source_id": 18,
+      "target_id": 22,
+      "reason": "Shares keywords: pain, points"
+    },
+    {
+      "source_id": 18,
+      "target_id": 21,
+      "reason": "Shares keywords: pain, points"
+    },
+    {
+      "source_id": 18,
+      "target_id": 19,
+      "reason": "Shares keywords: pain, without"
+    },
+    {
+      "source_id": 18,
+      "target_id": 20,
+      "reason": "Shares keywords: pain"
+    },
+    {
+      "source_id": 18,
+      "target_id": 23,
+      "reason": "Shares keywords: pain"
+    },
+    {
+      "source_id": 19,
+      "target_id": 23,
+      "reason": "Shares keywords: cursor, pain, point"
+    },
+    {
+      "source_id": 19,
+      "target_id": 20,
+      "reason": "Shares keywords: pain, point"
+    },
+    {
+      "source_id": 19,
+      "target_id": 21,
+      "reason": "Shares keywords: cursor, pain"
+    },
+    {
+      "source_id": 19,
+      "target_id": 10,
+      "reason": "Shares keywords: cursor, without"
+    },
+    {
+      "source_id": 19,
+      "target_id": 18,
+      "reason": "Shares keywords: pain, without"
+    },
+    {
+      "source_id": 20,
+      "target_id": 22,
+      "reason": "Shares keywords: coding, pain, solving"
+    },
+    {
+      "source_id": 20,
+      "target_id": 14,
+      "reason": "Shares keywords: coding, problem, solving"
+    },
+    {
+      "source_id": 20,
+      "target_id": 7,
+      "reason": "Shares keywords: code, coding"
+    },
+    {
+      "source_id": 20,
+      "target_id": 19,
+      "reason": "Shares keywords: pain, point"
+    },
+    {
+      "source_id": 20,
+      "target_id": 23,
+      "reason": "Shares keywords: pain, point"
+    },
+    {
+      "source_id": 21,
+      "target_id": 22,
+      "reason": "Shares keywords: pain, personal, points"
+    },
+    {
+      "source_id": 21,
+      "target_id": 16,
+      "reason": "Shares keywords: cursor, edits, via"
+    },
+    {
+      "source_id": 21,
+      "target_id": 2,
+      "reason": "Shares keywords: cursor, prompting"
+    },
+    {
+      "source_id": 21,
+      "target_id": 3,
+      "reason": "Shares keywords: cursor, via"
+    },
+    {
+      "source_id": 21,
+      "target_id": 4,
+      "reason": "Shares keywords: cursor, edits"
+    },
+    {
+      "source_id": 22,
+      "target_id": 20,
+      "reason": "Shares keywords: coding, pain, solving"
+    },
+    {
+      "source_id": 22,
+      "target_id": 21,
+      "reason": "Shares keywords: pain, personal, points"
+    },
+    {
+      "source_id": 22,
+      "target_id": 3,
+      "reason": "Shares keywords: coding, vibe"
+    },
+    {
+      "source_id": 22,
+      "target_id": 7,
+      "reason": "Shares keywords: coding, vibe"
+    },
+    {
+      "source_id": 22,
+      "target_id": 13,
+      "reason": "Shares keywords: coding, vibe"
+    },
+    {
+      "source_id": 23,
+      "target_id": 19,
+      "reason": "Shares keywords: cursor, pain, point"
+    },
+    {
+      "source_id": 23,
+      "target_id": 20,
+      "reason": "Shares keywords: pain, point"
+    },
+    {
+      "source_id": 23,
+      "target_id": 21,
+      "reason": "Shares keywords: cursor, pain"
+    },
+    {
+      "source_id": 23,
+      "target_id": 2,
+      "reason": "Shares keywords: cursor, pro"
+    },
+    {
+      "source_id": 23,
+      "target_id": 4,
+      "reason": "Shares keywords: cursor, llm"
+    },
+    {
+      "source_id": 24,
+      "target_id": 5,
+      "reason": "Shares keywords: cursor, outputs, production, review, risking"
+    },
+    {
+      "source_id": 24,
+      "target_id": 11,
+      "reason": "Shares keywords: architecture, error, holistic, outputs"
+    },
+    {
+      "source_id": 24,
+      "target_id": 7,
+      "reason": "Shares keywords: architecture, bugs, cursor"
+    },
+    {
+      "source_id": 24,
+      "target_id": 3,
+      "reason": "Shares keywords: cursor, debt, error, technical"
+    },
+    {
+      "source_id": 24,
+      "target_id": 25,
+      "reason": "Shares keywords: claude, cursor"
+    },
+    {
+      "source_id": 25,
+      "target_id": 4,
+      "reason": "Shares keywords: claude, code, copilot, cursor, github"
+    },
+    {
+      "source_id": 25,
+      "target_id": 17,
+      "reason": "Shares keywords: agents, claude, code, cursor"
+    },
+    {
+      "source_id": 25,
+      "target_id": 5,
+      "reason": "Shares keywords: code, cursor"
+    },
+    {
+      "source_id": 25,
+      "target_id": 7,
+      "reason": "Shares keywords: code, cursor"
+    },
+    {
+      "source_id": 25,
+      "target_id": 10,
+      "reason": "Shares keywords: code, cursor"
+    }
+  ],
+  "metadata": {
+    "context": "product"
+  }
 }

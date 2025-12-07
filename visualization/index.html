@@ -3448,8 +3448,14 @@
             btn.textContent = 'Running...';
 
             try {
+                const payload = {};
+                if (currentContext) {
+                    payload.context = currentContext;
+                }
                 const response = await fetch(`/api/projects/${currentProject}/cluster`, {
-                    method: 'POST'
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 });
 
                 if (!response.ok) {
@@ -5047,11 +5053,11 @@
             const legend = document.getElementById('legend');
             if (!legend || !graphData || !graphData.nodes) return;
             legend.innerHTML = '<h4>Topics</h4>';
-            const topics = [...new Set(graphData.nodes.map(n => n.primaryTopic))];
+            const topics = [...new Set(graphData.nodes.map(n => n.primaryTopic || 'Other'))];
 
             topics.forEach((topic) => {
-                const color = clusterColors[topic] || fallbackColors[0];
-                const count = graphData.nodes.filter(n => n.primaryTopic === topic).length;
+                const color = clusterColors[topic] || fallbackColors[Object.keys(clusterColors).indexOf(topic) % fallbackColors.length] || fallbackColors[0];
+                const count = graphData.nodes.filter(n => (n.primaryTopic || 'Other') === topic).length;
                 const item = document.createElement('div');
                 item.className = 'legend-item';
                 item.innerHTML = `

@@ -35,7 +35,18 @@ CONTEXT_CONFIG = {
             'Safety': ['safety', 'safe', 'police', 'officer', 'crime', 'security', 'enforcement', 'cops'],
             'Green Space': ['green', 'tree', 'park', 'garden', 'nature', 'permeable', 'flood'],
             'Schools': ['school', 'student', 'children', 'kids']
-        }
+        },
+        'participant_noun': 'residents',
+        'cluster_names': {
+            'Housing': 'Housing Development Push',
+            'Transit': 'Transit Improvements',
+            'Sidewalks': 'Pedestrian Infrastructure',
+            'Safety': 'Public Safety Demands',
+            'Green Space': 'Green Infrastructure',
+            'Schools': 'School Streets Advocacy',
+            'Other': 'Civic Initiatives'
+        },
+        'default_cluster_name': 'Civic Initiatives'
     },
     'startup': {
         'source_description': 'startup and business ideas',
@@ -49,7 +60,18 @@ CONTEXT_CONFIG = {
             'Healthcare': ['health', 'medical', 'patient', 'doctor', 'clinic', 'telemedicine', 'wellness'],
             'E-commerce': ['ecommerce', 'shop', 'retail', 'marketplace', 'seller', 'buyer', 'commerce'],
             'Developer Tools': ['developer', 'api', 'sdk', 'devtools', 'infrastructure', 'cloud', 'deployment']
-        }
+        },
+        'participant_noun': 'founders',
+        'cluster_names': {
+            'AI/ML': 'AI/ML Plays',
+            'SaaS': 'SaaS Monetization Ideas',
+            'Fintech': 'Fintech Opportunities',
+            'Healthcare': 'Digital Health Experiments',
+            'E-commerce': 'Commerce Experiments',
+            'Developer Tools': 'Developer Platform Ideas',
+            'Other': 'Startup Experiments'
+        },
+        'default_cluster_name': 'Startup Ideas'
     },
     'product': {
         'source_description': 'product feature requests and feedback',
@@ -63,7 +85,18 @@ CONTEXT_CONFIG = {
             'Bugs': ['bug', 'broken', 'fix', 'error', 'crash', 'issue', 'problem', 'not working'],
             'Integration': ['integrate', 'connect', 'sync', 'import', 'export', 'api', 'webhook'],
             'Mobile': ['mobile', 'app', 'ios', 'android', 'phone', 'tablet']
-        }
+        },
+        'participant_noun': 'customers',
+        'cluster_names': {
+            'UX/UI': 'Experience Gaps',
+            'Performance': 'Performance Bottlenecks',
+            'Features': 'Feature Requests',
+            'Bugs': 'Critical Bugs',
+            'Integration': 'Integration Needs',
+            'Mobile': 'Mobile Experience Gaps',
+            'Other': 'Product Feedback'
+        },
+        'default_cluster_name': 'Product Feedback'
     },
     'general': {
         'source_description': 'ideas and suggestions',
@@ -76,7 +109,17 @@ CONTEXT_CONFIG = {
             'Technology': ['tech', 'tool', 'software', 'digital', 'automate'],
             'Communication': ['communicate', 'meeting', 'email', 'slack', 'update'],
             'Resources': ['budget', 'money', 'time', 'resource', 'invest']
-        }
+        },
+        'participant_noun': 'contributors',
+        'cluster_names': {
+            'Process': 'Process Improvements',
+            'People': 'People Operations',
+            'Technology': 'Technology Initiatives',
+            'Communication': 'Communication Gaps',
+            'Resources': 'Resource Planning',
+            'Other': 'Strategic Ideas'
+        },
+        'default_cluster_name': 'Strategic Ideas'
     }
 }
 
@@ -380,38 +423,33 @@ def generate_cluster_analysis_simple(cluster):
     """Generate basic cluster analysis without AI."""
     nodes = cluster['nodes']
     summaries = [n.get('summary', '') for n in nodes if n.get('summary')]
+    config = get_context_config()
+    participant = config.get('participant_noun', 'contributors')
+    cluster_names = config.get('cluster_names', {})
+    default_cluster_name = config.get('default_cluster_name', cluster_names.get('Other', 'Idea Cluster'))
 
     # Extract common words
     all_text = ' '.join(summaries).lower()
     words = all_text.split()
 
-    # Simple name generation based on topic
-    topic_names = {
-        'Housing': 'Housing Development',
-        'Transit': 'Transit Improvements',
-        'Sidewalks': 'Pedestrian Infrastructure',
-        'Safety': 'Public Safety',
-        'Green Space': 'Green Infrastructure',
-        'Schools': 'School Safety',
-        'Other': 'Urban Improvements'
-    }
+    # Base name from context
+    name = cluster_names.get(cluster['topic'], default_cluster_name)
 
-    # Add specificity if possible
-    name = topic_names.get(cluster['topic'], 'Urban Ideas')
-
-    if 'staten island' in all_text:
-        name = f"Staten Island {cluster['topic']}"
-    elif 'bus lane' in all_text:
-        name = "Bus Lane Expansion"
-    elif 'wider sidewalk' in all_text or 'sidewalk width' in all_text:
-        name = "Sidewalk Width Reform"
-    elif 'dense' in all_text or 'density' in all_text:
-        name = "Dense Development Advocacy"
+    # Civic-specific heuristics
+    if get_context() == 'civic':
+        if 'staten island' in all_text:
+            name = f"Staten Island {cluster['topic']}"
+        elif 'bus lane' in all_text:
+            name = "Bus Lane Expansion"
+        elif 'wider sidewalk' in all_text or 'sidewalk width' in all_text:
+            name = "Sidewalk Width Reform"
+        elif 'dense' in all_text or 'density' in all_text:
+            name = "Dense Development Advocacy"
 
     return {
         "name": name,
-        "summary": f"{len(nodes)} citizens advocating for {cluster['topic'].lower()} improvements",
-        "action": f"Review and prioritize these {cluster['topic'].lower()}-related suggestions",
+        "summary": f"{len(nodes)} {participant} focusing on {cluster['topic'].lower()} opportunities",
+        "action": f"{config.get('actor', 'Decision makers').capitalize()} should prioritize these {cluster['topic'].lower()} ideas",
         "consensus": "High" if len(nodes) >= 3 else "Medium"
     }
 

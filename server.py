@@ -809,6 +809,34 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
     def handle_run_clustering(self, project_name):
         """Run clustering pipeline for a project."""
         try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            raw_body = self.rfile.read(content_length) if content_length else b''
+            payload = json.loads(raw_body.decode('utf-8')) if raw_body else {}
+
+            context_override = (payload.get('context') or '').strip().lower()
+            if context_override:
+                valid_contexts = ['civic', 'startup', 'product', 'general']
+                if context_override not in valid_contexts:
+                    self._send_json(400, {
+                        'error': f"Invalid context. Must be one of: {', '.join(valid_contexts)}"
+                    })
+                    return
+
+                project_path = get_project_path(project_name)
+                connections_file = project_path / 'connections.json'
+                if not connections_file.exists():
+                    self._send_json(404, {'error': f"Project '{project_name}' not found"})
+                    return
+
+                with open(connections_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                if 'metadata' not in data:
+                    data['metadata'] = {}
+                data['metadata']['context'] = context_override
+
+                with open(connections_file, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2)
+
             result = run_clustering(project_name)
             self._send_json(200, result)
         except ValueError as e:
