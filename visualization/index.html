@@ -278,55 +278,65 @@
         }
 
         .node-detail {
-            padding: 15px;
+            padding: 20px;
         }
 
         .node-detail h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            font-size: 1.15rem;
+            margin-bottom: 6px;
             color: #58a6ff;
         }
 
         .node-detail .date {
             font-size: 0.8rem;
             color: #484f58;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .node-detail .summary {
             font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
             color: #e6edf3;
+            padding: 14px;
+            background: #161b22;
+            border-radius: 8px;
+            border-left: 3px solid #30363d;
         }
 
         .node-detail .connections-header {
             font-size: 0.85rem;
             color: #8b949e;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            margin-top: 24px;
             font-weight: 500;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #21262d;
         }
 
         .connection-item {
             background: #161b22;
-            padding: 10px 12px;
-            border-radius: 6px;
-            margin-bottom: 6px;
-            border-left: 2px solid #e07a5f;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid #e07a5f;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .connection-item:hover {
             background: #21262d;
-            border-left-width: 3px;
+            border-left-width: 4px;
+            transform: translateX(2px);
         }
 
         .connection-item .reason {
             font-size: 0.75rem;
             color: #6e7681;
             font-style: italic;
-            margin-top: 4px;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid #21262d;
         }
 
         .link-btn {
@@ -519,11 +529,28 @@
 
         .tooltip.visible {
             opacity: 1;
+            pointer-events: auto;
         }
 
         .tooltip .username {
             color: #e07a5f;
             font-weight: 600;
+        }
+
+        .tooltip .tweet-link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            background: rgba(88, 166, 255, 0.15);
+            color: #58a6ff;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            pointer-events: auto;
+        }
+
+        .tooltip .tweet-link:hover {
+            background: rgba(88, 166, 255, 0.25);
         }
 
         /* Cluster overlay labels - Google Maps style */
@@ -971,6 +998,10 @@
 
         // Overlay mode: 'auto' | 'always' | 'never'
         let overlayMode = 'auto';
+
+        // Tooltip hover state
+        let tooltipTimeout = null;
+        let isTooltipHovered = false;
 
         // Topic keywords for classification
         const topicKeywords = {
@@ -1499,9 +1530,17 @@
         }
 
         function handleMouseOver(event, d) {
+            // Clear any pending hide timeout
+            if (tooltipTimeout) clearTimeout(tooltipTimeout);
+
             const tooltip = d3.select('#tooltip');
+            const hasLink = d.link && d.link.startsWith('http');
             tooltip
-                .html(`<div style="margin-bottom: 8px; line-height: 1.4;">${d.summary || 'No summary'}</div><span class="username">${d.username}</span> · ${d.date || ''}`)
+                .html(`
+                    <div style="margin-bottom: 8px; line-height: 1.4;">${d.summary || 'No summary'}</div>
+                    <span class="username">${d.username}</span> · ${d.date || ''}
+                    ${hasLink ? `<br><a href="${d.link}" target="_blank" class="tweet-link" onclick="event.stopPropagation();">View Tweet →</a>` : ''}
+                `)
                 .style('left', (event.pageX + 15) + 'px')
                 .style('top', (event.pageY - 10) + 'px')
                 .classed('visible', true);
@@ -1532,16 +1571,32 @@
         }
 
         function handleMouseOut() {
-            d3.select('#tooltip').classed('visible', false);
-            d3.selectAll('.node-bg')
-                .attr('stroke-width', 1)
-                .attr('opacity', 1);
-            d3.selectAll('.node-label').attr('opacity', 1);
-            d3.selectAll('.links line')
-                .attr('stroke', '#4a5568')
-                .attr('stroke-opacity', 0.6)
-                .attr('stroke-width', 1.5);
+            // Delay hiding tooltip to allow clicking link
+            tooltipTimeout = setTimeout(() => {
+                if (!isTooltipHovered) {
+                    d3.select('#tooltip').classed('visible', false);
+                    d3.selectAll('.node-bg')
+                        .attr('stroke-width', 1)
+                        .attr('opacity', 1);
+                    d3.selectAll('.node-label').attr('opacity', 1);
+                    d3.selectAll('.links line')
+                        .attr('stroke', '#4a5568')
+                        .attr('stroke-opacity', 0.6)
+                        .attr('stroke-width', 1.5);
+                }
+            }, 150);
         }
+
+        // Setup tooltip hover detection
+        document.getElementById('tooltip').addEventListener('mouseenter', () => {
+            isTooltipHovered = true;
+            if (tooltipTimeout) clearTimeout(tooltipTimeout);
+        });
+
+        document.getElementById('tooltip').addEventListener('mouseleave', () => {
+            isTooltipHovered = false;
+            handleMouseOut();
+        });
 
         function handleNodeClick(event, d, shouldPan = true) {
             selectedNode = d;
