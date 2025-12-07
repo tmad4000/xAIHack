@@ -19,6 +19,13 @@ import re
 from pathlib import Path
 from urllib.parse import urlparse
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 from grok_x_search import run_grok_search, parse_handles, parse_date
 
 # Project management

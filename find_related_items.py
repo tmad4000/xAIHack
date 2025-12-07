@@ -258,10 +258,25 @@ def save_full_graph(items: list[dict], connections: list[dict], filepath: str):
 
 
 def load_from_connections_json(filepath: str) -> list[dict]:
-    """Load items from an existing connections.json file."""
+    """Load items from an existing connections.json file.
+
+    Converts from connections.json format (lowercase keys) to CSV format
+    (capitalized keys) for compatibility with the rest of the codebase.
+    """
     with open(filepath, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    return data.get('nodes', [])
+
+    # Convert to CSV-style format expected by the rest of the code
+    items = []
+    for node in data.get('nodes', []):
+        items.append({
+            'id': node.get('id'),
+            'Username': node.get('username', ''),
+            'Summary/Quote': node.get('summary', ''),
+            'Date': node.get('date', ''),
+            'Link': node.get('link', '')
+        })
+    return items
 
 
 def update_connections_json(filepath: str, connections: list[dict]):

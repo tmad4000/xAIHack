@@ -71,5 +71,201 @@
       "link": "https://x.com/okaythenfuture/status/1996914155270349014"
     }
   ],
-  "edges": []
+  "edges": [
+    {
+      "source_id": 1,
+      "target_id": 2,
+      "reason": "Both focus on subway dysfunction, crime, and safety concerns affecting daily commuters"
+    },
+    {
+      "source_id": 1,
+      "target_id": 5,
+      "reason": "Addresses same core issues of dangerous subways, crime, and economic impact on residents"
+    },
+    {
+      "source_id": 1,
+      "target_id": 9,
+      "reason": "Same user discussing safety fears, subway risks, and impact on law-abiding residents"
+    },
+    {
+      "source_id": 1,
+      "target_id": 7,
+      "reason": "Highlights dangerous subway conditions and safety concerns that deter people from the city"
+    },
+    {
+      "source_id": 2,
+      "target_id": 1,
+      "reason": "Both cite dysfunctional subways and crime as major urban problems affecting livability"
+    },
+    {
+      "source_id": 2,
+      "target_id": 5,
+      "reason": "Both mention dangerous subways and government tolls/pricing as burdens on residents"
+    },
+    {
+      "source_id": 2,
+      "target_id": 7,
+      "reason": "Both highlight dangerous subway conditions as a deterrent to city use"
+    },
+    {
+      "source_id": 2,
+      "target_id": 9,
+      "reason": "Both reference risky subways and new entry tolls as safety and financial concerns"
+    },
+    {
+      "source_id": 3,
+      "target_id": 1,
+      "reason": "Addresses same core issues of subway dysfunction, crime, and general unlivability of NYC"
+    },
+    {
+      "source_id": 3,
+      "target_id": 5,
+      "reason": "Covers overlapping problems including dangerous subways, crime, unaffordable prices, and general urban deterioration"
+    },
+    {
+      "source_id": 3,
+      "target_id": 2,
+      "reason": "Shares focus on subway crime and filthiness as major urban quality of life issues"
+    },
+    {
+      "source_id": 3,
+      "target_id": 9,
+      "reason": "Discusses same safety concerns around subways and criminals, questioning NYC's livability for law-abiding residents"
+    },
+    {
+      "source_id": 4,
+      "target_id": 1,
+      "reason": "Both focus on NYC safety concerns and crime making the city unsafe and unlivable"
+    },
+    {
+      "source_id": 4,
+      "target_id": 9,
+      "reason": "Both discuss fear for safety from dangerous criminals and question why law-abiding residents suffer"
+    },
+    {
+      "source_id": 4,
+      "target_id": 5,
+      "reason": "Both describe NYC as deteriorated with dangerous conditions and crime as major concerns"
+    },
+    {
+      "source_id": 4,
+      "target_id": 8,
+      "reason": "Both attribute city's violence and disorder to failed progressive policies creating unsafe conditions"
+    },
+    {
+      "source_id": 5,
+      "target_id": 1,
+      "reason": "Addresses same core issues of subway safety, crime, and overall unlivability affecting residents and businesses"
+    },
+    {
+      "source_id": 5,
+      "target_id": 3,
+      "reason": "Lists nearly identical problems including violent subways, theft, high costs, and general urban decay"
+    },
+    {
+      "source_id": 5,
+      "target_id": 9,
+      "reason": "Focuses on subway dangers, new tolls, and crime impact on families, with similar concerns about criminals vs law-abiding residents"
+    },
+    {
+      "source_id": 5,
+      "target_id": 10,
+      "reason": "Discusses homeless encampments and deteriorating conditions, sharing the theme of urban decline"
+    },
+    {
+      "source_id": 5,
+      "target_id": 8,
+      "reason": "Connects policy approaches to homelessness, drug abuse, and violence with quality of life degradation"
+    },
+    {
+      "source_id": 6,
+      "target_id": 2,
+      "reason": "Both mention high taxes and government financial mismanagement as core issues"
+    },
+    {
+      "source_id": 6,
+      "target_id": 5,
+      "reason": "Both address government financial burden on residents through taxes and tolls"
+    },
+    {
+      "source_id": 6,
+      "target_id": 8,
+      "reason": "Both critique progressive government policies as ineffective and harmful to city quality"
+    },
+    {
+      "source_id": 7,
+      "target_id": 1,
+      "reason": "Both cite subway safety concerns and overall city unlivability affecting visitors and residents"
+    },
+    {
+      "source_id": 7,
+      "target_id": 2,
+      "reason": "Both mention dangerous subway conditions and transit-related safety issues"
+    },
+    {
+      "source_id": 7,
+      "target_id": 9,
+      "reason": "Both address subway safety risks and criminal activity making the city dangerous for people"
+    },
+    {
+      "source_id": 8,
+      "target_id": 5,
+      "reason": "Directly mentions exploding homelessness and drug use as key problems degrading NYC"
+    },
+    {
+      "source_id": 8,
+      "target_id": 10,
+      "reason": "Specifically blames liberal policies for homeless encampments and declining quality of life"
+    },
+    {
+      "source_id": 8,
+      "target_id": 1,
+      "reason": "Addresses overall safety and livability concerns from crime and dysfunction"
+    },
+    {
+      "source_id": 8,
+      "target_id": 3,
+      "reason": "Mentions violence and theft as part of NYC's overwhelming problems"
+    },
+    {
+      "source_id": 9,
+      "target_id": 1,
+      "reason": "Both focus on safety concerns and crime making NYC unlivable for residents and families"
+    },
+    {
+      "source_id": 9,
+      "target_id": 2,
+      "reason": "Both highlight subway safety issues and overall deteriorating conditions affecting daily life"
+    },
+    {
+      "source_id": 9,
+      "target_id": 5,
+      "reason": "Both address dangerous subways, crime concerns, and government policies burdening residents"
+    },
+    {
+      "source_id": 9,
+      "target_id": 7,
+      "reason": "Both mention dangerous subways and harassment by unstable individuals as major safety concerns"
+    },
+    {
+      "source_id": 10,
+      "target_id": 5,
+      "reason": "Both highlight homelessness and overall deterioration as major NYC problems"
+    },
+    {
+      "source_id": 10,
+      "target_id": 8,
+      "reason": "Both attribute city decline to progressive/liberal policies and reference comparison to other failed cities"
+    },
+    {
+      "source_id": 10,
+      "target_id": 1,
+      "reason": "Both describe NYC as fundamentally unlivable and question its viability as a place to invest/live"
+    },
+    {
+      "source_id": 10,
+      "target_id": 3,
+      "reason": "Both characterize NYC as an unredeemable place with pervasive urban decay and quality of life issues"
+    }
+  ]
 }

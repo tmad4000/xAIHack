@@ -1,4 +1,95 @@
 {
-  "nodes": [],
+  "nodes": [
+    {
+      "id": 1,
+      "username": "Average_NY_Guy",
+      "summary": "New York City has become unsafe and unlivable due to dysfunctional subways, rampant rats, unchecked crime, and disruptive protests, leading residents to question investing in businesses or real estate there.",
+      "date": "2025-01-07",
+      "link": "https://x.com/Average_NY_Guy/status/1876435615807668451",
+      "status": "provisional",
+      "source": "csv_import"
+    },
+    {
+      "id": 2,
+      "username": "BacktheBlueNYPD",
+      "summary": "Daily commuters face worsening traffic, skyrocketing subway crime, and filthiness, with congestion pricing funds seemingly wasted by the corrupt MTA.",
+      "date": "2025-12-05",
+      "link": "https://x.com/BacktheBlueNYPD/status/1997053869440778679",
+      "status": "provisional",
+      "source": "csv_import"
+    },
+    {
+      "id": 3,
+      "username": "AlexFinn",
+      "summary": "New York City is overwhelmed by garbage, violent subways, pervasive weed smell, theft, exorbitant costs, high taxes, and neglectful landlords, making it an unredeemable place to live.",
+      "date": "2024-10-19",
+      "link": "https://x.com/AlexFinn/status/1847697383825821929",
+      "status": "provisional",
+      "source": "csv_import"
+    },
+    {
+      "id": 4,
+      "username": "Kay20207495Kay",
+      "summary": "New York City is overrun by homegrown and illegal alien criminal gangs, making it an unsafe hell hole where decent people are outnumbered and conditions worsen daily.",
+      "date": "2025-12-02",
+      "link": "https://x.com/Kay20207495Kay/status/1995980276342612134",
+      "status": "provisional",
+      "source": "csv_import"
+    },
+    {
+      "id": 5,
+      "username": "AlexFinn",
+      "summary": "New York City has deteriorated into misery with exploding homelessness, drug use, dangerous subways, daylight crime, unaffordable prices, and oppressive government tolls that burden low-wage workers.",
+      "date": "2024-12-06",
+      "link": "https://x.com/AlexFinn/status/1865111858329588220",
+      "status": "provisional",
+      "source": "csv_import"
+    },
+    {
+      "id": 6,
+      "username": "sudoraohacker",
+      "summary": "New York City's issues stem from insufficient housing construction, high taxes, and ineffective government, resulting in a less vibrant cultural scene compared to thriving cities like London and Paris.",
+      "date": "2025-12-03",
+      "link": "https://x.com/sudoraohacker/status/1996045297718640893",
+      "status": "provisional",
+      "source": "csv_import"
+    },
+    {
+      "id": 7,
+      "username": "HannahDCox",
+      "summary": "Tourists are deterred from visiting New York City due to dangerous subways, overpriced accommodations, harassment by mentally unstable individuals, and lack of compelling Broadway shows justifying the risks and costs.",
+      "date": "2025-09-23",
+      "link": "https://x.com/HannahDCox/status/1970488347853201674",
+      "status": "provisional",
+      "source": "csv_import"
+    },
+    {
+      "id": 8,
+      "username": "TCapsulae",
+      "summary": "Progressive policies in New York City are fostering drug abuse, violence, public disorder, and unsightly homeless encampments, severely degrading quality of life similar to San Francisco's failures.",
+      "date": "2025-12-05",
+      "link": "https://x.com/TCapsulae/status/1997009902321947034",
+      "status": "provisional",
+      "source": "csv_import"
+    },
+    {
+      "id": 9,
+      "username": "Average_NY_Guy",
+      "summary": "Parents in New York City live in constant fear for their children's safety amid risky subways, new entry tolls, and rampant dangerous criminals, questioning why law-abiding residents must flee while offenders thrive.",
+      "date": "2025-01-05",
+      "link": "https://x.com/Average_NY_Guy/status/1875708186054811716",
+      "status": "provisional",
+      "source": "csv_import"
+    },
+    {
+      "id": 10,
+      "username": "okaythenfuture",
+      "summary": "New York City has devolved into squalor with rampant homeless encampments under liberal policies, rendering it no longer the greatest city and increasingly disorderly since 2010.",
+      "date": "2025-12-05",
+      "link": "https://x.com/okaythenfuture/status/1996914155270349014",
+      "status": "provisional",
+      "source": "csv_import"
+    }
+  ],
   "edges": []
 }

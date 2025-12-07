@@ -1,0 +1,332 @@
+{
+  "total_ideas": 10,
+  "total_clusters": 2,
+  "clusters": [
+    {
+      "id": 0,
+      "topic": "Transit",
+      "name": "Subway Safety Crisis",
+      "summary": "Residents are advocating for comprehensive reform to address subway safety, cleanliness, and crime issues that are making the transit system and broader city unlivable for families, commuters, and tourists.",
+      "action": "City officials should prioritize immediate subway safety improvements through increased security presence, better maintenance and cleaning protocols, and more effective crime prevention measures while ensuring MTA funds are used efficiently rather than implementing additional fees like congestion pricing.",
+      "consensus": "High",
+      "node_count": 5,
+      "demands": [
+        {
+          "description": "Improve subway safety and reduce crime",
+          "tweet_ids": [
+            1,
+            2,
+            7,
+            9
+          ],
+          "voices": [
+            "@Average_NY_Guy",
+            "@BacktheBlueNYPD",
+            "@HannahDCox"
+          ],
+          "count": 4
+        },
+        {
+          "description": "Fix subway system functionality and reliability",
+          "tweet_ids": [
+            1,
+            2
+          ],
+          "voices": [
+            "@Average_NY_Guy",
+            "@BacktheBlueNYPD"
+          ],
+          "count": 2
+        },
+        {
+          "description": "Implement effective rodent control and rat elimination",
+          "tweet_ids": [
+            1
+          ],
+          "voices": [
+            "@Average_NY_Guy"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Improve garbage collection and sanitation",
+          "tweet_ids": [
+            2,
+            3
+          ],
+          "voices": [
+            "@BacktheBlueNYPD",
+            "@AlexFinn"
+          ],
+          "count": 2
+        },
+        {
+          "description": "Reduce traffic congestion",
+          "tweet_ids": [
+            2
+          ],
+          "voices": [
+            "@BacktheBlueNYPD"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Reform MTA financial management and eliminate corruption",
+          "tweet_ids": [
+            2
+          ],
+          "voices": [
+            "@BacktheBlueNYPD"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Address public marijuana use and smell",
+          "tweet_ids": [
+            3
+          ],
+          "voices": [
+            "@AlexFinn"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Reduce theft and property crime",
+          "tweet_ids": [
+            3
+          ],
+          "voices": [
+            "@AlexFinn"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Make housing costs more affordable",
+          "tweet_ids": [
+            3,
+            7
+          ],
+          "voices": [
+            "@AlexFinn",
+            "@HannahDCox"
+          ],
+          "count": 2
+        },
+        {
+          "description": "Lower taxes",
+          "tweet_ids": [
+            3
+          ],
+          "voices": [
+            "@AlexFinn"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Improve landlord accountability and tenant protections",
+          "tweet_ids": [
+            3
+          ],
+          "voices": [
+            "@AlexFinn"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Address harassment by mentally ill individuals in public spaces",
+          "tweet_ids": [
+            7
+          ],
+          "voices": [
+            "@HannahDCox"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Improve quality of Broadway shows and entertainment",
+          "tweet_ids": [
+            7
+          ],
+          "voices": [
+            "@HannahDCox"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Reconsider or eliminate congestion pricing/entry tolls",
+          "tweet_ids": [
+            9
+          ],
+          "voices": [
+            "@Average_NY_Guy"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Transit Safety Enhancement Initiative",
+          "proposal": "Deploy 200 additional transit police officers across the 50 highest-crime subway stations within 90 days. Install 1,000 new security cameras with real-time monitoring centers at Times Square, Union Square, and Atlantic Terminal. Launch mental health crisis intervention teams (2 social workers + 1 officer per team) at 25 stations with highest incidents of harassment by individuals experiencing mental health crises. Mandate monthly safety audits and publish crime statistics by station starting January 2025.",
+          "supporting_demands": [
+            "Improve subway safety and reduce crime",
+            "Reduce theft and property crime",
+            "Address harassment by mentally ill individuals in public spaces"
+          ],
+          "voices_represented": 6
+        },
+        {
+          "title": "Subway Infrastructure Reliability Program",
+          "proposal": "Establish $500M emergency repair fund for signal modernization on the 4/5/6 and N/Q/R/W lines by December 2026. Implement integrated pest control program deploying 5,000 tamper-resistant bait stations across all 472 subway stations, with monthly monitoring and quarterly rat population assessments. Create 24/7 rapid response maintenance teams (minimum 4-hour response time for service disruptions) and real-time service alerts via mandatory MTA app updates.",
+          "supporting_demands": [
+            "Fix subway system functionality and reliability",
+            "Implement effective rodent control and rat elimination"
+          ],
+          "voices_represented": 3
+        },
+        {
+          "title": "Comprehensive Congestion Reduction Plan",
+          "proposal": "Delay congestion pricing implementation by 18 months while piloting alternative traffic reduction measures: Convert 15 miles of commercial corridors to truck delivery windows (10pm-6am only) starting March 2025. Install adaptive traffic signal technology on 200 intersections in Midtown and Downtown Brooklyn. Launch employer incentive program offering $2,000 annual tax credits for companies implementing 4-day work weeks or flexible hours to reduce peak travel demand. Evaluate traffic volume reduction after 12 months before implementing modified congestion pricing at 50% proposed rates.",
+          "supporting_demands": [
+            "Reduce traffic congestion",
+            "Reconsider or eliminate congestion pricing/entry tolls"
+          ],
+          "voices_represented": 2
+        }
+      ],
+      "nodes": [
+        {
+          "id": 1,
+          "username": "Average_NY_Guy",
+          "summary": "New York City has become unsafe and unlivable due to dysfunctional subways, rampant rats, unchecked crime, and disruptive protests, leading residents to question investing in businesses or real estate there.",
+          "date": "2025-01-07",
+          "link": "https://x.com/Average_NY_Guy/status/1876435615807668451"
+        },
+        {
+          "id": 2,
+          "username": "BacktheBlueNYPD",
+          "summary": "Daily commuters face worsening traffic, skyrocketing subway crime, and filthiness, with congestion pricing funds seemingly wasted by the corrupt MTA.",
+          "date": "2025-12-05",
+          "link": "https://x.com/BacktheBlueNYPD/status/1997053869440778679"
+        },
+        {
+          "id": 3,
+          "username": "AlexFinn",
+          "summary": "New York City is overwhelmed by garbage, violent subways, pervasive weed smell, theft, exorbitant costs, high taxes, and neglectful landlords, making it an unredeemable place to live.",
+          "date": "2024-10-19",
+          "link": "https://x.com/AlexFinn/status/1847697383825821929"
+        },
+        {
+          "id": 7,
+          "username": "HannahDCox",
+          "summary": "Tourists are deterred from visiting New York City due to dangerous subways, overpriced accommodations, harassment by mentally unstable individuals, and lack of compelling Broadway shows justifying the risks and costs.",
+          "date": "2025-09-23",
+          "link": "https://x.com/HannahDCox/status/1970488347853201674"
+        },
+        {
+          "id": 9,
+          "username": "Average_NY_Guy",
+          "summary": "Parents in New York City live in constant fear for their children's safety amid risky subways, new entry tolls, and rampant dangerous criminals, questioning why law-abiding residents must flee while offenders thrive.",
+          "date": "2025-01-05",
+          "link": "https://x.com/Average_NY_Guy/status/1875708186054811716"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "topic": "Housing",
+      "name": "Urban Decline and Safety Crisis",
+      "summary": "These residents are advocating for reversing what they perceive as progressive policies that have led to increased crime, homelessness, drug abuse, and overall urban deterioration in NYC.",
+      "action": "City officials should implement stricter law enforcement measures, address homelessness more aggressively, increase housing construction, and reconsider progressive policies that residents believe are contributing to public safety and quality of life issues.",
+      "consensus": "High",
+      "node_count": 5,
+      "demands": [
+        {
+          "description": "Increase housing construction to address housing shortage",
+          "tweet_ids": [
+            6
+          ],
+          "voices": [
+            "@sudoraohacker"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Reduce taxes",
+          "tweet_ids": [
+            6
+          ],
+          "voices": [
+            "@sudoraohacker"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Remove or reduce government tolls that burden low-wage workers",
+          "tweet_ids": [
+            5
+          ],
+          "voices": [
+            "@AlexFinn"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Accelerated Housing Development Program",
+          "proposal": "Launch a 3-year expedited housing program targeting 2,000 new units by 2027. Reduce development fees by 50% for projects with 20% affordable units, streamline permitting to 90 days maximum, and rezone 5 transit-adjacent commercial corridors for mixed-use development. Allocate $15M from general fund for infrastructure improvements to support new housing. Track monthly permit approvals and quarterly housing starts.",
+          "supporting_demands": [
+            "Increase housing construction to address housing shortage"
+          ],
+          "voices_represented": 1
+        },
+        {
+          "title": "Worker Tax Relief Package",
+          "proposal": "Implement immediate tax relief for workers earning under $60,000 annually: eliminate city vehicle registration fees (saving $75/year per vehicle), reduce business license fees for home-based businesses by 75%, and establish a $500 annual city tax credit for residents earning under median income. Additionally, remove all city-imposed bridge and tunnel tolls during off-peak hours (9am-3pm and 7pm-6am) starting July 2025. Offset $2.8M revenue loss through efficiency measures and federal infrastructure grants.",
+          "supporting_demands": [
+            "Reduce taxes",
+            "Remove or reduce government tolls that burden low-wage workers"
+          ],
+          "voices_represented": 2
+        }
+      ],
+      "nodes": [
+        {
+          "id": 4,
+          "username": "Kay20207495Kay",
+          "summary": "New York City is overrun by homegrown and illegal alien criminal gangs, making it an unsafe hell hole where decent people are outnumbered and conditions worsen daily.",
+          "date": "2025-12-02",
+          "link": "https://x.com/Kay20207495Kay/status/1995980276342612134"
+        },
+        {
+          "id": 8,
+          "username": "TCapsulae",
+          "summary": "Progressive policies in New York City are fostering drug abuse, violence, public disorder, and unsightly homeless encampments, severely degrading quality of life similar to San Francisco's failures.",
+          "date": "2025-12-05",
+          "link": "https://x.com/TCapsulae/status/1997009902321947034"
+        },
+        {
+          "id": 5,
+          "username": "AlexFinn",
+          "summary": "New York City has deteriorated into misery with exploding homelessness, drug use, dangerous subways, daylight crime, unaffordable prices, and oppressive government tolls that burden low-wage workers.",
+          "date": "2024-12-06",
+          "link": "https://x.com/AlexFinn/status/1865111858329588220"
+        },
+        {
+          "id": 6,
+          "username": "sudoraohacker",
+          "summary": "New York City's issues stem from insufficient housing construction, high taxes, and ineffective government, resulting in a less vibrant cultural scene compared to thriving cities like London and Paris.",
+          "date": "2025-12-03",
+          "link": "https://x.com/sudoraohacker/status/1996045297718640893"
+        },
+        {
+          "id": 10,
+          "username": "okaythenfuture",
+          "summary": "New York City has devolved into squalor with rampant homeless encampments under liberal policies, rendering it no longer the greatest city and increasingly disorderly since 2010.",
+          "date": "2025-12-05",
+          "link": "https://x.com/okaythenfuture/status/1996914155270349014"
+        }
+      ]
+    }
+  ]
+}
