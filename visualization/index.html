@@ -554,12 +554,19 @@
             pointer-events: auto;
             cursor: pointer;
             transition: all 0.2s ease;
+            touch-action: none;
         }
 
         .cluster-label:hover {
             background: rgba(33, 38, 45, 0.98);
             transform: translate(-50%, -50%) scale(1.05);
             border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .cluster-label.hovered {
+            background: rgba(224, 122, 95, 0.9);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%) scale(1.08);
         }
 
         /* Overview mode dimming effect */
@@ -1806,26 +1813,20 @@
                     ${cluster.name}
                     <span class="count">${cluster.nodes.length}</span>
                 `;
+
+                // Click to zoom to cluster
                 label.addEventListener('click', () => {
                     highlightCluster(cluster.id);
                 });
-                // Allow scroll/wheel events to pass through to the graph
-                label.addEventListener('wheel', (e) => {
-                    e.stopPropagation();
-                    // Dispatch the wheel event to the SVG element
-                    const svgEl = document.getElementById('graph');
-                    if (svgEl) {
-                        const newEvent = new WheelEvent('wheel', {
-                            deltaX: e.deltaX,
-                            deltaY: e.deltaY,
-                            deltaMode: e.deltaMode,
-                            clientX: e.clientX,
-                            clientY: e.clientY,
-                            bubbles: true
-                        });
-                        svgEl.dispatchEvent(newEvent);
-                    }
+
+                // Hover to highlight cluster nodes
+                label.addEventListener('mouseenter', () => {
+                    highlightClusterNodes(cluster.id, true);
                 });
+                label.addEventListener('mouseleave', () => {
+                    highlightClusterNodes(cluster.id, false);
+                });
+
                 overlay.appendChild(label);
                 clusterLabels.push({ element: label, cluster: cluster });
             });
@@ -1910,6 +1911,74 @@
                     updateClusterLabelPositions();
                 });
             });
+
+            // Fix scroll passthrough - forward wheel events from overlay to SVG
+            const overlay = document.getElementById('clusterOverlay');
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                // Forward wheel event to SVG for zoom
+                const svgNode = window.svgElement?.node();
+                if (svgNode) {
+                    const wheelEvent = new WheelEvent('wheel', {
+                        deltaX: e.deltaX,
+                        deltaY: e.deltaY,
+                        deltaMode: e.deltaMode,
+                        clientX: e.clientX,
+                        clientY: e.clientY,
+                        screenX: e.screenX,
+                        screenY: e.screenY,
+                        bubbles: true,
+                        cancelable: true
+                    });
+                    svgNode.dispatchEvent(wheelEvent);
+                }
+            }, { passive: false });
+        }
+
+        // Highlight nodes in a cluster (for hover on cluster labels)
+        function highlightClusterNodes(clusterId, highlight) {
+            const cluster = clusters.find(c => c.id === clusterId);
+            if (!cluster) return;
+
+            const clusterNodeIds = new Set(cluster.nodes.map(n => n.id));
+
+            if (highlight) {
+                // Highlight this cluster's nodes
+                d3.selectAll('.node-bg')
+                    .attr('stroke-width', n => clusterNodeIds.has(n.id) ? 2 : 1)
+                    .attr('opacity', n => clusterNodeIds.has(n.id) ? 1 : 0.3);
+                d3.selectAll('.node-label')
+                    .attr('opacity', n => clusterNodeIds.has(n.id) ? 1 : 0.15);
+
+                d3.selectAll('.links line')
+                    .attr('stroke', l =>
+                        clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? cluster.color : '#4a5568'
+                    )
+                    .attr('stroke-opacity', l =>
+                        clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? 1 : 0.1
+                    )
+                    .attr('stroke-width', l =>
+                        clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? 2.5 : 1
+                    );
+
+                // Also highlight the label
+                const labelEl = clusterLabels.find(cl => cl.cluster.id === clusterId)?.element;
+                if (labelEl) labelEl.classList.add('hovered');
+            } else {
+                // Reset highlights
+                d3.selectAll('.node-bg')
+                    .attr('stroke-width', 1)
+                    .attr('opacity', 1);
+                d3.selectAll('.node-label').attr('opacity', 1);
+                d3.selectAll('.links line')
+                    .attr('stroke', '#4a5568')
+                    .attr('stroke-opacity', 0.6)
+                    .attr('stroke-width', 1.5);
+
+                // Remove highlight from label
+                const labelEl = clusterLabels.find(cl => cl.cluster.id === clusterId)?.element;
+                if (labelEl) labelEl.classList.remove('hovered');
+            }
         }
 
         function highlightTopic(topic) {
