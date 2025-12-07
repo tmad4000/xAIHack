@@ -5096,6 +5096,45 @@
             return handles.length ? handles : null;
         }
 
+        function ensureGrokLink(row) {
+            const rawLink = ((row && (row.Link || row.link)) || '').trim();
+            const username = (row && (row.Username || row.username) || '').replace(/^@/, '').trim();
+            const summary = row ? (row['Summary/Quote'] || row.summary || '') : '';
+
+            const addScheme = (value) => {
+                if (!value) return '';
+                const cleaned = value.replace(/^https?:\/\//i, '');
+                return value.startsWith('http://') || value.startsWith('https://') ? value : `https://${cleaned}`;
+            };
+
+            const buildSearchUrl = () => summary
+                ? `https://x.com/search?q=${encodeURIComponent(summary.slice(0, 180))}`
+                : (username ? `https://x.com/${username}` : 'https://x.com');
+
+            if (rawLink) {
+                const lowered = rawLink.toLowerCase();
+                if (lowered.startsWith('http://') || lowered.startsWith('https://')) {
+                    return rawLink;
+                }
+                if (rawLink.startsWith('www.') || rawLink.startsWith('x.com/') || rawLink.startsWith('twitter.com/') || rawLink.startsWith('mobile.twitter.com/')) {
+                    return addScheme(rawLink);
+                }
+                if (rawLink.includes('/status/')) {
+                    const [handlePart, statusPart] = rawLink.split('/status/', 1);
+                    const handle = handlePart.replace(/^@/, '').trim();
+                    const status = statusPart.trim();
+                    if (handle && status) {
+                        return `https://x.com/${handle}/status/${status}`;
+                    }
+                }
+                if (username && /^\d+$/.test(rawLink)) {
+                    return `https://x.com/${username}/status/${rawLink}`;
+                }
+            }
+
+            return buildSearchUrl();
+        }
+
         function appendGrokMessage(role, contentHtml) {
             if (!grokChatHistory) return;
             const hint = grokChatHistory.querySelector('.grok-chat-hint');
@@ -5173,8 +5212,7 @@
                             </div>
                         </div>
                         ${rows.map(row => {
-                            const link = row.Link || row.link || '';
-                            const validLink = isValidUrl(link) ? link : '';
+                            const resolvedLink = ensureGrokLink(row);
                             return `
                             <div class="grok-row">
                                 <div class="grok-row-header">
@@ -5182,7 +5220,7 @@
                                     <span>@${escapeHtml((row.Username || row.username || '').replace(/^@/, ''))}</span>
                                 </div>
                                 <p>${escapeHtml(row['Summary/Quote'] || row.summary || '')}</p>
-                                ${validLink ? `<a class="grok-row-link" href="${escapeHtml(validLink)}" target="_blank" rel="noopener">Open post</a>` : ''}
+                                <a class="grok-row-link" href="${escapeHtml(resolvedLink)}" target="_blank" rel="noopener">View post</a>
                             </div>
                         `}).join('')}
                     </div>
