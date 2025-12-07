@@ -101,13 +101,16 @@ const SummaryPane = ({ node, data, onClose }) => {
                                         </p>
                                     )}
 
-                                    <div className="bg-slate-800/30 p-3 rounded hover:bg-slate-800/60 transition-colors">
-                                        <div className="flex justify-between items-center mb-1">
-                                            <span className="text-blue-400 text-sm font-medium">{item.username}</span>
-                                        </div>
-                                        <p className="text-sm text-slate-400 line-clamp-3">
-                                            {item.summary}
+                                    <div className="bg-slate-800/30 p-3 rounded hover:bg-slate-800/60 transition-colors flex flex-col gap-2">
+                                        <p className="text-sm text-slate-200 line-clamp-3 leading-snug">
+                                            "{item.summary}"
                                         </p>
+
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-xs text-blue-400/80 hover:text-blue-300 transition-colors cursor-pointer">
+                                                @{item.username}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             ))

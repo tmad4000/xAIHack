@@ -119,7 +119,7 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
 
         const label = node.summary || '';
         const fontSize = FIXED_FONT_SIZE; // Fixed world size
-        const lineHeight = fontSize * 1.2;
+        const lineHeight = fontSize * 1.4;
         const padding = 4;
 
         // Expand width on hover
