@@ -5,11 +5,147 @@
     {
       "id": 0,
       "topic": "Housing",
-      "name": "Staten Island Housing",
-      "summary": "8 citizens advocating for housing improvements",
-      "action": "Review and prioritize these housing-related suggestions",
-      "consensus": "High",
-      "node_count": 8,
+      "name": "Increase Housing Supply Through Zoning Reform",
+      "summary": "These residents are advocating for dramatically increasing housing supply across NYC through various strategies including zoning deregulation, dense development, accessory dwelling units, and better transit connections to enable housing in underutilized areas.",
+      "action": "City officials should reform zoning regulations to allow higher density development, prioritize transit infrastructure investments (especially to Staten Island), and streamline permitting processes to enable both market-rate and affordable housing construction at scale.",
+      "consensus": "Medium",
+      "node_count": 9,
+      "demands": [
+        {
+          "description": "Allow and streamline accessory dwelling units (ADUs) across all boroughs",
+          "tweet_ids": [
+            1
+          ],
+          "voices": [
+            "@NYCPlanning"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Reduce restrictive zoning regulations to enable more housing development",
+          "tweet_ids": [
+            2
+          ],
+          "voices": [
+            "@AriReddy"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build large-scale housing developments (500k+ units) across boroughs through infill development and building conversions",
+          "tweet_ids": [
+            3
+          ],
+          "voices": [
+            "@privatelexicon"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build subway tunnel connection to Staten Island",
+          "tweet_ids": [
+            4,
+            5
+          ],
+          "voices": [
+            "@BadTakeEnjoyer"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Implement Tokyo-style zoning as pilot program on Staten Island",
+          "tweet_ids": [
+            5
+          ],
+          "voices": [
+            "@BadTakeEnjoyer"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build housing in existing well-connected neighborhoods rather than remote locations",
+          "tweet_ids": [
+            6
+          ],
+          "voices": [
+            "@CelestinAustin"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build affordable housing on Governor's Island",
+          "tweet_ids": [
+            7
+          ],
+          "voices": [
+            "@DanBiancoNYC"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build dense, affordable, city-owned housing complexes (5+ stories)",
+          "tweet_ids": [
+            8
+          ],
+          "voices": [
+            "@roselialescrime"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Expand passenger rail network citywide",
+          "tweet_ids": [
+            9
+          ],
+          "voices": [
+            "@UrbanCourtyard"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create dense, walkable neighborhood development",
+          "tweet_ids": [
+            9
+          ],
+          "voices": [
+            "@UrbanCourtyard"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Citywide ADU Streamlining Program",
+          "proposal": "Establish a streamlined ADU approval process across all five boroughs by eliminating parking requirements, reducing setback restrictions by 50%, and creating a 60-day fast-track permitting process for pre-approved ADU designs. Launch pilot program in 5 Community Districts (one per borough) by July 2025, with goal of approving 1,000 new ADUs within first year. Include zoning text amendments to allow ADUs as-of-right in all R4-R10 districts.",
+          "supporting_demands": [
+            "Allow and streamline accessory dwelling units (ADUs) across all boroughs",
+            "Reduce restrictive zoning regulations to enable more housing development"
+          ],
+          "voices_represented": 2
+        },
+        {
+          "title": "Large-Scale Infill Housing Initiative",
+          "proposal": "Create mandatory inclusionary housing program requiring 25% affordable units in all new developments of 50+ units, while rezoning underutilized corridors within 0.5 miles of subway stations to allow minimum 6-story mixed-use development. Target production of 100,000 new units over 5 years through building conversions and infill development. Establish $2 billion Housing Development Fund to build city-owned housing complexes of 5+ stories on city-controlled land, starting with 2,000 units on Governor's Island by 2027.",
+          "supporting_demands": [
+            "Build large-scale housing developments (500k+ units) across boroughs through infill development and building conversions",
+            "Build housing in existing well-connected neighborhoods rather than remote locations",
+            "Build affordable housing on Governor's Island",
+            "Build dense, affordable, city-owned housing complexes (5+ stories)",
+            "Create dense, walkable neighborhood development"
+          ],
+          "voices_represented": 5
+        },
+        {
+          "title": "Staten Island Transit-Oriented Development",
+          "proposal": "Launch 3-year pilot program implementing Tokyo-style zoning (allowing mixed residential/commercial by-right with height limits based on street width) in 2-square-mile area around St. George Terminal. Simultaneously initiate environmental review for subway tunnel connection to Staten Island with federal partnership, targeting construction start by 2028. Expand SIR service with 15-minute peak frequency and new stations to support 10,000 new transit-oriented housing units by 2030.",
+          "supporting_demands": [
+            "Build subway tunnel connection to Staten Island",
+            "Implement Tokyo-style zoning as pilot program on Staten Island",
+            "Expand passenger rail network citywide"
+          ],
+          "voices_represented": 3
+        }
+      ],
       "nodes": [
         {
           "id": 1,
@@ -19,11 +155,18 @@
           "link": "https://x.com/NYCPlanning/status/1996951955885765018"
         },
         {
+          "id": 2,
+          "username": "@AriReddy",
+          "summary": "Highlighting past high permitting in Manhattan (13,000 units in 1960 vs low in 1990s) to argue for less restrictive regulations to allow more housing.",
+          "date": "2025-12-05",
+          "link": "https://x.com/AriReddy/status/1996943460193206283"
+        },
+        {
           "id": 3,
           "username": "@privatelexicon",
-          "summary": "Propose 150k homes in Bronx",
+          "summary": "Propose 150k homes in Bronx, 100k in Manhattan (infill + conversions), 250k in Staten Island/South Brooklyn with beauty, density, and green space.",
           "date": "2025-12-02",
-          "link": " 100k in Manhattan (infill + conversions)"
+          "link": "https://x.com/privatelexicon/status/1995938100787495250"
         },
         {
           "id": 4,
@@ -35,9 +178,9 @@
         {
           "id": 5,
           "username": "@BadTakeEnjoyer",
-          "summary": "Apply Tokyo-style zoning to Staten Island as experiment",
+          "summary": "Apply Tokyo-style zoning to Staten Island as experiment, use tax revenue to extend subway lines to the island.",
           "date": "2025-12-01",
-          "link": " use tax revenue to extend subway lines to the island."
+          "link": "https://x.com/BadTakeEnjoyer/status/1995531427593494550"
         },
         {
           "id": 6,
@@ -56,27 +199,60 @@
         {
           "id": 8,
           "username": "@roselialescrime",
-          "summary": "Build dense",
+          "summary": "Build dense, affordable city-run 5+ story housing complexes (not for-profit).",
           "date": "2025-11-30",
-          "link": " affordable city-run 5+ story housing complexes (not for-profit)."
+          "link": "https://x.com/roselialescrime/status/1994943810267484220"
         },
         {
           "id": 9,
           "username": "@UrbanCourtyard",
-          "summary": "Dense",
+          "summary": "Dense, walkable neighborhoods connected by extensive passenger rail to solve urban issues.",
           "date": "2025-11-26",
-          "link": " walkable neighborhoods connected by extensive passenger rail to solve urban issues."
+          "link": "https://x.com/UrbanCourtyard/status/1993771998120702091"
         }
       ]
     },
     {
       "id": 1,
       "topic": "Housing",
-      "name": "Sidewalk Width Reform",
-      "summary": "1 citizens advocating for housing improvements",
-      "action": "Review and prioritize these housing-related suggestions",
-      "consensus": "Medium",
+      "name": "Sidewalk Width Standards",
+      "summary": "Residents are advocating for establishing mandatory minimum sidewalk widths and creating a funding program to upgrade narrow sidewalks citywide.",
+      "action": "Implement zoning regulations requiring 8-foot minimum sidewalk widths for new development and establish a dedicated funding program to systematically widen existing substandard sidewalks throughout the city.",
+      "consensus": "High",
       "node_count": 1,
+      "demands": [
+        {
+          "description": "Establish minimum sidewalk width standards of 8 feet in zoning regulations",
+          "tweet_ids": [
+            16
+          ],
+          "voices": [
+            "@@TransAlt"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Fund sidewalk widening program for substandard sidewalks",
+          "tweet_ids": [
+            16
+          ],
+          "voices": [
+            "@@TransAlt"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Sidewalk Standards and Improvement Program",
+          "proposal": "Amend the city zoning code to establish a minimum sidewalk width of 8 feet for all new developments and major renovations, effective January 1, 2025. Simultaneously launch a 5-year sidewalk improvement program with $2 million annual funding to widen existing substandard sidewalks (under 8 feet) to meet the new standard. Prioritize improvements near schools, transit stops, and high-pedestrian areas. Complete environmental review and begin construction on first 10 blocks by July 2025.",
+          "supporting_demands": [
+            "Establish minimum sidewalk width standards of 8 feet in zoning regulations",
+            "Fund sidewalk widening program for substandard sidewalks"
+          ],
+          "voices_represented": 2
+        }
+      ],
       "nodes": [
         {
           "id": 16,
@@ -89,44 +265,232 @@
     },
     {
       "id": 2,
-      "topic": "Other",
-      "name": "Urban Improvements",
-      "summary": "1 citizens advocating for other improvements",
-      "action": "Review and prioritize these other-related suggestions",
-      "consensus": "Medium",
-      "node_count": 1,
-      "nodes": [
-        {
-          "id": 2,
-          "username": "@AriReddy",
-          "summary": "Highlighting past high permitting in Manhattan (13",
-          "date": "2025-12-05",
-          "link": "000 units in 1960 vs low in 1990s) to argue for less restrictive regulations to allow more housing."
-        }
-      ]
-    },
-    {
-      "id": 3,
       "topic": "Sidewalks",
-      "name": "Pedestrian Infrastructure",
-      "summary": "8 citizens advocating for sidewalks improvements",
-      "action": "Review and prioritize these sidewalks-related suggestions",
+      "name": "Pedestrian-First Street Redesign",
+      "summary": "Residents are advocating for comprehensive street redesigns that prioritize pedestrians by expanding sidewalks, reducing car space, and creating safer, more vibrant walkable environments with amenities like outdoor dining, trees, and retail.",
+      "action": "Systematically redesign streets to widen sidewalks at the expense of vehicle lanes, implement car-free zones around schools, and invest in pedestrian infrastructure including improved crosswalks, street furniture, and connectivity between neighborhoods.",
       "consensus": "High",
       "node_count": 8,
+      "demands": [
+        {
+          "description": "Widen sidewalks and make them bigger/better",
+          "tweet_ids": [
+            10,
+            11,
+            13
+          ],
+          "voices": [
+            "@@UrbanCourtyard",
+            "@@catculley",
+            "@@BrentToderian"
+          ],
+          "count": 3
+        },
+        {
+          "description": "Narrow streets to create more space for other uses",
+          "tweet_ids": [
+            10
+          ],
+          "voices": [
+            "@@UrbanCourtyard"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Extend property lines into streets for more space and revenue",
+          "tweet_ids": [
+            10
+          ],
+          "voices": [
+            "@@UrbanCourtyard"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Add more trees to streets",
+          "tweet_ids": [
+            11
+          ],
+          "voices": [
+            "@@catculley"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Expand outdoor dining opportunities",
+          "tweet_ids": [
+            11,
+            12
+          ],
+          "voices": [
+            "@@catculley",
+            "@@jasonc_nc"
+          ],
+          "count": 2
+        },
+        {
+          "description": "Install more street benches",
+          "tweet_ids": [
+            11
+          ],
+          "voices": [
+            "@@catculley"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Implement car-free school streets during drop-off/pick-up times",
+          "tweet_ids": [
+            17,
+            18
+          ],
+          "voices": [
+            "@@BrentToderian"
+          ],
+          "count": 2
+        },
+        {
+          "description": "Support street-level retail development",
+          "tweet_ids": [
+            24
+          ],
+          "voices": [
+            "@@UrbanCourtyard"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Add public conveniences in walkable neighborhoods",
+          "tweet_ids": [
+            24
+          ],
+          "voices": [
+            "@@UrbanCourtyard"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create connecting sidewalks between areas",
+          "tweet_ids": [
+            22
+          ],
+          "voices": [
+            "@@MS_Neg"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Update and improve crosswalks",
+          "tweet_ids": [
+            22
+          ],
+          "voices": [
+            "@@MS_Neg"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Improve mid-size and small intersections",
+          "tweet_ids": [
+            22
+          ],
+          "voices": [
+            "@@MS_Neg"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Increase police presence for safety",
+          "tweet_ids": [
+            12
+          ],
+          "voices": [
+            "@@jasonc_nc"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Stop panhandling for safety improvements",
+          "tweet_ids": [
+            12
+          ],
+          "voices": [
+            "@@jasonc_nc"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Make streetscape improvements",
+          "tweet_ids": [
+            12
+          ],
+          "voices": [
+            "@@jasonc_nc"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Prioritize public investments over subsidies",
+          "tweet_ids": [
+            12
+          ],
+          "voices": [
+            "@@jasonc_nc"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Complete Streets Redesign Pilot",
+          "proposal": "Launch a Complete Streets pilot program on 5 commercial corridors, narrowing vehicle lanes by 2 feet to create 8-foot sidewalks (minimum), adding 50 new street trees, and designating 30% of sidewalk frontage for outdoor dining permits. Allocate $2.5M from FY2025 capital budget. Complete design by June 2025, construction by December 2025. Measure pedestrian counts, business revenue, and safety incidents for 12 months before citywide expansion.",
+          "supporting_demands": [
+            "Widen sidewalks and make them bigger/better",
+            "Narrow streets to create more space for other uses",
+            "Add more trees to streets",
+            "Expand outdoor dining opportunities",
+            "Support street-level retail development",
+            "Make streetscape improvements"
+          ],
+          "voices_represented": 9
+        },
+        {
+          "title": "School Streets Safety Program",
+          "proposal": "Implement car-free blocks adjacent to 15 elementary schools during drop-off (7:30-8:30am) and pick-up (2:30-3:30pm) hours, starting September 2025. Install temporary barriers and hire crossing guards for $180K annually. Add 45 new benches and improved crosswalk markings within 2 blocks of each school. Evaluate crash reduction and air quality improvements after one school year before expanding to all 45 elementary schools.",
+          "supporting_demands": [
+            "Implement car-free school streets during drop-off/pick-up times",
+            "Install more street benches",
+            "Update and improve crosswalks",
+            "Increase police presence for safety"
+          ],
+          "voices_represented": 5
+        },
+        {
+          "title": "Neighborhood Connectivity Infrastructure",
+          "proposal": "Allocate $1.8M over 3 years to build 12 miles of missing sidewalk connections between residential areas and transit/commercial districts. Prioritize routes identified in 2024 pedestrian audit. Install 25 new benches, 15 bus shelters, and public restrooms at 3 high-traffic intersections. Partner with existing businesses for restroom access agreements. Complete 4 miles annually starting 2025. Track pedestrian usage via monthly counts.",
+          "supporting_demands": [
+            "Create connecting sidewalks between areas",
+            "Add public conveniences in walkable neighborhoods",
+            "Install more street benches",
+            "Improve mid-size and small intersections"
+          ],
+          "voices_represented": 4
+        }
+      ],
       "nodes": [
         {
           "id": 10,
           "username": "@UrbanCourtyard",
-          "summary": "Narrow streets",
+          "summary": "Narrow streets, widen sidewalks, extend property lines into streets for more space/revenue.",
           "date": "2025-06-06",
-          "link": " widen sidewalks"
+          "link": "https://x.com/UrbanCourtyard/status/1931126086139560056"
         },
         {
           "id": 11,
           "username": "@catculley",
-          "summary": "Fantastic opportunity for human-focused street redesign: wide sidewalks",
+          "summary": "Fantastic opportunity for human-focused street redesign: wide sidewalks, trees, outdoor dining, benches.",
           "date": "2025-01-11",
-          "link": " trees"
+          "link": "https://x.com/catculley/status/1878062321316036885"
         },
         {
           "id": 13,
@@ -138,16 +502,9 @@
         {
           "id": 24,
           "username": "@UrbanCourtyard",
-          "summary": "Support walkable urban neighborhoods with social interest",
+          "summary": "Support walkable urban neighborhoods with social interest, public conveniences, street-level retail.",
           "date": "2025-02-05",
-          "link": " public conveniences"
-        },
-        {
-          "id": 25,
-          "username": "@signulll",
-          "summary": "Pedestrianize 5th Ave with trees/gardens",
-          "date": "2025-01-15",
-          "link": " light rail on 6th Ave"
+          "link": "https://x.com/UrbanCourtyard/status/1886975365823778897"
         },
         {
           "id": 17,
@@ -166,45 +523,49 @@
         {
           "id": 22,
           "username": "@MS_Neg",
-          "summary": "Urbanize with connecting sidewalks",
+          "summary": "Urbanize with connecting sidewalks, updated crosswalks, mid/small intersections.",
           "date": "2025-12-03",
-          "link": " updated crosswalks"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "topic": "Safety",
-      "name": "Public Safety",
-      "summary": "2 citizens advocating for safety improvements",
-      "action": "Review and prioritize these safety-related suggestions",
-      "consensus": "Medium",
-      "node_count": 2,
-      "nodes": [
+          "link": "https://x.com/MS_Neg/status/1996018600029855811"
+        },
         {
           "id": 12,
           "username": "@jasonc_nc",
-          "summary": "Focus on safety (more officers",
+          "summary": "Focus on safety (more officers, stop panhandling), expand outdoor dining/leisure, streetscape improvements, public investments over subsidies.",
           "date": "2024-12-10",
-          "link": " stop panhandling)"
-        },
-        {
-          "id": 21,
-          "username": "@RolandB3",
-          "summary": "More cops/tickets",
-          "date": "2025-12-04",
-          "link": " red light/speed cameras"
+          "link": "https://x.com/jasonc_nc/status/1866531214280028270"
         }
       ]
     },
     {
-      "id": 5,
+      "id": 3,
       "topic": "Green Space",
-      "name": "Green Infrastructure",
-      "summary": "2 citizens advocating for green space improvements",
-      "action": "Review and prioritize these green space-related suggestions",
-      "consensus": "Medium",
-      "node_count": 2,
+      "name": "Green Flood Resilience Infrastructure",
+      "summary": "Residents are advocating for replacing car-dominated spaces with permeable green infrastructure in flood-prone areas to enhance the city's climate resilience.",
+      "action": "City officials should prioritize converting parking spaces and roadways into green infrastructure with permeable surfaces in neighborhoods identified as flood-prone, focusing on areas that can serve dual purposes of community green space and stormwater management.",
+      "consensus": "High",
+      "node_count": 1,
+      "demands": [
+        {
+          "description": "Install permeable infrastructure and green space in flood-prone areas to replace car parking/roads for climate resilience",
+          "tweet_ids": [
+            14
+          ],
+          "voices": [
+            "@TransAlt"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Flood-Resilient Green Infrastructure Pilot",
+          "proposal": "Launch a 2-year pilot program converting 25% of surface parking spaces and one lane of roadway in the three most flood-prone commercial districts into permeable green infrastructure. Install rain gardens, bioswales, and permeable pavement by December 2025. Allocate $2.5 million from stormwater management funds. Measure flood reduction, air quality improvement, and business impact metrics quarterly. Upon demonstrating 30% flood reduction, expand program to 5 additional districts by 2027.",
+          "supporting_demands": [
+            "Install permeable infrastructure and green space in flood-prone areas to replace car parking/roads for climate resilience"
+          ],
+          "voices_represented": 1
+        }
+      ],
       "nodes": [
         {
           "id": 14,
@@ -212,63 +573,573 @@
           "summary": "Increase permeable infrastructure/replace car space with green space in flood-prone areas for resilience.",
           "date": "2023-09-29",
           "link": "https://x.com/TransAlt/status/1707858007583822153"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "topic": "Transit",
+      "name": "Multi-Modal Transit Infrastructure",
+      "summary": "These residents are advocating for comprehensive transit improvements that prioritize buses, bikes, and pedestrians through dedicated infrastructure, expanded routes, and supportive amenities.",
+      "action": "Implement an aggressive bus lane expansion program (targeting 100+ miles) while simultaneously creating protected bike infrastructure and expanding pedestrian amenities like seating and restrooms to support a comprehensive multi-modal transportation network.",
+      "consensus": "High",
+      "node_count": 3,
+      "demands": [
+        {
+          "description": "Add more bus routes and services",
+          "tweet_ids": [
+            15
+          ],
+          "voices": [
+            "@@rustbeltenjoyer"
+          ],
+          "count": 1
         },
         {
-          "id": 19,
-          "username": "@bikesnobnyc",
-          "summary": "Parking/delivery reform",
-          "date": "2019-07-25",
-          "link": " automated enforcement"
+          "description": "Create 100 miles of bus lanes within two years",
+          "tweet_ids": [
+            26
+          ],
+          "voices": [
+            "@@DaveCoIon"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Install north-south bus lanes",
+          "tweet_ids": [
+            20
+          ],
+          "voices": [
+            "@@JohnnyWalsh__"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Convert dead malls into community centers, art spaces, and indoor plazas",
+          "tweet_ids": [
+            15
+          ],
+          "voices": [
+            "@@rustbeltenjoyer"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build foot and cycle paths connecting to parks and transit",
+          "tweet_ids": [
+            15
+          ],
+          "voices": [
+            "@@rustbeltenjoyer"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Expand and build elevated bike lanes",
+          "tweet_ids": [
+            20
+          ],
+          "voices": [
+            "@@JohnnyWalsh__"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Subsidize e-bikes",
+          "tweet_ids": [
+            26
+          ],
+          "voices": [
+            "@@DaveCoIon"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Expand sidewalk width",
+          "tweet_ids": [
+            26
+          ],
+          "voices": [
+            "@@DaveCoIon"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Install public seating on sidewalks",
+          "tweet_ids": [
+            26
+          ],
+          "voices": [
+            "@@DaveCoIon"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Install public bathrooms",
+          "tweet_ids": [
+            26
+          ],
+          "voices": [
+            "@@DaveCoIon"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Implement priority traffic signaling",
+          "tweet_ids": [
+            20
+          ],
+          "voices": [
+            "@@JohnnyWalsh__"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Complete Streets Transit Infrastructure",
+          "proposal": "Launch a 2-year Complete Streets program to build 50 miles of dedicated bus lanes with priority traffic signaling on major corridors, plus 25 miles of protected bike lanes connecting to transit hubs. Install 200 bus shelters with seating and 50 public restrooms at high-traffic transit stops. Begin with pilot implementation on 3 major routes by January 2025, with full rollout completed by December 2026.",
+          "supporting_demands": [
+            "Create 100 miles of bus lanes within two years",
+            "Install north-south bus lanes",
+            "Build foot and cycle paths connecting to parks and transit",
+            "Expand and build elevated bike lanes",
+            "Install public seating on sidewalks",
+            "Install public bathrooms",
+            "Implement priority traffic signaling"
+          ],
+          "voices_represented": 7
+        },
+        {
+          "title": "Enhanced Bus Service Expansion",
+          "proposal": "Add 5 new bus routes serving underserved neighborhoods and increase frequency on existing routes to every 15 minutes during peak hours and every 30 minutes off-peak. Launch service by Fall 2025 with $2M annual operating budget. Conduct ridership analysis after 12 months to identify additional route needs.",
+          "supporting_demands": [
+            "Add more bus routes and services"
+          ],
+          "voices_represented": 1
+        },
+        {
+          "title": "Active Transportation Incentive Program",
+          "proposal": "Create a $500K annual program providing $200 rebates for e-bike purchases (income-qualified residents receive $400 rebates), capped at 2,000 rebates annually. Simultaneously widen sidewalks by 2 feet on 20 miles of high-pedestrian corridors over 3 years, starting with downtown and transit-adjacent areas in 2025.",
+          "supporting_demands": [
+            "Subsidize e-bikes",
+            "Expand sidewalk width"
+          ],
+          "voices_represented": 2
+        }
+      ],
+      "nodes": [
+        {
+          "id": 15,
+          "username": "@rustbeltenjoyer",
+          "summary": "More buses/routes, turn dead malls into community centers/art spaces/indoor plazas, foot/cycle paths to parks/transit.",
+          "date": "2023-07-13",
+          "link": "https://x.com/rustbeltenjoyer/status/1679531890988965888"
+        },
+        {
+          "id": 26,
+          "username": "@DaveCoIon",
+          "summary": "100 miles bus lanes in two years, subsidize e-bikes, expand sidewalks, install public sidewalk seating/bathrooms.",
+          "date": "2020-08-07",
+          "link": "https://x.com/DaveCoIon/status/1291816245436862464"
+        },
+        {
+          "id": 20,
+          "username": "@JohnnyWalsh__",
+          "summary": "N-S bus lanes, expanded elevated bike lanes, priority signaling (context applied to NYC-style improvements).",
+          "date": "2025-12-04",
+          "link": "https://x.com/JohnnyWalsh__/status/1996401929636008182"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "topic": "Transit",
+      "name": "Traffic Safety Infrastructure",
+      "summary": "Residents are advocating for a comprehensive approach to street safety that combines enforcement, technology, and physical infrastructure changes to protect pedestrians and cyclists.",
+      "action": "Implement a multi-pronged traffic safety strategy that includes increased enforcement and automated monitoring (cameras), while redesigning streets with narrower lanes, expanded sidewalks, and dedicated bike infrastructure to physically slow traffic and protect vulnerable road users.",
+      "consensus": "High",
+      "node_count": 1,
+      "demands": [
+        {
+          "description": "Increase police presence and traffic enforcement",
+          "tweet_ids": [
+            21
+          ],
+          "voices": [
+            "@RolandB3"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Install red light cameras",
+          "tweet_ids": [
+            21
+          ],
+          "voices": [
+            "@RolandB3"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Install speed cameras",
+          "tweet_ids": [
+            21
+          ],
+          "voices": [
+            "@RolandB3"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build pedestrian infrastructure",
+          "tweet_ids": [
+            21
+          ],
+          "voices": [
+            "@RolandB3"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build bike infrastructure",
+          "tweet_ids": [
+            21
+          ],
+          "voices": [
+            "@RolandB3"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build sidewalks",
+          "tweet_ids": [
+            21
+          ],
+          "voices": [
+            "@RolandB3"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Narrow street lanes",
+          "tweet_ids": [
+            21
+          ],
+          "voices": [
+            "@RolandB3"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Complete Streets Safety Infrastructure",
+          "proposal": "Implement a comprehensive street redesign program on 5 high-traffic corridors over 18 months, featuring: lane width reduction from 12ft to 10ft, installation of protected bike lanes, continuous sidewalk construction where missing, and enhanced pedestrian crossings with refuge islands. Begin with pilot corridor by Q2 2025, complete remaining 4 corridors by Q4 2026. Allocate $2.8M from capital improvement budget.",
+          "supporting_demands": [
+            "Build pedestrian infrastructure",
+            "Build bike infrastructure",
+            "Build sidewalks",
+            "Narrow street lanes"
+          ],
+          "voices_represented": 4
+        },
+        {
+          "title": "Automated Traffic Safety Enforcement",
+          "proposal": "Deploy 15 red light cameras at highest-violation intersections and 20 speed cameras in school zones and residential areas with speeding complaints above 85th percentile. Install cameras within 12 months starting January 2025. Revenue from citations funds additional traffic safety officer positions (minimum 3 FTE). Conduct 6-month safety impact review before expansion.",
+          "supporting_demands": [
+            "Increase police presence and traffic enforcement",
+            "Install red light cameras",
+            "Install speed cameras"
+          ],
+          "voices_represented": 3
+        }
+      ],
+      "nodes": [
+        {
+          "id": 21,
+          "username": "@RolandB3",
+          "summary": "More cops/tickets, red light/speed cameras, build pedestrian/bike infrastructure and sidewalks, narrow street lanes.",
+          "date": "2025-12-04",
+          "link": "https://x.com/RolandB3/status/1996636091651383608"
         }
       ]
     },
     {
       "id": 6,
       "topic": "Transit",
-      "name": "Bus Lane Expansion",
-      "summary": "3 citizens advocating for transit improvements",
-      "action": "Review and prioritize these transit-related suggestions",
-      "consensus": "High",
-      "node_count": 3,
+      "name": "Transit-Oriented Public Spaces",
+      "summary": "Residents are advocating for transforming transit areas and major streets into vibrant, pedestrian-friendly public spaces with enhanced amenities, greenery, and community features.",
+      "action": "Redesign transit stations and major corridors to prioritize pedestrians over vehicles, incorporating green infrastructure, public amenities, and space for local vendors and community activities.",
+      "consensus": "Medium",
+      "node_count": 2,
+      "demands": [
+        {
+          "description": "Widen sidewalks near subway stations",
+          "tweet_ids": [
+            23
+          ],
+          "voices": [
+            "@JohnSurico"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Install larger bus shelters",
+          "tweet_ids": [
+            23
+          ],
+          "voices": [
+            "@JohnSurico"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Add bike parking near subway stations",
+          "tweet_ids": [
+            23
+          ],
+          "voices": [
+            "@JohnSurico"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Install public benches near subway stations",
+          "tweet_ids": [
+            23
+          ],
+          "voices": [
+            "@JohnSurico"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create micro forests in urban spaces",
+          "tweet_ids": [
+            23
+          ],
+          "voices": [
+            "@JohnSurico"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Install public restrooms near subway stations",
+          "tweet_ids": [
+            23
+          ],
+          "voices": [
+            "@JohnSurico"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Pedestrianize 5th Avenue",
+          "tweet_ids": [
+            25
+          ],
+          "voices": [
+            "@signulll"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Add trees and gardens to pedestrianized areas",
+          "tweet_ids": [
+            25
+          ],
+          "voices": [
+            "@signulll"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build light rail on 6th Avenue",
+          "tweet_ids": [
+            25
+          ],
+          "voices": [
+            "@signulll"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Allow vibrant street vendors in public spaces",
+          "tweet_ids": [
+            25
+          ],
+          "voices": [
+            "@signulll"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Support public food offerings in streets",
+          "tweet_ids": [
+            25
+          ],
+          "voices": [
+            "@signulll"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create spaces for public arts programming",
+          "tweet_ids": [
+            25
+          ],
+          "voices": [
+            "@signulll"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create spaces for public music performances",
+          "tweet_ids": [
+            25
+          ],
+          "voices": [
+            "@signulll"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Subway Station Improvement Initiative",
+          "proposal": "Launch a comprehensive upgrade program for 25 high-traffic subway stations over 18 months, starting January 2025. Each station will receive: widened sidewalks (minimum 12 feet), covered bike parking for 20+ bikes, public benches (minimum 4 per station entrance), larger bus shelters with real-time arrival displays, and accessible public restrooms. Funding through capital improvement bonds with $2M allocated per station. Complete environmental review by March 2025, begin construction by summer 2025.",
+          "supporting_demands": [
+            "Widen sidewalks near subway stations",
+            "Add bike parking near subway stations",
+            "Install public benches near subway stations",
+            "Install larger bus shelters",
+            "Install public restrooms near subway stations"
+          ],
+          "voices_represented": 5
+        },
+        {
+          "title": "5th Avenue Pedestrian District",
+          "proposal": "Create a car-free zone on 5th Avenue from 42nd to 59th Street, effective June 2025. Install 200 new trees, 15 pocket gardens, and designated zones for licensed street vendors and rotating public arts/music programming. Establish permit system for 50 food vendors and 25 arts performers with monthly rotating schedules. Include 10 micro-forest installations using native species. Implement 6-month pilot with full traffic study, then permanent adoption if pedestrian traffic increases 40% and local business revenue remains stable.",
+          "supporting_demands": [
+            "Pedestrianize 5th Avenue",
+            "Add trees and gardens to pedestrianized areas",
+            "Allow vibrant street vendors in public spaces",
+            "Support public food offerings in streets",
+            "Create spaces for public arts programming",
+            "Create spaces for public music performances"
+          ],
+          "voices_represented": 6
+        },
+        {
+          "title": "6th Avenue Light Rail",
+          "proposal": "Initiate environmental impact study and community engagement process for light rail construction on 6th Avenue from Canal Street to Central Park, with 12 stations. Allocate $500K for 18-month feasibility study beginning April 2025, including ridership projections, construction timeline, and funding mechanisms. Establish citizen advisory committee with quarterly public meetings. Present final recommendation to city council by December 2026 with implementation timeline and federal/state funding strategy.",
+          "supporting_demands": [
+            "Build light rail on 6th Avenue",
+            "Create micro forests in urban spaces"
+          ],
+          "voices_represented": 2
+        }
+      ],
       "nodes": [
         {
-          "id": 15,
-          "username": "@rustbeltenjoyer",
-          "summary": "More buses/routes",
-          "date": "2023-07-13",
-          "link": " turn dead malls into community centers/art spaces/indoor plazas"
+          "id": 23,
+          "username": "@JohnSurico",
+          "summary": "Repurpose space near subway stations with wider sidewalks, larger bus shelters, bike parking, benches, micro forests, public restrooms.",
+          "date": "2025-11-30",
+          "link": "https://x.com/JohnSurico/status/1994940859339739375"
         },
         {
-          "id": 26,
-          "username": "@DaveCoIon",
-          "summary": "100 miles bus lanes in two years",
-          "date": "2020-08-07",
-          "link": " subsidize e-bikes"
-        },
-        {
-          "id": 20,
-          "username": "@JohnnyWalsh__",
-          "summary": "N-S bus lanes",
-          "date": "2025-12-04",
-          "link": " expanded elevated bike lanes"
+          "id": 25,
+          "username": "@signulll",
+          "summary": "Pedestrianize 5th Ave with trees/gardens, light rail on 6th Ave, vibrant vendors/food/arts/music.",
+          "date": "2025-01-15",
+          "link": "https://x.com/signulll/status/1879543963138584959"
         }
       ]
     },
     {
       "id": 7,
-      "topic": "Transit",
-      "name": "Sidewalk Width Reform",
-      "summary": "1 citizens advocating for transit improvements",
-      "action": "Review and prioritize these transit-related suggestions",
-      "consensus": "Medium",
+      "topic": "Safety",
+      "name": "Traffic Reduction Enforcement",
+      "summary": "This resident advocates for a comprehensive approach to reduce vehicle traffic through policy reforms, automated enforcement systems, and strategic street closures.",
+      "action": "Implement a multi-pronged traffic reduction strategy including reformed parking and delivery regulations, automated enforcement systems for violations, congestion pricing, selective street closures, and establish measurable targets for reducing overall driving volume.",
+      "consensus": "High",
       "node_count": 1,
+      "demands": [
+        {
+          "description": "Reform parking and delivery regulations",
+          "tweet_ids": [
+            19
+          ],
+          "voices": [
+            "@bikesnobnyc"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Implement automated traffic enforcement",
+          "tweet_ids": [
+            19
+          ],
+          "voices": [
+            "@bikesnobnyc"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Implement congestion pricing",
+          "tweet_ids": [
+            19
+          ],
+          "voices": [
+            "@bikesnobnyc"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Close street sections to vehicle traffic",
+          "tweet_ids": [
+            19
+          ],
+          "voices": [
+            "@bikesnobnyc"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Reduce driving by a set percentage",
+          "tweet_ids": [
+            19
+          ],
+          "voices": [
+            "@bikesnobnyc"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Comprehensive Traffic Safety Enhancement",
+          "proposal": "Implement a three-phase traffic safety program: Phase 1 (6 months) - Install automated speed cameras on 25 high-accident corridors and extend parking restrictions to 2-hour limits in commercial districts with dedicated 30-minute delivery zones. Phase 2 (months 7-12) - Launch congestion pricing pilot in downtown core ($5 peak hours, $2 off-peak) with goal of reducing vehicle traffic by 15%. Phase 3 (year 2) - Convert 5 school-adjacent blocks to car-free zones during school hours (7:30-8:30am, 2:30-3:30pm). Revenue from enforcement and pricing funds safety infrastructure improvements. Evaluate crash reduction metrics quarterly.",
+          "supporting_demands": [
+            "Reform parking and delivery regulations",
+            "Implement automated traffic enforcement",
+            "Implement congestion pricing",
+            "Close street sections to vehicle traffic",
+            "Reduce driving by a set percentage"
+          ],
+          "voices_represented": 5
+        }
+      ],
       "nodes": [
         {
-          "id": 23,
-          "username": "@JohnSurico",
-          "summary": "Repurpose space near subway stations with wider sidewalks",
-          "date": "2025-11-30",
-          "link": " larger bus shelters"
+          "id": 19,
+          "username": "@bikesnobnyc",
+          "summary": "Parking/delivery reform, automated enforcement, congestion pricing, close sections to traffic; reduce driving by set percentage.",
+          "date": "2019-07-25",
+          "link": "https://x.com/bikesnobnyc/status/1154393395688816640"
         }
       ]
     }

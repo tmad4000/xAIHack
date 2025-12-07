@@ -940,6 +940,44 @@
             font-style: italic;
         }
 
+        .proposal-text {
+            font-size: 0.9rem;
+            color: #c9d1d9;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            padding: 12px;
+            background: #161b22;
+            border-radius: 6px;
+            border-left: 2px solid #58a6ff;
+        }
+
+        .supporting-demands {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .demands-label {
+            font-size: 0.75rem;
+            color: #8b949e;
+            margin-right: 4px;
+        }
+
+        .demand-chip {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            color: #8b949e;
+        }
+
+        .synthesized-action {
+            border-left: 3px solid #58a6ff;
+        }
+
         .actionable-item .description {
             font-size: 0.8rem;
             color: #8b949e;
@@ -2389,45 +2427,95 @@
         function renderActionable() {
             const container = document.getElementById('actionableList');
 
-            // Generate actionable items from clusters, sorted by support
-            const actionable = clusters
-                .filter(c => c.nodes.length > 0)
-                .sort((a, b) => b.nodes.length - a.nodes.length)
-                .map((cluster, idx) => ({
-                    rank: idx + 1,
-                    title: cluster.name,
-                    topic: cluster.topic,
-                    support: cluster.nodes.length,
-                    consensus: cluster.consensus || 'Medium',
-                    action: cluster.action || `Review ${cluster.nodes.length} suggestions about ${cluster.topic.toLowerCase()}`,
-                    description: consolidateIdeas(cluster.nodes),
-                    color: cluster.color,
-                    nodes: cluster.nodes
-                }));
+            // Collect all synthesized actions across clusters
+            const allActions = [];
+            clusters.forEach(cluster => {
+                if (cluster.synthesized_actions && cluster.synthesized_actions.length > 0) {
+                    cluster.synthesized_actions.forEach(action => {
+                        allActions.push({
+                            ...action,
+                            cluster: cluster,
+                            color: cluster.color,
+                            topic: cluster.topic
+                        });
+                    });
+                }
+            });
 
-            container.innerHTML = `
-                <div class="actionable-header">
-                    <h3>Priority Actions for City Officials</h3>
-                    <p>Ranked by citizen support level</p>
-                </div>
-                ${actionable.map(item => `
-                    <div class="actionable-item" data-cluster-id="${clusters.find(c => c.name === item.title)?.id}">
-                        <div class="actionable-rank">#${item.rank}</div>
-                        <div class="actionable-content">
-                            <div class="actionable-title-row">
-                                <h4 style="border-left: 3px solid ${item.color}; padding-left: 10px;">${item.title}</h4>
-                                <span class="topic-tag" style="background: ${item.color}20; color: ${item.color}; border: 1px solid ${item.color}40;">${item.topic}</span>
-                            </div>
-                            <div class="support-bar">
-                                <div class="support-fill" style="width: ${Math.min(100, item.support * 12)}%; background: ${item.color};"></div>
-                            </div>
-                            <div class="support-text">${item.support} citizen${item.support === 1 ? '' : 's'} • ${item.consensus} consensus</div>
-                            <div class="action-text">${item.action}</div>
-                            <div class="description">${item.description}</div>
-                        </div>
+            // Sort by voices represented
+            allActions.sort((a, b) => (b.voices_represented || 0) - (a.voices_represented || 0));
+
+            // If no synthesized actions, fall back to old display
+            if (allActions.length === 0) {
+                const actionable = clusters
+                    .filter(c => c.nodes.length > 0)
+                    .sort((a, b) => b.nodes.length - a.nodes.length)
+                    .map((cluster, idx) => ({
+                        rank: idx + 1,
+                        title: cluster.name,
+                        topic: cluster.topic,
+                        support: cluster.nodes.length,
+                        consensus: cluster.consensus || 'Medium',
+                        action: cluster.action || `Review ${cluster.nodes.length} suggestions about ${cluster.topic.toLowerCase()}`,
+                        description: consolidateIdeas(cluster.nodes),
+                        color: cluster.color,
+                        nodes: cluster.nodes
+                    }));
+
+                container.innerHTML = `
+                    <div class="actionable-header">
+                        <h3>Priority Actions for City Officials</h3>
+                        <p>Ranked by citizen support level</p>
                     </div>
-                `).join('')}
-            `;
+                    ${actionable.map(item => `
+                        <div class="actionable-item" data-cluster-id="${clusters.find(c => c.name === item.title)?.id}">
+                            <div class="actionable-rank">#${item.rank}</div>
+                            <div class="actionable-content">
+                                <div class="actionable-title-row">
+                                    <h4 style="border-left: 3px solid ${item.color}; padding-left: 10px;">${item.title}</h4>
+                                    <span class="topic-tag" style="background: ${item.color}20; color: ${item.color}; border: 1px solid ${item.color}40;">${item.topic}</span>
+                                </div>
+                                <div class="support-bar">
+                                    <div class="support-fill" style="width: ${Math.min(100, item.support * 12)}%; background: ${item.color};"></div>
+                                </div>
+                                <div class="support-text">${item.support} citizen${item.support === 1 ? '' : 's'} • ${item.consensus} consensus</div>
+                                <div class="action-text">${item.action}</div>
+                                <div class="description">${item.description}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                `;
+            } else {
+                // New synthesized actions display
+                container.innerHTML = `
+                    <div class="actionable-header">
+                        <h3>Synthesized Policy Proposals</h3>
+                        <p>AI-generated implementable actions from citizen demands</p>
+                    </div>
+                    ${allActions.map((action, idx) => `
+                        <div class="actionable-item synthesized-action" data-cluster-id="${action.cluster.id}">
+                            <div class="actionable-rank">#${idx + 1}</div>
+                            <div class="actionable-content">
+                                <div class="actionable-title-row">
+                                    <h4 style="border-left: 3px solid ${action.color}; padding-left: 10px;">${action.title}</h4>
+                                    <span class="topic-tag" style="background: ${action.color}20; color: ${action.color}; border: 1px solid ${action.color}40;">${action.topic}</span>
+                                </div>
+                                <div class="support-bar">
+                                    <div class="support-fill" style="width: ${Math.min(100, (action.voices_represented || 1) * 15)}%; background: ${action.color};"></div>
+                                </div>
+                                <div class="support-text">${action.voices_represented || 1} voice${(action.voices_represented || 1) === 1 ? '' : 's'} represented</div>
+                                <div class="proposal-text">${action.proposal}</div>
+                                ${action.supporting_demands && action.supporting_demands.length > 0 ? `
+                                    <div class="supporting-demands">
+                                        <span class="demands-label">Based on demands:</span>
+                                        ${action.supporting_demands.map(d => `<span class="demand-chip">${d}</span>`).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                `;
+            }
 
             // Add click handlers to highlight clusters
             container.querySelectorAll('.actionable-item').forEach(item => {

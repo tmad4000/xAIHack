@@ -14,6 +14,13 @@ import os
 from pathlib import Path
 from collections import defaultdict
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 # Check for Anthropic API
 try:
     import anthropic
@@ -119,6 +126,120 @@ def detect_clusters(data):
                 cluster_id += 1
 
     return clusters
+
+
+def extract_demands_anthropic(cluster, client):
+    """
+    Phase 1: Extract discrete demands from cluster and deduplicate.
+    Returns list of demands with voice counts.
+    """
+    ideas = [f"[{n['id']}] @{n['username']}: {n.get('summary', 'No summary')}" for n in cluster['nodes']]
+    ideas_text = "\n".join(ideas)
+
+    prompt = f"""Analyze these urban improvement suggestions from NYC residents and extract the DISTINCT actionable demands.
+
+Ideas:
+{ideas_text}
+
+Your task:
+1. Identify each DISTINCT demand/suggestion (not topics, but specific asks)
+2. Group semantically identical suggestions together (same demand, different words)
+3. Normalize each demand to a clear, actionable description
+
+For example:
+- "wider sidewalks" and "make sidewalks bigger" = same demand
+- "car-free school streets" from multiple people = one demand with multiple voices
+
+Return JSON:
+{{
+    "demands": [
+        {{
+            "description": "Clear, normalized description of the demand",
+            "tweet_ids": [1, 2, 3],
+            "voices": ["@user1", "@user2"],
+            "count": 2
+        }}
+    ]
+}}
+
+Only include actual actionable demands. Merge similar ones."""
+
+    response = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=1500,
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    try:
+        text = response.content[0].text
+        start = text.find('{')
+        end = text.rfind('}') + 1
+        if start >= 0 and end > start:
+            return json.loads(text[start:end]).get('demands', [])
+    except:
+        pass
+
+    return []
+
+
+def synthesize_actions_anthropic(cluster, demands, client):
+    """
+    Phase 2: Generate synthesized, implementable policy proposals.
+    """
+    if not demands:
+        return []
+
+    demands_text = "\n".join([
+        f"- {d['description']} ({d['count']} voice{'s' if d['count'] > 1 else ''})"
+        for d in demands
+    ])
+
+    prompt = f"""Given these citizen demands about {cluster['topic']}:
+
+{demands_text}
+
+Synthesize 1-3 CONCRETE, IMPLEMENTABLE policy proposals that a city council could actually vote on.
+
+Requirements:
+- Be specific: include numbers, timelines, pilot programs
+- Combine related demands into unified proposals where sensible
+- Make them actionable, not vague recommendations
+- Include implementation mechanisms
+
+Example good proposal:
+"Launch a 'School Streets' pilot program making blocks adjacent to 10 schools car-free during drop-off (7:30-8:30am) and pick-up (2:30-3:30pm). Start Fall 2025. Evaluate safety metrics after 6 months before citywide expansion."
+
+Example bad proposal:
+"Consider making streets safer for children" (too vague)
+
+Return JSON:
+{{
+    "synthesized_actions": [
+        {{
+            "title": "Short title (3-6 words)",
+            "proposal": "Detailed implementable proposal with specifics",
+            "supporting_demands": ["demand1", "demand2"],
+            "voices_represented": 5
+        }}
+    ]
+}}"""
+
+    response = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=2000,
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    try:
+        text = response.content[0].text
+        start = text.find('{')
+        end = text.rfind('}') + 1
+        if start >= 0 and end > start:
+            return json.loads(text[start:end]).get('synthesized_actions', [])
+    except:
+        pass
+
+    return []
 
 
 def generate_cluster_analysis_anthropic(cluster, client):
@@ -239,8 +360,18 @@ def enhance_clusters(use_ai=True):
 
         if client:
             analysis = generate_cluster_analysis_anthropic(cluster, client)
+
+            # Phase 1: Extract discrete demands
+            print(f"  Extracting demands...")
+            demands = extract_demands_anthropic(cluster, client)
+
+            # Phase 2: Synthesize actionable proposals
+            print(f"  Synthesizing policy proposals...")
+            synthesized_actions = synthesize_actions_anthropic(cluster, demands, client)
         else:
             analysis = generate_cluster_analysis_simple(cluster)
+            demands = []
+            synthesized_actions = []
 
         enhanced_clusters.append({
             'id': cluster['id'],
@@ -250,6 +381,8 @@ def enhance_clusters(use_ai=True):
             'action': analysis['action'],
             'consensus': analysis['consensus'],
             'node_count': len(cluster['nodes']),
+            'demands': demands,
+            'synthesized_actions': synthesized_actions,
             'nodes': [{
                 'id': n['id'],
                 'username': n['username'],
@@ -279,8 +412,18 @@ def enhance_clusters(use_ai=True):
         print(f"\n{cluster['name']} ({cluster['node_count']} supporters)")
         print(f"  Topic: {cluster['topic']}")
         print(f"  Summary: {cluster['summary']}")
-        print(f"  Action: {cluster['action']}")
         print(f"  Consensus: {cluster['consensus']}")
+
+        if cluster.get('demands'):
+            print(f"  Demands ({len(cluster['demands'])}):")
+            for d in cluster['demands']:
+                print(f"    - {d['description']} ({d['count']} voices)")
+
+        if cluster.get('synthesized_actions'):
+            print(f"  Policy Proposals ({len(cluster['synthesized_actions'])}):")
+            for action in cluster['synthesized_actions']:
+                print(f"    ★ {action['title']}")
+                print(f"      {action['proposal'][:100]}...")
 
     return enhanced_clusters
 
