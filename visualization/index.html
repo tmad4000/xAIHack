@@ -4488,6 +4488,8 @@
 
                 // Hover to highlight cluster nodes
                 label.addEventListener('mouseenter', () => {
+                    // First reset any existing highlights to avoid conflicts from node hover
+                    resetAllHighlights();
                     highlightClusterNodes(cluster.id, true);
                 });
                 label.addEventListener('mouseleave', () => {
@@ -4649,6 +4651,18 @@
                 const labelEl = clusterLabels.find(cl => cl.cluster.id === clusterId)?.element;
                 if (labelEl) labelEl.classList.remove('hovered');
             }
+        }
+
+        // Reset all highlights to default state
+        function resetAllHighlights() {
+            d3.selectAll('.node-bg').attr('stroke-width', 1).attr('opacity', 1);
+            d3.selectAll('.node-label').attr('opacity', 1);
+            d3.selectAll('.links line')
+                .attr('stroke', '#4a5568')
+                .attr('stroke-opacity', 0.6)
+                .attr('stroke-width', 1.5);
+            // Also remove any hovered class from cluster labels
+            clusterLabels.forEach(cl => cl.element.classList.remove('hovered'));
         }
 
         // Highlight a single node and its immediate neighbors (connected via edges)
