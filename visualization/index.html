@@ -1206,13 +1206,13 @@
                 .on('mouseout', handleMouseOut)
                 .on('click', handleNodeClick);
 
-            // Update positions on tick
+            // Update positions on tick - edges connect to center of nodes
             simulation.on('tick', () => {
                 link
-                    .attr('x1', d => d.source.x)
-                    .attr('y1', d => d.source.y)
-                    .attr('x2', d => d.target.x)
-                    .attr('y2', d => d.target.y);
+                    .attr('x1', d => d.source.x + (d.source.maxLineWidth + 16) / 2)
+                    .attr('y1', d => d.source.y + ((d.source.lineCount || 2) * 14 + 12) / 2)
+                    .attr('x2', d => d.target.x + (d.target.maxLineWidth + 16) / 2)
+                    .attr('y2', d => d.target.y + ((d.target.lineCount || 2) * 14 + 12) / 2);
 
                 node.attr('transform', d => `translate(${d.x},${d.y})`);
             });
