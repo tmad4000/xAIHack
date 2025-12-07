@@ -1,0 +1,4 @@
+anthropic
+openai
+python-dotenv
+xai-sdk>=1.3.1

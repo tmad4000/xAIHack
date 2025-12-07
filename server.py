@@ -267,7 +267,7 @@ def run_clustering(project_name):
 
     # Run edge generation
     result = subprocess.run(
-        ['python', str(script_dir / 'find_related_items.py')],
+        ['python3', str(script_dir / 'find_related_items.py')],
         cwd=str(script_dir),
         env=env,
         capture_output=True,
@@ -282,7 +282,7 @@ def run_clustering(project_name):
 
     # Run cluster enhancement
     result = subprocess.run(
-        ['python', str(script_dir / 'enhance_clusters.py')],
+        ['python3', str(script_dir / 'enhance_clusters.py')],
         cwd=str(script_dir),
         env=env,
         capture_output=True,
