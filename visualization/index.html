@@ -1878,6 +1878,17 @@
                     card.classList.toggle('expanded');
                     highlightCluster(clusterId);
                 });
+
+                // Hover highlighting
+                card.addEventListener('mouseenter', () => {
+                    const clusterId = parseInt(card.dataset.cluster);
+                    highlightClusterNodes(clusterId, true);
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    const clusterId = parseInt(card.dataset.cluster);
+                    highlightClusterNodes(clusterId, false);
+                });
             });
         }
 
