@@ -697,18 +697,18 @@
                 <h4>Force Settings</h4>
                 <div class="force-control">
                     <label>Repulsion</label>
-                    <input type="range" id="chargeSlider" min="-2000" max="-100" value="-800">
-                    <span id="chargeValue">-800</span>
+                    <input type="range" id="chargeSlider" min="-3000" max="-200" value="-1500">
+                    <span id="chargeValue">-1500</span>
                 </div>
                 <div class="force-control">
                     <label>Link Distance</label>
-                    <input type="range" id="distanceSlider" min="50" max="300" value="150">
-                    <span id="distanceValue">150</span>
+                    <input type="range" id="distanceSlider" min="50" max="400" value="200">
+                    <span id="distanceValue">200</span>
                 </div>
                 <div class="force-control">
                     <label>Collision</label>
-                    <input type="range" id="collisionSlider" min="20" max="150" value="80">
-                    <span id="collisionValue">80</span>
+                    <input type="range" id="collisionSlider" min="50" max="200" value="120">
+                    <span id="collisionValue">120</span>
                 </div>
             </div>
 
@@ -1095,10 +1095,10 @@
 
             // Force parameters (adjustable)
             let forceParams = {
-                charge: -800,
-                linkDistance: 150,
-                linkStrength: 0.3,
-                collisionRadius: 80
+                charge: -1500,
+                linkDistance: 200,
+                linkStrength: 0.2,
+                collisionRadius: 120
             };
 
             // Create force simulation
