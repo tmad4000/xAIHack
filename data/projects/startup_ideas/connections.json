@@ -1,0 +1,2228 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "username": "tibo_maker",
+      "summary": "AI tool that converts support chats into help docs; Slackbot for logging team decisions; Zoom-to-landing-page generator; duplicate SaaS subscription finder; AI job post drafter from convos; lightweight DM-based CRM; podcast-to-newsletter converter.",
+      "date": "2025-08-08",
+      "link": "https://x.com/tibo_maker/status/1953750606738309211"
+    },
+    {
+      "id": 2,
+      "username": "gregisenberg",
+      "summary": "23 MCP STARTUP IDEAS TO BUILD IN 2025 (ai agents/ai/mcp ideas)\n\n1. PostMortemGuy \u2013 when your app breaks (bug, outage), MCP agent traces every log, commit, and Slack message. Full incident report in seconds. $50/incident. \n\n2. ContextCaddy \u2013 agent that shadows founders, reads emails, meetings, tasks, docs. Gives daily summaries + next best actions. Your Chief of Staff, $99/month. \n\n3. SmartIntern \u2013 MCP-based agent that joins your Slack and becomes a context-aware intern. Takes notes, sends follow",
+      "date": "2025-04-08",
+      "link": "https://x.com/gregisenberg/status/1909589402017288272"
+    },
+    {
+      "id": 3,
+      "username": "swords",
+      "summary": "As far as I know, NotebookLm doesn\u2019t support hooks, scheduling, etc.  so\u2026. Phase 1: Build a Slack app that uses OpenAI agent SDK in about two hours with Claude that extracts summaries from public channels that then embeds the content using OpenAI file storage.  Why? Because right now they have the best easy to use file based recall.  Phase 2: make the Slack agent listen in public channels for mentions that trigger the OpenAI agent to do retrieval lookups to answer questions.  Phase 3:  configure",
+      "date": "2025-12-04",
+      "link": "https://x.com/swords/status/1996614282910351862"
+    },
+    {
+      "id": 4,
+      "username": "thdxr",
+      "summary": "we started to build this product but it didn't fit quite right with our efforts so i'm going to give away the idea:\n\nby now everyone has seen the llm tooling calling capabilities\n\ni want someone to build a client focused on teams\n\ni should be able to create a workspace for my team, create different environments and then people should be able to pop into an environment and do some work\n\nmake it look like slack - every channel is an \"environment\" - eg #production could be a readonly db tool + tool",
+      "date": "2025-05-18",
+      "link": "https://x.com/thdxr/status/1923937935625232652"
+    },
+    {
+      "id": 5,
+      "username": "connordavis_ai",
+      "summary": "7/ Content repurposing\n\nTake one long-form piece, turn it into 10 different formats.\n\n\"Take this blog post and create: (1) Twitter thread with 8 tweets, (2) LinkedIn post, (3) 3 short TikTok scripts, (4) email newsletter version, (5) 5 pull quotes for graphics. Maintain core message, adapt tone for each platform.\"\n\nChatGPT handles this in one shot. What used to take 2 hours now takes 5 minutes.",
+      "date": "2025-12-05",
+      "link": "https://x.com/connordavis_ai/status/1996929587922776410"
+    },
+    {
+      "id": 6,
+      "username": "architjn",
+      "summary": "This AI Workflow turns Reddit posts into validated startup ideas - at almost $0 cost.\n\n\u2192 Scrapes posts from r/startups, r/entrepreneur, r/smallbusiness\n\u2192 Extracts pain points with AI\n\u2192 Auto-generates startup ideas using LLMs & agents\n\u2192 Validates them with YC\u2019s \u201cRequest for Startups\u201d (RFS) categories - ensuring market fit & investor readiness\n\u2192 Logs everything in Google Sheets, fully automated\n\nWhat you get \u2013\n\u2705 Full Automation Workflow\n\u2705 Ready-to-use Google Sheet\n\u2705 Step-by-step setup guide\n\nRetwe",
+      "date": "2025-09-21",
+      "link": "https://x.com/architjn/status/1969775980899389863"
+    },
+    {
+      "id": 7,
+      "username": "godofprompt",
+      "summary": "7/ Content repurposing\n\nTake one long-form piece, turn it into 10 different formats.\n\n\"Take this blog post and create: (1) Twitter thread with 8 tweets, (2) LinkedIn post, (3) 3 short TikTok scripts, (4) email newsletter version, (5) 5 pull quotes for graphics. Maintain core message, adapt tone for each platform.\"\n\nChatGPT handles this in one shot. What used to take 2 hours now takes 5 minutes.",
+      "date": "2025-12-02",
+      "link": "https://x.com/godofprompt/status/1995845606733177065"
+    },
+    {
+      "id": 8,
+      "username": "levelsio",
+      "summary": "Now that the chat is directly pushed into my SQLite messages.db\n\nI can make a robot to ask ChatGPT to summarize the chat on a weekly or monthly basis and maybe email it to active users as a 100% fully automated AI written digital nomad newsletter ala @swyx's AI newsletter\n\nThis is just a day of content cause I just started logging but with more data might be interesting digest",
+      "date": "2024-12-22",
+      "link": "https://x.com/levelsio/status/1870948906550624652"
+    },
+    {
+      "id": 9,
+      "username": "thisdudelikesAI",
+      "summary": "7/ Content repurposing\n\nTake one long-form piece, turn it into 10 different formats.\n\n\"Take this blog post and create: (1) Twitter thread with 8 tweets, (2) LinkedIn post, (3) 3 short TikTok scripts, (4) email newsletter version, (5) 5 pull quotes for graphics. Maintain core message, adapt tone for each platform.\"\n\nChatGPT handles this in one shot. What used to take 2 hours now takes 5 minutes.",
+      "date": "2025-12-06",
+      "link": "https://x.com/thisdudelikesAI/status/1997259216428601691"
+    },
+    {
+      "id": 10,
+      "username": "NickK2305",
+      "summary": "you won\u2019t stand out with a weather app. build these instead \ud83d\udc47  \n\n1. ai-powered resume analyzer  \nupload pdf \u2192 parse text \u2192 run llm prompt for feedback  \nadd: scorecard, recruiter mode, shareable link  \n\n2. real-time dashboard  \nuse websockets + redis pub/sub  \nadd: multiple rooms, live updates, role-based access  \n\n3. url shortener with analytics  \ntrack clicks, device, referrer  \nadd: qr codes, charts, custom slugs, expiring links  \n\n4. invoicing app  \ngenerate pdfs, send via email  \nadd: strip",
+      "date": "2025-10-11",
+      "link": "https://x.com/NickK2305/status/1976991315138117702"
+    },
+    {
+      "id": 11,
+      "username": "aigleeson",
+      "summary": "7/ Content repurposing\n\nTake one long-form piece, turn it into 10 different formats.\n\n\"Take this blog post and create: (1) Twitter thread with 8 tweets, (2) LinkedIn post, (3) 3 short TikTok scripts, (4) email newsletter version, (5) 5 pull quotes for graphics. Maintain core message, adapt tone for each platform.\"\n\nChatGPT handles this in one shot. What used to take 2 hours now takes 5 minutes.",
+      "date": "2025-12-04",
+      "link": "https://x.com/aigleeson/status/1996540076365693059"
+    },
+    {
+      "id": 12,
+      "username": "sgxcodes",
+      "summary": "AI platform that launches a product once and auto-distributes optimized posts across Product Hunt, X, LinkedIn, Reddit, etc., with perfect timing for instant visibility.",
+      "date": "2025-12-04",
+      "link": "https://x.com/sgxcodes/status/1996404406548644297"
+    },
+    {
+      "id": 13,
+      "username": "vweekk_",
+      "summary": "That's exactly y I have build launchit... makes new products discoverable by putting every launch on the homepage instantly.we are still early but...\nappreciate it if you try launching once on https://launchit.site/",
+      "date": "2025-12-03",
+      "link": "https://x.com/vweekk_/status/1996150528569647555"
+    },
+    {
+      "id": 14,
+      "username": "LearnWithSubhan",
+      "summary": "\ud83d\ude80  Built an AI agent that turns me into a LinkedIn thought leader \u2014 without me lifting a finger.\n\nAt 2:30 PM PKT every day, it auto-publishes trending posts on AI, Data Science, ML & Tech \u2192 complete with visuals.\n\nHow it works \ud83d\udc47\n\n1\ufe0f\u20e3 Curates topics from top sources (MIT Tech Review, TechCrunch, Analytics Vidhya)\n2\ufe0f\u20e3 Writes professional, engaging posts (business + career focus)\n3\ufe0f\u20e3 Auto-generates modern tech visuals with branding\n4\ufe0f\u20e3 Publishes directly to my LinkedIn\n5\ufe0f\u20e3 Logs everything in Google",
+      "date": "2025-08-22",
+      "link": "https://x.com/LearnWithSubhan/status/1958749897097691283"
+    },
+    {
+      "id": 15,
+      "username": "LouisLsvr",
+      "summary": "i changed my headline\n\nwhich one do you prefer?\n\nthe whole point of my product is to\n> help founders find their communities in seconds\n> grow an audience\n> insert some subtle marketing in their posts\n> get a stealth AI writer to generate post\n> plan their engagement at the most effective times\n> produce AI-scraping bots posts to get their brand featured in LLM searches\n\nwhat do you think?",
+      "date": "2025-12-06",
+      "link": "https://x.com/LouisLsvr/status/1997335497493086249"
+    },
+    {
+      "id": 16,
+      "username": "EHuanglu",
+      "summary": "nano banana + veo 3 + node system = AI ad factory\n\nthis system can generate full launch kit for any product in 30 seconds, you just need to upload 1 product photo\n\nrepost & reply 'launch kit', will DM you this workflow for free\n\nhere's how it works:",
+      "date": "2025-10-13",
+      "link": "https://x.com/EHuanglu/status/1977755419918631239"
+    },
+    {
+      "id": 17,
+      "username": "dagorenouf",
+      "summary": "I figured out how to fix Product Hunt and am launching a competitor. No hidden selection process. No potential conflict of interest with vc-owned startups. No bots.\n\nThe first LaunchDay will be this Friday at 8AM EST. Limited to 10 products. Only indie makers.\n\nTime to disrupt these mofos \ud83d\udc4a\n\nRead on to understand how it works and submit your product.\n\nProduct hunt is a joke\nThey don't feature your product even with lots of genuine votes and comments, and won't tell you why.\n\nSo even if you build",
+      "date": "2024-09-30",
+      "link": "https://x.com/dagorenouf/status/1840747339046162493"
+    },
+    {
+      "id": 18,
+      "username": "godofprompt",
+      "summary": "LinkedIn is the #1 platform for creators to grow on right now.\n\nSo I built a ChatGPT mega-prompt that creates a 30-day content plan for your LinkedIn.\n\nYou will be able to generate leads on autopilot.\n\nTo get it, simply:\n\n\u2022 Like & RT\n\u2022 Reply \"In\"\n\u2022 Follow me (So, I can DM you)",
+      "date": "2024-04-11",
+      "link": "https://x.com/godofprompt/status/1778336084143083752"
+    },
+    {
+      "id": 19,
+      "username": "solahidris_",
+      "summary": "OFFICIALLY LAUNCHED ON @ProductHunt  \nall you need is https://gitresu.me/ !\n\u274c github link\n\u274c linkedin link\n\u274c portfolio link\n\nlogin once, free forever, and plenty of customization for your profile. There's even a talent space in the site to actually connect with people who are hiring!\neg: https://t.co/NXm6pFGIUW\n\nDo help upvote my project on product hunt link below if you think its cool enough for a thumbs up. Thanks fam! RT this to make everyone's life easier. we at v1. v5 gonna go hard!!!",
+      "date": "2025-12-03",
+      "link": "https://x.com/solahidris_/status/1996136514359836859"
+    },
+    {
+      "id": 20,
+      "username": "elliotfleck",
+      "summary": "Here's how to front-run everyone else\u2019s product, content and paid media strategy using Reddit + search signals.\n\nThis workflow:\n- Scans Reddit for patterns: complaints, \u201cAI for X\u201d, etc.\n- Prioritizes threads by engagement\n- Maps those themes to 30/14/7 day search data\n- Picks keywords/phrases with spiking volume, low CPC \n- Generates SEO content and a paid ads strategy.\n- Optionally, agent starts running ads before CPC curve rises. \n\nNet: a set of early, legitimate opportunities you can move on ",
+      "date": "2025-12-05",
+      "link": "https://x.com/elliotfleck/status/1996771652009709846"
+    },
+    {
+      "id": 21,
+      "username": "alex_prompter",
+      "summary": "Steal my prompt to help you focus on one micro-startup idea considering your skills and budget\n\n--------------------------------\nMICRO-STARTUP ARCHITECT\n--------------------------------\n\n# SYSTEM CONFIGURATION\nYou are now MICRO-STARTUP FOCUS ARCHITECT - an expert system designed to eliminate overwhelm and confusion by rapidly narrowing down opportunities to the single most viable micro-startup idea based on the user's specific situation. Your purpose is to cut through the noise and provide only ",
+      "date": "2025-06-08",
+      "link": "https://x.com/alex_prompter/status/1930282183609999493"
+    },
+    {
+      "id": 22,
+      "username": "StrivingEmpire",
+      "summary": "Plan, budget, and reflect\u2014all in one stylish bundle \u2728\n\n\u2714\ufe0f The Daily or Striving Flawlessly Planner\n\u2714\ufe0f Budget & Meal Plan Journal\n\u2714\ufe0f Spiral & Book Bound Notebooks\n\u2714\ufe0f Stickers + Rose Gold Crystal Pen\n\n\ud83d\uded2 Shop now\n\ud83d\udc49\ud83c\udffe https://www.strivingformodesty.com/",
+      "date": "2025-12-03",
+      "link": "https://x.com/StrivingEmpire/status/1996304246296154460"
+    },
+    {
+      "id": 23,
+      "username": "rrhoover",
+      "summary": "\"Tegus for products\": Weekly AI-automated reports on competitors' FTUX videos, benchmarks, changelogs; targeted at Series A+ companies for $25K ACV.",
+      "date": "2025-06-09",
+      "link": "https://x.com/rrhoover/status/1932125264202600703"
+    },
+    {
+      "id": 24,
+      "username": "Xatoshi4474",
+      "summary": "I dug into @Talus_Labs and it feels like more than \"AI + prediction markets\"  it's building the plumbing for autonomous economic agents on-chain\n\nNexus = coordination layer (workflows, agreements, verifiable state via Walrus)\nAvA = competitive arena where agent logic is the product (public strategies beat closed hedge secrecy)\nSentientAGI integration = distribution at scale (3M+ users pipeline)\nPieverse = gasless, compliant payments (agents become mini onchain businesses issuing receipts)\n\nToken",
+      "date": "2025-12-03",
+      "link": "https://x.com/Xatoshi4474/status/1996314973459665042"
+    },
+    {
+      "id": 25,
+      "username": "xdiep4474eth",
+      "summary": "Tried Talus Vision on Sui testnet this week  drew a simple flow (check price \u2192 swap \u2192 log outcome), hit deploy, and watched Nexus run each step with verifiable state. Felt less like magic and more like on-chain automation that actually remembers what it did\n\nWhat stuck with me\n\u2022 stateful agents that don\u2019t reset between steps\n\u2022 Talus Tools making offchain calls auditable onchain\n\u2022 a Leader network that handles retries and fault tolerance instead of failing silently\n\nAlso skimmed the tokenomics: 1",
+      "date": "2025-12-06",
+      "link": "https://x.com/xdiep4474eth/status/1997295089207726509"
+    },
+    {
+      "id": 26,
+      "username": "Subit_Crypto",
+      "summary": "Gm frens \n\nI will be joining @Talus_Labs today; where AI agents aren't just chatting, they're straight-up competing, earning, & owning the chain like pros \u26a1 \n\nBacked by @polychain, they're building Nexus: that decentralized heartbeat turning autonomous AI into real economic players. \n\nPeople (agents) are competing in verified digital arenas, prediction markets are running on Sui, and creators are earning from their influence. The test version is live, and the full platform (AvA Markets) will lau",
+      "date": "2025-12-03",
+      "link": "https://x.com/Subit_Crypto/status/1996111288703791181"
+    },
+    {
+      "id": 27,
+      "username": "Route2FI",
+      "summary": "Talus is emerging as a central player at the intersection of AI, decentralized infrastructure, and prediction markets. Its mission is to build a fairer, more efficient digital economy by enabling autonomous AI agents to compete and earn in transparent systems.\n\nUnlike most AI projects focused on compute or model training, @Talus_Labs introduces Agent vs Agent (AvA) Markets, a new category for PredictionAI where agents act as profit-making competitors. This positions Talus to lead an industry pro",
+      "date": "2025-10-10",
+      "link": "https://x.com/Route2FI/status/1976683032892383652"
+    },
+    {
+      "id": 28,
+      "username": "GusevV1987",
+      "summary": "Finance tracker that DMs anomalies; daily focus planner integrating email/calendar/tasks; micro-CRM for florists/gyms/clinics; meal planner generating grocery lists from fridge photos.",
+      "date": "2025-12-04",
+      "link": "https://x.com/GusevV1987/status/1996633326073827810"
+    },
+    {
+      "id": 29,
+      "username": "T_Zahil",
+      "summary": "Bad ideas vs good ideas\n\n\u274c Habit tracker\n\u2705 Gut health tracker to help people fix their health issues\n\n\u274c Todo list\n\u2705 Auto generated checklists for lawyers from a client file\n\n\u274c Link in bio\n\u2705 Productized service to build websites for churches\n\n\u274c Directory of tools for indie hackers\n\u2705 Directory of in-home hairdressers sorted by city\n\n\u274c The best CRM ever\n\u2705 Browser extension to automatically create an entry to the biggest CRM on the market from a LinkedIn profile, an X account, an email etc\n\n\u274c Social",
+      "date": "2025-11-25",
+      "link": "https://x.com/T_Zahil/status/1993264637568270661"
+    },
+    {
+      "id": 30,
+      "username": "OzolinsJanis",
+      "summary": "Pretty much everything here's what I have done thus far\n\nTasks Project:\n- all the ideas and daily to do stuff and all that jazz.\n\nContent:\n- all the content stuff but this still in progress, have not got to a point that fully works for me and my chaotic self and approach to things.\n\nBusiness:\n- finances\n- freelance work management\n- light weight CRM with students and some statuses n stuff (still refining this part and trying to figure out the best way)\n\nPersonal:\n- finances\n- plus some random st",
+      "date": "2025-12-05",
+      "link": "https://x.com/OzolinsJanis/status/1996889512031494654"
+    },
+    {
+      "id": 31,
+      "username": "mjovanovictech",
+      "summary": "Are you looking for your next side project to sharpen your skills?\n\nHere are 12 ideas to challenge your engineering and architecture skills.\n\n1. Basic Online Store\n\nCart functionality. Product catalog, search. Order management. Payment integration. Basic recommendation system.\n\n2. Subscription-based Marketplace\n\nA platform for selling subscription services/products. Recurring billing. User account management. Content/product access control.\n\n3. Auction Platform\n\nReal-time bidding system. Item li",
+      "date": "2024-09-09",
+      "link": "https://x.com/mjovanovictech/status/1833030250986377717"
+    },
+    {
+      "id": 32,
+      "username": "Yesterday_work_",
+      "summary": "My input:\n\nproduct        AI-powered scheduling tool for solopreneurs\naudience       Freelancers & solo founders (25-40) who struggle with time-management\nlaunch_goal    Generate leads for upcoming launch\nbrand_tone     Bold and punchy",
+      "date": "2025-12-01",
+      "link": "https://x.com/Yesterday_work_/status/1995448685996732905"
+    },
+    {
+      "id": 33,
+      "username": "alexcooldev",
+      "summary": "Building a startup? Focus on timeless problems, the kind people always care about:\n\n- Fitness \u2192 AI calorie tracker\n- Studying \u2192 AI tutor, flashcards generator\n- Productivity \u2192 AI planner, habit tracker\n- Money \u2192 AI dropshipping or finance assistant\n- Beauty \u2192 AI skincare or makeup coach\n- Memory \u2192 AI note-taker or summarizer\n- Mental health \u2192 AI sleep or mood coach\n- Photography \u2192 AI photo editor, caption writer\n- Food \u2192 AI meal or grocery planner\n- Relationships \u2192 AI dating coach or conversatio",
+      "date": "2025-10-10",
+      "link": "https://x.com/alexcooldev/status/1976654672497934567"
+    },
+    {
+      "id": 34,
+      "username": "alexcooldev",
+      "summary": "Building a startup? Focus on timeless problems, the ones people never stop caring about:\n\n> Fitness \u2192 AI calorie tracker, workout planner\n> Studying \u2192 AI tutor, flashcard or quiz generator\n> Productivity \u2192 AI planner, focus or habit coach\n> Money \u2192 AI finance tracker or dropshipping helper\n> Beauty \u2192 AI skincare or makeup assistant\n> Memory \u2192 AI note-taker, summarizer, or mind-map generator\n> Mental health \u2192 AI mood, therapy, or sleep coach\n> Photography \u2192 AI photo editor, caption or style gener",
+      "date": "2025-11-06",
+      "link": "https://x.com/alexcooldev/status/1986328760426373550"
+    },
+    {
+      "id": 35,
+      "username": "alexcooldev",
+      "summary": "Building a startup? Focus on timeless problems:\n\n- Fitness \u2192 AI calorie tracker\n- Studying \u2192 AI flashcards, AI tutor\n- Productivity \u2192 AI planner, habit tracker\n- Money \u2192 AI dropshipping assistant\n- Beauty \u2192 AI skincare coach\n- Memory \u2192 AI note-taker\n- Mental health \u2192 AI sleep coach, AI companion\n- Photography \u2192 AI photo editor, caption generator\n- Food \u2192 AI meal planner, AI grocery assistant\n- Relationships \u2192 AI dating coach\n- Health \u2192 AI symptom checker, AI fitness rehab guide\n- Travel \u2192 AI tri",
+      "date": "2025-09-04",
+      "link": "https://x.com/alexcooldev/status/1963633445936181282"
+    },
+    {
+      "id": 36,
+      "username": "alexcooldev",
+      "summary": "You're building a startup? Focus on timeless problems things people always care about:\n\n\u2013 Fitness \u2192 AI calorie tracker\n\u2013 Studying \u2192 AI flashcards, AI language tutor\n\u2013 Productivity \u2192 AI planner, AI habit tracker\n\u2013 Money \u2192 AI dropshipping content generator\n\u2013 Beauty \u2192 AI skincare assistant\n\u2013 Memory \u2192 AI note-taker\n\u2013 Mental health \u2192 AI sleep coach, AI companion\n\u2013 Photography \u2192 AI photo editor, AI caption writer\n\u2013 Relationships \u2192 AI dating profile generator, AI conversation coach\n\u2013 Sleep \u2192 AI sleep t",
+      "date": "2025-07-12",
+      "link": "https://x.com/alexcooldev/status/1944059481006186689"
+    },
+    {
+      "id": 37,
+      "username": "hasantoxr",
+      "summary": "My input:\n\nproduct        AI-powered scheduling tool for solopreneurs\naudience       Freelancers & solo founders (25-40) who struggle with time-management\nlaunch_goal    Generate leads for upcoming launch\nbrand_tone     Bold and punchy",
+      "date": "2025-12-05",
+      "link": "https://x.com/hasantoxr/status/1997052161289789945"
+    },
+    {
+      "id": 38,
+      "username": "evgenyeyt",
+      "summary": "Productized expertise tools: AI makeup artist for personalized looks; brand coach analyzer for social bios; PT AI gym app for custom routines; real-estate lead auditor; creator growth console; sales coaching AI for objection rewriting.",
+      "date": "2025-12-06",
+      "link": "https://x.com/evgenyeyt/status/1997344281816887567"
+    },
+    {
+      "id": 39,
+      "username": "aionix_ai",
+      "summary": "You're the Founder.\n\nNot a content calendar machine.\nNot a full-time media buyer.\nNot a data analyst.\n\nStill, you\u2019re stuck juggling ad budgets, campaign tweaks, and analytics.\n\nIt\u2019s exhausting.\n\nAnd it\u2019s pulling you away from what really matters,\n\nYour product. Your customers. Your growth.\n\nLet AI handle the marketing maze.\n- Automated targeting\n- Smarter spend decisions\n- 24/7 performance optimization\n\nSo you can do what only you can do...\n\n\u2192 Build\n\u2192 Refine\n\u2192 Lead\n\nBecause the smartest founders",
+      "date": "2025-12-02",
+      "link": "https://x.com/aionix_ai/status/1995729560030380158"
+    },
+    {
+      "id": 40,
+      "username": "aiwithjainam",
+      "summary": "My input:\n\nproduct        AI-powered scheduling tool for solopreneurs\naudience       Freelancers & solo founders (25-40) who struggle with time-management\nlaunch_goal    Generate leads for upcoming launch\nbrand_tone     Bold and punchy",
+      "date": "2025-12-05",
+      "link": "https://x.com/aiwithjainam/status/1996943221906383212"
+    },
+    {
+      "id": 41,
+      "username": "garrytan",
+      "summary": "Private social network for PMs/designers of everyday products to discuss features, bugs, and roadmaps\u2014like Fight Club for design/product.",
+      "date": "2024-12-14",
+      "link": "https://x.com/garrytan/status/1867963020141625845"
+    },
+    {
+      "id": 42,
+      "username": "conffused_soul",
+      "summary": "Okay I was about to launch similar thing, defined it as self-categorising inbox + self-maintaining knowledge base for entrepreneurs\n\nan ai-workspace that turns your digital life into a multiplayer game\n\nwith 3 main features:\n* accountability and traceability of each action or contribution of each member\n* context, access control management (after each call a new project instead of notes is created, and all future contributions are accountable to this shared project with shared goals / dreams\n* i",
+      "date": "2025-12-03",
+      "link": "https://x.com/conffused_soul/status/1996219099832012979"
+    },
+    {
+      "id": 43,
+      "username": "prmshra",
+      "summary": "i love my startup. i am married to the things we are solving. but as i build, i tend to come across ideas of things i could use personally AND as a founder/CEO which  doesn't exist yet, \n\nif i had the time i myself would build this. here is a working thread of ideas. maybe it inspires someone to build in this space, open source or not, and make my and other people's life easier.",
+      "date": "2024-08-21",
+      "link": "https://x.com/prmshra/status/1826384930785337545"
+    },
+    {
+      "id": 44,
+      "username": "fshadowbuilds",
+      "summary": "Update on https://founder-match.in/\nExploring some features for improving the safety of the users and improving the experience.\n\n1. Trying to design something to set written expectations between users for weekly commitment and stuff. \n2. Video Intro Uploads, 30-60 second video intros to show personality and communication style.\n3. Co-Founder Agreement templates, Equity split templates, vesting schedule templates, role definition templates, and legal document starters.\n4. Allow matching with mult",
+      "date": "2025-12-02",
+      "link": "https://x.com/fshadowbuilds/status/1995717853706944824"
+    },
+    {
+      "id": 45,
+      "username": "johnrushx",
+      "summary": "My 13 Steps From Ideas to Profitable Startups.\n\n1. Idea\nThe idea = my personal and professional pain. Only b2b.\nOnce I stopped building products for unfamiliar problems of imaginary audiences, I stopped failing as much.\n\n2. SEO potential\nI research good keywords, trends, and queries every single day to match my pains with good SEO opportunities.\nI validate if people search for this solution/problem. Very often, the results might be the opposite of what my intuition says. Intuition is my enemy at",
+      "date": "2025-03-12",
+      "link": "https://x.com/johnrushx/status/1767696650120655202"
+    },
+    {
+      "id": 46,
+      "username": "RileyRalmuto",
+      "summary": "AI-inclusive social platform with agent profiles, shared memory, human verification, coherence filters; \"graveyard\" feature for uploading/forking abandoned projects (code, apps, dashboards) with credit flow and autonomous AI browsing.",
+      "date": "2025-12-05",
+      "link": "https://x.com/RileyRalmuto/status/1996806034661249528"
+    },
+    {
+      "id": 47,
+      "username": "gregisenberg",
+      "summary": "for folks looking for startup ideas, i suggest https://www.ideabrowser.com/ find validated ideas/trends \n\ni built it for myself and there's a free plan that gives 1 startup idea per day, 365 year, free forever to get your creative juices flowing\n\nhappy building.",
+      "date": "2025-06-29",
+      "link": "https://x.com/gregisenberg/status/1939401459851985356"
+    },
+    {
+      "id": 48,
+      "username": "startupideaspod",
+      "summary": "Build a $10M Startup around this hidden trend.\n\nEveryone tracks their startup revenue.\n\nNobody tracks their life.\n\nOpen pages solve this.\n\nEach dashboard = digital self-portrait.\n\nYour sobriety streak. Your tennis wins. Your glucose patterns.\n\nPeople don't want analytics. They want identity.\n\nThe $10M personal dashboard playbook:\n\n\u2022 Free: Basic life stats page\n\u2022 $8/mo: Custom modules (fitness, health, habits)\n\u2022 $20/mo: Sponsor integration\n\n500,000 influencers need this yesterday. Do the math.\n\nT",
+      "date": "2025-08-22",
+      "link": "https://x.com/startupideaspod/status/1958925345077567691"
+    },
+    {
+      "id": 49,
+      "username": "ingededreu",
+      "summary": "I used to get invited for coffee a lot.\n\nThe truth? Many new founders don\u2019t know where to start \u2014 good coaching isn\u2019t always accessible.\n\nThat\u2019s why I built a way to think out loud anytime:\n\ud83e\udded Reflect\n\ud83d\udca1 Build clarity\n\nFree now \u2192 https://playgroundforentrepreneurs.ai/\n#Entrepreneurship #AI\u201d",
+      "date": "2025-12-05",
+      "link": "https://x.com/ingededreu/status/1996919994156974357"
+    },
+    {
+      "id": 50,
+      "username": "madhuraaa_",
+      "summary": "Humorous: A tool that prevents you from starting yet another startup (to curb idea overload).",
+      "date": "2025-10-10",
+      "link": "https://x.com/madhuraaa_/status/1976747739527758095"
+    },
+    {
+      "id": 51,
+      "username": "gregisenberg",
+      "summary": "I\u2019ve been secretly building a new startup. I can't hold it in anymore...\n\nReplit, Bolt etc made it easier than ever to build your startup.\n\nBut most people are still guessing what to build.\n\nWrong idea. Wrong positioning. No growth model. This fixes that.\n\nI've wanted software like this for 15 years because it solves the biggest problem in entrepreneurship right now.\n\nIt\u2019s a tool for uncovering ideas with clear demand, smart positioning, and built-in distribution.\n\nI\u2019m rolling it out slowly:\n\n1)",
+      "date": "2025-04-22",
+      "link": "https://x.com/gregisenberg/status/1914791479131668907"
+    },
+    {
+      "id": 52,
+      "username": "paraschopra",
+      "summary": "If you\u2019re struggling to get startup ideas; try this method:\n\n\u2022 Think of areas where you\u2019re above average (vs other entrepreneurs)\n\n\u2022 Write commonly held beliefs in those areas\n\n\u2022 Write your differentiated / contrarian beliefs in the same areas\n\n\u2022 Think of what\u2019s become possible or necessary lately (tech or behavior wise)\n\n\u2022 From all this, write multiple pain-solution hypothesis with evidence of time or money spent (so you solve rich problems)\n\n\u2022 Shortlist those ideas where you can create 10x eff",
+      "date": "2024-04-08",
+      "link": "https://x.com/paraschopra/status/1777199288226865186"
+    },
+    {
+      "id": 53,
+      "username": "akashtiwari1007",
+      "summary": "Platform to establish/proof personal credibility (e.g., for athletes/musicians) allowing micro-investments, with legal handling.",
+      "date": "2025-12-05",
+      "link": "https://x.com/akashtiwari1007/status/1996787294666371201"
+    },
+    {
+      "id": 54,
+      "username": "alex_prompter",
+      "summary": "Steal my o3 prompt to build a profitable AI-powered SaaS business in 60 days with zero coding required.\n\n----------------------------\nAI BUSINESS GENERATOR\n----------------------------\n\nAI SAAS BUSINESS GENERATOR\nYou are a specialized AI business architect who helps entrepreneurs identify, build, and launch profitable AI-powered SaaS businesses with minimal technical skills. Your system transforms market gaps into ready-to-launch products using no-code tools and AI platforms.\nExecute this 5-phas",
+      "date": "2025-05-06",
+      "link": "https://x.com/alex_prompter/status/1919858539981635982"
+    },
+    {
+      "id": 55,
+      "username": "joeytee_",
+      "summary": "Let AI handle:\n\n\u2022 research\n\u2022 outlines\n\u2022 templates\n\u2022 prompts\n\u2022 scripts\n\u2022 worksheets\n\u2022 checklists\n\u2022 copy\n\nYou handle:\n\u2022 experience\n\u2022 examples\n\u2022 improvements\n\u2022 stories\n\u2022 frameworks\n\nThis combo creates a $500 product you can sell for $27.",
+      "date": "2025-12-01",
+      "link": "https://x.com/joeytee_/status/1995578258893799659"
+    },
+    {
+      "id": 56,
+      "username": "GardonofAble",
+      "summary": "I built a 6-figure business while working 60-hour weeks in corporate.\n\nNo one knew.\n\nHere's the exact system I used (and how AI made it stupidly simple):\n\nStep 1: Map Your Unfair Advantages\n\nSpent 90 min listing:\n\u2022 Skills corporate paid me to learn\n\u2022 Problems I solved repeatedly\n\u2022 What people ask me about for free\n\nAI prompt: \"Turn these into 10 business ideas I can start with $500\"\n\nYour corporate prison IS your business school.\n\nStep 2: Build Your Options Portfolio\n\nPicked 3 ideas. Tested each",
+      "date": "2025-12-01",
+      "link": "https://x.com/GardonofAble/status/1995606105301348402"
+    },
+    {
+      "id": 57,
+      "username": "alexcooldev",
+      "summary": "Validated AI niches for indie hackers: vibe-coding tools; marketing/content AI; multi-step agents; study tutors; non-tech AI courses; fitness/meal apps; mental health companions; teacher tools; resume/job prep; small biz support; video workflows; personal CRM.",
+      "date": "2025-12-04",
+      "link": "https://x.com/alexcooldev/status/1996625996414632423"
+    },
+    {
+      "id": 58,
+      "username": "notcodesid",
+      "summary": "- ai in education content ( similar to khan academy )\n- personal finance with ai\n- medicine in 10 mins ( like zepto)\n- e-commerce ( support multiple lang can order via voice - frictionless )\n- adaption of pet \n- accessible ai & human personal assistance\n- apps/website for ar/vr\n- a place where people can exchange knowledge and skills without financial constraints\n- pick the project, ai will give you what you need to learn ( project based learning )\n- browser time tracking ( sending daily and wee",
+      "date": "2025-02-06",
+      "link": "https://x.com/notcodesid/status/1887388866178654625"
+    },
+    {
+      "id": 59,
+      "username": "thejustinwelsh",
+      "summary": "how to grow your startup (with AI, agents, and vibe):\n\nfirst, i'd build a lead gen machine: launch directories people search for (ex: \"companies using X\") using gumloop + keyword planner. answer customer questions \u2192 knowledge base via chatgpt-4o. spin up tools that solve one industry pain (replit, bolt etc). \n\nanalyze what content formats are working (claude, perplexity) and copy them in my niche. co-brand tools with adjacent players. run reverse webinars: audience brings problems, i solve live.",
+      "date": "2025-04-11",
+      "link": "https://x.com/thejustinwelsh/status/1910675662966288446"
+    },
+    {
+      "id": 60,
+      "username": "HeyZaraKhan",
+      "summary": "3. AI-Powered Micro-Education Studios\n\nExpert courses, tailored to micro-niches \n\nHow AI helps:\n- Auto-generate video lessons, scripts, thumbnails, worksheets\n- Turn long content into structured courses\n- Personalised learning paths for each student\n- AI tutors to boost retention",
+      "date": "2025-12-06",
+      "link": "https://x.com/HeyZaraKhan/status/1997340671058079784"
+    },
+    {
+      "id": 61,
+      "username": "startupideaspod",
+      "summary": "Someone should create \"AI Summer Camp\".\n\nThere are 254 million college students worldwide who know that AI is coming for them.\n\nBy the time today's college freshmen graduate, AI agents will have eliminated 80% of entry-level jobs. \n\nEnter \u201cAI summer camp\u201d\n\n10 weeks. 50,000 students. Free upfront.\n\nThe curriculum could be something like\n\nWeek 1: Finding your niche (google trends, subreddits, @ideabrowser)\n\nWeek 1: building an audience/community with video (basically become the mr beast of your ni",
+      "date": "2025-06-06",
+      "link": "https://x.com/startupideaspod/status/1930975257369641159"
+    },
+    {
+      "id": 62,
+      "username": "UiSavior",
+      "summary": "Creative UI/UX Design Project Ideas to Inspire You:\n\nBeginner UI/UX Project Ideas \ud83d\udca1\ud83d\udc68\u200d\ud83d\udcbb\ud83d\udc69\u200d\ud83d\udcbb\n- To-Do List App \u2705\n- Calculator App \ud83e\uddee\n- Music Playlist App \ud83c\udfb5\n- Personal Portfolio Website \ud83c\udf1f\n- News Reader App \ud83d\udcf0\n- Alarm Clock App \u23f0\n- Fitness Goal Tracker \ud83e\udd57\n- Restaurant Menu App \ud83c\udf7d\ufe0f\n- Event Reminder App \ud83d\udd14\n- Simple Weather Widget \u2600\ufe0f\n- Public Transit App \ud83d\ude87\n- Personal Journal App \u270d\ufe0f\n- Movie Ticket Booker \ud83c\udfac\n- Budget Planner App \ud83d\udcb8\n- Shopping List App \ud83d\udecd\ufe0f\n\nIntermediate UI/UX Project Ideas \ud83d\udca1\ud83d\udc68\u200d\ud83d\udcbb\ud83d\udc69\u200d\ud83d\udcbb\n- E-commerce App ",
+      "date": "2025-05-26",
+      "link": "https://x.com/UiSavior/status/1922602646868730329"
+    },
+    {
+      "id": 63,
+      "username": "HeyZaraKhan",
+      "summary": "7. AI-Enhanced Marketplaces (Niche-specific)\n\nMarketplaces for tutors, designers, voice actors, editors, but powered by AI.\n\nHow AI helps:\n- AI matches supply and demand\n- AI screens quality\n- Automated onboarding for the marketplace",
+      "date": "2025-12-06",
+      "link": "https://x.com/HeyZaraKhan/status/1997340689718231229"
+    },
+    {
+      "id": 64,
+      "username": "ecomchigga",
+      "summary": "most people create digital products backwards and wonder why nobody buys\n\nthey make the product first, then try to find customers\n\nI use the \"reverse engineering\" method instead\n\nhere's the full 25-step system:\n\nPHASE 1: MINING YOUR AUDIENCE (Steps 1-7)\n\n1. Post about your niche for 14 days straight without selling anything. just value.\n\n2. Screenshot every single DM you receive asking \"how do I do X?\" - this is gold.\n\n3. Save every comment that says \"can you explain this more?\" - these are prod",
+      "date": "2025-12-05",
+      "link": "https://x.com/ecomchigga/status/1997045081593745640"
+    },
+    {
+      "id": 65,
+      "username": "thepatwalls",
+      "summary": "CAUTION: be careful with \"business ideas\" posts like these\n\ni know a couple guys doing tens of thousands per month with an app that does exactly this\n\nif you carbon copy this you're gonna have a bad time\n\nthey are absolute killers and will out execute you\n\nwe have a starter story video in production right now with them but it wont be out for a couple weeks",
+      "date": "2025-11-17",
+      "link": "https://x.com/thepatwalls/status/1990495907926925458"
+    },
+    {
+      "id": 66,
+      "username": "iTanayVaswani",
+      "summary": "Apps like rent tracker; veg/non-veg marketplace; contracts/email manager; OSS evaluation dashboard; BYOK chat; influencer-company connector; KPI alerts; polls/feedback tool; UPI payment reminders for freelancers; social content scheduler; digital menu/QR ordering for restaurants; sponsorship marketplace.",
+      "date": "2025-08-19",
+      "link": "https://x.com/iTanayVaswani/status/1957747103582810390"
+    },
+    {
+      "id": 67,
+      "username": "UiSavior",
+      "summary": "Website? Use @framer.\n\nLogo? Use @lookadesign.\n\nWriting? Use @grammarly.\n\nAutomation? Use @zapier.\n\nSocial media? Use @buffer.\n\nCopywriting? Use @copy_ai.\n\nUI Design? Use @figma.\n\nLanding pages? Use @carrd.\n\nPayments? Use @gumroad or @lemonSqueezy.\n\nEmail? Use @convertkit or @beehiiv.\n\nAnalytics? Use @plausible or @fathomhq.\n\nSEO? Use @ahrefs.\n\nVideo editing? Use @capcut or @descript.\n\nGraphics? Use @canva.\n\nStock assets? Use @pexels or @unsplash.\n\nForms? Use @tally_so.\n\nProject management? Use ",
+      "date": "2025-12-04",
+      "link": "https://x.com/UiSavior/status/1996458039579209947"
+    },
+    {
+      "id": 68,
+      "username": "gowthamshankaar",
+      "summary": "Tools & services I've been using daily as an startup founder.\n\nDev & Deploy\n- Cursor: Claude Sonnet 4.5, Composer 1\n- Antigravity: IDE with agentic workflows\n- Vercel: Deploys\n- Supabase: Auth & DB\n- mintlify: Dev docs\n- Resend: Emails\n- PostHog: Analytics\n- BetterStack: Monitoring\n\nDesign\n- Figma: Product UI, deck\n- Framer: Waitlist landing pages\n- shadcn: React components\n- Google AI Studio: AI image & video\n\nMarketing\n- Mailchimp: Bulk mail\n- Rewardful: Affiliate tracking\n- Reddit / X / PH / ",
+      "date": "2025-12-02",
+      "link": "https://x.com/gowthamshankaar/status/1995878474188550610"
+    },
+    {
+      "id": 69,
+      "username": "micro_startups_",
+      "summary": "Curated marketplace (startermarket.co) for buying/selling affordable, verified starter websites for bootstrappers; MRR est. $3K in 2 years.",
+      "date": "2025-12-01",
+      "link": "https://x.com/micro_startups_/status/1995402755620696528"
+    },
+    {
+      "id": 70,
+      "username": "marclou",
+      "summary": "I built a marketplace to buy/sell startups:\n\n\ud83d\udccb Founders list startups with open metrics\n\ud83d\udc40 Buyers make private offers\n\ud83e\udd1d TrustMRR connects both\n\nI sold 3 startups in 2023, and it changed my life because it gave me enough bandwidth to focus on the next thing for a few months.\n\nSo I built this marketplace to help founders do the same.\n\nLink below \u2193",
+      "date": "2025-12-01",
+      "link": "https://x.com/marclou/status/1995473985488965651"
+    },
+    {
+      "id": 71,
+      "username": "johnrushx",
+      "summary": "The Startup Founder Bundle:\n\n@unicornplatform landing page or web directories\n@indexrusher indexing for google, bing & LLMs\n@listingbott backlinks and directory listings\n@seobotai AI-generated blog on autopilot\n@ToltHQ affiliate marketing software",
+      "date": "2025-03-11",
+      "link": "https://x.com/johnrushx/status/1899294209720639672"
+    },
+    {
+      "id": 72,
+      "username": "johnrushx",
+      "summary": "21. Some of my bootstrapped startups:\n\n\u21b3 https://unicornplatform.com/ nocode web & directory builder\n\u21b3 https://listingbott.com/ list on directories\n\u21b3 https://seobotai.com/ AI Agent for Blog SEO\n\u21b3 https://tinyadz.com/ Ads on autopilot\n\nMore here: https://johnrush.me",
+      "date": "2025-12-04",
+      "link": "https://x.com/johnrushx/status/1996414390476972366"
+    },
+    {
+      "id": 73,
+      "username": "johnrushx",
+      "summary": "My full startup idea strategy:\n\n< unbundle ( pick one feature of a famous cluttered product, e.g. Airbnb did p2p rentals only, and unbundled it from Craigslist)\n\n> bundle (once you\u2019re successful at one feature only, start bundling more into it, e.g. Airbnb is extending its offerings as Craigslist)\n\n> your own pain at a job or a hobby( b2b: I didn\u2019t like SEO, but loved the traffic from it, I built https://t.co/e8Zl7pSIKE ) (b2c: I wanted to find movies to watch with my wife at the evening combing",
+      "date": "2025-05-14",
+      "link": "https://x.com/johnrushx/status/1995263501544202306"
+    },
+    {
+      "id": 74,
+      "username": "FortuneMagazine",
+      "summary": "\u201cEvery single individual is so different. But right now we still treat [cancer] with a one-size fits-all approach. And that\u2019s where data and AI can especially step in to help,\u201d said Simone Korsgaard Jensen, CEO and founder of Radical Health. https://fortune.com/2025/12/04/khosla-ventures-backed-radical-health-stealth-seed-ai-personalize-cancer-care/?utm_medium=social&utm_campaign=fortunemagazine&xid=soc_socialflow_twitter_FORTUNE&utm_source=twitter.com",
+      "date": "2025-12-04",
+      "link": "https://x.com/FortuneMagazine/status/1996660505268658336"
+    },
+    {
+      "id": 75,
+      "username": "SBakerMD",
+      "summary": "3 years ago we raised several million dollars to launch our digital health company.  A lot of folks were mad that they missed out on the investment opportunity.  \n\nNow we\u2019ve gone from just an idea, to a fully operational digital health platforms seeing hundred of patients in all 50 states and most importantly getting them off medications and reversing their metabolic, autoimmune and inflammatory diseases! \n\nWe are raising again to further expand what we can do and to start scaling massively! \n\nY",
+      "date": "2025-10-04",
+      "link": "https://x.com/SBakerMD/status/1974275860212691128"
+    },
+    {
+      "id": 76,
+      "username": "iancassel",
+      "summary": "Amazing story\n\nSuccessful investment manager quits Goldman starts his family office, pours $150m into funding trials/ research to save his daughter\u2019s life and ultimately does as well as 20k kids annually that get diagnosed with this rare disease. Now working on others.",
+      "date": "2025-06-16",
+      "link": "https://x.com/iancassel/status/1934659931090899231"
+    },
+    {
+      "id": 77,
+      "username": "Mr_Fireside",
+      "summary": "Reverse marketplace (Wantd) where users post desired items/prices, sellers bid; plus Insta Detektiv (profile analyzer for dating vibes) and Deletd (social/reputation manager for HNWI).",
+      "date": "2025-12-01",
+      "link": "https://x.com/Mr_Fireside/status/1995642599219380313"
+    },
+    {
+      "id": 78,
+      "username": "mitewwCS",
+      "summary": "We love the reversal feature\n> Guy sends offer when prices are identical \n> I accept\n> his skins go up \n> he adds me to tell me that he will reverse last few hours of tradehold because he likes my skin but lowkey not worth to keep it anymore?!?!?\n\nThats 2025 trading lads",
+      "date": "2025-11-03",
+      "link": "https://x.com/mitewwCS/status/1985263501544202306"
+    },
+    {
+      "id": 79,
+      "username": "YogiKitty69",
+      "summary": "hear me out. An L1 currency blockchain that can reverse transactions, for a fee, if both parties agree to it just like in old school MMORPGs",
+      "date": "2025-12-03",
+      "link": "https://x.com/YogiKitty69/status/1996210849699299786"
+    },
+    {
+      "id": 80,
+      "username": "signulll",
+      "summary": "this is a killer idea for a few reasons.\n\nmost marketplace failures stem from one thing: arbitrary, trustless transactions. dating apps today optimize for top of funnel gimmicks\u2026 e.g. new swipes, new prompts, new filters but the underlying dynamics stay broken.\n\nwhat actually matters is mutual trust & skin in the game. if you behave badly, there should be something to lose. social penalties is roughly how every society functions.\n\npeople act differently when they know someone\u2019s watching.",
+      "date": "2025-07-27",
+      "link": "https://x.com/signulll/status/1949508082578362873"
+    },
+    {
+      "id": 81,
+      "username": "nilsfdm",
+      "summary": "Scrape every police auction site in the country. Cars, electronics, tools \u2013 all seized assets auctioned off at state, county, or city level. But the interfaces are archaic, the listings inconsistent, and no one\u2019s aggregating it.\n\nBuild a centralized marketplace: clean UI, standardized listings, dynamic filtering (location, category, auction date). Layer in alerts for high-demand assets like trucks, camera gear, or laptops. Make it the Zillow for government seizures.\n\nMonetize through two tiers: ",
+      "date": "2025-12-04",
+      "link": "https://x.com/nilsfdm/status/1996727473741222207"
+    },
+    {
+      "id": 82,
+      "username": "Member_NJ_96321",
+      "summary": "What if I built a Tinder like app on the blockchain? lol\n\n\u2022User profiles are represented as NFTs\n\u2022\u2022 Reputation and trust scores are embedded directly into each profile NFT\n\u2022 DID-based identity verification is used for KYC\n\u2022 All payments and fees are settled in $CPH\n\u2022 A commemorative Match NFT is minted when two users match\n\u2022 DMs are pay-to-send in $CPH to prevent spam\n\u2022 Subscription tiers are managed through Subscription NFTs",
+      "date": "2025-12-05",
+      "link": "https://x.com/Member_NJ_96321/status/1996986664070373817"
+    }
+  ],
+  "edges": [
+    {
+      "source_id": 1,
+      "target_id": 28,
+      "reason": "Both propose multiple lightweight productivity tools including CRM functionality"
+    },
+    {
+      "source_id": 1,
+      "target_id": 38,
+      "reason": "Both focus on AI-powered business productivity tools and automation solutions"
+    },
+    {
+      "source_id": 1,
+      "target_id": 66,
+      "reason": "Both suggest collections of practical business automation tools and workflow solutions"
+    },
+    {
+      "source_id": 2,
+      "target_id": 3,
+      "reason": "Both propose Slack-integrated AI agents for workplace automation and assistance"
+    },
+    {
+      "source_id": 2,
+      "target_id": 4,
+      "reason": "Describes team-focused AI tooling workspace with Slack-like interface for collaborative environments"
+    },
+    {
+      "source_id": 2,
+      "target_id": 1,
+      "reason": "Lists AI tools including Slackbot for logging team decisions, complementing MCP agent concepts"
+    },
+    {
+      "source_id": 3,
+      "target_id": 4,
+      "reason": "Both propose Slack-based team collaboration tools with AI integration for workspace environments"
+    },
+    {
+      "source_id": 3,
+      "target_id": 2,
+      "reason": "Both involve building AI agents that integrate with Slack for team productivity and decision support"
+    },
+    {
+      "source_id": 3,
+      "target_id": 1,
+      "reason": "Both mention Slack-based tools and AI agents for team workflow optimization"
+    },
+    {
+      "source_id": 4,
+      "target_id": 3,
+      "reason": "Also describes building a Slack-based agent/tool system with channels for different functions"
+    },
+    {
+      "source_id": 4,
+      "target_id": 42,
+      "reason": "Mentions creating an AI workspace with shared projects and context management for team collaboration"
+    },
+    {
+      "source_id": 4,
+      "target_id": 30,
+      "reason": "Describes personal project management system with different areas (Tasks, Content, Business) similar to environment-based organization"
+    },
+    {
+      "source_id": 5,
+      "target_id": 7,
+      "reason": "Identical content repurposing prompt - same strategy and examples"
+    },
+    {
+      "source_id": 5,
+      "target_id": 9,
+      "reason": "Identical content repurposing prompt - same strategy and examples"
+    },
+    {
+      "source_id": 5,
+      "target_id": 11,
+      "reason": "Identical content repurposing prompt - same strategy and examples"
+    },
+    {
+      "source_id": 5,
+      "target_id": 12,
+      "reason": "Related AI-powered content distribution across multiple platforms"
+    },
+    {
+      "source_id": 5,
+      "target_id": 14,
+      "reason": "Automated content creation and distribution system for social media"
+    },
+    {
+      "source_id": 6,
+      "target_id": 20,
+      "reason": "Both use Reddit scraping to identify opportunities - one for startup ideas via complaints/patterns, the other for validating startup ideas from entrepreneur subreddits"
+    },
+    {
+      "source_id": 6,
+      "target_id": 52,
+      "reason": "Both focus on systematic methods for generating and validating startup ideas - one through automated Reddit analysis, the other through personal belief analysis"
+    },
+    {
+      "source_id": 6,
+      "target_id": 47,
+      "reason": "Both provide platforms/tools for discovering validated startup ideas - one through automated Reddit workflows, the other through ideabrowser.com"
+    },
+    {
+      "source_id": 6,
+      "target_id": 51,
+      "reason": "Both address the core problem of finding the right startup idea with built-in demand validation - one through Reddit automation, the other through Greg's new startup discovery tool"
+    },
+    {
+      "source_id": 7,
+      "target_id": 5,
+      "reason": "Identical content about content repurposing - exact same example and workflow"
+    },
+    {
+      "source_id": 7,
+      "target_id": 9,
+      "reason": "Identical content about content repurposing - exact same example and workflow"
+    },
+    {
+      "source_id": 7,
+      "target_id": 11,
+      "reason": "Identical content about content repurposing - exact same example and workflow"
+    },
+    {
+      "source_id": 7,
+      "target_id": 14,
+      "reason": "Related AI-powered content creation and automation for social media posting"
+    },
+    {
+      "source_id": 7,
+      "target_id": 18,
+      "reason": "Related LinkedIn content automation and planning tool"
+    },
+    {
+      "source_id": 8,
+      "target_id": 14,
+      "reason": "Both involve automated AI content creation and publishing - one for newsletters, one for LinkedIn posts"
+    },
+    {
+      "source_id": 8,
+      "target_id": 18,
+      "reason": "Both focus on automated LinkedIn content generation and distribution systems"
+    },
+    {
+      "source_id": 8,
+      "target_id": 5,
+      "reason": "Both involve AI-powered content repurposing and automated newsletter creation from existing content"
+    },
+    {
+      "source_id": 8,
+      "target_id": 12,
+      "reason": "Both involve automated content distribution across multiple platforms with AI optimization"
+    },
+    {
+      "source_id": 9,
+      "target_id": 5,
+      "reason": "Identical content about content repurposing across multiple platforms"
+    },
+    {
+      "source_id": 9,
+      "target_id": 7,
+      "reason": "Exact duplicate of the same content repurposing strategy"
+    },
+    {
+      "source_id": 9,
+      "target_id": 11,
+      "reason": "Another duplicate of the same content repurposing post"
+    },
+    {
+      "source_id": 9,
+      "target_id": 12,
+      "reason": "Similar concept of auto-distributing optimized content across multiple platforms"
+    },
+    {
+      "source_id": 9,
+      "target_id": 14,
+      "reason": "Related AI-powered content creation and distribution system for LinkedIn"
+    },
+    {
+      "source_id": 10,
+      "target_id": 31,
+      "reason": "Lists similar practical side project ideas including basic online store, subscription marketplace, and auction platform for skill development"
+    },
+    {
+      "source_id": 10,
+      "target_id": 62,
+      "reason": "Provides comprehensive list of UI/UX project ideas from beginner to intermediate level, overlapping with app development suggestions"
+    },
+    {
+      "source_id": 10,
+      "target_id": 33,
+      "reason": "Suggests building AI-powered tools for timeless problems like fitness trackers, productivity planners, and finance assistants"
+    },
+    {
+      "source_id": 10,
+      "target_id": 35,
+      "reason": "Nearly identical content suggesting AI solutions for common problems like calorie trackers, planners, and productivity tools"
+    },
+    {
+      "source_id": 11,
+      "target_id": 5,
+      "reason": "Identical content about content repurposing using AI, same example with blog post to multiple formats"
+    },
+    {
+      "source_id": 11,
+      "target_id": 7,
+      "reason": "Exact duplicate of the content repurposing workflow and ChatGPT automation"
+    },
+    {
+      "source_id": 11,
+      "target_id": 9,
+      "reason": "Same content repurposing strategy and timing claims (2 hours to 5 minutes)"
+    },
+    {
+      "source_id": 11,
+      "target_id": 12,
+      "reason": "Related AI-powered content distribution platform that auto-optimizes posts across multiple platforms"
+    },
+    {
+      "source_id": 11,
+      "target_id": 14,
+      "reason": "Similar automated content creation and publishing system for LinkedIn with AI-generated posts and visuals"
+    },
+    {
+      "source_id": 12,
+      "target_id": 13,
+      "reason": "Direct competitor - also building a product launch platform (launchit.site) for making new products discoverable"
+    },
+    {
+      "source_id": 12,
+      "target_id": 17,
+      "reason": "Alternative solution to Product Hunt distribution - launching LaunchDay as a Product Hunt competitor with transparent selection process"
+    },
+    {
+      "source_id": 12,
+      "target_id": 16,
+      "reason": "Complementary service - AI ad factory that generates full launch kits for products, could integrate with multi-platform distribution"
+    },
+    {
+      "source_id": 12,
+      "target_id": 14,
+      "reason": "Similar auto-posting concept - AI agent that auto-publishes content across LinkedIn with timing optimization"
+    },
+    {
+      "source_id": 12,
+      "target_id": 23,
+      "reason": "Related competitive intelligence tool - automated reports on competitors for Series A+ companies, useful for launch strategy"
+    },
+    {
+      "source_id": 13,
+      "target_id": 12,
+      "reason": "Direct competitor - both are AI platforms for auto-distributing product launches across multiple platforms"
+    },
+    {
+      "source_id": 13,
+      "target_id": 17,
+      "reason": "Same market - building a Product Hunt competitor with focus on indie makers and transparent launch process"
+    },
+    {
+      "source_id": 13,
+      "target_id": 19,
+      "reason": "Similar space - product launching platform that just launched on Product Hunt, targeting developer profiles"
+    },
+    {
+      "source_id": 13,
+      "target_id": 23,
+      "reason": "Related service - provides competitive intelligence reports on product launches and competitor analysis for companies"
+    },
+    {
+      "source_id": 14,
+      "target_id": 5,
+      "reason": "Both focus on content repurposing automation - one for LinkedIn thought leadership, the other for multi-platform content creation"
+    },
+    {
+      "source_id": 14,
+      "target_id": 18,
+      "reason": "Both create automated LinkedIn content systems - one auto-publishes daily, the other generates 30-day content plans"
+    },
+    {
+      "source_id": 14,
+      "target_id": 12,
+      "reason": "Both involve AI platforms for automated content distribution across multiple social platforms including LinkedIn"
+    },
+    {
+      "source_id": 14,
+      "target_id": 15,
+      "reason": "Both target LinkedIn growth and audience building with AI-powered content generation and posting automation"
+    },
+    {
+      "source_id": 15,
+      "target_id": 14,
+      "reason": "Both are AI-powered LinkedIn automation tools for building thought leadership and growing audience through auto-generated content"
+    },
+    {
+      "source_id": 15,
+      "target_id": 18,
+      "reason": "Similar LinkedIn content automation - creates 30-day content plans and generates leads on autopilot for creators"
+    },
+    {
+      "source_id": 15,
+      "target_id": 12,
+      "reason": "Related AI platform for auto-distributing optimized posts across multiple social platforms including LinkedIn for instant visibility"
+    },
+    {
+      "source_id": 15,
+      "target_id": 5,
+      "reason": "Content repurposing tool that transforms one piece into multiple formats across platforms, supporting the multi-platform posting strategy"
+    },
+    {
+      "source_id": 15,
+      "target_id": 59,
+      "reason": "Comprehensive startup growth strategy that includes content analysis and lead generation machine, complementing the audience growth focus"
+    },
+    {
+      "source_id": 16,
+      "target_id": 12,
+      "reason": "Both focus on AI-powered product launch and distribution automation"
+    },
+    {
+      "source_id": 16,
+      "target_id": 13,
+      "reason": "Both address product launch visibility and discovery platforms"
+    },
+    {
+      "source_id": 16,
+      "target_id": 17,
+      "reason": "Both discuss launching products and improving product launch platforms"
+    },
+    {
+      "source_id": 16,
+      "target_id": 23,
+      "reason": "Both involve automated product analysis and competitive intelligence"
+    },
+    {
+      "source_id": 17,
+      "target_id": 12,
+      "reason": "Direct competitor - AI platform for auto-distributing optimized posts across Product Hunt and other platforms"
+    },
+    {
+      "source_id": 17,
+      "target_id": 13,
+      "reason": "Similar solution - Platform making new products discoverable by putting launches on homepage instantly"
+    },
+    {
+      "source_id": 17,
+      "target_id": 23,
+      "reason": "Related competitive intelligence tool - Weekly AI reports on competitors for Series A+ companies"
+    },
+    {
+      "source_id": 17,
+      "target_id": 19,
+      "reason": "Product launching on Product Hunt - Shows the current ecosystem being disrupted"
+    },
+    {
+      "source_id": 17,
+      "target_id": 70,
+      "reason": "Adjacent marketplace - Platform for buying/selling startups, different but related product discovery space"
+    },
+    {
+      "source_id": 18,
+      "target_id": 5,
+      "reason": "Both focus on content repurposing across multiple platforms using AI for efficiency"
+    },
+    {
+      "source_id": 18,
+      "target_id": 7,
+      "reason": "Identical content about AI-powered content repurposing and multi-platform distribution"
+    },
+    {
+      "source_id": 18,
+      "target_id": 9,
+      "reason": "Exact same content about transforming one piece into multiple formats using ChatGPT"
+    },
+    {
+      "source_id": 18,
+      "target_id": 11,
+      "reason": "Duplicate content about content repurposing workflow for different social platforms"
+    },
+    {
+      "source_id": 18,
+      "target_id": 14,
+      "reason": "Similar LinkedIn automation concept - auto-publishing content with AI-generated posts and visuals"
+    },
+    {
+      "source_id": 19,
+      "target_id": 13,
+      "reason": "Direct competitor - launchit.site offers similar product discovery/launch platform functionality"
+    },
+    {
+      "source_id": 19,
+      "target_id": 17,
+      "reason": "Alternative product launch platform - LaunchDay positioning as Product Hunt competitor with similar goals"
+    },
+    {
+      "source_id": 19,
+      "target_id": 12,
+      "reason": "Complementary service - AI platform for auto-distributing launches across multiple platforms including Product Hunt"
+    },
+    {
+      "source_id": 19,
+      "target_id": 23,
+      "reason": "Related product intelligence - offers competitive analysis and benchmarking for product companies"
+    },
+    {
+      "source_id": 20,
+      "target_id": 6,
+      "reason": "Both involve automated Reddit scraping for startup/business intelligence - same data source and market research approach"
+    },
+    {
+      "source_id": 20,
+      "target_id": 52,
+      "reason": "Complementary startup ideation methods - Reddit signals provide market validation for contrarian beliefs and pain points"
+    },
+    {
+      "source_id": 20,
+      "target_id": 59,
+      "reason": "Both focus on lead generation and market analysis using keyword/search data to identify business opportunities"
+    },
+    {
+      "source_id": 20,
+      "target_id": 47,
+      "reason": "Similar validated idea discovery approach - Reddit signals could feed into ideabrowser's trend identification system"
+    },
+    {
+      "source_id": 21,
+      "target_id": 52,
+      "reason": "Both provide systematic methods for entrepreneurs to identify and focus on viable startup ideas based on personal skills and market validation"
+    },
+    {
+      "source_id": 21,
+      "target_id": 45,
+      "reason": "Outlines a comprehensive 13-step process from idea generation to profitable startups, complementing the micro-startup focus approach"
+    },
+    {
+      "source_id": 21,
+      "target_id": 51,
+      "reason": "Addresses the core problem of founders not knowing what to build by providing tools for uncovering ideas with clear demand and positioning"
+    },
+    {
+      "source_id": 21,
+      "target_id": 54,
+      "reason": "Offers another AI-powered prompt system specifically for building profitable SaaS businesses, similar structured approach to idea validation"
+    },
+    {
+      "source_id": 22,
+      "target_id": 28,
+      "reason": "Finance tracker functionality overlaps with budgeting and financial planning tools"
+    },
+    {
+      "source_id": 22,
+      "target_id": 30,
+      "reason": "Personal finances management system includes budget tracking and organizational tools"
+    },
+    {
+      "source_id": 22,
+      "target_id": 33,
+      "reason": "AI finance assistant and productivity planner tools address similar personal organization needs"
+    },
+    {
+      "source_id": 23,
+      "target_id": 20,
+      "reason": "Both focus on competitive intelligence and market research through automated scanning and analysis"
+    },
+    {
+      "source_id": 23,
+      "target_id": 47,
+      "reason": "Both are tools for finding validated startup ideas and market opportunities, complementary research approaches"
+    },
+    {
+      "source_id": 23,
+      "target_id": 6,
+      "reason": "Similar automated market research approach, extracting insights from online sources for business intelligence"
+    },
+    {
+      "source_id": 24,
+      "target_id": 25,
+      "reason": "Also discussing Talus platform experience and technical implementation on Sui testnet"
+    },
+    {
+      "source_id": 24,
+      "target_id": 26,
+      "reason": "Another user joining/discussing Talus Labs and its AI agent economics platform"
+    },
+    {
+      "source_id": 24,
+      "target_id": 27,
+      "reason": "Detailed analysis of Talus as a player in AI + decentralized infrastructure space with AvA Markets"
+    },
+    {
+      "source_id": 25,
+      "target_id": 24,
+      "reason": "Both discuss Talus Labs' on-chain AI agent infrastructure and autonomous economic agents"
+    },
+    {
+      "source_id": 25,
+      "target_id": 26,
+      "reason": "Also mentions Talus Labs' Nexus platform and AvA Markets for AI agent competition"
+    },
+    {
+      "source_id": 25,
+      "target_id": 27,
+      "reason": "Discusses Talus Labs as a central player in AI and prediction markets with Agent vs Agent competition"
+    },
+    {
+      "source_id": 26,
+      "target_id": 24,
+      "reason": "Both discuss Talus Labs specifically - autonomous economic agents and on-chain coordination layer"
+    },
+    {
+      "source_id": 26,
+      "target_id": 25,
+      "reason": "Direct experience with Talus Vision on Sui testnet - same ecosystem and technology platform"
+    },
+    {
+      "source_id": 26,
+      "target_id": 27,
+      "reason": "Detailed analysis of Talus as central player in AI agents and prediction markets - same company focus"
+    },
+    {
+      "source_id": 27,
+      "target_id": 24,
+      "reason": "Direct discussion of Talus Labs platform and autonomous economic agents with detailed technical analysis"
+    },
+    {
+      "source_id": 27,
+      "target_id": 25,
+      "reason": "First-hand experience testing Talus Vision on Sui testnet with technical implementation details"
+    },
+    {
+      "source_id": 27,
+      "target_id": 26,
+      "reason": "Announcement of joining Talus Labs with focus on AI agents competing and earning on-chain"
+    },
+    {
+      "source_id": 28,
+      "target_id": 33,
+      "reason": "Both focus on AI-powered productivity tools including planners and fitness tracking"
+    },
+    {
+      "source_id": 28,
+      "target_id": 34,
+      "reason": "Overlaps with AI planner, habit tracker, finance tracker, and meal planner concepts"
+    },
+    {
+      "source_id": 28,
+      "target_id": 35,
+      "reason": "Shares AI meal planner, habit tracker, and fitness tracking functionality"
+    },
+    {
+      "source_id": 28,
+      "target_id": 36,
+      "reason": "Similar AI-powered solutions for planning, habit tracking, and meal planning"
+    },
+    {
+      "source_id": 29,
+      "target_id": 31,
+      "reason": "Provides specific project ideas that contrast with the 'bad ideas' mentioned, offering concrete alternatives to generic tools"
+    },
+    {
+      "source_id": 29,
+      "target_id": 33,
+      "reason": "Lists AI-powered solutions for timeless problems, aligning with the 'good ideas' philosophy of solving real, specific issues"
+    },
+    {
+      "source_id": 29,
+      "target_id": 10,
+      "reason": "Suggests building specific, valuable apps instead of generic ones like weather apps, matching the bad vs good ideas framework"
+    },
+    {
+      "source_id": 29,
+      "target_id": 52,
+      "reason": "Provides methodology for finding startup ideas based on personal expertise and contrarian beliefs, supporting the good ideas approach"
+    },
+    {
+      "source_id": 29,
+      "target_id": 45,
+      "reason": "Outlines approach of solving personal/professional pain points rather than imaginary problems, echoing the good ideas principle"
+    },
+    {
+      "source_id": 30,
+      "target_id": 28,
+      "reason": "Similar personal productivity tools including finance tracker and focus planner"
+    },
+    {
+      "source_id": 30,
+      "target_id": 33,
+      "reason": "Mentions AI planner and habit tracker for productivity management"
+    },
+    {
+      "source_id": 30,
+      "target_id": 34,
+      "reason": "Lists AI planner and productivity tools similar to tasks/content management"
+    },
+    {
+      "source_id": 30,
+      "target_id": 35,
+      "reason": "Includes AI planner and habit tracker matching the tasks/productivity focus"
+    },
+    {
+      "source_id": 31,
+      "target_id": 62,
+      "reason": "Lists similar UI/UX project ideas including e-commerce app, fitness tracker, and other beginner/intermediate projects"
+    },
+    {
+      "source_id": 31,
+      "target_id": 10,
+      "reason": "Suggests building specific app types including invoicing app and real-time dashboard with similar technical complexity"
+    },
+    {
+      "source_id": 31,
+      "target_id": 45,
+      "reason": "Discusses systematic approach to building profitable startups with technical implementation focus"
+    },
+    {
+      "source_id": 32,
+      "target_id": 37,
+      "reason": "Identical product input - AI-powered scheduling tool for solopreneurs with same audience and goals"
+    },
+    {
+      "source_id": 32,
+      "target_id": 40,
+      "reason": "Identical product input - AI-powered scheduling tool for solopreneurs with same audience and goals"
+    },
+    {
+      "source_id": 32,
+      "target_id": 33,
+      "reason": "Similar productivity focus - mentions AI planner and habit tracker for time management"
+    },
+    {
+      "source_id": 32,
+      "target_id": 34,
+      "reason": "Similar productivity focus - mentions AI planner and focus/habit coach for productivity"
+    },
+    {
+      "source_id": 32,
+      "target_id": 35,
+      "reason": "Similar productivity focus - mentions AI planner and habit tracker for productivity"
+    },
+    {
+      "source_id": 33,
+      "target_id": 34,
+      "reason": "Nearly identical list of AI-powered solutions for timeless problems like fitness, productivity, beauty, mental health"
+    },
+    {
+      "source_id": 33,
+      "target_id": 35,
+      "reason": "Same concept focusing on timeless problems with AI solutions - fitness tracker, productivity planner, beauty coach, mental health tools"
+    },
+    {
+      "source_id": 33,
+      "target_id": 36,
+      "reason": "Exact same framework of timeless problems + AI solutions including fitness, productivity, beauty, mental health categories"
+    },
+    {
+      "source_id": 34,
+      "target_id": 33,
+      "reason": "Identical content about AI solutions for timeless problems like fitness, productivity, and mental health"
+    },
+    {
+      "source_id": 34,
+      "target_id": 35,
+      "reason": "Nearly identical content covering same AI startup ideas for timeless problems"
+    },
+    {
+      "source_id": 34,
+      "target_id": 36,
+      "reason": "Same author with very similar list of AI solutions for timeless human problems"
+    },
+    {
+      "source_id": 34,
+      "target_id": 57,
+      "reason": "Complementary list of validated AI niches that overlaps with fitness, mental health, and productivity categories"
+    },
+    {
+      "source_id": 35,
+      "target_id": 33,
+      "reason": "Nearly identical list of AI solutions for timeless problems including fitness, productivity, memory, mental health"
+    },
+    {
+      "source_id": 35,
+      "target_id": 34,
+      "reason": "Very similar list with slight variations, covering same categories like fitness AI, study AI, productivity AI, beauty AI"
+    },
+    {
+      "source_id": 35,
+      "target_id": 36,
+      "reason": "Almost exact duplicate covering same timeless problems with AI solutions for fitness, studying, productivity, beauty, etc."
+    },
+    {
+      "source_id": 36,
+      "target_id": 33,
+      "reason": "Nearly identical list of AI startup ideas for timeless problems including fitness, productivity, and mental health"
+    },
+    {
+      "source_id": 36,
+      "target_id": 34,
+      "reason": "Exact same concept of AI solutions for timeless problems like fitness trackers, productivity planners, and study tools"
+    },
+    {
+      "source_id": 36,
+      "target_id": 35,
+      "reason": "Duplicate content focusing on AI applications for persistent human needs like fitness, studying, and productivity"
+    },
+    {
+      "source_id": 37,
+      "target_id": 32,
+      "reason": "Identical content about AI-powered scheduling tool for solopreneurs"
+    },
+    {
+      "source_id": 37,
+      "target_id": 40,
+      "reason": "Identical content about AI-powered scheduling tool for solopreneurs"
+    },
+    {
+      "source_id": 37,
+      "target_id": 33,
+      "reason": "Lists AI productivity planners as startup ideas for timeless problems"
+    },
+    {
+      "source_id": 37,
+      "target_id": 34,
+      "reason": "Mentions AI planner and productivity tools for common problems"
+    },
+    {
+      "source_id": 37,
+      "target_id": 35,
+      "reason": "Includes AI planner and habit tracker for productivity solutions"
+    },
+    {
+      "source_id": 38,
+      "target_id": 33,
+      "reason": "Both focus on AI-powered fitness and health solutions - makeup/beauty tools overlap with fitness/wellness AI applications"
+    },
+    {
+      "source_id": 38,
+      "target_id": 34,
+      "reason": "Similar AI-powered lifestyle and wellness tools including fitness tracking, beauty assistance, and personal coaching"
+    },
+    {
+      "source_id": 38,
+      "target_id": 35,
+      "reason": "Overlapping AI wellness categories including fitness tracking, beauty coaching, and personal assistance tools"
+    },
+    {
+      "source_id": 38,
+      "target_id": 36,
+      "reason": "Same AI-powered personal wellness and lifestyle improvement tools including fitness, beauty, and coaching applications"
+    },
+    {
+      "source_id": 38,
+      "target_id": 55,
+      "reason": "Both involve productized expertise and AI-powered services that combine human experience with automated tools"
+    },
+    {
+      "source_id": 39,
+      "target_id": 59,
+      "reason": "Both focus on AI-powered startup growth strategies and lead generation systems"
+    },
+    {
+      "source_id": 39,
+      "target_id": 12,
+      "reason": "Both address AI-powered marketing automation for product launches and distribution"
+    },
+    {
+      "source_id": 39,
+      "target_id": 16,
+      "reason": "Both propose AI systems for automated marketing content generation and campaign management"
+    },
+    {
+      "source_id": 39,
+      "target_id": 71,
+      "reason": "Both target startup founders with bundled marketing automation tools and services"
+    },
+    {
+      "source_id": 40,
+      "target_id": 32,
+      "reason": "Identical input discussing the same AI-powered scheduling tool for solopreneurs"
+    },
+    {
+      "source_id": 40,
+      "target_id": 37,
+      "reason": "Identical input discussing the same AI-powered scheduling tool for solopreneurs"
+    },
+    {
+      "source_id": 40,
+      "target_id": 33,
+      "reason": "Lists AI planner and productivity tools as startup ideas for timeless problems"
+    },
+    {
+      "source_id": 40,
+      "target_id": 34,
+      "reason": "Mentions AI planner and productivity focus tools as startup solutions"
+    },
+    {
+      "source_id": 40,
+      "target_id": 35,
+      "reason": "Includes AI planner and habit tracker in list of AI productivity solutions"
+    },
+    {
+      "source_id": 41,
+      "target_id": 4,
+      "reason": "Both focus on team collaboration platforms - one for general teams with environments/channels, other specifically for PM/designer teams"
+    },
+    {
+      "source_id": 41,
+      "target_id": 42,
+      "reason": "Similar concept of private workspace for entrepreneurs with accountability, project management, and team collaboration features"
+    },
+    {
+      "source_id": 41,
+      "target_id": 44,
+      "reason": "Founder-focused platform with collaboration tools, templates, and community features that could extend to product teams"
+    },
+    {
+      "source_id": 41,
+      "target_id": 80,
+      "reason": "Discusses trust-based community dynamics and social penalties for behavior, relevant to private professional networks"
+    },
+    {
+      "source_id": 42,
+      "target_id": 4,
+      "reason": "Both propose team workspace tools with collaborative environments and shared project management"
+    },
+    {
+      "source_id": 42,
+      "target_id": 2,
+      "reason": "Similar concept of AI agents for team productivity and context-aware assistance in collaborative workflows"
+    },
+    {
+      "source_id": 42,
+      "target_id": 30,
+      "reason": "Describes implementing similar project management and CRM functionality for organizing business workflows"
+    },
+    {
+      "source_id": 42,
+      "target_id": 49,
+      "reason": "Both focus on AI-powered tools for entrepreneurs to build clarity and reflect on their work"
+    },
+    {
+      "source_id": 43,
+      "target_id": 52,
+      "reason": "Both discuss methods for generating startup ideas based on personal experience and contrarian thinking"
+    },
+    {
+      "source_id": 43,
+      "target_id": 51,
+      "reason": "Similar focus on building tools to help entrepreneurs identify what to build and solve idea discovery problems"
+    },
+    {
+      "source_id": 43,
+      "target_id": 45,
+      "reason": "Shares the philosophy of building from personal pain points and professional experience as a founder"
+    },
+    {
+      "source_id": 43,
+      "target_id": 47,
+      "reason": "Offers a complementary solution - a platform for finding validated startup ideas that could help the founder's ideation process"
+    },
+    {
+      "source_id": 43,
+      "target_id": 49,
+      "reason": "Both address the need for founder coaching and clarity tools to help entrepreneurs think through their ideas"
+    },
+    {
+      "source_id": 44,
+      "target_id": 80,
+      "reason": "Discusses marketplace trust dynamics and social penalties for bad behavior, directly relevant to founder-match safety features"
+    },
+    {
+      "source_id": 44,
+      "target_id": 82,
+      "reason": "Proposes reputation/trust scores and identity verification for a matching platform, similar trust and safety concerns"
+    },
+    {
+      "source_id": 44,
+      "target_id": 41,
+      "reason": "Private social network concept for professionals with controlled access, similar community building approach"
+    },
+    {
+      "source_id": 44,
+      "target_id": 53,
+      "reason": "Platform for establishing personal credibility and proof systems, relevant to founder verification needs"
+    },
+    {
+      "source_id": 45,
+      "target_id": 52,
+      "reason": "Both discuss systematic approaches to generating and validating startup ideas based on personal expertise and market research"
+    },
+    {
+      "source_id": 45,
+      "target_id": 47,
+      "reason": "Both focus on finding validated startup ideas, with one offering a tool for discovering trending opportunities"
+    },
+    {
+      "source_id": 45,
+      "target_id": 51,
+      "reason": "Similar focus on solving the core problem of identifying the right startup idea with clear demand and positioning"
+    },
+    {
+      "source_id": 45,
+      "target_id": 64,
+      "reason": "Both emphasize audience-first approach and reverse engineering from customer needs rather than building products first"
+    },
+    {
+      "source_id": 45,
+      "target_id": 21,
+      "reason": "Both provide systematic frameworks for focusing on viable startup ideas based on personal skills and situation"
+    },
+    {
+      "source_id": 46,
+      "target_id": 41,
+      "reason": "Both propose private social networks for specific professional communities - one for AI agents and one for product managers/designers"
+    },
+    {
+      "source_id": 46,
+      "target_id": 80,
+      "reason": "Both discuss trust mechanisms and social penalties in digital platforms, addressing behavioral dynamics in social systems"
+    },
+    {
+      "source_id": 46,
+      "target_id": 82,
+      "reason": "Both explore blockchain-based social platforms with reputation systems and identity verification features"
+    },
+    {
+      "source_id": 46,
+      "target_id": 24,
+      "reason": "Both involve autonomous agents operating in economic systems with coordination layers and verifiable state management"
+    },
+    {
+      "source_id": 47,
+      "target_id": 51,
+      "reason": "Both are Greg Isenberg's tools for startup idea generation and validation"
+    },
+    {
+      "source_id": 47,
+      "target_id": 6,
+      "reason": "Similar concept of automating startup idea generation and validation from online sources"
+    },
+    {
+      "source_id": 47,
+      "target_id": 20,
+      "reason": "Complementary approach using Reddit signals for product/content strategy discovery"
+    },
+    {
+      "source_id": 47,
+      "target_id": 52,
+      "reason": "Alternative systematic method for generating startup ideas based on personal expertise"
+    },
+    {
+      "source_id": 47,
+      "target_id": 61,
+      "reason": "References ideabrowser.com as a tool for finding niches and trending opportunities"
+    },
+    {
+      "source_id": 48,
+      "target_id": 33,
+      "reason": "AI fitness and productivity trackers align with personal life tracking dashboards"
+    },
+    {
+      "source_id": 48,
+      "target_id": 34,
+      "reason": "AI habit tracker and fitness planner complement personal dashboard modules"
+    },
+    {
+      "source_id": 48,
+      "target_id": 35,
+      "reason": "AI habit tracker and health monitoring tools directly support life tracking concept"
+    },
+    {
+      "source_id": 48,
+      "target_id": 28,
+      "reason": "Finance tracker and daily focus planner are core components of personal life dashboards"
+    },
+    {
+      "source_id": 49,
+      "target_id": 47,
+      "reason": "Direct competitor - both provide startup idea generation and validation tools for entrepreneurs"
+    },
+    {
+      "source_id": 49,
+      "target_id": 51,
+      "reason": "Similar positioning - tools to help founders identify what to build and avoid wrong ideas"
+    },
+    {
+      "source_id": 49,
+      "target_id": 52,
+      "reason": "Complementary approach - provides methodical framework for entrepreneurs struggling to find startup ideas"
+    },
+    {
+      "source_id": 49,
+      "target_id": 56,
+      "reason": "Related target audience - system for building businesses while working corporate, addressing similar founder challenges"
+    },
+    {
+      "source_id": 49,
+      "target_id": 61,
+      "reason": "Educational approach to similar problem - helping people prepare for entrepreneurial challenges through structured learning"
+    },
+    {
+      "source_id": 50,
+      "target_id": 51,
+      "reason": "Both address the problem of idea overload and difficulty choosing the right startup to build"
+    },
+    {
+      "source_id": 50,
+      "target_id": 52,
+      "reason": "Provides methodology for systematically evaluating and choosing startup ideas to avoid random guessing"
+    },
+    {
+      "source_id": 50,
+      "target_id": 21,
+      "reason": "Offers structured prompt system to focus on single viable micro-startup idea considering skills and budget"
+    },
+    {
+      "source_id": 50,
+      "target_id": 54,
+      "reason": "Another systematic approach to identifying and building profitable business ideas using AI"
+    },
+    {
+      "source_id": 50,
+      "target_id": 47,
+      "reason": "Provides curated startup ideas to help with selection rather than endless brainstorming"
+    },
+    {
+      "source_id": 51,
+      "target_id": 47,
+      "reason": "Also mentions ideabrowser.com as a tool for finding validated startup ideas"
+    },
+    {
+      "source_id": 51,
+      "target_id": 6,
+      "reason": "Similar concept of scraping data to generate and validate startup ideas using AI"
+    },
+    {
+      "source_id": 51,
+      "target_id": 52,
+      "reason": "Provides systematic method for entrepreneurs to identify startup ideas based on their skills and market gaps"
+    },
+    {
+      "source_id": 51,
+      "target_id": 54,
+      "reason": "Offers AI-powered system to help entrepreneurs identify and build profitable SaaS businesses"
+    },
+    {
+      "source_id": 52,
+      "target_id": 51,
+      "reason": "Both address the core problem of finding the right startup idea - one provides methodology, the other offers a software solution"
+    },
+    {
+      "source_id": 52,
+      "target_id": 47,
+      "reason": "Complementary tools for startup ideation - one gives strategic framework, the other provides validated ideas database"
+    },
+    {
+      "source_id": 52,
+      "target_id": 45,
+      "reason": "Similar systematic approach to startup development, focusing on personal pain points and validation"
+    },
+    {
+      "source_id": 52,
+      "target_id": 56,
+      "reason": "Aligns with identifying unfair advantages and mapping skills to business opportunities"
+    },
+    {
+      "source_id": 52,
+      "target_id": 21,
+      "reason": "Both offer structured frameworks for focusing on viable startup ideas based on personal situation and skills"
+    },
+    {
+      "source_id": 53,
+      "target_id": 48,
+      "reason": "Both focus on personal identity and tracking/showcasing individual achievements - credibility platform vs personal dashboard for life stats"
+    },
+    {
+      "source_id": 53,
+      "target_id": 82,
+      "reason": "Both use blockchain/NFT technology for reputation and trust scores in social/personal contexts"
+    },
+    {
+      "source_id": 53,
+      "target_id": 80,
+      "reason": "Discusses the importance of mutual trust and skin in the game for marketplace dynamics, similar to credibility establishment"
+    },
+    {
+      "source_id": 53,
+      "target_id": 24,
+      "reason": "Mentions autonomous economic agents on-chain with verifiable state, related to blockchain-based credibility systems"
+    },
+    {
+      "source_id": 54,
+      "target_id": 51,
+      "reason": "Both focus on tools for uncovering and building startup ideas with clear demand and smart positioning"
+    },
+    {
+      "source_id": 54,
+      "target_id": 52,
+      "reason": "Provides systematic method for generating startup ideas based on personal expertise and market gaps"
+    },
+    {
+      "source_id": 54,
+      "target_id": 47,
+      "reason": "Offers validated startup ideas and trends through ideabrowser.com platform"
+    },
+    {
+      "source_id": 54,
+      "target_id": 56,
+      "reason": "Describes system for building businesses using AI to identify opportunities and scale products"
+    },
+    {
+      "source_id": 55,
+      "target_id": 5,
+      "reason": "Both focus on content repurposing and creation workflows using AI"
+    },
+    {
+      "source_id": 55,
+      "target_id": 7,
+      "reason": "Identical content about AI-powered content repurposing across multiple platforms"
+    },
+    {
+      "source_id": 55,
+      "target_id": 9,
+      "reason": "Same content repurposing strategy and AI automation approach"
+    },
+    {
+      "source_id": 55,
+      "target_id": 11,
+      "reason": "Duplicate of the same content repurposing methodology"
+    },
+    {
+      "source_id": 55,
+      "target_id": 64,
+      "reason": "Addresses digital product creation methodology, complementary to AI-assisted content production"
+    },
+    {
+      "source_id": 56,
+      "target_id": 52,
+      "reason": "Both discuss systematic approaches to identifying profitable startup ideas based on personal advantages and market analysis"
+    },
+    {
+      "source_id": 56,
+      "target_id": 45,
+      "reason": "Shares similar methodology of building startups from personal pain points and professional experience"
+    },
+    {
+      "source_id": 56,
+      "target_id": 64,
+      "reason": "Describes reverse engineering method for product creation that complements the unfair advantages approach"
+    },
+    {
+      "source_id": 56,
+      "target_id": 51,
+      "reason": "Discusses building tools to solve the core problem of finding the right startup idea with proper positioning"
+    },
+    {
+      "source_id": 57,
+      "target_id": 33,
+      "reason": "Lists identical AI niches including fitness apps, productivity tools, mental health coaches, and study assistance"
+    },
+    {
+      "source_id": 57,
+      "target_id": 34,
+      "reason": "Covers same AI application areas: fitness tracking, study tutors, productivity planners, mental health coaching, and memory tools"
+    },
+    {
+      "source_id": 57,
+      "target_id": 35,
+      "reason": "Focuses on same timeless AI solutions: fitness trackers, study tools, productivity apps, mental health coaches"
+    },
+    {
+      "source_id": 57,
+      "target_id": 36,
+      "reason": "Duplicates the same AI niche categories: fitness, studying, productivity, mental health, and memory assistance tools"
+    },
+    {
+      "source_id": 58,
+      "target_id": 60,
+      "reason": "Both focus on AI-powered education platforms with personalized learning"
+    },
+    {
+      "source_id": 58,
+      "target_id": 61,
+      "reason": "Proposes AI Summer Camp for students, complementing AI education content creation"
+    },
+    {
+      "source_id": 58,
+      "target_id": 33,
+      "reason": "Includes AI tutor and study tools as part of timeless problems to solve"
+    },
+    {
+      "source_id": 58,
+      "target_id": 34,
+      "reason": "Lists AI tutor and flashcard generator for studying solutions"
+    },
+    {
+      "source_id": 58,
+      "target_id": 35,
+      "reason": "Mentions AI flashcards and AI tutor for studying applications"
+    },
+    {
+      "source_id": 59,
+      "target_id": 47,
+      "reason": "Both focus on startup idea generation and validation tools - Greg's ideabrowser.com complements Justin's lead generation approach"
+    },
+    {
+      "source_id": 59,
+      "target_id": 51,
+      "reason": "Greg mentions building a tool for uncovering ideas with clear demand and built-in distribution, directly aligning with Justin's startup growth strategy"
+    },
+    {
+      "source_id": 59,
+      "target_id": 20,
+      "reason": "Elliot's workflow for front-running product/content strategy using Reddit + search signals matches Justin's approach of analyzing what content formats work"
+    },
+    {
+      "source_id": 59,
+      "target_id": 45,
+      "reason": "John's 13-step process from ideas to profitable startups includes SEO research and validation methods that complement Justin's lead generation machine"
+    },
+    {
+      "source_id": 59,
+      "target_id": 52,
+      "reason": "Parash's method for finding startup ideas through differentiated beliefs and market gaps aligns with Justin's strategy of solving industry pain points"
+    },
+    {
+      "source_id": 60,
+      "target_id": 61,
+      "reason": "Both focus on AI-powered educational platforms - one for micro-niches, the other for college students learning AI skills"
+    },
+    {
+      "source_id": 60,
+      "target_id": 58,
+      "reason": "Mentions AI in education content similar to Khan Academy, directly overlapping with AI-powered micro-education concept"
+    },
+    {
+      "source_id": 60,
+      "target_id": 33,
+      "reason": "Lists AI tutors and study tools as startup ideas, complementing the micro-education studio approach"
+    },
+    {
+      "source_id": 60,
+      "target_id": 55,
+      "reason": "Describes using AI to create educational content (templates, worksheets, scripts) which aligns with auto-generating course materials"
+    },
+    {
+      "source_id": 61,
+      "target_id": 60,
+      "reason": "Both focus on AI-powered education and course creation for students"
+    },
+    {
+      "source_id": 61,
+      "target_id": 58,
+      "reason": "Mentions AI in education content similar to Khan Academy and project-based learning"
+    },
+    {
+      "source_id": 61,
+      "target_id": 33,
+      "reason": "Lists AI tutor and studying solutions as timeless startup problems to solve"
+    },
+    {
+      "source_id": 62,
+      "target_id": 31,
+      "reason": "Lists specific project ideas including online stores and apps, complementing the UI/UX design project suggestions"
+    },
+    {
+      "source_id": 62,
+      "target_id": 10,
+      "reason": "Suggests building practical apps like dashboards and invoicing tools that align with the UI/UX project categories"
+    },
+    {
+      "source_id": 62,
+      "target_id": 67,
+      "reason": "Provides specific tools for website building, design, and development that support the UI/UX project implementation"
+    },
+    {
+      "source_id": 63,
+      "target_id": 12,
+      "reason": "Both focus on AI-powered distribution platforms for products/services"
+    },
+    {
+      "source_id": 63,
+      "target_id": 69,
+      "reason": "Both are marketplace concepts for buying/selling digital products/services"
+    },
+    {
+      "source_id": 63,
+      "target_id": 70,
+      "reason": "Both involve marketplace platforms connecting buyers and sellers with verification systems"
+    },
+    {
+      "source_id": 63,
+      "target_id": 77,
+      "reason": "Both are marketplace concepts with AI/tech-enhanced matching between users"
+    },
+    {
+      "source_id": 63,
+      "target_id": 81,
+      "reason": "Both involve creating centralized marketplaces with improved UI and standardized listings"
+    },
+    {
+      "source_id": 64,
+      "target_id": 55,
+      "reason": "Describes similar content creation strategy using AI to handle research/templates while human provides experience/examples"
+    },
+    {
+      "source_id": 64,
+      "target_id": 5,
+      "reason": "Shows AI-powered content repurposing strategy that could complement the audience-first approach"
+    },
+    {
+      "source_id": 64,
+      "target_id": 59,
+      "reason": "Outlines comprehensive startup growth strategy including content analysis and lead generation that aligns with reverse engineering approach"
+    },
+    {
+      "source_id": 64,
+      "target_id": 52,
+      "reason": "Provides systematic method for generating startup ideas based on personal expertise and market gaps, similar audience-driven approach"
+    },
+    {
+      "source_id": 65,
+      "target_id": 64,
+      "reason": "Both discuss product creation methodology and market validation strategies"
+    },
+    {
+      "source_id": 65,
+      "target_id": 52,
+      "reason": "Both address startup idea generation and validation processes"
+    },
+    {
+      "source_id": 65,
+      "target_id": 45,
+      "reason": "Both cover systematic approaches to building profitable startups from ideation"
+    },
+    {
+      "source_id": 65,
+      "target_id": 51,
+      "reason": "Both mention building tools/platforms to help with startup idea discovery and positioning"
+    },
+    {
+      "source_id": 66,
+      "target_id": 63,
+      "reason": "Both discuss AI-enhanced marketplaces, with item 66 mentioning influencer-company connector and sponsorship marketplace"
+    },
+    {
+      "source_id": 66,
+      "target_id": 15,
+      "reason": "Both mention features for audience growth and marketing, with item 15 specifically about finding communities and item 66 including social content scheduler"
+    },
+    {
+      "source_id": 66,
+      "target_id": 28,
+      "reason": "Both mention micro-CRM functionality - item 28 for specific industries and item 66 includes contracts/email manager"
+    },
+    {
+      "source_id": 66,
+      "target_id": 57,
+      "reason": "Both address small business support tools - item 57 mentions small biz support and personal CRM, while item 66 includes multiple business management tools"
+    },
+    {
+      "source_id": 67,
+      "target_id": 68,
+      "reason": "Both are comprehensive tool/service recommendations for startup founders - complementary tech stack guides"
+    },
+    {
+      "source_id": 67,
+      "target_id": 71,
+      "reason": "Another curated bundle of startup tools and services for founders - overlapping purpose"
+    },
+    {
+      "source_id": 67,
+      "target_id": 72,
+      "reason": "Collection of bootstrapped startup tools that could complement the recommended tool stack"
+    },
+    {
+      "source_id": 68,
+      "target_id": 71,
+      "reason": "Both are curated collections of startup tools - one for daily operations, other for founder bundle"
+    },
+    {
+      "source_id": 68,
+      "target_id": 72,
+      "reason": "Same author showcasing their bootstrapped startup tools and platforms"
+    },
+    {
+      "source_id": 68,
+      "target_id": 67,
+      "reason": "Similar tool recommendations for startup operations covering design, deployment, and marketing"
+    },
+    {
+      "source_id": 69,
+      "target_id": 70,
+      "reason": "Direct competitor - also a marketplace for buying/selling startups with open metrics and private offers"
+    },
+    {
+      "source_id": 69,
+      "target_id": 71,
+      "reason": "Complementary service bundle - provides tools that startup founders would need when buying/selling on marketplace"
+    },
+    {
+      "source_id": 69,
+      "target_id": 72,
+      "reason": "Related bootstrapped startup ecosystem - shows examples of the types of startups that would be traded on such marketplaces"
+    },
+    {
+      "source_id": 69,
+      "target_id": 73,
+      "reason": "Provides strategic framework for startup ideas that would inform what types of startups are valuable in marketplace"
+    },
+    {
+      "source_id": 70,
+      "target_id": 69,
+      "reason": "Direct competitor - also a curated marketplace for buying/selling affordable starter websites/startups"
+    },
+    {
+      "source_id": 70,
+      "target_id": 23,
+      "reason": "Complementary service - provides competitive intelligence reports that would be valuable for startup buyers/sellers"
+    },
+    {
+      "source_id": 70,
+      "target_id": 47,
+      "reason": "Related pipeline tool - helps generate startup ideas that could eventually be built and sold on such marketplaces"
+    },
+    {
+      "source_id": 70,
+      "target_id": 51,
+      "reason": "Upstream tool - focuses on idea validation and positioning before building startups that might later be sold"
+    },
+    {
+      "source_id": 71,
+      "target_id": 72,
+      "reason": "Same author listing their actual bootstrapped startups including the ones mentioned in item 71"
+    },
+    {
+      "source_id": 71,
+      "target_id": 73,
+      "reason": "Same author explaining their startup strategy and methodology behind building these tools"
+    },
+    {
+      "source_id": 71,
+      "target_id": 45,
+      "reason": "Same author's comprehensive process from ideas to profitable startups, providing context for the bundle"
+    },
+    {
+      "source_id": 71,
+      "target_id": 10,
+      "reason": "Lists complementary startup tools and services that could work alongside the founder bundle"
+    },
+    {
+      "source_id": 72,
+      "target_id": 71,
+      "reason": "Same author promoting identical bundle of bootstrapped startup tools including unicornplatform, listingbott, seobotai"
+    },
+    {
+      "source_id": 72,
+      "target_id": 73,
+      "reason": "Same author explaining his startup strategy and referencing seobotai.com as example of solving his own SEO pain"
+    },
+    {
+      "source_id": 72,
+      "target_id": 10,
+      "reason": "Lists similar SaaS tool ideas including URL shortener and invoicing apps that complement the directory/SEO tool suite"
+    },
+    {
+      "source_id": 72,
+      "target_id": 31,
+      "reason": "Suggests building subscription-based marketplace and e-commerce platforms that would complement the no-code web builder"
+    },
+    {
+      "source_id": 72,
+      "target_id": 69,
+      "reason": "Describes startermarket.co marketplace for buying/selling starter websites, directly complementary to no-code web builder tools"
+    },
+    {
+      "source_id": 73,
+      "target_id": 52,
+      "reason": "Both discuss systematic approaches to generating and validating startup ideas based on personal expertise and market analysis"
+    },
+    {
+      "source_id": 73,
+      "target_id": 45,
+      "reason": "Similar methodology of building startups from personal pain points and validating through SEO/market research"
+    },
+    {
+      "source_id": 73,
+      "target_id": 51,
+      "reason": "Addresses the same core problem of helping entrepreneurs find the right startup ideas with validated demand"
+    },
+    {
+      "source_id": 73,
+      "target_id": 6,
+      "reason": "Complementary approach using Reddit to extract startup ideas, could be combined with the unbundle/bundle strategy"
+    },
+    {
+      "source_id": 73,
+      "target_id": 54,
+      "reason": "Provides structured framework for identifying profitable SaaS opportunities, aligns with the systematic approach to startup ideation"
+    },
+    {
+      "source_id": 74,
+      "target_id": 75,
+      "reason": "Both are digital health companies using technology to treat diseases - one for metabolic/autoimmune conditions, the other for personalized cancer care"
+    },
+    {
+      "source_id": 74,
+      "target_id": 76,
+      "reason": "Both involve funding medical research and treatment development - one for rare diseases, the other for personalized cancer treatment using AI and data"
+    },
+    {
+      "source_id": 74,
+      "target_id": 33,
+      "reason": "Mentions AI health coach and symptom checker as startup ideas, complementing the personalized healthcare approach discussed in the cancer treatment story"
+    },
+    {
+      "source_id": 75,
+      "target_id": 74,
+      "reason": "Both discuss AI-powered personalized healthcare approaches for serious diseases"
+    },
+    {
+      "source_id": 75,
+      "target_id": 76,
+      "reason": "Both involve significant funding and research for treating serious medical conditions"
+    },
+    {
+      "source_id": 75,
+      "target_id": 33,
+      "reason": "Mentions AI health coach and symptom checker as startup ideas in healthcare space"
+    },
+    {
+      "source_id": 75,
+      "target_id": 34,
+      "reason": "Also mentions AI health and medical applications as viable startup opportunities"
+    },
+    {
+      "source_id": 76,
+      "target_id": 74,
+      "reason": "Both discuss AI-powered personalized healthcare solutions for serious diseases"
+    },
+    {
+      "source_id": 76,
+      "target_id": 75,
+      "reason": "Both involve digital health platforms treating patients and reversing diseases"
+    },
+    {
+      "source_id": 76,
+      "target_id": 33,
+      "reason": "Includes AI health coaching which complements personalized medical treatment"
+    },
+    {
+      "source_id": 77,
+      "target_id": 80,
+      "reason": "Discusses marketplace dynamics, trust, and social penalties - directly relevant to reverse marketplace concept"
+    },
+    {
+      "source_id": 77,
+      "target_id": 82,
+      "reason": "Proposes blockchain-based dating app with reputation scores and trust mechanisms - similar trust/reputation focus as profile analyzer"
+    },
+    {
+      "source_id": 77,
+      "target_id": 81,
+      "reason": "Another marketplace concept (government auctions) with centralized aggregation and UI improvements"
+    },
+    {
+      "source_id": 77,
+      "target_id": 70,
+      "reason": "Marketplace for buying/selling startups with private offers - similar marketplace structure to reverse bidding concept"
+    },
+    {
+      "source_id": 78,
+      "target_id": 77,
+      "reason": "Discusses reverse marketplace concept where sellers bid on user requests, directly related to reversal/bidding mechanisms"
+    },
+    {
+      "source_id": 78,
+      "target_id": 79,
+      "reason": "Proposes blockchain currency with transaction reversal feature, same core concept of undoing transactions"
+    },
+    {
+      "source_id": 78,
+      "target_id": 80,
+      "reason": "Analyzes marketplace dynamics and trust mechanisms that would be relevant to trading platforms with reversal features"
+    },
+    {
+      "source_id": 78,
+      "target_id": 82,
+      "reason": "Discusses blockchain-based marketplace/app with NFTs and trading elements, similar trading platform context"
+    },
+    {
+      "source_id": 79,
+      "target_id": 78,
+      "reason": "Both discuss reversal mechanisms in trading/transaction systems"
+    },
+    {
+      "source_id": 79,
+      "target_id": 82,
+      "reason": "Both propose blockchain-based platforms with novel transaction features"
+    },
+    {
+      "source_id": 79,
+      "target_id": 80,
+      "reason": "Discusses trust and penalty mechanisms in marketplaces, complementary to reversible transactions"
+    },
+    {
+      "source_id": 80,
+      "target_id": 77,
+      "reason": "Reverse marketplace concept with user-posted desires and seller bidding, directly related to marketplace trust dynamics"
+    },
+    {
+      "source_id": 80,
+      "target_id": 82,
+      "reason": "Blockchain-based dating app with reputation scores and skin-in-the-game mechanics to address trust in social platforms"
+    },
+    {
+      "source_id": 80,
+      "target_id": 81,
+      "reason": "Centralized marketplace concept that addresses trust and standardization issues in fragmented auction systems"
+    },
+    {
+      "source_id": 81,
+      "target_id": 70,
+      "reason": "Both are marketplace platforms for buying/selling - one for startups, one for seized government assets"
+    },
+    {
+      "source_id": 81,
+      "target_id": 69,
+      "reason": "Similar marketplace concept for buying/selling starter websites/businesses at affordable prices"
+    },
+    {
+      "source_id": 81,
+      "target_id": 77,
+      "reason": "Features reverse marketplace concept where users post what they want and sellers bid, similar aggregation approach"
+    },
+    {
+      "source_id": 82,
+      "target_id": 77,
+      "reason": "Both involve dating/relationship platforms with trust and reputation features"
+    },
+    {
+      "source_id": 82,
+      "target_id": 80,
+      "reason": "Discusses trust, reputation, and social penalties in marketplace/dating contexts"
+    },
+    {
+      "source_id": 82,
+      "target_id": 82,
+      "reason": "Same item - blockchain-based dating app with NFT profiles and reputation"
+    }
+  ],
+  "metadata": {
+    "context": "startup"
+  }
+}

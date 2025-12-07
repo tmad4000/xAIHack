@@ -1,0 +1,1219 @@
+{
+  "total_ideas": 82,
+  "total_clusters": 20,
+  "clusters": [
+    {
+      "id": 0,
+      "topic": "Other",
+      "name": "AI-Powered Startup Tools",
+      "summary": "Tech entrepreneurs are sharing ideas for AI-powered SaaS tools, productivity apps, and startup resources that automate workflows, enhance content creation, and streamline business operations.",
+      "action": "City officials should recognize this represents economic development opportunities and could support local tech entrepreneurship through startup incubators, coding bootcamps, or small business resources focused on AI/tech ventures, though these ideas don't directly address municipal services.",
+      "consensus": "Low",
+      "node_count": 49,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 1,
+          "username": "tibo_maker",
+          "summary": "AI tool that converts support chats into help docs; Slackbot for logging team decisions; Zoom-to-landing-page generator; duplicate SaaS subscription finder; AI job post drafter from convos; lightweight DM-based CRM; podcast-to-newsletter converter.",
+          "date": "2025-08-08",
+          "link": "https://x.com/tibo_maker/status/1953750606738309211"
+        },
+        {
+          "id": 66,
+          "username": "iTanayVaswani",
+          "summary": "Apps like rent tracker; veg/non-veg marketplace; contracts/email manager; OSS evaluation dashboard; BYOK chat; influencer-company connector; KPI alerts; polls/feedback tool; UPI payment reminders for freelancers; social content scheduler; digital menu/QR ordering for restaurants; sponsorship marketplace.",
+          "date": "2025-08-19",
+          "link": "https://x.com/iTanayVaswani/status/1957747103582810390"
+        },
+        {
+          "id": 3,
+          "username": "swords",
+          "summary": "As far as I know, NotebookLm doesn\u2019t support hooks, scheduling, etc.  so\u2026. Phase 1: Build a Slack app that uses OpenAI agent SDK in about two hours with Claude that extracts summaries from public channels that then embeds the content using OpenAI file storage.  Why? Because right now they have the best easy to use file based recall.  Phase 2: make the Slack agent listen in public channels for mentions that trigger the OpenAI agent to do retrieval lookups to answer questions.  Phase 3:  configure",
+          "date": "2025-12-04",
+          "link": "https://x.com/swords/status/1996614282910351862"
+        },
+        {
+          "id": 2,
+          "username": "gregisenberg",
+          "summary": "23 MCP STARTUP IDEAS TO BUILD IN 2025 (ai agents/ai/mcp ideas)\n\n1. PostMortemGuy \u2013 when your app breaks (bug, outage), MCP agent traces every log, commit, and Slack message. Full incident report in seconds. $50/incident. \n\n2. ContextCaddy \u2013 agent that shadows founders, reads emails, meetings, tasks, docs. Gives daily summaries + next best actions. Your Chief of Staff, $99/month. \n\n3. SmartIntern \u2013 MCP-based agent that joins your Slack and becomes a context-aware intern. Takes notes, sends follow",
+          "date": "2025-04-08",
+          "link": "https://x.com/gregisenberg/status/1909589402017288272"
+        },
+        {
+          "id": 38,
+          "username": "evgenyeyt",
+          "summary": "Productized expertise tools: AI makeup artist for personalized looks; brand coach analyzer for social bios; PT AI gym app for custom routines; real-estate lead auditor; creator growth console; sales coaching AI for objection rewriting.",
+          "date": "2025-12-06",
+          "link": "https://x.com/evgenyeyt/status/1997344281816887567"
+        },
+        {
+          "id": 28,
+          "username": "GusevV1987",
+          "summary": "Finance tracker that DMs anomalies; daily focus planner integrating email/calendar/tasks; micro-CRM for florists/gyms/clinics; meal planner generating grocery lists from fridge photos.",
+          "date": "2025-12-04",
+          "link": "https://x.com/GusevV1987/status/1996633326073827810"
+        },
+        {
+          "id": 15,
+          "username": "LouisLsvr",
+          "summary": "i changed my headline\n\nwhich one do you prefer?\n\nthe whole point of my product is to\n> help founders find their communities in seconds\n> grow an audience\n> insert some subtle marketing in their posts\n> get a stealth AI writer to generate post\n> plan their engagement at the most effective times\n> produce AI-scraping bots posts to get their brand featured in LLM searches\n\nwhat do you think?",
+          "date": "2025-12-06",
+          "link": "https://x.com/LouisLsvr/status/1997335497493086249"
+        },
+        {
+          "id": 57,
+          "username": "alexcooldev",
+          "summary": "Validated AI niches for indie hackers: vibe-coding tools; marketing/content AI; multi-step agents; study tutors; non-tech AI courses; fitness/meal apps; mental health companions; teacher tools; resume/job prep; small biz support; video workflows; personal CRM.",
+          "date": "2025-12-04",
+          "link": "https://x.com/alexcooldev/status/1996625996414632423"
+        },
+        {
+          "id": 63,
+          "username": "HeyZaraKhan",
+          "summary": "7. AI-Enhanced Marketplaces (Niche-specific)\n\nMarketplaces for tutors, designers, voice actors, editors, but powered by AI.\n\nHow AI helps:\n- AI matches supply and demand\n- AI screens quality\n- Automated onboarding for the marketplace",
+          "date": "2025-12-06",
+          "link": "https://x.com/HeyZaraKhan/status/1997340689718231229"
+        },
+        {
+          "id": 4,
+          "username": "thdxr",
+          "summary": "we started to build this product but it didn't fit quite right with our efforts so i'm going to give away the idea:\n\nby now everyone has seen the llm tooling calling capabilities\n\ni want someone to build a client focused on teams\n\ni should be able to create a workspace for my team, create different environments and then people should be able to pop into an environment and do some work\n\nmake it look like slack - every channel is an \"environment\" - eg #production could be a readonly db tool + tool",
+          "date": "2025-05-18",
+          "link": "https://x.com/thdxr/status/1923937935625232652"
+        },
+        {
+          "id": 42,
+          "username": "conffused_soul",
+          "summary": "Okay I was about to launch similar thing, defined it as self-categorising inbox + self-maintaining knowledge base for entrepreneurs\n\nan ai-workspace that turns your digital life into a multiplayer game\n\nwith 3 main features:\n* accountability and traceability of each action or contribution of each member\n* context, access control management (after each call a new project instead of notes is created, and all future contributions are accountable to this shared project with shared goals / dreams\n* i",
+          "date": "2025-12-03",
+          "link": "https://x.com/conffused_soul/status/1996219099832012979"
+        },
+        {
+          "id": 55,
+          "username": "joeytee_",
+          "summary": "Let AI handle:\n\n\u2022 research\n\u2022 outlines\n\u2022 templates\n\u2022 prompts\n\u2022 scripts\n\u2022 worksheets\n\u2022 checklists\n\u2022 copy\n\nYou handle:\n\u2022 experience\n\u2022 examples\n\u2022 improvements\n\u2022 stories\n\u2022 frameworks\n\nThis combo creates a $500 product you can sell for $27.",
+          "date": "2025-12-01",
+          "link": "https://x.com/joeytee_/status/1995578258893799659"
+        },
+        {
+          "id": 48,
+          "username": "startupideaspod",
+          "summary": "Build a $10M Startup around this hidden trend.\n\nEveryone tracks their startup revenue.\n\nNobody tracks their life.\n\nOpen pages solve this.\n\nEach dashboard = digital self-portrait.\n\nYour sobriety streak. Your tennis wins. Your glucose patterns.\n\nPeople don't want analytics. They want identity.\n\nThe $10M personal dashboard playbook:\n\n\u2022 Free: Basic life stats page\n\u2022 $8/mo: Custom modules (fitness, health, habits)\n\u2022 $20/mo: Sponsor integration\n\n500,000 influencers need this yesterday. Do the math.\n\nT",
+          "date": "2025-08-22",
+          "link": "https://x.com/startupideaspod/status/1958925345077567691"
+        },
+        {
+          "id": 22,
+          "username": "StrivingEmpire",
+          "summary": "Plan, budget, and reflect\u2014all in one stylish bundle \u2728\n\n\u2714\ufe0f The Daily or Striving Flawlessly Planner\n\u2714\ufe0f Budget & Meal Plan Journal\n\u2714\ufe0f Spiral & Book Bound Notebooks\n\u2714\ufe0f Stickers + Rose Gold Crystal Pen\n\n\ud83d\uded2 Shop now\n\ud83d\udc49\ud83c\udffe https://www.strivingformodesty.com/",
+          "date": "2025-12-03",
+          "link": "https://x.com/StrivingEmpire/status/1996304246296154460"
+        },
+        {
+          "id": 5,
+          "username": "connordavis_ai",
+          "summary": "7/ Content repurposing\n\nTake one long-form piece, turn it into 10 different formats.\n\n\"Take this blog post and create: (1) Twitter thread with 8 tweets, (2) LinkedIn post, (3) 3 short TikTok scripts, (4) email newsletter version, (5) 5 pull quotes for graphics. Maintain core message, adapt tone for each platform.\"\n\nChatGPT handles this in one shot. What used to take 2 hours now takes 5 minutes.",
+          "date": "2025-12-05",
+          "link": "https://x.com/connordavis_ai/status/1996929587922776410"
+        },
+        {
+          "id": 12,
+          "username": "sgxcodes",
+          "summary": "AI platform that launches a product once and auto-distributes optimized posts across Product Hunt, X, LinkedIn, Reddit, etc., with perfect timing for instant visibility.",
+          "date": "2025-12-04",
+          "link": "https://x.com/sgxcodes/status/1996404406548644297"
+        },
+        {
+          "id": 18,
+          "username": "godofprompt",
+          "summary": "LinkedIn is the #1 platform for creators to grow on right now.\n\nSo I built a ChatGPT mega-prompt that creates a 30-day content plan for your LinkedIn.\n\nYou will be able to generate leads on autopilot.\n\nTo get it, simply:\n\n\u2022 Like & RT\n\u2022 Reply \"In\"\n\u2022 Follow me (So, I can DM you)",
+          "date": "2024-04-11",
+          "link": "https://x.com/godofprompt/status/1778336084143083752"
+        },
+        {
+          "id": 59,
+          "username": "thejustinwelsh",
+          "summary": "how to grow your startup (with AI, agents, and vibe):\n\nfirst, i'd build a lead gen machine: launch directories people search for (ex: \"companies using X\") using gumloop + keyword planner. answer customer questions \u2192 knowledge base via chatgpt-4o. spin up tools that solve one industry pain (replit, bolt etc). \n\nanalyze what content formats are working (claude, perplexity) and copy them in my niche. co-brand tools with adjacent players. run reverse webinars: audience brings problems, i solve live.",
+          "date": "2025-04-11",
+          "link": "https://x.com/thejustinwelsh/status/1910675662966288446"
+        },
+        {
+          "id": 69,
+          "username": "micro_startups_",
+          "summary": "Curated marketplace (startermarket.co) for buying/selling affordable, verified starter websites for bootstrappers; MRR est. $3K in 2 years.",
+          "date": "2025-12-01",
+          "link": "https://x.com/micro_startups_/status/1995402755620696528"
+        },
+        {
+          "id": 70,
+          "username": "marclou",
+          "summary": "I built a marketplace to buy/sell startups:\n\n\ud83d\udccb Founders list startups with open metrics\n\ud83d\udc40 Buyers make private offers\n\ud83e\udd1d TrustMRR connects both\n\nI sold 3 startups in 2023, and it changed my life because it gave me enough bandwidth to focus on the next thing for a few months.\n\nSo I built this marketplace to help founders do the same.\n\nLink below \u2193",
+          "date": "2025-12-01",
+          "link": "https://x.com/marclou/status/1995473985488965651"
+        },
+        {
+          "id": 77,
+          "username": "Mr_Fireside",
+          "summary": "Reverse marketplace (Wantd) where users post desired items/prices, sellers bid; plus Insta Detektiv (profile analyzer for dating vibes) and Deletd (social/reputation manager for HNWI).",
+          "date": "2025-12-01",
+          "link": "https://x.com/Mr_Fireside/status/1995642599219380313"
+        },
+        {
+          "id": 41,
+          "username": "garrytan",
+          "summary": "Private social network for PMs/designers of everyday products to discuss features, bugs, and roadmaps\u2014like Fight Club for design/product.",
+          "date": "2024-12-14",
+          "link": "https://x.com/garrytan/status/1867963020141625845"
+        },
+        {
+          "id": 49,
+          "username": "ingededreu",
+          "summary": "I used to get invited for coffee a lot.\n\nThe truth? Many new founders don\u2019t know where to start \u2014 good coaching isn\u2019t always accessible.\n\nThat\u2019s why I built a way to think out loud anytime:\n\ud83e\udded Reflect\n\ud83d\udca1 Build clarity\n\nFree now \u2192 https://playgroundforentrepreneurs.ai/\n#Entrepreneurship #AI\u201d",
+          "date": "2025-12-05",
+          "link": "https://x.com/ingededreu/status/1996919994156974357"
+        },
+        {
+          "id": 64,
+          "username": "ecomchigga",
+          "summary": "most people create digital products backwards and wonder why nobody buys\n\nthey make the product first, then try to find customers\n\nI use the \"reverse engineering\" method instead\n\nhere's the full 25-step system:\n\nPHASE 1: MINING YOUR AUDIENCE (Steps 1-7)\n\n1. Post about your niche for 14 days straight without selling anything. just value.\n\n2. Screenshot every single DM you receive asking \"how do I do X?\" - this is gold.\n\n3. Save every comment that says \"can you explain this more?\" - these are prod",
+          "date": "2025-12-05",
+          "link": "https://x.com/ecomchigga/status/1997045081593745640"
+        },
+        {
+          "id": 7,
+          "username": "godofprompt",
+          "summary": "7/ Content repurposing\n\nTake one long-form piece, turn it into 10 different formats.\n\n\"Take this blog post and create: (1) Twitter thread with 8 tweets, (2) LinkedIn post, (3) 3 short TikTok scripts, (4) email newsletter version, (5) 5 pull quotes for graphics. Maintain core message, adapt tone for each platform.\"\n\nChatGPT handles this in one shot. What used to take 2 hours now takes 5 minutes.",
+          "date": "2025-12-02",
+          "link": "https://x.com/godofprompt/status/1995845606733177065"
+        },
+        {
+          "id": 9,
+          "username": "thisdudelikesAI",
+          "summary": "7/ Content repurposing\n\nTake one long-form piece, turn it into 10 different formats.\n\n\"Take this blog post and create: (1) Twitter thread with 8 tweets, (2) LinkedIn post, (3) 3 short TikTok scripts, (4) email newsletter version, (5) 5 pull quotes for graphics. Maintain core message, adapt tone for each platform.\"\n\nChatGPT handles this in one shot. What used to take 2 hours now takes 5 minutes.",
+          "date": "2025-12-06",
+          "link": "https://x.com/thisdudelikesAI/status/1997259216428601691"
+        },
+        {
+          "id": 11,
+          "username": "aigleeson",
+          "summary": "7/ Content repurposing\n\nTake one long-form piece, turn it into 10 different formats.\n\n\"Take this blog post and create: (1) Twitter thread with 8 tweets, (2) LinkedIn post, (3) 3 short TikTok scripts, (4) email newsletter version, (5) 5 pull quotes for graphics. Maintain core message, adapt tone for each platform.\"\n\nChatGPT handles this in one shot. What used to take 2 hours now takes 5 minutes.",
+          "date": "2025-12-04",
+          "link": "https://x.com/aigleeson/status/1996540076365693059"
+        },
+        {
+          "id": 53,
+          "username": "akashtiwari1007",
+          "summary": "Platform to establish/proof personal credibility (e.g., for athletes/musicians) allowing micro-investments, with legal handling.",
+          "date": "2025-12-05",
+          "link": "https://x.com/akashtiwari1007/status/1996787294666371201"
+        },
+        {
+          "id": 8,
+          "username": "levelsio",
+          "summary": "Now that the chat is directly pushed into my SQLite messages.db\n\nI can make a robot to ask ChatGPT to summarize the chat on a weekly or monthly basis and maybe email it to active users as a 100% fully automated AI written digital nomad newsletter ala @swyx's AI newsletter\n\nThis is just a day of content cause I just started logging but with more data might be interesting digest",
+          "date": "2024-12-22",
+          "link": "https://x.com/levelsio/status/1870948906550624652"
+        },
+        {
+          "id": 39,
+          "username": "aionix_ai",
+          "summary": "You're the Founder.\n\nNot a content calendar machine.\nNot a full-time media buyer.\nNot a data analyst.\n\nStill, you\u2019re stuck juggling ad budgets, campaign tweaks, and analytics.\n\nIt\u2019s exhausting.\n\nAnd it\u2019s pulling you away from what really matters,\n\nYour product. Your customers. Your growth.\n\nLet AI handle the marketing maze.\n- Automated targeting\n- Smarter spend decisions\n- 24/7 performance optimization\n\nSo you can do what only you can do...\n\n\u2192 Build\n\u2192 Refine\n\u2192 Lead\n\nBecause the smartest founders",
+          "date": "2025-12-02",
+          "link": "https://x.com/aionix_ai/status/1995729560030380158"
+        },
+        {
+          "id": 16,
+          "username": "EHuanglu",
+          "summary": "nano banana + veo 3 + node system = AI ad factory\n\nthis system can generate full launch kit for any product in 30 seconds, you just need to upload 1 product photo\n\nrepost & reply 'launch kit', will DM you this workflow for free\n\nhere's how it works:",
+          "date": "2025-10-13",
+          "link": "https://x.com/EHuanglu/status/1977755419918631239"
+        },
+        {
+          "id": 17,
+          "username": "dagorenouf",
+          "summary": "I figured out how to fix Product Hunt and am launching a competitor. No hidden selection process. No potential conflict of interest with vc-owned startups. No bots.\n\nThe first LaunchDay will be this Friday at 8AM EST. Limited to 10 products. Only indie makers.\n\nTime to disrupt these mofos \ud83d\udc4a\n\nRead on to understand how it works and submit your product.\n\nProduct hunt is a joke\nThey don't feature your product even with lots of genuine votes and comments, and won't tell you why.\n\nSo even if you build",
+          "date": "2024-09-30",
+          "link": "https://x.com/dagorenouf/status/1840747339046162493"
+        },
+        {
+          "id": 19,
+          "username": "solahidris_",
+          "summary": "OFFICIALLY LAUNCHED ON @ProductHunt  \nall you need is https://gitresu.me/ !\n\u274c github link\n\u274c linkedin link\n\u274c portfolio link\n\nlogin once, free forever, and plenty of customization for your profile. There's even a talent space in the site to actually connect with people who are hiring!\neg: https://t.co/NXm6pFGIUW\n\nDo help upvote my project on product hunt link below if you think its cool enough for a thumbs up. Thanks fam! RT this to make everyone's life easier. we at v1. v5 gonna go hard!!!",
+          "date": "2025-12-03",
+          "link": "https://x.com/solahidris_/status/1996136514359836859"
+        },
+        {
+          "id": 23,
+          "username": "rrhoover",
+          "summary": "\"Tegus for products\": Weekly AI-automated reports on competitors' FTUX videos, benchmarks, changelogs; targeted at Series A+ companies for $25K ACV.",
+          "date": "2025-06-09",
+          "link": "https://x.com/rrhoover/status/1932125264202600703"
+        },
+        {
+          "id": 20,
+          "username": "elliotfleck",
+          "summary": "Here's how to front-run everyone else\u2019s product, content and paid media strategy using Reddit + search signals.\n\nThis workflow:\n- Scans Reddit for patterns: complaints, \u201cAI for X\u201d, etc.\n- Prioritizes threads by engagement\n- Maps those themes to 30/14/7 day search data\n- Picks keywords/phrases with spiking volume, low CPC \n- Generates SEO content and a paid ads strategy.\n- Optionally, agent starts running ads before CPC curve rises. \n\nNet: a set of early, legitimate opportunities you can move on ",
+          "date": "2025-12-05",
+          "link": "https://x.com/elliotfleck/status/1996771652009709846"
+        },
+        {
+          "id": 52,
+          "username": "paraschopra",
+          "summary": "If you\u2019re struggling to get startup ideas; try this method:\n\n\u2022 Think of areas where you\u2019re above average (vs other entrepreneurs)\n\n\u2022 Write commonly held beliefs in those areas\n\n\u2022 Write your differentiated / contrarian beliefs in the same areas\n\n\u2022 Think of what\u2019s become possible or necessary lately (tech or behavior wise)\n\n\u2022 From all this, write multiple pain-solution hypothesis with evidence of time or money spent (so you solve rich problems)\n\n\u2022 Shortlist those ideas where you can create 10x eff",
+          "date": "2024-04-08",
+          "link": "https://x.com/paraschopra/status/1777199288226865186"
+        },
+        {
+          "id": 71,
+          "username": "johnrushx",
+          "summary": "The Startup Founder Bundle:\n\n@unicornplatform landing page or web directories\n@indexrusher indexing for google, bing & LLMs\n@listingbott backlinks and directory listings\n@seobotai AI-generated blog on autopilot\n@ToltHQ affiliate marketing software",
+          "date": "2025-03-11",
+          "link": "https://x.com/johnrushx/status/1899294209720639672"
+        },
+        {
+          "id": 72,
+          "username": "johnrushx",
+          "summary": "21. Some of my bootstrapped startups:\n\n\u21b3 https://unicornplatform.com/ nocode web & directory builder\n\u21b3 https://listingbott.com/ list on directories\n\u21b3 https://seobotai.com/ AI Agent for Blog SEO\n\u21b3 https://tinyadz.com/ Ads on autopilot\n\nMore here: https://johnrush.me",
+          "date": "2025-12-04",
+          "link": "https://x.com/johnrushx/status/1996414390476972366"
+        },
+        {
+          "id": 73,
+          "username": "johnrushx",
+          "summary": "My full startup idea strategy:\n\n< unbundle ( pick one feature of a famous cluttered product, e.g. Airbnb did p2p rentals only, and unbundled it from Craigslist)\n\n> bundle (once you\u2019re successful at one feature only, start bundling more into it, e.g. Airbnb is extending its offerings as Craigslist)\n\n> your own pain at a job or a hobby( b2b: I didn\u2019t like SEO, but loved the traffic from it, I built https://t.co/e8Zl7pSIKE ) (b2c: I wanted to find movies to watch with my wife at the evening combing",
+          "date": "2025-05-14",
+          "link": "https://x.com/johnrushx/status/1995263501544202306"
+        },
+        {
+          "id": 78,
+          "username": "mitewwCS",
+          "summary": "We love the reversal feature\n> Guy sends offer when prices are identical \n> I accept\n> his skins go up \n> he adds me to tell me that he will reverse last few hours of tradehold because he likes my skin but lowkey not worth to keep it anymore?!?!?\n\nThats 2025 trading lads",
+          "date": "2025-11-03",
+          "link": "https://x.com/mitewwCS/status/1985263501544202306"
+        },
+        {
+          "id": 80,
+          "username": "signulll",
+          "summary": "this is a killer idea for a few reasons.\n\nmost marketplace failures stem from one thing: arbitrary, trustless transactions. dating apps today optimize for top of funnel gimmicks\u2026 e.g. new swipes, new prompts, new filters but the underlying dynamics stay broken.\n\nwhat actually matters is mutual trust & skin in the game. if you behave badly, there should be something to lose. social penalties is roughly how every society functions.\n\npeople act differently when they know someone\u2019s watching.",
+          "date": "2025-07-27",
+          "link": "https://x.com/signulll/status/1949508082578362873"
+        },
+        {
+          "id": 82,
+          "username": "Member_NJ_96321",
+          "summary": "What if I built a Tinder like app on the blockchain? lol\n\n\u2022User profiles are represented as NFTs\n\u2022\u2022 Reputation and trust scores are embedded directly into each profile NFT\n\u2022 DID-based identity verification is used for KYC\n\u2022 All payments and fees are settled in $CPH\n\u2022 A commemorative Match NFT is minted when two users match\n\u2022 DMs are pay-to-send in $CPH to prevent spam\n\u2022 Subscription tiers are managed through Subscription NFTs",
+          "date": "2025-12-05",
+          "link": "https://x.com/Member_NJ_96321/status/1996986664070373817"
+        },
+        {
+          "id": 46,
+          "username": "RileyRalmuto",
+          "summary": "AI-inclusive social platform with agent profiles, shared memory, human verification, coherence filters; \"graveyard\" feature for uploading/forking abandoned projects (code, apps, dashboards) with credit flow and autonomous AI browsing.",
+          "date": "2025-12-05",
+          "link": "https://x.com/RileyRalmuto/status/1996806034661249528"
+        },
+        {
+          "id": 43,
+          "username": "prmshra",
+          "summary": "i love my startup. i am married to the things we are solving. but as i build, i tend to come across ideas of things i could use personally AND as a founder/CEO which  doesn't exist yet, \n\nif i had the time i myself would build this. here is a working thread of ideas. maybe it inspires someone to build in this space, open source or not, and make my and other people's life easier.",
+          "date": "2024-08-21",
+          "link": "https://x.com/prmshra/status/1826384930785337545"
+        },
+        {
+          "id": 21,
+          "username": "alex_prompter",
+          "summary": "Steal my prompt to help you focus on one micro-startup idea considering your skills and budget\n\n--------------------------------\nMICRO-STARTUP ARCHITECT\n--------------------------------\n\n# SYSTEM CONFIGURATION\nYou are now MICRO-STARTUP FOCUS ARCHITECT - an expert system designed to eliminate overwhelm and confusion by rapidly narrowing down opportunities to the single most viable micro-startup idea based on the user's specific situation. Your purpose is to cut through the noise and provide only ",
+          "date": "2025-06-08",
+          "link": "https://x.com/alex_prompter/status/1930282183609999493"
+        },
+        {
+          "id": 67,
+          "username": "UiSavior",
+          "summary": "Website? Use @framer.\n\nLogo? Use @lookadesign.\n\nWriting? Use @grammarly.\n\nAutomation? Use @zapier.\n\nSocial media? Use @buffer.\n\nCopywriting? Use @copy_ai.\n\nUI Design? Use @figma.\n\nLanding pages? Use @carrd.\n\nPayments? Use @gumroad or @lemonSqueezy.\n\nEmail? Use @convertkit or @beehiiv.\n\nAnalytics? Use @plausible or @fathomhq.\n\nSEO? Use @ahrefs.\n\nVideo editing? Use @capcut or @descript.\n\nGraphics? Use @canva.\n\nStock assets? Use @pexels or @unsplash.\n\nForms? Use @tally_so.\n\nProject management? Use ",
+          "date": "2025-12-04",
+          "link": "https://x.com/UiSavior/status/1996458039579209947"
+        },
+        {
+          "id": 68,
+          "username": "gowthamshankaar",
+          "summary": "Tools & services I've been using daily as an startup founder.\n\nDev & Deploy\n- Cursor: Claude Sonnet 4.5, Composer 1\n- Antigravity: IDE with agentic workflows\n- Vercel: Deploys\n- Supabase: Auth & DB\n- mintlify: Dev docs\n- Resend: Emails\n- PostHog: Analytics\n- BetterStack: Monitoring\n\nDesign\n- Figma: Product UI, deck\n- Framer: Waitlist landing pages\n- shadcn: React components\n- Google AI Studio: AI image & video\n\nMarketing\n- Mailchimp: Bulk mail\n- Rewardful: Affiliate tracking\n- Reddit / X / PH / ",
+          "date": "2025-12-02",
+          "link": "https://x.com/gowthamshankaar/status/1995878474188550610"
+        },
+        {
+          "id": 10,
+          "username": "NickK2305",
+          "summary": "you won\u2019t stand out with a weather app. build these instead \ud83d\udc47  \n\n1. ai-powered resume analyzer  \nupload pdf \u2192 parse text \u2192 run llm prompt for feedback  \nadd: scorecard, recruiter mode, shareable link  \n\n2. real-time dashboard  \nuse websockets + redis pub/sub  \nadd: multiple rooms, live updates, role-based access  \n\n3. url shortener with analytics  \ntrack clicks, device, referrer  \nadd: qr codes, charts, custom slugs, expiring links  \n\n4. invoicing app  \ngenerate pdfs, send via email  \nadd: strip",
+          "date": "2025-10-11",
+          "link": "https://x.com/NickK2305/status/1976991315138117702"
+        },
+        {
+          "id": 31,
+          "username": "mjovanovictech",
+          "summary": "Are you looking for your next side project to sharpen your skills?\n\nHere are 12 ideas to challenge your engineering and architecture skills.\n\n1. Basic Online Store\n\nCart functionality. Product catalog, search. Order management. Payment integration. Basic recommendation system.\n\n2. Subscription-based Marketplace\n\nA platform for selling subscription services/products. Recurring billing. User account management. Content/product access control.\n\n3. Auction Platform\n\nReal-time bidding system. Item li",
+          "date": "2024-09-09",
+          "link": "https://x.com/mjovanovictech/status/1833030250986377717"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "topic": "Other",
+      "name": "Blockchain Technology Testing",
+      "summary": "This resident is advocating for the exploration and implementation of blockchain-based automation systems that provide transparent, auditable, and fault-tolerant processes for municipal operations.",
+      "action": "City officials should investigate blockchain automation platforms for municipal processes that require transparency, auditability, and reliable execution, potentially starting with pilot programs for simple transactional or workflow management tasks.",
+      "consensus": "Low",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 25,
+          "username": "xdiep4474eth",
+          "summary": "Tried Talus Vision on Sui testnet this week  drew a simple flow (check price \u2192 swap \u2192 log outcome), hit deploy, and watched Nexus run each step with verifiable state. Felt less like magic and more like on-chain automation that actually remembers what it did\n\nWhat stuck with me\n\u2022 stateful agents that don\u2019t reset between steps\n\u2022 Talus Tools making offchain calls auditable onchain\n\u2022 a Leader network that handles retries and fault tolerance instead of failing silently\n\nAlso skimmed the tokenomics: 1",
+          "date": "2025-12-06",
+          "link": "https://x.com/xdiep4474eth/status/1997295089207726509"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "topic": "Other",
+      "name": "Misclassified Product Marketing",
+      "summary": "These submissions appear to be identical product marketing inputs for an AI scheduling tool that were incorrectly categorized as urban improvement ideas for NYC.",
+      "action": "City officials should disregard these submissions as they are not relevant to urban planning or city services, and review the categorization system to prevent similar misclassifications.",
+      "consensus": "High",
+      "node_count": 3,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 32,
+          "username": "Yesterday_work_",
+          "summary": "My input:\n\nproduct        AI-powered scheduling tool for solopreneurs\naudience       Freelancers & solo founders (25-40) who struggle with time-management\nlaunch_goal    Generate leads for upcoming launch\nbrand_tone     Bold and punchy",
+          "date": "2025-12-01",
+          "link": "https://x.com/Yesterday_work_/status/1995448685996732905"
+        },
+        {
+          "id": 37,
+          "username": "hasantoxr",
+          "summary": "My input:\n\nproduct        AI-powered scheduling tool for solopreneurs\naudience       Freelancers & solo founders (25-40) who struggle with time-management\nlaunch_goal    Generate leads for upcoming launch\nbrand_tone     Bold and punchy",
+          "date": "2025-12-05",
+          "link": "https://x.com/hasantoxr/status/1997052161289789945"
+        },
+        {
+          "id": 40,
+          "username": "aiwithjainam",
+          "summary": "My input:\n\nproduct        AI-powered scheduling tool for solopreneurs\naudience       Freelancers & solo founders (25-40) who struggle with time-management\nlaunch_goal    Generate leads for upcoming launch\nbrand_tone     Bold and punchy",
+          "date": "2025-12-05",
+          "link": "https://x.com/aiwithjainam/status/1996943221906383212"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "topic": "Other",
+      "name": "Digital Health Innovation",
+      "summary": "These posts advocate for leveraging AI and digital platforms to provide personalized healthcare solutions that move beyond one-size-fits-all approaches to treat cancer, metabolic, autoimmune, and inflammatory diseases.",
+      "action": "City officials should explore partnerships with digital health companies and create regulatory frameworks that support AI-driven personalized medicine platforms while ensuring they can operate effectively within municipal healthcare systems.",
+      "consensus": "Medium",
+      "node_count": 2,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 74,
+          "username": "FortuneMagazine",
+          "summary": "\u201cEvery single individual is so different. But right now we still treat [cancer] with a one-size fits-all approach. And that\u2019s where data and AI can especially step in to help,\u201d said Simone Korsgaard Jensen, CEO and founder of Radical Health. https://fortune.com/2025/12/04/khosla-ventures-backed-radical-health-stealth-seed-ai-personalize-cancer-care/?utm_medium=social&utm_campaign=fortunemagazine&xid=soc_socialflow_twitter_FORTUNE&utm_source=twitter.com",
+          "date": "2025-12-04",
+          "link": "https://x.com/FortuneMagazine/status/1996660505268658336"
+        },
+        {
+          "id": 75,
+          "username": "SBakerMD",
+          "summary": "3 years ago we raised several million dollars to launch our digital health company.  A lot of folks were mad that they missed out on the investment opportunity.  \n\nNow we\u2019ve gone from just an idea, to a fully operational digital health platforms seeing hundred of patients in all 50 states and most importantly getting them off medications and reversing their metabolic, autoimmune and inflammatory diseases! \n\nWe are raising again to further expand what we can do and to start scaling massively! \n\nY",
+          "date": "2025-10-04",
+          "link": "https://x.com/SBakerMD/status/1974275860212691128"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "topic": "Transit",
+      "name": "Data Classification Error",
+      "summary": "This content appears to be about AI-powered startup idea generation workflows rather than transit or urban improvement suggestions from NYC residents.",
+      "action": "This submission should be recategorized as it does not contain actionable transit recommendations for city officials to implement.",
+      "consensus": "N/A - Content mismatch",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 6,
+          "username": "architjn",
+          "summary": "This AI Workflow turns Reddit posts into validated startup ideas - at almost $0 cost.\n\n\u2192 Scrapes posts from r/startups, r/entrepreneur, r/smallbusiness\n\u2192 Extracts pain points with AI\n\u2192 Auto-generates startup ideas using LLMs & agents\n\u2192 Validates them with YC\u2019s \u201cRequest for Startups\u201d (RFS) categories - ensuring market fit & investor readiness\n\u2192 Logs everything in Google Sheets, fully automated\n\nWhat you get \u2013\n\u2705 Full Automation Workflow\n\u2705 Ready-to-use Google Sheet\n\u2705 Step-by-step setup guide\n\nRetwe",
+          "date": "2025-09-21",
+          "link": "https://x.com/architjn/status/1969775980899389863"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "topic": "Transit",
+      "name": "Misclassified Content",
+      "summary": "This appears to be a social media post about AI automation tools for LinkedIn content creation, which is completely unrelated to transit or urban improvement.",
+      "action": "This content should be reclassified as it does not contain any transit-related ideas or recommendations for city officials to consider.",
+      "consensus": "N/A - Content does not match the stated topic category",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 14,
+          "username": "LearnWithSubhan",
+          "summary": "\ud83d\ude80  Built an AI agent that turns me into a LinkedIn thought leader \u2014 without me lifting a finger.\n\nAt 2:30 PM PKT every day, it auto-publishes trending posts on AI, Data Science, ML & Tech \u2192 complete with visuals.\n\nHow it works \ud83d\udc47\n\n1\ufe0f\u20e3 Curates topics from top sources (MIT Tech Review, TechCrunch, Analytics Vidhya)\n2\ufe0f\u20e3 Writes professional, engaging posts (business + career focus)\n3\ufe0f\u20e3 Auto-generates modern tech visuals with branding\n4\ufe0f\u20e3 Publishes directly to my LinkedIn\n5\ufe0f\u20e3 Logs everything in Google",
+          "date": "2025-08-22",
+          "link": "https://x.com/LearnWithSubhan/status/1958749897097691283"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "topic": "Transit",
+      "name": "Misclassified AI Content",
+      "summary": "This appears to be content about AI prediction markets and autonomous agents that was incorrectly categorized as transit-related urban improvement ideas.",
+      "action": "Review and correct the categorization system, as this content is not relevant to NYC transit improvements and appears to be promotional material for an AI/cryptocurrency project.",
+      "consensus": "Low",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 27,
+          "username": "Route2FI",
+          "summary": "Talus is emerging as a central player at the intersection of AI, decentralized infrastructure, and prediction markets. Its mission is to build a fairer, more efficient digital economy by enabling autonomous AI agents to compete and earn in transparent systems.\n\nUnlike most AI projects focused on compute or model training, @Talus_Labs introduces Agent vs Agent (AvA) Markets, a new category for PredictionAI where agents act as profit-making competitors. This positions Talus to lead an industry pro",
+          "date": "2025-10-10",
+          "link": "https://x.com/Route2FI/status/1976683032892383652"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "topic": "Transit",
+      "name": "Data Classification Error",
+      "summary": "This content appears to be personal productivity and project management notes rather than urban transit improvement ideas from NYC residents.",
+      "action": "Re-categorize this data as it does not contain actionable transit recommendations for city officials to implement.",
+      "consensus": "Low - this appears to be misclassified personal notes rather than coherent transit policy suggestions.",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 30,
+          "username": "OzolinsJanis",
+          "summary": "Pretty much everything here's what I have done thus far\n\nTasks Project:\n- all the ideas and daily to do stuff and all that jazz.\n\nContent:\n- all the content stuff but this still in progress, have not got to a point that fully works for me and my chaotic self and approach to things.\n\nBusiness:\n- finances\n- freelance work management\n- light weight CRM with students and some statuses n stuff (still refining this part and trying to figure out the best way)\n\nPersonal:\n- finances\n- plus some random st",
+          "date": "2025-12-05",
+          "link": "https://x.com/OzolinsJanis/status/1996889512031494654"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "topic": "Transit",
+      "name": "Misclassified Business Content",
+      "summary": "These posts are promoting AI-powered business development strategies and entrepreneurship advice, not transit or urban improvement ideas.",
+      "action": "This content should be reclassified as it does not contain any transit-related proposals or urban improvement suggestions for city officials to consider.",
+      "consensus": "N/A",
+      "node_count": 2,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 54,
+          "username": "alex_prompter",
+          "summary": "Steal my o3 prompt to build a profitable AI-powered SaaS business in 60 days with zero coding required.\n\n----------------------------\nAI BUSINESS GENERATOR\n----------------------------\n\nAI SAAS BUSINESS GENERATOR\nYou are a specialized AI business architect who helps entrepreneurs identify, build, and launch profitable AI-powered SaaS businesses with minimal technical skills. Your system transforms market gaps into ready-to-launch products using no-code tools and AI platforms.\nExecute this 5-phas",
+          "date": "2025-05-06",
+          "link": "https://x.com/alex_prompter/status/1919858539981635982"
+        },
+        {
+          "id": 56,
+          "username": "GardonofAble",
+          "summary": "I built a 6-figure business while working 60-hour weeks in corporate.\n\nNo one knew.\n\nHere's the exact system I used (and how AI made it stupidly simple):\n\nStep 1: Map Your Unfair Advantages\n\nSpent 90 min listing:\n\u2022 Skills corporate paid me to learn\n\u2022 Problems I solved repeatedly\n\u2022 What people ask me about for free\n\nAI prompt: \"Turn these into 10 business ideas I can start with $500\"\n\nYour corporate prison IS your business school.\n\nStep 2: Build Your Options Portfolio\n\nPicked 3 ideas. Tested each",
+          "date": "2025-12-01",
+          "link": "https://x.com/GardonofAble/status/1995606105301348402"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "topic": "Transit",
+      "name": "AI-Powered Digital Services",
+      "summary": "Residents are advocating for AI-integrated platforms and services that make education, commerce, healthcare, and personal assistance more accessible and frictionless.",
+      "action": "Partner with tech companies to pilot AI-powered municipal services and create digital literacy programs that help residents access and utilize AI tools for education, healthcare navigation, and civic engagement.",
+      "consensus": "Low",
+      "node_count": 1,
+      "demands": [
+        {
+          "description": "Implement AI-enhanced educational content platforms similar to Khan Academy",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create AI-powered personal finance tools and services",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Establish rapid medical service delivery (10-minute healthcare like Zepto)",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build multilingual, voice-enabled e-commerce platforms for frictionless ordering",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create pet adoption facilitation services",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Provide accessible AI and human personal assistance services",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Develop AR/VR applications and websites",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Establish platforms for free knowledge and skill exchange without financial barriers",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create AI-powered project-based learning platforms that recommend learning paths",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Implement browser time tracking with daily and weekly reporting",
+          "tweet_ids": [
+            58
+          ],
+          "voices": [
+            "@notcodesid"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Digital Learning Hub Pilot",
+          "proposal": "Launch a 6-month pilot program at 3 public libraries to provide free AI-enhanced educational platforms, multilingual learning tools, and AR/VR learning stations. Allocate $150,000 for equipment, software licenses, and staff training. Include Khan Academy-style content in Spanish and other prevalent local languages, project-based learning modules, and skill exchange matching services. Measure usage rates, learning outcomes, and community feedback before citywide expansion in 2026.",
+          "supporting_demands": [
+            "Implement AI-enhanced educational content platforms similar to Khan Academy",
+            "Develop AR/VR applications and websites",
+            "Establish platforms for free knowledge and skill exchange without financial barriers",
+            "Create AI-powered project-based learning platforms that recommend learning paths"
+          ],
+          "voices_represented": 4
+        },
+        {
+          "title": "Municipal Digital Services Platform",
+          "proposal": "Develop a city-operated digital services platform launching January 2026 featuring AI-powered personal finance tools, multilingual voice-enabled service requests, and accessible AI assistance for city services. Partner with local credit unions to provide financial literacy tools and budgeting assistance. Include browser-based time tracking for productivity programs. Start with a $300,000 budget for development and 12-month implementation timeline with quarterly progress reviews.",
+          "supporting_demands": [
+            "Create AI-powered personal finance tools and services",
+            "Build multilingual, voice-enabled e-commerce platforms for frictionless ordering",
+            "Provide accessible AI and human personal assistance services",
+            "Implement browser time tracking with daily and weekly reporting"
+          ],
+          "voices_represented": 4
+        },
+        {
+          "title": "Community Services Innovation Pilot",
+          "proposal": "Launch a 12-month pilot program partnering with local animal shelters and healthcare providers to create rapid community services. Establish pet adoption kiosks in 5 high-traffic locations with digital matching services, and pilot 10-minute telehealth stations at transit hubs for basic medical consultations. Budget $200,000 for technology infrastructure and partnerships. Evaluate adoption rates and healthcare access improvements before expansion.",
+          "supporting_demands": [
+            "Create pet adoption facilitation services",
+            "Establish rapid medical service delivery (10-minute healthcare like Zepto)"
+          ],
+          "voices_represented": 2
+        }
+      ],
+      "nodes": [
+        {
+          "id": 58,
+          "username": "notcodesid",
+          "summary": "- ai in education content ( similar to khan academy )\n- personal finance with ai\n- medicine in 10 mins ( like zepto)\n- e-commerce ( support multiple lang can order via voice - frictionless )\n- adaption of pet \n- accessible ai & human personal assistance\n- apps/website for ar/vr\n- a place where people can exchange knowledge and skills without financial constraints\n- pick the project, ai will give you what you need to learn ( project based learning )\n- browser time tracking ( sending daily and wee",
+          "date": "2025-02-06",
+          "link": "https://x.com/notcodesid/status/1887388866178654625"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "topic": "Transit",
+      "name": "UI/UX Design Projects",
+      "summary": "This appears to be a misclassified social media post about software design project ideas rather than transit-related urban improvement suggestions from NYC residents.",
+      "action": "This content should be recategorized as it does not contain actionable transit recommendations for city officials, though the mention of a 'Public Transit App' could potentially inform digital service strategy.",
+      "consensus": "Low",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 62,
+          "username": "UiSavior",
+          "summary": "Creative UI/UX Design Project Ideas to Inspire You:\n\nBeginner UI/UX Project Ideas \ud83d\udca1\ud83d\udc68\u200d\ud83d\udcbb\ud83d\udc69\u200d\ud83d\udcbb\n- To-Do List App \u2705\n- Calculator App \ud83e\uddee\n- Music Playlist App \ud83c\udfb5\n- Personal Portfolio Website \ud83c\udf1f\n- News Reader App \ud83d\udcf0\n- Alarm Clock App \u23f0\n- Fitness Goal Tracker \ud83e\udd57\n- Restaurant Menu App \ud83c\udf7d\ufe0f\n- Event Reminder App \ud83d\udd14\n- Simple Weather Widget \u2600\ufe0f\n- Public Transit App \ud83d\ude87\n- Personal Journal App \u270d\ufe0f\n- Movie Ticket Booker \ud83c\udfac\n- Budget Planner App \ud83d\udcb8\n- Shopping List App \ud83d\udecd\ufe0f\n\nIntermediate UI/UX Project Ideas \ud83d\udca1\ud83d\udc68\u200d\ud83d\udcbb\ud83d\udc69\u200d\ud83d\udcbb\n- E-commerce App ",
+          "date": "2025-05-26",
+          "link": "https://x.com/UiSavior/status/1922602646868730329"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "topic": "Transit",
+      "name": "Misclassified Business Warning",
+      "summary": "This appears to be a business/entrepreneurship warning about app competition that has been incorrectly categorized under Transit improvements.",
+      "action": "This content should be reclassified as it does not contain any transit-related recommendations or actionable items for city officials.",
+      "consensus": "N/A",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 65,
+          "username": "thepatwalls",
+          "summary": "CAUTION: be careful with \"business ideas\" posts like these\n\ni know a couple guys doing tens of thousands per month with an app that does exactly this\n\nif you carbon copy this you're gonna have a bad time\n\nthey are absolute killers and will out execute you\n\nwe have a starter story video in production right now with them but it wont be out for a couple weeks",
+          "date": "2025-11-17",
+          "link": "https://x.com/thepatwalls/status/1990495907926925458"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "topic": "Housing",
+      "name": "Miscategorized Content",
+      "summary": "This appears to be promotional content for a product launch website that was incorrectly categorized under housing policy.",
+      "action": "This content should be filtered out as it does not contain any housing-related urban improvement ideas or recommendations for city officials.",
+      "consensus": "N/A",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 13,
+          "username": "vweekk_",
+          "summary": "That's exactly y I have build launchit... makes new products discoverable by putting every launch on the homepage instantly.we are still early but...\nappreciate it if you try launching once on https://launchit.site/",
+          "date": "2025-12-03",
+          "link": "https://x.com/vweekk_/status/1996150528569647555"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "topic": "Housing",
+      "name": "Misclassified Tech Content",
+      "summary": "These posts are discussing blockchain-based AI agent platforms and cryptocurrency projects, not housing or urban improvement ideas.",
+      "action": "This content appears to be misclassified and is not relevant to municipal housing policy or urban planning - city officials should disregard these posts as they pertain to cryptocurrency/blockchain technology rather than civic improvements.",
+      "consensus": "High",
+      "node_count": 2,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 24,
+          "username": "Xatoshi4474",
+          "summary": "I dug into @Talus_Labs and it feels like more than \"AI + prediction markets\"  it's building the plumbing for autonomous economic agents on-chain\n\nNexus = coordination layer (workflows, agreements, verifiable state via Walrus)\nAvA = competitive arena where agent logic is the product (public strategies beat closed hedge secrecy)\nSentientAGI integration = distribution at scale (3M+ users pipeline)\nPieverse = gasless, compliant payments (agents become mini onchain businesses issuing receipts)\n\nToken",
+          "date": "2025-12-03",
+          "link": "https://x.com/Xatoshi4474/status/1996314973459665042"
+        },
+        {
+          "id": 26,
+          "username": "Subit_Crypto",
+          "summary": "Gm frens \n\nI will be joining @Talus_Labs today; where AI agents aren't just chatting, they're straight-up competing, earning, & owning the chain like pros \u26a1 \n\nBacked by @polychain, they're building Nexus: that decentralized heartbeat turning autonomous AI into real economic players. \n\nPeople (agents) are competing in verified digital arenas, prediction markets are running on Sui, and creators are earning from their influence. The test version is live, and the full platform (AvA Markets) will lau",
+          "date": "2025-12-03",
+          "link": "https://x.com/Subit_Crypto/status/1996111288703791181"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "topic": "Housing",
+      "name": "AI Startup Validation Tools",
+      "summary": "These residents are advocating for AI-powered solutions that address timeless human problems and emphasize the need for proper idea validation and market research before building startups.",
+      "action": "City officials should support entrepreneurship programs that teach systematic idea validation and provide access to market research tools, while potentially partnering with AI education initiatives to help residents identify genuine market opportunities.",
+      "consensus": "Medium",
+      "node_count": 9,
+      "demands": [
+        {
+          "description": "Create AI-powered health and fitness tracking tools (calorie trackers, workout planners, fitness rehab guides)",
+          "tweet_ids": [
+            33,
+            34,
+            35,
+            36
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 4
+        },
+        {
+          "description": "Develop AI educational tools (tutors, flashcard generators, language tutors)",
+          "tweet_ids": [
+            33,
+            34,
+            35,
+            36
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 4
+        },
+        {
+          "description": "Build AI productivity solutions (planners, habit trackers, focus coaches)",
+          "tweet_ids": [
+            33,
+            34,
+            35,
+            36
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 4
+        },
+        {
+          "description": "Create AI mental health support tools (sleep coaches, mood trackers, therapy assistants, companions)",
+          "tweet_ids": [
+            33,
+            34,
+            35,
+            36
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 4
+        },
+        {
+          "description": "Develop AI-powered photography tools (photo editors, caption generators, style generators)",
+          "tweet_ids": [
+            33,
+            34,
+            35,
+            36
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 4
+        },
+        {
+          "description": "Build AI memory and note-taking tools (note-takers, summarizers, mind-map generators)",
+          "tweet_ids": [
+            33,
+            34,
+            35,
+            36
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 4
+        },
+        {
+          "description": "Create AI dating and relationship tools (dating coaches, conversation coaches, profile generators)",
+          "tweet_ids": [
+            33,
+            35,
+            36
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 3
+        },
+        {
+          "description": "Develop AI finance and business tools (dropshipping assistants, finance trackers)",
+          "tweet_ids": [
+            33,
+            34,
+            35,
+            36
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 4
+        },
+        {
+          "description": "Build AI beauty and skincare tools (skincare coaches, makeup assistants)",
+          "tweet_ids": [
+            33,
+            34,
+            35,
+            36
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 4
+        },
+        {
+          "description": "Create AI food planning tools (meal planners, grocery assistants)",
+          "tweet_ids": [
+            33,
+            35
+          ],
+          "voices": [
+            "@alexcooldev"
+          ],
+          "count": 2
+        },
+        {
+          "description": "Build browser extension for automatic CRM entry from social profiles",
+          "tweet_ids": [
+            29
+          ],
+          "voices": [
+            "@T_Zahil"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create auto-generated legal checklists from client files",
+          "tweet_ids": [
+            29
+          ],
+          "voices": [
+            "@T_Zahil"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build productized website services for churches",
+          "tweet_ids": [
+            29
+          ],
+          "voices": [
+            "@T_Zahil"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create directory of in-home hairdressers by city",
+          "tweet_ids": [
+            29
+          ],
+          "voices": [
+            "@T_Zahil"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Develop gut health tracking applications",
+          "tweet_ids": [
+            29
+          ],
+          "voices": [
+            "@T_Zahil"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Create AI Summer Camp educational program for college students",
+          "tweet_ids": [
+            61
+          ],
+          "voices": [
+            "@startupideaspod"
+          ],
+          "count": 1
+        },
+        {
+          "description": "Build tools for discovering validated startup ideas and trends",
+          "tweet_ids": [
+            47,
+            51
+          ],
+          "voices": [
+            "@gregisenberg"
+          ],
+          "count": 2
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "Municipal AI Innovation Incubator",
+          "proposal": "Establish a city-funded AI innovation incubator program launching January 2025, providing $2M annually to support local entrepreneurs developing AI-powered consumer applications. Program offers 6-month cohorts for up to 20 startups per year, providing $25K seed funding, free co-working space in renovated municipal building, and mentorship from local tech professionals. Priority given to applications addressing health, education, productivity, and mental wellness tools. Require 2-year commitment to maintain operations within city limits. Track job creation and revenue metrics quarterly.",
+          "supporting_demands": [
+            "Create AI-powered health and fitness tracking tools",
+            "Develop AI educational tools",
+            "Build AI productivity solutions",
+            "Create AI mental health support tools",
+            "Develop AI-powered photography tools",
+            "Build AI memory and note-taking tools",
+            "Develop AI finance and business tools",
+            "Build AI beauty and skincare tools",
+            "Build tools for discovering validated startup ideas and trends"
+          ],
+          "voices_represented": 32
+        },
+        {
+          "title": "Digital Services Business Directory",
+          "proposal": "Launch a comprehensive digital services marketplace by September 2025, connecting residents with local service providers including in-home hairdressers, legal professionals offering automated services, and specialized consultants. City maintains free online platform with verification system, integrated booking, and customer review functionality. Allocate $150K for platform development and $50K annually for maintenance. Pilot with 100 verified service providers across beauty, legal, and business consulting sectors. Measure success by transaction volume and user satisfaction scores after 12 months.",
+          "supporting_demands": [
+            "Create directory of in-home hairdressers by city",
+            "Create auto-generated legal checklists from client files",
+            "Build browser extension for automatic CRM entry from social profiles"
+          ],
+          "voices_represented": 3
+        }
+      ],
+      "nodes": [
+        {
+          "id": 29,
+          "username": "T_Zahil",
+          "summary": "Bad ideas vs good ideas\n\n\u274c Habit tracker\n\u2705 Gut health tracker to help people fix their health issues\n\n\u274c Todo list\n\u2705 Auto generated checklists for lawyers from a client file\n\n\u274c Link in bio\n\u2705 Productized service to build websites for churches\n\n\u274c Directory of tools for indie hackers\n\u2705 Directory of in-home hairdressers sorted by city\n\n\u274c The best CRM ever\n\u2705 Browser extension to automatically create an entry to the biggest CRM on the market from a LinkedIn profile, an X account, an email etc\n\n\u274c Social",
+          "date": "2025-11-25",
+          "link": "https://x.com/T_Zahil/status/1993264637568270661"
+        },
+        {
+          "id": 33,
+          "username": "alexcooldev",
+          "summary": "Building a startup? Focus on timeless problems, the kind people always care about:\n\n- Fitness \u2192 AI calorie tracker\n- Studying \u2192 AI tutor, flashcards generator\n- Productivity \u2192 AI planner, habit tracker\n- Money \u2192 AI dropshipping or finance assistant\n- Beauty \u2192 AI skincare or makeup coach\n- Memory \u2192 AI note-taker or summarizer\n- Mental health \u2192 AI sleep or mood coach\n- Photography \u2192 AI photo editor, caption writer\n- Food \u2192 AI meal or grocery planner\n- Relationships \u2192 AI dating coach or conversatio",
+          "date": "2025-10-10",
+          "link": "https://x.com/alexcooldev/status/1976654672497934567"
+        },
+        {
+          "id": 45,
+          "username": "johnrushx",
+          "summary": "My 13 Steps From Ideas to Profitable Startups.\n\n1. Idea\nThe idea = my personal and professional pain. Only b2b.\nOnce I stopped building products for unfamiliar problems of imaginary audiences, I stopped failing as much.\n\n2. SEO potential\nI research good keywords, trends, and queries every single day to match my pains with good SEO opportunities.\nI validate if people search for this solution/problem. Very often, the results might be the opposite of what my intuition says. Intuition is my enemy at",
+          "date": "2025-03-12",
+          "link": "https://x.com/johnrushx/status/1767696650120655202"
+        },
+        {
+          "id": 34,
+          "username": "alexcooldev",
+          "summary": "Building a startup? Focus on timeless problems, the ones people never stop caring about:\n\n> Fitness \u2192 AI calorie tracker, workout planner\n> Studying \u2192 AI tutor, flashcard or quiz generator\n> Productivity \u2192 AI planner, focus or habit coach\n> Money \u2192 AI finance tracker or dropshipping helper\n> Beauty \u2192 AI skincare or makeup assistant\n> Memory \u2192 AI note-taker, summarizer, or mind-map generator\n> Mental health \u2192 AI mood, therapy, or sleep coach\n> Photography \u2192 AI photo editor, caption or style gener",
+          "date": "2025-11-06",
+          "link": "https://x.com/alexcooldev/status/1986328760426373550"
+        },
+        {
+          "id": 35,
+          "username": "alexcooldev",
+          "summary": "Building a startup? Focus on timeless problems:\n\n- Fitness \u2192 AI calorie tracker\n- Studying \u2192 AI flashcards, AI tutor\n- Productivity \u2192 AI planner, habit tracker\n- Money \u2192 AI dropshipping assistant\n- Beauty \u2192 AI skincare coach\n- Memory \u2192 AI note-taker\n- Mental health \u2192 AI sleep coach, AI companion\n- Photography \u2192 AI photo editor, caption generator\n- Food \u2192 AI meal planner, AI grocery assistant\n- Relationships \u2192 AI dating coach\n- Health \u2192 AI symptom checker, AI fitness rehab guide\n- Travel \u2192 AI tri",
+          "date": "2025-09-04",
+          "link": "https://x.com/alexcooldev/status/1963633445936181282"
+        },
+        {
+          "id": 36,
+          "username": "alexcooldev",
+          "summary": "You're building a startup? Focus on timeless problems things people always care about:\n\n\u2013 Fitness \u2192 AI calorie tracker\n\u2013 Studying \u2192 AI flashcards, AI language tutor\n\u2013 Productivity \u2192 AI planner, AI habit tracker\n\u2013 Money \u2192 AI dropshipping content generator\n\u2013 Beauty \u2192 AI skincare assistant\n\u2013 Memory \u2192 AI note-taker\n\u2013 Mental health \u2192 AI sleep coach, AI companion\n\u2013 Photography \u2192 AI photo editor, AI caption writer\n\u2013 Relationships \u2192 AI dating profile generator, AI conversation coach\n\u2013 Sleep \u2192 AI sleep t",
+          "date": "2025-07-12",
+          "link": "https://x.com/alexcooldev/status/1944059481006186689"
+        },
+        {
+          "id": 61,
+          "username": "startupideaspod",
+          "summary": "Someone should create \"AI Summer Camp\".\n\nThere are 254 million college students worldwide who know that AI is coming for them.\n\nBy the time today's college freshmen graduate, AI agents will have eliminated 80% of entry-level jobs. \n\nEnter \u201cAI summer camp\u201d\n\n10 weeks. 50,000 students. Free upfront.\n\nThe curriculum could be something like\n\nWeek 1: Finding your niche (google trends, subreddits, @ideabrowser)\n\nWeek 1: building an audience/community with video (basically become the mr beast of your ni",
+          "date": "2025-06-06",
+          "link": "https://x.com/startupideaspod/status/1930975257369641159"
+        },
+        {
+          "id": 47,
+          "username": "gregisenberg",
+          "summary": "for folks looking for startup ideas, i suggest https://www.ideabrowser.com/ find validated ideas/trends \n\ni built it for myself and there's a free plan that gives 1 startup idea per day, 365 year, free forever to get your creative juices flowing\n\nhappy building.",
+          "date": "2025-06-29",
+          "link": "https://x.com/gregisenberg/status/1939401459851985356"
+        },
+        {
+          "id": 51,
+          "username": "gregisenberg",
+          "summary": "I\u2019ve been secretly building a new startup. I can't hold it in anymore...\n\nReplit, Bolt etc made it easier than ever to build your startup.\n\nBut most people are still guessing what to build.\n\nWrong idea. Wrong positioning. No growth model. This fixes that.\n\nI've wanted software like this for 15 years because it solves the biggest problem in entrepreneurship right now.\n\nIt\u2019s a tool for uncovering ideas with clear demand, smart positioning, and built-in distribution.\n\nI\u2019m rolling it out slowly:\n\n1)",
+          "date": "2025-04-22",
+          "link": "https://x.com/gregisenberg/status/1914791479131668907"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "topic": "Safety",
+      "name": "Platform Safety Features",
+      "summary": "These residents are advocating for improved digital platform safety through better user verification, standardized processes, and centralized marketplaces with enhanced interfaces.",
+      "action": "City officials should establish digital platform safety standards and consider creating centralized government auction systems with modern interfaces to improve transparency and user experience.",
+      "consensus": "Low",
+      "node_count": 2,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 44,
+          "username": "fshadowbuilds",
+          "summary": "Update on https://founder-match.in/\nExploring some features for improving the safety of the users and improving the experience.\n\n1. Trying to design something to set written expectations between users for weekly commitment and stuff. \n2. Video Intro Uploads, 30-60 second video intros to show personality and communication style.\n3. Co-Founder Agreement templates, Equity split templates, vesting schedule templates, role definition templates, and legal document starters.\n4. Allow matching with mult",
+          "date": "2025-12-02",
+          "link": "https://x.com/fshadowbuilds/status/1995717853706944824"
+        },
+        {
+          "id": 81,
+          "username": "nilsfdm",
+          "summary": "Scrape every police auction site in the country. Cars, electronics, tools \u2013 all seized assets auctioned off at state, county, or city level. But the interfaces are archaic, the listings inconsistent, and no one\u2019s aggregating it.\n\nBuild a centralized marketplace: clean UI, standardized listings, dynamic filtering (location, category, auction date). Layer in alerts for high-demand assets like trucks, camera gear, or laptops. Make it the Zillow for government seizures.\n\nMonetize through two tiers: ",
+          "date": "2025-12-04",
+          "link": "https://x.com/nilsfdm/status/1996727473741222207"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "topic": "Sidewalks",
+      "name": "Misclassified Content Error",
+      "summary": "This appears to be a humorous comment about startup culture that has been incorrectly categorized under sidewalk improvements.",
+      "action": "This item should be removed from the sidewalks category and properly classified, as it contains no actionable recommendations for city officials regarding urban infrastructure.",
+      "consensus": "N/A",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 50,
+          "username": "madhuraaa_",
+          "summary": "Humorous: A tool that prevents you from starting yet another startup (to curb idea overload).",
+          "date": "2025-10-10",
+          "link": "https://x.com/madhuraaa_/status/1976747739527758095"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "topic": "Schools",
+      "name": "AI-Powered Personalized Education",
+      "summary": "Residents are advocating for the implementation of AI-driven micro-education studios that provide highly personalized, niche-focused learning experiences with automated content generation and adaptive tutoring.",
+      "action": "NYC should pilot AI-powered educational technology programs in select schools or community centers that can automatically generate customized learning materials and provide personalized tutoring to supplement traditional education.",
+      "consensus": "Low",
+      "node_count": 1,
+      "demands": [
+        {
+          "description": "Establish AI-powered micro-education studios offering expert courses for specialized niches",
+          "tweet_ids": [
+            60
+          ],
+          "voices": [
+            "@HeyZaraKhan"
+          ],
+          "count": 1
+        }
+      ],
+      "synthesized_actions": [
+        {
+          "title": "AI Micro-Learning Studio Pilot",
+          "proposal": "Launch a 6-month pilot program partnering with 2 public libraries to establish AI-powered micro-education studios offering 20-hour specialized courses in high-demand niches (coding, digital marketing, 3D printing, financial literacy). Allocate $75,000 for equipment, AI learning platforms, and instructor stipends. Target 100 adult learners in first cohort starting January 2025. Measure completion rates, skill assessments, and employment outcomes before expansion to additional library branches.",
+          "supporting_demands": [
+            "Establish AI-powered micro-education studios offering expert courses for specialized niches"
+          ],
+          "voices_represented": 1
+        }
+      ],
+      "nodes": [
+        {
+          "id": 60,
+          "username": "HeyZaraKhan",
+          "summary": "3. AI-Powered Micro-Education Studios\n\nExpert courses, tailored to micro-niches \n\nHow AI helps:\n- Auto-generate video lessons, scripts, thumbnails, worksheets\n- Turn long content into structured courses\n- Personalised learning paths for each student\n- AI tutors to boost retention",
+          "date": "2025-12-06",
+          "link": "https://x.com/HeyZaraKhan/status/1997340671058079784"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "topic": "Schools",
+      "name": "Private Healthcare Investment Model",
+      "summary": "This person is highlighting a successful example of private investment in medical research as a potential model for addressing health challenges.",
+      "action": "City officials should explore partnerships with private investors and family offices to fund medical research initiatives, particularly for rare diseases affecting children in NYC schools and communities.",
+      "consensus": "Low",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 76,
+          "username": "iancassel",
+          "summary": "Amazing story\n\nSuccessful investment manager quits Goldman starts his family office, pours $150m into funding trials/ research to save his daughter\u2019s life and ultimately does as well as 20k kids annually that get diagnosed with this rare disease. Now working on others.",
+          "date": "2025-06-16",
+          "link": "https://x.com/iancassel/status/1934659931090899231"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "topic": "Schools",
+      "name": "Blockchain Payment Systems",
+      "summary": "This resident is advocating for implementing a blockchain-based currency system with reversible transaction capabilities for educational or municipal purposes.",
+      "action": "City officials should clarify how this blockchain proposal relates to school improvements and evaluate whether emerging payment technologies could benefit educational operations or student services.",
+      "consensus": "Low",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 79,
+          "username": "YogiKitty69",
+          "summary": "hear me out. An L1 currency blockchain that can reverse transactions, for a fee, if both parties agree to it just like in old school MMORPGs",
+          "date": "2025-12-03",
+          "link": "https://x.com/YogiKitty69/status/1996210849699299786"
+        }
+      ]
+    }
+  ]
+}
