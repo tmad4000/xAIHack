@@ -889,6 +889,186 @@
             transform: translateY(0);
         }
 
+        /* Markdown Preview Overlay */
+        .markdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .markdown-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .markdown-modal {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .markdown-overlay.active .markdown-modal {
+            transform: scale(1);
+        }
+
+        .markdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .markdown-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f0f6fc;
+        }
+
+        .markdown-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .markdown-download-btn {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #e07a5f, #c96a52);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .markdown-download-btn:hover {
+            background: linear-gradient(135deg, #e8907a, #e07a5f);
+            transform: translateY(-1px);
+        }
+
+        .markdown-close-btn {
+            padding: 8px 12px;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: #8b949e;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .markdown-close-btn:hover {
+            background: #30363d;
+            color: #f0f6fc;
+        }
+
+        .markdown-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+        }
+
+        .markdown-content h1 {
+            font-size: 1.8rem;
+            color: #f0f6fc;
+            margin: 0 0 16px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .markdown-content h2 {
+            font-size: 1.3rem;
+            color: #e6edf3;
+            margin: 24px 0 12px 0;
+        }
+
+        .markdown-content h3 {
+            font-size: 1.1rem;
+            color: #e07a5f;
+            margin: 20px 0 10px 0;
+        }
+
+        .markdown-content ul {
+            margin: 8px 0;
+            padding-left: 24px;
+        }
+
+        .markdown-content li {
+            margin: 6px 0;
+            color: #8b949e;
+        }
+
+        .markdown-content strong {
+            color: #f0f6fc;
+        }
+
+        /* Empty/Loading states for clusters */
+        .cluster-empty-state {
+            padding: 40px 20px;
+            text-align: center;
+            color: #8b949e;
+        }
+
+        .cluster-empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .cluster-empty-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #c9d1d9;
+            margin-bottom: 8px;
+        }
+
+        .cluster-empty-description {
+            font-size: 0.9rem;
+            color: #6e7681;
+            max-width: 280px;
+            margin: 0 auto 16px;
+            line-height: 1.5;
+        }
+
+        .cluster-run-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #e07a5f, #c96a52);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cluster-run-btn:hover {
+            background: linear-gradient(135deg, #e8907a, #e07a5f);
+            transform: translateY(-1px);
+        }
+
         /* Project Selector Styles */
         .project-selector {
             border-bottom: 1px solid #21262d;
@@ -1608,7 +1788,7 @@
 
         .grok-search-box {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             gap: 12px;
             background: rgba(30, 42, 56, 0.5);
             border: none;
@@ -1627,6 +1807,8 @@
             flex-shrink: 0;
             display: flex;
             align-items: center;
+            align-self: flex-start;
+            margin-top: 4px;
         }
 
         .grok-search-box textarea {
@@ -2393,6 +2575,20 @@
             <div class="export-section">
                 <button class="export-btn" id="exportBtn">Export Consolidated Report</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Markdown Preview Overlay -->
+    <div class="markdown-overlay" id="markdownOverlay">
+        <div class="markdown-modal">
+            <div class="markdown-header">
+                <div class="markdown-title">Report Preview</div>
+                <div class="markdown-actions">
+                    <button class="markdown-download-btn" id="markdownDownloadBtn">Download .md</button>
+                    <button class="markdown-close-btn" id="markdownCloseBtn">Close</button>
+                </div>
+            </div>
+            <div class="markdown-content" id="markdownContent"></div>
         </div>
     </div>
 
@@ -3565,6 +3761,51 @@
         function renderClusters() {
             const container = document.getElementById('clusterList');
 
+            // Check for different states
+            if (!clusters || clusters.length === 0) {
+                // Check if we have nodes but no clusters
+                const hasNodes = graphData && graphData.nodes && graphData.nodes.length > 0;
+                const projectInfo = projectsList.find(p => p.name === currentProject);
+                const hasClusters = projectInfo?.has_clusters || enhancedClusters;
+
+                if (!hasNodes) {
+                    // No data at all
+                    container.innerHTML = `
+                        <div class="cluster-empty-state">
+                            <div class="cluster-empty-icon">📭</div>
+                            <div class="cluster-empty-title">No Data Yet</div>
+                            <div class="cluster-empty-description">
+                                Add ideas using Grok Search or import a CSV to get started.
+                            </div>
+                        </div>
+                    `;
+                } else if (!hasClusters) {
+                    // Has data, clustering hasn't been run
+                    container.innerHTML = `
+                        <div class="cluster-empty-state">
+                            <div class="cluster-empty-icon">🔮</div>
+                            <div class="cluster-empty-title">Ready for Clustering</div>
+                            <div class="cluster-empty-description">
+                                You have ${graphData.nodes.length} idea${graphData.nodes.length === 1 ? '' : 's'}. Run clustering to discover themes and connections.
+                            </div>
+                            <button class="cluster-run-btn" onclick="runCurrentProjectClustering()">Run Clustering</button>
+                        </div>
+                    `;
+                } else {
+                    // Clustering ran but found no clusters (rare case)
+                    container.innerHTML = `
+                        <div class="cluster-empty-state">
+                            <div class="cluster-empty-icon">🤔</div>
+                            <div class="cluster-empty-title">No Clusters Found</div>
+                            <div class="cluster-empty-description">
+                                The ideas couldn't be grouped into clusters. Try adding more related ideas.
+                            </div>
+                        </div>
+                    `;
+                }
+                return;
+            }
+
             // Sort by node count descending
             const sortedClusters = [...clusters].sort((a, b) => b.nodes.length - a.nodes.length);
 
@@ -4562,49 +4803,107 @@
             });
         }
 
-        // Export functionality
+        // Export functionality - show preview overlay
+        let currentReportMarkdown = '';
+
         document.getElementById('exportBtn').addEventListener('click', () => {
             const report = generateReport();
-            downloadReport(report);
+            currentReportMarkdown = report;
+            showMarkdownPreview(report);
         });
 
         function generateReport() {
-            let report = `# NYC Urban Ideas - Consolidated Report\n`;
+            const projectInfo = projectsList.find(p => p.name === currentProject);
+            const projectName = projectInfo ? projectInfo.display_name : 'Urban Ideas';
+
+            let report = `# ${projectName} - Consolidated Report\n`;
             report += `Generated: ${new Date().toLocaleDateString()}\n\n`;
             report += `## Summary\n`;
             report += `- Total Ideas: ${graphData.nodes.length}\n`;
             report += `- Total Connections: ${graphData.edges.length}\n`;
             report += `- Identified Clusters: ${clusters.length}\n\n`;
 
-            report += `## Actionable Clusters\n\n`;
+            if (clusters.length > 0) {
+                report += `## Actionable Clusters\n\n`;
 
-            clusters.sort((a, b) => b.nodes.length - a.nodes.length).forEach(cluster => {
-                report += `### ${cluster.name} (${cluster.nodes.length} supporters)\n\n`;
-                report += `**Topic:** ${cluster.topic}\n\n`;
-                report += `**Ideas:**\n`;
-                cluster.nodes.forEach(node => {
-                    report += `- @${node.username}: ${node.summary || 'No summary'}\n`;
+                [...clusters].sort((a, b) => b.nodes.length - a.nodes.length).forEach(cluster => {
+                    report += `### ${cluster.name} (${cluster.nodes.length} supporters)\n\n`;
+                    report += `**Topic:** ${cluster.topic}\n\n`;
+                    report += `**Ideas:**\n`;
+                    cluster.nodes.forEach(node => {
+                        report += `- @${node.username}: ${node.summary || 'No summary'}\n`;
+                    });
+                    report += `\n`;
                 });
-                report += `\n`;
-            });
+            }
 
             report += `## All Ideas by Date\n\n`;
-            graphData.nodes.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(node => {
+            [...graphData.nodes].sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(node => {
                 report += `- [${node.date}] @${node.username}: ${node.summary || 'No summary'}\n`;
             });
 
             return report;
         }
 
+        function markdownToHtml(markdown) {
+            // Simple markdown to HTML conversion
+            let html = markdown
+                // Escape HTML
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                // Headers
+                .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+                .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+                .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+                // Bold
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                // List items
+                .replace(/^- (.+)$/gm, '<li>$1</li>')
+                // Paragraphs (lines that aren't already processed)
+                .replace(/^(?!<[h|l])(.+)$/gm, '<p>$1</p>')
+                // Clean up empty paragraphs
+                .replace(/<p><\/p>/g, '')
+                // Wrap consecutive list items
+                .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+
+            return html;
+        }
+
+        function showMarkdownPreview(markdown) {
+            const overlay = document.getElementById('markdownOverlay');
+            const content = document.getElementById('markdownContent');
+            content.innerHTML = markdownToHtml(markdown);
+            overlay.classList.add('active');
+        }
+
+        function hideMarkdownPreview() {
+            document.getElementById('markdownOverlay').classList.remove('active');
+        }
+
         function downloadReport(content) {
+            const projectInfo = projectsList.find(p => p.name === currentProject);
+            const filename = currentProject === 'default' ? 'urban-ideas' : currentProject;
+
             const blob = new Blob([content], { type: 'text/markdown' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `nyc-urban-ideas-report-${new Date().toISOString().split('T')[0]}.md`;
+            a.download = `${filename}-report-${new Date().toISOString().split('T')[0]}.md`;
             a.click();
             URL.revokeObjectURL(url);
         }
+
+        // Markdown overlay event listeners
+        document.getElementById('markdownCloseBtn').addEventListener('click', hideMarkdownPreview);
+        document.getElementById('markdownDownloadBtn').addEventListener('click', () => {
+            downloadReport(currentReportMarkdown);
+        });
+        document.getElementById('markdownOverlay').addEventListener('click', (e) => {
+            if (e.target.id === 'markdownOverlay') {
+                hideMarkdownPreview();
+            }
+        });
 
         // Prompt modal functions
         function showPromptModal() {

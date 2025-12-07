@@ -280,7 +280,14 @@ def load_from_connections_json(filepath: str) -> list[dict]:
 
 
 def update_connections_json(filepath: str, connections: list[dict]):
-    """Update an existing connections.json file with new edges."""
+    """Update an existing connections.json file with new edges.
+
+    Only updates if connections were found - prevents wiping existing edges on failure.
+    """
+    if not connections:
+        print("Warning: No connections found, preserving existing edges")
+        return
+
     with open(filepath, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
@@ -297,6 +304,8 @@ def update_connections_json(filepath: str, connections: list[dict]):
 
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2)
+
+    print(f"Updated {filepath} with {len(edges)} edges")
 
 
 def main():
