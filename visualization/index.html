@@ -278,7 +278,7 @@
         }
 
         .node-detail {
-            padding: 20px;
+            padding: 12px 20px 20px 20px;
         }
 
         .node-detail .summary {
@@ -289,6 +289,33 @@
             padding: 16px;
             background: #161b22;
             border-radius: 8px;
+            text-align: left;
+        }
+
+        .summary-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-row .summary {
+            flex: 1;
+        }
+
+        .tweet-link-icon {
+            color: #6e7681;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            margin-top: 12px;
+        }
+
+        .tweet-link-icon:hover {
+            color: #58a6ff;
+            background: rgba(88, 166, 255, 0.1);
         }
 
         .detail-meta {
@@ -304,6 +331,11 @@
             font-size: 0.85rem;
             color: #58a6ff;
             font-weight: 500;
+            text-decoration: none;
+        }
+
+        .detail-author:hover {
+            text-decoration: underline;
         }
 
         .detail-date {
@@ -373,12 +405,23 @@
             border-left: 3px solid #e07a5f;
             cursor: pointer;
             transition: all 0.2s;
+            text-align: left;
         }
 
         .connection-item:hover {
             background: #21262d;
             border-left-width: 4px;
             transform: translateX(2px);
+        }
+
+        .connection-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .connection-text-wrap {
+            flex: 1;
         }
 
         .connection-item .reason {
@@ -393,6 +436,18 @@
         .connection-item .connection-author {
             color: #58a6ff;
             font-weight: 500;
+        }
+
+        .connection-link-icon {
+            color: #484f58;
+            text-decoration: none;
+            font-size: 0.75rem;
+            padding: 2px;
+            flex-shrink: 0;
+        }
+
+        .connection-link-icon:hover {
+            color: #58a6ff;
         }
 
         .link-btn {
@@ -1686,11 +1741,17 @@
                 c.nodes.some(n => n.id === node.id)
             );
 
+            const twitterHandle = node.username.replace('@', '');
+            const hasLink = node.link && node.link.startsWith('http');
+
             const detailHtml = `
                 <div class="node-detail">
-                    <div class="summary">${node.summary || 'No summary available'}</div>
+                    <div class="summary-row">
+                        <div class="summary">${node.summary || 'No summary available'}</div>
+                        ${hasLink ? `<a href="${node.link}" target="_blank" class="tweet-link-icon" title="View original tweet">↗</a>` : ''}
+                    </div>
                     <div class="detail-meta">
-                        <span class="detail-author">${node.username}</span>
+                        <a href="https://twitter.com/${twitterHandle}" target="_blank" class="detail-author">${node.username}</a>
                         <span class="detail-date">${node.date}</span>
                     </div>
                     ${nodeClusters.length > 0 ? `
@@ -1704,18 +1765,24 @@
                             `).join('')}
                         </div>
                     ` : ''}
-                    ${node.link && node.link.startsWith('http') ?
-                        `<div class="detail-actions"><a href="${node.link}" target="_blank" class="link-btn">↗ View Original</a></div>` : ''}
 
                     <div class="connections-header" style="margin-top: 20px;">
                         ${connections.length} Connected Ideas
                     </div>
-                    ${connections.map(c => `
+                    ${connections.map(c => {
+                        const cHandle = c.node.username.replace('@', '');
+                        const cHasLink = c.node.link && c.node.link.startsWith('http');
+                        return `
                         <div class="connection-item clickable-connection" data-node-id="${c.node.id}">
-                            ${c.node.summary || 'No summary'} <span class="connection-author">— ${c.node.username}</span>
+                            <div class="connection-content">
+                                <div class="connection-text-wrap">
+                                    ${c.node.summary || 'No summary'} — <a href="https://twitter.com/${cHandle}" target="_blank" class="connection-author" onclick="event.stopPropagation();">${c.node.username}</a>
+                                </div>
+                                ${cHasLink ? `<a href="${c.node.link}" target="_blank" class="connection-link-icon" onclick="event.stopPropagation();" title="View original tweet">↗</a>` : ''}
+                            </div>
                             <div class="reason">${c.reason}</div>
                         </div>
-                    `).join('')}
+                    `}).join('')}
                 </div>
             `;
 
