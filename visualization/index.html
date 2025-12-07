@@ -385,6 +385,51 @@
             border-color: #484f58;
         }
 
+        .force-panel {
+            position: absolute;
+            top: 20px;
+            left: 70px;
+            background: #161b22;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            z-index: 100;
+            display: none;
+            min-width: 200px;
+        }
+
+        .force-panel.visible {
+            display: block;
+        }
+
+        .force-panel h4 {
+            font-size: 0.85rem;
+            color: #e6edf3;
+            margin-bottom: 12px;
+        }
+
+        .force-control {
+            margin-bottom: 12px;
+        }
+
+        .force-control label {
+            display: block;
+            font-size: 0.75rem;
+            color: #8b949e;
+            margin-bottom: 4px;
+        }
+
+        .force-control input[type="range"] {
+            width: 140px;
+            margin-right: 8px;
+            accent-color: #ff7b54;
+        }
+
+        .force-control span {
+            font-size: 0.75rem;
+            color: #8b949e;
+        }
+
         .legend {
             position: absolute;
             bottom: 20px;
@@ -645,7 +690,26 @@
                 <button class="control-btn" id="zoomIn" title="Zoom In">+</button>
                 <button class="control-btn" id="zoomOut" title="Zoom Out">-</button>
                 <button class="control-btn" id="resetView" title="Reset View">⌖</button>
-                <button class="control-btn" id="toggleLabels" title="Toggle Labels">T</button>
+                <button class="control-btn" id="toggleForcePanel" title="Force Settings">⚙</button>
+            </div>
+
+            <div class="force-panel" id="forcePanel">
+                <h4>Force Settings</h4>
+                <div class="force-control">
+                    <label>Repulsion</label>
+                    <input type="range" id="chargeSlider" min="-2000" max="-100" value="-800">
+                    <span id="chargeValue">-800</span>
+                </div>
+                <div class="force-control">
+                    <label>Link Distance</label>
+                    <input type="range" id="distanceSlider" min="50" max="300" value="150">
+                    <span id="distanceValue">150</span>
+                </div>
+                <div class="force-control">
+                    <label>Collision</label>
+                    <input type="range" id="collisionSlider" min="20" max="150" value="80">
+                    <span id="collisionValue">80</span>
+                </div>
             </div>
 
             <div class="legend" id="legend">
@@ -1000,9 +1064,25 @@
             d3.select('#zoomIn').on('click', () => svg.transition().call(zoom.scaleBy, 1.3));
             d3.select('#zoomOut').on('click', () => svg.transition().call(zoom.scaleBy, 0.7));
             d3.select('#resetView').on('click', () => svg.transition().call(zoom.transform, d3.zoomIdentity));
-            d3.select('#toggleLabels').on('click', () => {
-                showLabels = !showLabels;
-                g.selectAll('.node-label').style('opacity', showLabels ? 1 : 0);
+            d3.select('#toggleForcePanel').on('click', () => {
+                document.getElementById('forcePanel').classList.toggle('visible');
+            });
+
+            // Force control sliders
+            document.getElementById('chargeSlider').addEventListener('input', (e) => {
+                forceParams.charge = parseInt(e.target.value);
+                document.getElementById('chargeValue').textContent = e.target.value;
+                window.updateForces();
+            });
+            document.getElementById('distanceSlider').addEventListener('input', (e) => {
+                forceParams.linkDistance = parseInt(e.target.value);
+                document.getElementById('distanceValue').textContent = e.target.value;
+                window.updateForces();
+            });
+            document.getElementById('collisionSlider').addEventListener('input', (e) => {
+                forceParams.collisionRadius = parseInt(e.target.value);
+                document.getElementById('collisionValue').textContent = e.target.value;
+                window.updateForces();
             });
 
             // Prepare edge data with node references
@@ -1013,12 +1093,31 @@
                 reason: e.reason
             }));
 
+            // Force parameters (adjustable)
+            let forceParams = {
+                charge: -800,
+                linkDistance: 150,
+                linkStrength: 0.3,
+                collisionRadius: 80
+            };
+
             // Create force simulation
             simulation = d3.forceSimulation(graphData.nodes)
-                .force('link', d3.forceLink(links).id(d => d.id).distance(80).strength(0.5))
-                .force('charge', d3.forceManyBody().strength(-300))
+                .force('link', d3.forceLink(links).id(d => d.id).distance(forceParams.linkDistance).strength(forceParams.linkStrength))
+                .force('charge', d3.forceManyBody().strength(forceParams.charge))
                 .force('center', d3.forceCenter(width / 2, height / 2))
-                .force('collision', d3.forceCollide().radius(30));
+                .force('collision', d3.forceCollide().radius(forceParams.collisionRadius));
+
+            // Store for later access
+            window.simulation = simulation;
+            window.forceParams = forceParams;
+            window.updateForces = function() {
+                simulation
+                    .force('charge', d3.forceManyBody().strength(forceParams.charge))
+                    .force('link').distance(forceParams.linkDistance).strength(forceParams.linkStrength);
+                simulation.force('collision').radius(forceParams.collisionRadius);
+                simulation.alpha(0.5).restart();
+            };
 
             // Draw edges
             const link = g.append('g')
@@ -1042,29 +1141,17 @@
                     .on('drag', dragged)
                     .on('end', dragended));
 
-            // Node circles
-            node.append('circle')
-                .attr('r', d => 8 + (adjacencyCount(d.id) * 0.5))
-                .attr('fill', d => d.clusterColor || '#64b5f6')
-                .attr('stroke', '#fff')
-                .attr('stroke-width', 2)
-                .attr('stroke-opacity', 0.5)
-                .style('cursor', 'pointer')
-                .on('mouseover', handleMouseOver)
-                .on('mouseout', handleMouseOut)
-                .on('click', handleNodeClick);
-
             // Node labels - show summary text, truncated
-            node.append('text')
+            const nodeText = node.append('text')
                 .attr('class', 'node-label')
-                .attr('dy', 20)
-                .attr('text-anchor', 'middle')
-                .attr('fill', '#8b949e')
-                .attr('font-size', '9px')
+                .attr('text-anchor', 'start')
+                .attr('fill', '#e6edf3')
+                .attr('font-size', '10px')
+                .style('pointer-events', 'none')
                 .each(function(d) {
                     const text = d3.select(this);
                     const summary = d.summary || 'No summary';
-                    const maxChars = 40;
+                    const maxChars = 32;
 
                     // Split into lines
                     const words = summary.split(' ');
@@ -1081,19 +1168,41 @@
                     });
                     if (currentLine) lines.push(currentLine);
 
-                    // Limit to 2 lines, add ellipsis if needed
-                    if (lines.length > 2) {
-                        lines = lines.slice(0, 2);
-                        lines[1] = lines[1].substring(0, 35) + '...';
+                    // Limit to 3 lines, add ellipsis if needed
+                    if (lines.length > 3) {
+                        lines = lines.slice(0, 3);
+                        lines[2] = lines[2].substring(0, 28) + '...';
                     }
+
+                    d.lineCount = lines.length;
+                    d.maxLineWidth = Math.max(...lines.map(l => l.length)) * 6;
 
                     lines.forEach((line, i) => {
                         text.append('tspan')
-                            .attr('x', 0)
-                            .attr('dy', i === 0 ? 0 : '1.1em')
+                            .attr('x', 8)
+                            .attr('dy', i === 0 ? 14 : 14)
                             .text(line);
                     });
                 });
+
+            // Add rounded rectangle background behind text
+            node.insert('rect', 'text')
+                .attr('class', 'node-bg')
+                .attr('rx', 6)
+                .attr('ry', 6)
+                .attr('fill', d => d.clusterColor || '#58a6ff')
+                .attr('stroke', d => d.clusterColor || '#58a6ff')
+                .attr('stroke-width', 1)
+                .attr('fill-opacity', 0.15)
+                .attr('stroke-opacity', 0.6)
+                .attr('width', d => Math.max(d.maxLineWidth + 16, 100))
+                .attr('height', d => (d.lineCount || 2) * 14 + 12)
+                .attr('x', 0)
+                .attr('y', 0)
+                .style('cursor', 'pointer')
+                .on('mouseover', handleMouseOver)
+                .on('mouseout', handleMouseOut)
+                .on('click', handleNodeClick);
 
             // Update positions on tick
             simulation.on('tick', () => {
@@ -1143,7 +1252,10 @@
                 if (e.target_id === d.id) connected.add(e.source_id);
             });
 
-            d3.selectAll('.node circle')
+            d3.selectAll('.node-bg')
+                .attr('fill-opacity', n => n.id === d.id || connected.has(n.id) ? 0.25 : 0.05)
+                .attr('stroke-opacity', n => n.id === d.id || connected.has(n.id) ? 1 : 0.2);
+            d3.selectAll('.node-label')
                 .attr('opacity', n => n.id === d.id || connected.has(n.id) ? 1 : 0.3);
 
             d3.selectAll('.links line')
@@ -1157,7 +1269,10 @@
 
         function handleMouseOut() {
             d3.select('#tooltip').classed('visible', false);
-            d3.selectAll('.node circle').attr('opacity', 1);
+            d3.selectAll('.node-bg')
+                .attr('fill-opacity', 0.15)
+                .attr('stroke-opacity', 0.6);
+            d3.selectAll('.node-label').attr('opacity', 1);
             d3.selectAll('.links line')
                 .attr('stroke', '#30363d')
                 .attr('stroke-opacity', 0.6);
@@ -1271,9 +1386,11 @@
 
             const clusterNodeIds = new Set(cluster.nodes.map(n => n.id));
 
-            d3.selectAll('.node circle')
-                .attr('opacity', n => clusterNodeIds.has(n.id) ? 1 : 0.2)
-                .attr('r', n => clusterNodeIds.has(n.id) ? 12 + (n.cluster === clusterId ? 3 : 0) : 6);
+            d3.selectAll('.node-bg')
+                .attr('fill-opacity', n => clusterNodeIds.has(n.id) ? 0.3 : 0.05)
+                .attr('stroke-opacity', n => clusterNodeIds.has(n.id) ? 1 : 0.2);
+            d3.selectAll('.node-label')
+                .attr('opacity', n => clusterNodeIds.has(n.id) ? 1 : 0.2);
 
             d3.selectAll('.links line')
                 .attr('stroke', l =>
@@ -1285,9 +1402,10 @@
 
             // Reset after delay
             setTimeout(() => {
-                d3.selectAll('.node circle')
-                    .attr('opacity', 1)
-                    .attr('r', d => 8);
+                d3.selectAll('.node-bg')
+                    .attr('fill-opacity', 0.15)
+                    .attr('stroke-opacity', 0.6);
+                d3.selectAll('.node-label').attr('opacity', 1);
                 d3.selectAll('.links line')
                     .attr('stroke', '#30363d')
                     .attr('stroke-opacity', 0.6);
@@ -1378,11 +1496,17 @@
         }
 
         function highlightTopic(topic) {
-            d3.selectAll('.node circle')
+            d3.selectAll('.node-bg')
+                .attr('fill-opacity', n => n.primaryTopic === topic ? 0.3 : 0.05)
+                .attr('stroke-opacity', n => n.primaryTopic === topic ? 1 : 0.2);
+            d3.selectAll('.node-label')
                 .attr('opacity', n => n.primaryTopic === topic ? 1 : 0.2);
 
             setTimeout(() => {
-                d3.selectAll('.node circle').attr('opacity', 1);
+                d3.selectAll('.node-bg')
+                    .attr('fill-opacity', 0.15)
+                    .attr('stroke-opacity', 0.6);
+                d3.selectAll('.node-label').attr('opacity', 1);
             }, 2000);
         }
 
@@ -1402,11 +1526,23 @@
             const query = e.target.value.toLowerCase();
 
             if (!query) {
-                d3.selectAll('.node circle').attr('opacity', 1);
+                d3.selectAll('.node-bg')
+                    .attr('fill-opacity', 0.15)
+                    .attr('stroke-opacity', 0.6);
+                d3.selectAll('.node-label').attr('opacity', 1);
                 return;
             }
 
-            d3.selectAll('.node circle')
+            d3.selectAll('.node-bg')
+                .attr('fill-opacity', n => {
+                    const text = `${n.username} ${n.summary}`.toLowerCase();
+                    return text.includes(query) ? 0.3 : 0.03;
+                })
+                .attr('stroke-opacity', n => {
+                    const text = `${n.username} ${n.summary}`.toLowerCase();
+                    return text.includes(query) ? 1 : 0.1;
+                });
+            d3.selectAll('.node-label')
                 .attr('opacity', n => {
                     const text = `${n.username} ${n.summary}`.toLowerCase();
                     return text.includes(query) ? 1 : 0.1;
