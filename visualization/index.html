@@ -1976,6 +1976,15 @@
             box-shadow: 0 0 0 2px rgba(224, 122, 95, 0.2);
         }
 
+        .grok-input.grok-date {
+            cursor: pointer;
+        }
+
+        .grok-input.grok-date::-webkit-calendar-picker-indicator {
+            filter: invert(0.8);
+            cursor: pointer;
+        }
+
         .grok-select {
             position: relative;
         }
@@ -2519,6 +2528,16 @@
                                                     <option value="grok-4-1">grok-4-1</option>
                                                 </select>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="grok-form-row">
+                                        <div>
+                                            <label for="grokDateFrom">From date</label>
+                                            <input class="grok-input grok-date" type="date" id="grokDateFrom">
+                                        </div>
+                                        <div>
+                                            <label for="grokDateTo">To date</label>
+                                            <input class="grok-input grok-date" type="date" id="grokDateTo">
                                         </div>
                                     </div>
                                     <div class="grok-form-row">
@@ -4574,6 +4593,8 @@
         const grokPromptInput = document.getElementById('grokPrompt');
         const grokCountInput = document.getElementById('grokCount');
         const grokModelInput = document.getElementById('grokModel');
+        const grokDateFromInput = document.getElementById('grokDateFrom');
+        const grokDateToInput = document.getElementById('grokDateTo');
         const grokAllowedInput = document.getElementById('grokAllowed');
         const grokExcludedInput = document.getElementById('grokExcluded');
         const grokStatusEl = document.getElementById('grokStatus');
@@ -4766,6 +4787,12 @@
                 const countValue = parseInt(grokCountInput?.value || '10', 10);
                 payload.count = Number.isNaN(countValue) ? 10 : countValue;
                 payload.model = (grokModelInput?.value || 'grok-4-1-fast').trim();
+
+                // Date range
+                const dateFrom = grokDateFromInput?.value;
+                const dateTo = grokDateToInput?.value;
+                if (dateFrom) payload.from_date = dateFrom;
+                if (dateTo) payload.to_date = dateTo;
 
                 const allowed = parseHandleInput(grokAllowedInput?.value);
                 if (allowed) payload.allowed_handles = allowed;
