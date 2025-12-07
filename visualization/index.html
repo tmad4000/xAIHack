@@ -2734,7 +2734,52 @@
 
         // Project management
         let currentProject = 'default';
+        let currentContext = 'civic';
         let projectsList = [];
+
+        // Context-specific labels for UI
+        const contextLabels = {
+            civic: {
+                actor: 'City Officials',
+                source: 'citizen',
+                sourcePlural: 'citizens',
+                demandsLabel: 'Citizen Demands',
+                proposalsLabel: 'Policy Proposals',
+                demandsDesc: 'Synthesized issues extracted from citizen input',
+                proposalsDesc: 'AI-generated implementable policy actions'
+            },
+            startup: {
+                actor: 'Founders & Investors',
+                source: 'idea',
+                sourcePlural: 'ideas',
+                demandsLabel: 'Market Needs',
+                proposalsLabel: 'Venture Opportunities',
+                demandsDesc: 'Synthesized needs extracted from startup ideas',
+                proposalsDesc: 'AI-generated fundable venture proposals'
+            },
+            product: {
+                actor: 'Product Team',
+                source: 'user',
+                sourcePlural: 'users',
+                demandsLabel: 'User Needs',
+                proposalsLabel: 'Feature Proposals',
+                demandsDesc: 'Synthesized needs extracted from user feedback',
+                proposalsDesc: 'AI-generated feature specifications'
+            },
+            general: {
+                actor: 'Decision Makers',
+                source: 'voice',
+                sourcePlural: 'voices',
+                demandsLabel: 'Key Themes',
+                proposalsLabel: 'Recommendations',
+                demandsDesc: 'Synthesized themes extracted from input',
+                proposalsDesc: 'AI-generated actionable recommendations'
+            }
+        };
+
+        function getContextLabels() {
+            return contextLabels[currentContext] || contextLabels.general;
+        }
 
         // URL slug support
         function getProjectFromURL() {
@@ -2918,13 +2963,15 @@
                 const response = await fetch(`/api/projects/${projectName}/context`);
                 if (response.ok) {
                     const data = await response.json();
+                    currentContext = data.context || 'civic';
                     const select = document.getElementById('projectContextSelect');
                     if (select) {
-                        select.value = data.context || 'civic';
+                        select.value = currentContext;
                     }
                 }
             } catch (error) {
                 console.error('Failed to load project context:', error);
+                currentContext = 'civic';
             }
         }
 
@@ -2942,6 +2989,10 @@
                     const data = await response.json();
                     throw new Error(data.error || 'Failed to update context');
                 }
+
+                // Update current context and re-render actionable tab
+                currentContext = context;
+                renderActionable();
 
                 // Show brief confirmation
                 const select = document.getElementById('projectContextSelect');
@@ -3927,9 +3978,6 @@
             const projectInfo = projectsList.find(p => p.name === currentProject);
             const hasClusters = (clusters && clusters.length > 0) || !!enhancedClusters || projectInfo?.has_clusters;
             const hasNodes = graphData && Array.isArray(graphData.nodes) && graphData.nodes.length > 0;
-            const provisionalCount = graphData && Array.isArray(graphData.nodes)
-                ? graphData.nodes.filter(n => n.status === 'provisional').length
-                : 0;
 
             btn.classList.toggle('rerun', !!hasClusters);
             btn.textContent = hasClusters ? 'Re-run Clustering' : 'Run Clustering';
@@ -3937,12 +3985,10 @@
             if (!hasNodes) {
                 btn.disabled = true;
                 btn.title = 'Add ideas to run clustering';
-            } else if (hasClusters && provisionalCount === 0) {
-                btn.disabled = true;
-                btn.title = 'No new provisional ideas since last run';
             } else {
+                // Always allow re-running clustering (e.g., after changing context)
                 btn.disabled = false;
-                btn.title = hasClusters ? 'Re-run clustering with latest changes' : 'Run clustering';
+                btn.title = hasClusters ? 'Re-run clustering (e.g., after context change)' : 'Run clustering';
             }
         }
 
@@ -4329,10 +4375,11 @@
                         nodes: cluster.nodes
                     }));
 
+                const labels = getContextLabels();
                 container.innerHTML = `
                     <div class="actionable-header">
-                        <h3>Priority Actions for City Officials</h3>
-                        <p>Ranked by citizen support level</p>
+                        <h3>Priority Actions for ${labels.actor}</h3>
+                        <p>Ranked by ${labels.source} support level</p>
                     </div>
                     ${actionable.map(item => `
                         <div class="actionable-item" data-cluster-id="${clusters.find(c => c.name === item.title)?.id}">
@@ -4345,7 +4392,7 @@
                                 <div class="support-bar">
                                     <div class="support-fill" style="width: ${Math.min(100, item.support * 12)}%; background: ${item.color};"></div>
                                 </div>
-                                <div class="support-text">${item.support} citizen${item.support === 1 ? '' : 's'} • ${item.consensus} consensus</div>
+                                <div class="support-text">${item.support} ${item.support === 1 ? labels.source : labels.sourcePlural} • ${item.consensus} consensus</div>
                                 <div class="action-text">${item.action}</div>
                                 <div class="description">${item.description}</div>
                             </div>
@@ -4354,19 +4401,20 @@
                 `;
             } else {
                 // Build the view toggle header
+                const labels = getContextLabels();
                 const headerHtml = `
                     <div class="actionable-header">
                         <div class="actionable-toggle">
                             <button class="toggle-btn ${actionableViewMode === 'demands' ? 'active' : ''}" data-mode="demands">
-                                Citizen Demands
+                                ${labels.demandsLabel}
                             </button>
                             <button class="toggle-btn ${actionableViewMode === 'proposals' ? 'active' : ''}" data-mode="proposals">
-                                Policy Proposals
+                                ${labels.proposalsLabel}
                             </button>
                         </div>
                         <p>${actionableViewMode === 'demands'
-                            ? 'Synthesized issues extracted from citizen input'
-                            : 'AI-generated implementable policy actions'}</p>
+                            ? labels.demandsDesc
+                            : labels.proposalsDesc}</p>
                     </div>
                 `;
 
