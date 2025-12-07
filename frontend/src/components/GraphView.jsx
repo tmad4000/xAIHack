@@ -1,6 +1,6 @@
-import { useRef, useEffect, useMemo, useCallback } from 'react'
+import { useRef, useEffect, useMemo, useState, useCallback } from 'react'
 import ForceGraph2D from 'react-force-graph-2d'
-
+import { Settings2 } from 'lucide-react'
 
 // Simple hook for window size in the same file to save time/files
 const useWindowDimensions = () => {
@@ -23,11 +23,11 @@ const useWindowDimensions = () => {
     return windowDimensions
 }
 
-import { useState } from 'react'
-
 const GraphView = ({ data, onNodeClick, selectedNode }) => {
     const fgRef = useRef()
     const { width, height } = useWindowDimensions()
+    const [chargeStrength, setChargeStrength] = useState(-300)
+    const [linkDistance, setLinkDistance] = useState(50)
 
     // Process data to ensure valid structure
     const graphData = useMemo(() => {
@@ -38,7 +38,6 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
             ...node,
             // Add visual properties
             val: node.connections?.length || 5, // Size
-            color: '#60a5fa' // blue-400
         }))
 
         const links = data.edges.map(edge => ({
@@ -50,59 +49,119 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
         return { nodes, links }
     }, [data])
 
+    // Update forces when controls change
     useEffect(() => {
-        // Initial camera position
         if (fgRef.current) {
-            fgRef.current.d3Force('charge').strength(-100)
+            fgRef.current.d3Force('charge').strength(chargeStrength)
+            fgRef.current.d3Force('link').distance(linkDistance)
+            fgRef.current.d3ReheatSimulation()
         }
-    }, [])
+    }, [chargeStrength, linkDistance])
 
-    // Highlight handled by react-force-graph props often, but we can do custom painting
+    const drawNode = useCallback((node, ctx, globalScale) => {
+        const label = node.summary || '';
+        const fontSize = 12 / globalScale;
+        const lineHeight = fontSize * 1.2;
+        const padding = 8 / globalScale;
+        const maxWid = 120 / globalScale; // Max width of the card
+        const borderRadius = 4 / globalScale;
+
+        ctx.font = `${fontSize}px Sans-Serif`;
+
+        // Wrap text logic
+        const words = label.split(' ');
+        let lines = [];
+        let currentLine = words[0];
+
+        for (let i = 1; i < words.length; i++) {
+            const word = words[i];
+            const width = ctx.measureText(currentLine + " " + word).width;
+            if (width < maxWid - (padding * 2)) {
+                currentLine += " " + word;
+            } else {
+                lines.push(currentLine);
+                currentLine = word;
+            }
+        }
+        lines.push(currentLine);
+
+        // Truncate if too many lines
+        const maxLines = 3;
+        if (lines.length > maxLines) {
+            lines = lines.slice(0, maxLines);
+            lines[maxLines - 1] += "...";
+        }
+
+        // Dimensions
+        const boxWidth = maxWid;
+        const boxHeight = (lines.length * lineHeight) + (padding * 2);
+
+        // Centering offset
+        const x = node.x - (boxWidth / 2);
+        const y = node.y - (boxHeight / 2);
+
+        // Draw Box
+        ctx.beginPath();
+        ctx.moveTo(x + borderRadius, y);
+        ctx.lineTo(x + boxWidth - borderRadius, y);
+        ctx.quadraticCurveTo(x + boxWidth, y, x + boxWidth, y + borderRadius);
+        ctx.lineTo(x + boxWidth, y + boxHeight - borderRadius);
+        ctx.quadraticCurveTo(x + boxWidth, y + boxHeight, x + boxWidth - borderRadius, y + boxHeight);
+        ctx.lineTo(x + borderRadius, y + boxHeight);
+        ctx.quadraticCurveTo(x, y + boxHeight, x, y + boxHeight - borderRadius);
+        ctx.lineTo(x, y + borderRadius);
+        ctx.quadraticCurveTo(x, y, x + borderRadius, y);
+        ctx.closePath();
+
+        ctx.fillStyle = selectedNode?.id === node.id ? '#be185d' : 'rgba(30, 41, 59, 0.9)'; // Pink-700 selected, Slate-900 default
+        if (selectedNode?.id === node.id) {
+            ctx.shadowColor = '#f472b6';
+            ctx.shadowBlur = 10;
+        } else {
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+        }
+        ctx.fill();
+        ctx.strokeStyle = selectedNode?.id === node.id ? '#fbcfe8' : '#475569'; // Pink-200 / Slate-600
+        ctx.lineWidth = 1 / globalScale;
+        ctx.stroke();
+
+        // Reset shadow
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
+
+        // Draw Text
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.fillStyle = '#e2e8f0'; // Slate-200
+
+        lines.forEach((line, i) => {
+            ctx.fillText(line, x + padding, y + padding + (i * lineHeight));
+        });
+
+        // Store dimensions for pointer area
+        node.__bckgDimensions = [boxWidth, boxHeight];
+    }, [selectedNode])
 
     return (
-        <div className="w-full h-full">
+        <div className="relative w-full h-full">
             <ForceGraph2D
                 ref={fgRef}
                 width={width}
                 height={height}
                 graphData={graphData}
                 nodeLabel={node => node.summary} // Show full text on tooltip
-                nodeCanvasObject={(node, ctx, globalScale) => {
-                    const label = node.summary || '';
-                    const fontSize = 12 / globalScale;
-                    ctx.font = `${fontSize}px Sans-Serif`;
-
-                    // Truncate logic
-                    const maxChars = 30;
-                    const text = label.length > maxChars ? label.substring(0, maxChars) + '...' : label;
-
-                    const textWidth = ctx.measureText(text).width;
-                    const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 0.2);
-
-                    // Draw Node
-                    ctx.fillStyle = selectedNode?.id === node.id ? '#f472b6' : '#60a5fa';
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, 5, 0, 2 * Math.PI, false); // size 5
-                    ctx.fill();
-
-                    // Draw Text Background (optional, maybe just text)
-                    // Let's just draw text below
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'top';
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                    ctx.fillText(text, node.x, node.y + 6);
-
-                    // Hover interactions rely on the node geometry. 
-                    // Re-use node pointer area for interaction
-                    node.__bckgDimensions = bckgDimensions; // to re-use in nodePointerAreaPaint
-                }}
+                nodeCanvasObject={drawNode}
                 nodePointerAreaPaint={(node, color, ctx) => {
-                    ctx.fillStyle = color;
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, 5, 0, 2 * Math.PI, false);
-                    ctx.fill();
-                }}
+                    const dims = node.__bckgDimensions || [20, 20];
+                    const boxWidth = dims[0];
+                    const boxHeight = dims[1];
+                    const x = node.x - (boxWidth / 2);
+                    const y = node.y - (boxHeight / 2);
 
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x, y, boxWidth, boxHeight);
+                }}
                 linkLabel="reason"
                 linkWidth={1.5}
                 linkDirectionalParticles={2}
@@ -117,6 +176,45 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
                 onBackgroundClick={() => onNodeClick(null)}
                 backgroundColor="#0f172a"
             />
+
+            {/* Controls Overlay */}
+            <div className="absolute bottom-6 left-6 bg-slate-900/90 backdrop-blur border border-slate-700 p-4 rounded-lg shadow-xl w-64 text-sm z-10">
+                <h3 className="flex items-center gap-2 font-semibold text-slate-200 mb-4 border-b border-slate-700 pb-2">
+                    <Settings2 size={16} /> Simulation
+                </h3>
+
+                <div className="space-y-4">
+                    <div>
+                        <div className="flex justify-between mb-1 text-xs text-slate-400">
+                            <span>Repulsion</span>
+                            <span>{chargeStrength}</span>
+                        </div>
+                        <input
+                            type="range"
+                            min="-1000"
+                            max="-50"
+                            value={chargeStrength}
+                            onChange={(e) => setChargeStrength(Number(e.target.value))}
+                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                        />
+                    </div>
+
+                    <div>
+                        <div className="flex justify-between mb-1 text-xs text-slate-400">
+                            <span>Link Distance</span>
+                            <span>{linkDistance}</span>
+                        </div>
+                        <input
+                            type="range"
+                            min="10"
+                            max="200"
+                            value={linkDistance}
+                            onChange={(e) => setLinkDistance(Number(e.target.value))}
+                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
