@@ -281,16 +281,33 @@
             padding: 20px;
         }
 
-        .node-detail h3 {
-            font-size: 1.15rem;
-            margin-bottom: 6px;
-            color: #58a6ff;
+        .node-detail .summary {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            color: #e6edf3;
+            padding: 14px;
+            background: #161b22;
+            border-radius: 8px;
+            border-left: 3px solid #30363d;
         }
 
-        .node-detail .date {
+        .detail-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .detail-author {
+            font-size: 0.9rem;
+            color: #58a6ff;
+            font-weight: 500;
+        }
+
+        .detail-date {
             font-size: 0.8rem;
             color: #484f58;
-            margin-bottom: 12px;
         }
 
         .node-clusters {
@@ -321,17 +338,6 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-        }
-
-        .node-detail .summary {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            color: #e6edf3;
-            padding: 14px;
-            background: #161b22;
-            border-radius: 8px;
-            border-left: 3px solid #30363d;
         }
 
         .node-detail .connections-header {
@@ -1665,8 +1671,11 @@
 
             const detailHtml = `
                 <div class="node-detail">
-                    <h3>${node.username}</h3>
-                    <div class="date">${node.date}</div>
+                    <div class="summary">${node.summary || 'No summary available'}</div>
+                    <div class="detail-meta">
+                        <span class="detail-author">${node.username}</span>
+                        <span class="detail-date">${node.date}</span>
+                    </div>
                     ${nodeClusters.length > 0 ? `
                         <div class="node-clusters">
                             ${nodeClusters.map(c => `
@@ -1677,7 +1686,6 @@
                             `).join('')}
                         </div>
                     ` : ''}
-                    <div class="summary">${node.summary || 'No summary available'}</div>
                     ${node.link && node.link.startsWith('http') ?
                         `<a href="${node.link}" target="_blank" class="link-btn">View Original Tweet</a>` : ''}
 
