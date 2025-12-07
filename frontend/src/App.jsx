@@ -8,7 +8,7 @@ import { AnimatePresence } from 'framer-motion'
 // I'll assume we can fetch it if it's in public/ or import it if I copy it.
 // For now, let's assume we copy it to src/data/connections.json
 
-import graphData from './data/connections.json'
+import graphData from './data/connections_with_topics.json'
 
 function App() {
   const [selectedNode, setSelectedNode] = useState(null)

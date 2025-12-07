@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { X, ExternalLink, MessageSquare, MapPin } from 'lucide-react'
+import { useState } from 'react'
+import { X, ExternalLink, MessageSquare, MapPin, Eye } from 'lucide-react'
 
 // Helper to find related nodes
 const getRelatedNodes = (node, allData) => {
@@ -22,6 +23,8 @@ const getRelatedNodes = (node, allData) => {
 }
 
 const SummaryPane = ({ node, data, onClose }) => {
+    const [showReasons, setShowReasons] = useState(false)
+
     if (!node) return null
 
     const related = getRelatedNodes(node, data)
@@ -72,9 +75,17 @@ const SummaryPane = ({ node, data, onClose }) => {
 
                 {/* Related Suggestions */}
                 <div>
-                    <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                        <MessageSquare size={16} /> Related Suggestions
-                    </h3>
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                            <MessageSquare size={16} /> Related Suggestions
+                        </h3>
+                        <button
+                            onClick={() => setShowReasons(!showReasons)}
+                            className={`flex items-center gap-1.5 text-xs px-2 py-1 rounded transition-colors ${showReasons ? 'bg-blue-500/20 text-blue-300' : 'bg-slate-800 text-slate-400 hover:text-slate-300'}`}
+                        >
+                            <Eye size={12} /> {showReasons ? 'Hide Logic' : 'Show Logic'}
+                        </button>
+                    </div>
 
                     <div className="space-y-4">
                         {related.length === 0 ? (
@@ -84,9 +95,11 @@ const SummaryPane = ({ node, data, onClose }) => {
                                 <div key={idx} className="group relative pl-4 border-l-2 border-slate-700 hover:border-blue-500 transition-colors">
                                     <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-slate-700 group-hover:bg-blue-500 transition-colors" />
 
-                                    <p className="text-xs font-semibold text-slate-300 mb-1">
-                                        {item.reason}
-                                    </p>
+                                    {showReasons && (
+                                        <p className="text-xs font-semibold text-slate-300 mb-1">
+                                            {item.reason}
+                                        </p>
+                                    )}
 
                                     <div className="bg-slate-800/30 p-3 rounded hover:bg-slate-800/60 transition-colors">
                                         <div className="flex justify-between items-center mb-1">

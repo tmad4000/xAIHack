@@ -1,6 +1,7 @@
+
 import { useRef, useEffect, useMemo, useState, useCallback } from 'react'
 import ForceGraph2D from 'react-force-graph-2d'
-import { Settings2 } from 'lucide-react'
+import { Settings2, Tag } from 'lucide-react'
 import * as d3 from 'd3'
 
 // Simple hook for window size in the same file to save time/files
@@ -24,6 +25,19 @@ const useWindowDimensions = () => {
     return windowDimensions
 }
 
+const TOPIC_COLORS = [
+    '#3b82f6', // blue-500
+    '#f43f5e', // rose-500
+    '#8b5cf6', // violet-500
+    '#10b981', // emerald-500
+    '#f59e0b', // amber-500
+    '#ec4899', // pink-500
+    '#6366f1', // indigo-500
+    '#84cc16', // lime-500
+    '#06b6d4', // cyan-500
+    '#d946ef', // fuchsia-500
+];
+
 const GraphView = ({ data, onNodeClick, selectedNode }) => {
     const fgRef = useRef()
     const { width, height } = useWindowDimensions()
@@ -36,9 +50,21 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
     const FIXED_FONT_SIZE = 4;
     const WRAP_CHARS = 20; // narrower wrap for world space
 
-    // Process data to ensure valid structure
-    const graphData = useMemo(() => {
-        if (!data) return { nodes: [], edges: [] }
+    // Process data to ensure valid structure and assign colors
+    const { nodes, links, topics } = useMemo(() => {
+        if (!data) return { nodes: [], links: [], topics: [] }
+
+        // Assign colors to topics
+        console.log("Processing topics...", data.topics)
+        const topicMap = {};
+        const topicsList = (data.topics || []).map((t, i) => {
+            const color = TOPIC_COLORS[i % TOPIC_COLORS.length];
+            topicMap[t.id] = color;
+            return { ...t, color };
+        });
+
+        // Default color if no topic
+        topicMap['misc'] = '#64748b'; // slate-500
 
         // Clone to avoid mutation issues with force-graph
         const nodes = data.nodes.map(node => {
@@ -56,7 +82,8 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
             return {
                 ...node,
                 val: node.connections?.length || 5, // Size
-                radius: radius
+                radius: radius,
+                color: topicMap[node.topic_id] || '#64748b'
             }
         })
 
@@ -66,7 +93,7 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
             reason: edge.reason
         }))
 
-        return { nodes, links }
+        return { nodes, links, topics: topicsList }
     }, [data])
 
     // Update forces when controls change
@@ -84,7 +111,7 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
 
             fgRef.current.d3ReheatSimulation()
         }
-    }, [chargeStrength, linkDistance, collisionSpacing, graphData])
+    }, [chargeStrength, linkDistance, collisionSpacing, nodes])
 
     const drawNode = useCallback((node, ctx, globalScale) => {
         const isHovered = hoveredNode?.id === node.id;
@@ -100,7 +127,7 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
         const maxWid = fontSize * 0.6 * wrapChars + (padding * 2);
         const borderRadius = 2;
 
-        ctx.font = `${fontSize}px Sans-Serif`;
+        ctx.font = `${fontSize}px Sans - Serif`;
 
         // Wrap text logic
         const words = label.split(' ');
@@ -148,30 +175,38 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
         ctx.quadraticCurveTo(x, y, x + borderRadius, y);
         ctx.closePath();
 
-        // Fill Style
+        // Fill Style - Use Topic Color!
+        // But dampen it unless selected/hovered to keep text readable?
+        // Let's use darker version for background and bright for border?
+
+        // Helper to dim hex color would be nice, but let's just use opacity on the topic color
+        // Standard approach: Dark Card Background + Topic Color Border/Shadow
+
         if (isSelected) {
-            ctx.fillStyle = '#be185d'; // Pink-700
+            ctx.fillStyle = node.color; // Full brightness topic color
         } else if (isHovered) {
-            ctx.fillStyle = '#1e293b'; // Slate-800 (slightly lighter than 900)
+            ctx.fillStyle = '#1e293b'; // Slate-800
         } else {
-            ctx.fillStyle = 'rgba(30, 41, 59, 0.95)'; // Slate-900 with opacity
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.9)'; // Slate-950 almost opaque
         }
 
         // Shadow & Stroke
-        if (isSelected || isHovered) {
-            ctx.shadowColor = isSelected ? '#f472b6' : '#94a3b8'; // Pink or Slate
+        if (isSelected) {
+            ctx.shadowColor = node.color;
+            ctx.shadowBlur = 20;
+            ctx.strokeStyle = '#ffffff';
+        } else if (isHovered) {
+            ctx.shadowColor = node.color;
             ctx.shadowBlur = 15;
-            ctx.strokeStyle = isSelected ? '#fbcfe8' : '#e2e8f0'; // Light Pink or Slate-200
-            // Bring to front hack: render later?
-            // We can't change order easily here, but shadow helps visibility.
+            ctx.strokeStyle = node.color;
         } else {
             ctx.shadowColor = 'transparent';
             ctx.shadowBlur = 0;
-            ctx.strokeStyle = '#475569';
+            ctx.strokeStyle = node.color; // Stroke is Topic Color
         }
 
         ctx.fill();
-        ctx.lineWidth = 0.5; // Thinner line for world space
+        ctx.lineWidth = isSelected ? 1 : 0.5;
         ctx.stroke();
 
         // Reset shadow
@@ -181,7 +216,7 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
         // Draw Text
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
-        ctx.fillStyle = (isSelected || isHovered) ? '#ffffff' : '#e2e8f0';
+        ctx.fillStyle = (isSelected) ? '#ffffff' : '#e2e8f0';
 
         lines.forEach((line, i) => {
             ctx.fillText(line, x + padding, y + padding + (i * lineHeight));
@@ -197,7 +232,7 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
                 ref={fgRef}
                 width={width}
                 height={height}
-                graphData={graphData}
+                graphData={{ nodes, links }}
                 nodeLabel={() => ''} // Disable default tooltip
                 onNodeHover={setHoveredNode} // Track hover
                 nodeCanvasObject={drawNode}
@@ -223,8 +258,29 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
                     onNodeClick(node)
                 }}
                 onBackgroundClick={() => onNodeClick(null)}
-                backgroundColor="#0f172a"
+                backgroundColor="#020617" // Slate-950 (darker)
             />
+
+            {/* Legend Overlay */}
+            {topics.length > 0 && (
+                <div className="absolute top-6 left-6 bg-slate-900/90 backdrop-blur border border-slate-700 p-4 rounded-lg shadow-xl max-w-xs z-10">
+                    <h3 className="flex items-center gap-2 font-semibold text-slate-200 mb-3 text-sm">
+                        <Tag size={16} /> Topics
+                    </h3>
+                    <div className="space-y-2 text-xs">
+                        {topics.map(topic => (
+                            <div key={topic.id} className="flex items-center gap-2">
+                                <span
+                                    className="w-3 h-3 rounded-full"
+                                    style={{ backgroundColor: topic.color }}
+                                />
+                                <span className="text-slate-300 font-medium">{topic.label}</span>
+                                <span className="text-slate-500">({topic.count})</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             {/* Controls Overlay */}
             <div className="absolute bottom-6 left-6 bg-slate-900/90 backdrop-blur border border-slate-700 p-4 rounded-lg shadow-xl w-64 text-sm z-10">
@@ -284,3 +340,4 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
 }
 
 export default GraphView
+
