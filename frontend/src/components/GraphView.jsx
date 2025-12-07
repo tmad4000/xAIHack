@@ -66,9 +66,43 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
                 width={width}
                 height={height}
                 graphData={graphData}
-                nodeLabel="username"
-                nodeColor={node => selectedNode?.id === node.id ? '#f472b6' : '#60a5fa'} // Pink if selected, Blue otherwise
-                nodeRelSize={6}
+                nodeLabel={node => node.summary} // Show full text on tooltip
+                nodeCanvasObject={(node, ctx, globalScale) => {
+                    const label = node.summary || '';
+                    const fontSize = 12 / globalScale;
+                    ctx.font = `${fontSize}px Sans-Serif`;
+
+                    // Truncate logic
+                    const maxChars = 30;
+                    const text = label.length > maxChars ? label.substring(0, maxChars) + '...' : label;
+
+                    const textWidth = ctx.measureText(text).width;
+                    const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 0.2);
+
+                    // Draw Node
+                    ctx.fillStyle = selectedNode?.id === node.id ? '#f472b6' : '#60a5fa';
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, 5, 0, 2 * Math.PI, false); // size 5
+                    ctx.fill();
+
+                    // Draw Text Background (optional, maybe just text)
+                    // Let's just draw text below
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'top';
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                    ctx.fillText(text, node.x, node.y + 6);
+
+                    // Hover interactions rely on the node geometry. 
+                    // Re-use node pointer area for interaction
+                    node.__bckgDimensions = bckgDimensions; // to re-use in nodePointerAreaPaint
+                }}
+                nodePointerAreaPaint={(node, color, ctx) => {
+                    ctx.fillStyle = color;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, 5, 0, 2 * Math.PI, false);
+                    ctx.fill();
+                }}
+
                 linkLabel="reason"
                 linkWidth={1.5}
                 linkDirectionalParticles={2}
