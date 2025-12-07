@@ -30,6 +30,7 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
     const [chargeStrength, setChargeStrength] = useState(-300)
     const [linkDistance, setLinkDistance] = useState(50)
     const [collisionSpacing, setCollisionSpacing] = useState(10)
+    const [hoveredNode, setHoveredNode] = useState(null)
 
     // Constants for fixed world-space sizing
     const FIXED_FONT_SIZE = 4;
@@ -86,11 +87,17 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
     }, [chargeStrength, linkDistance, collisionSpacing, graphData])
 
     const drawNode = useCallback((node, ctx, globalScale) => {
+        const isHovered = hoveredNode?.id === node.id;
+        const isSelected = selectedNode?.id === node.id;
+
         const label = node.summary || '';
         const fontSize = FIXED_FONT_SIZE; // Fixed world size
         const lineHeight = fontSize * 1.2;
         const padding = 4;
-        const maxWid = fontSize * 0.6 * WRAP_CHARS + (padding * 2);
+
+        // Expand width on hover
+        const wrapChars = isHovered ? WRAP_CHARS * 1.5 : WRAP_CHARS;
+        const maxWid = fontSize * 0.6 * wrapChars + (padding * 2);
         const borderRadius = 2;
 
         ctx.font = `${fontSize}px Sans-Serif`;
@@ -112,8 +119,8 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
         }
         lines.push(currentLine);
 
-        // Truncate if too many lines
-        const maxLines = 3;
+        // Truncate if too many lines AND not hovered
+        const maxLines = isHovered ? Infinity : 3;
         if (lines.length > maxLines) {
             lines = lines.slice(0, maxLines);
             lines[maxLines - 1] += "...";
@@ -141,16 +148,28 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
         ctx.quadraticCurveTo(x, y, x + borderRadius, y);
         ctx.closePath();
 
-        ctx.fillStyle = selectedNode?.id === node.id ? '#be185d' : 'rgba(30, 41, 59, 0.95)'; // Increased opacity
-        if (selectedNode?.id === node.id) {
-            ctx.shadowColor = '#f472b6';
-            ctx.shadowBlur = 10;
-            ctx.strokeStyle = '#fbcfe8';
+        // Fill Style
+        if (isSelected) {
+            ctx.fillStyle = '#be185d'; // Pink-700
+        } else if (isHovered) {
+            ctx.fillStyle = '#1e293b'; // Slate-800 (slightly lighter than 900)
+        } else {
+            ctx.fillStyle = 'rgba(30, 41, 59, 0.95)'; // Slate-900 with opacity
+        }
+
+        // Shadow & Stroke
+        if (isSelected || isHovered) {
+            ctx.shadowColor = isSelected ? '#f472b6' : '#94a3b8'; // Pink or Slate
+            ctx.shadowBlur = 15;
+            ctx.strokeStyle = isSelected ? '#fbcfe8' : '#e2e8f0'; // Light Pink or Slate-200
+            // Bring to front hack: render later?
+            // We can't change order easily here, but shadow helps visibility.
         } else {
             ctx.shadowColor = 'transparent';
             ctx.shadowBlur = 0;
             ctx.strokeStyle = '#475569';
         }
+
         ctx.fill();
         ctx.lineWidth = 0.5; // Thinner line for world space
         ctx.stroke();
@@ -162,7 +181,7 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
         // Draw Text
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
-        ctx.fillStyle = '#e2e8f0'; // Slate-200
+        ctx.fillStyle = (isSelected || isHovered) ? '#ffffff' : '#e2e8f0';
 
         lines.forEach((line, i) => {
             ctx.fillText(line, x + padding, y + padding + (i * lineHeight));
@@ -170,7 +189,7 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
 
         // Store dimensions for pointer area
         node.__bckgDimensions = [boxWidth, boxHeight];
-    }, [selectedNode])
+    }, [selectedNode, hoveredNode])
 
     return (
         <div className="relative w-full h-full">
@@ -179,7 +198,8 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
                 width={width}
                 height={height}
                 graphData={graphData}
-                nodeLabel={node => node.summary} // Show full text on tooltip
+                nodeLabel={() => ''} // Disable default tooltip
+                onNodeHover={setHoveredNode} // Track hover
                 nodeCanvasObject={drawNode}
                 nodePointerAreaPaint={(node, color, ctx) => {
                     const dims = node.__bckgDimensions || [20, 20];
