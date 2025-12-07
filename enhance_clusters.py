@@ -3,16 +3,94 @@
 Enhance Cluster Analysis with AI
 
 This script uses AI to generate better cluster labels, summaries,
-and actionable recommendations for each cluster of urban ideas.
+and actionable recommendations for each cluster of ideas.
+
+Supports different contexts via CITYVOICE_CONTEXT env var:
+- civic: City/urban improvement suggestions (default)
+- startup: Startup/business ideas
+- product: Product feature requests/feedback
+- general: Generic idea clustering
 
 Usage:
     python enhance_clusters.py
+    CITYVOICE_CONTEXT=startup python enhance_clusters.py
 """
 
 import json
 import os
 from pathlib import Path
 from collections import defaultdict
+
+# Context-specific configuration
+CONTEXT_CONFIG = {
+    'civic': {
+        'source_description': 'urban improvement suggestions from city residents',
+        'actor': 'city officials',
+        'action_type': 'policy proposals that a city council could vote on',
+        'example_action': 'Launch a "School Streets" pilot program making blocks adjacent to 10 schools car-free during drop-off (7:30-8:30am). Start Fall 2025.',
+        'topic_keywords': {
+            'Housing': ['housing', 'home', 'apartment', 'adu', 'dwelling', 'zoning', 'residential', 'units', 'building', 'dense', 'homes'],
+            'Transit': ['bus', 'subway', 'transit', 'rail', 'train', 'metro', 'transport', 'commute', 'lane'],
+            'Sidewalks': ['sidewalk', 'pedestrian', 'street', 'walk', 'crosswalk', 'curb', 'wider'],
+            'Safety': ['safety', 'safe', 'police', 'officer', 'crime', 'security', 'enforcement', 'cops'],
+            'Green Space': ['green', 'tree', 'park', 'garden', 'nature', 'permeable', 'flood'],
+            'Schools': ['school', 'student', 'children', 'kids']
+        }
+    },
+    'startup': {
+        'source_description': 'startup and business ideas',
+        'actor': 'founders and investors',
+        'action_type': 'venture opportunities that could be funded or built',
+        'example_action': 'Build an MVP for AI-powered inventory management targeting mid-size retailers. Focus on integration with Shopify/Square. Target $50K MRR in 12 months.',
+        'topic_keywords': {
+            'AI/ML': ['ai', 'machine learning', 'ml', 'gpt', 'llm', 'neural', 'model', 'automation', 'intelligent'],
+            'SaaS': ['saas', 'subscription', 'platform', 'dashboard', 'analytics', 'crm', 'erp', 'b2b'],
+            'Fintech': ['fintech', 'payment', 'banking', 'crypto', 'defi', 'wallet', 'trading', 'finance'],
+            'Healthcare': ['health', 'medical', 'patient', 'doctor', 'clinic', 'telemedicine', 'wellness'],
+            'E-commerce': ['ecommerce', 'shop', 'retail', 'marketplace', 'seller', 'buyer', 'commerce'],
+            'Developer Tools': ['developer', 'api', 'sdk', 'devtools', 'infrastructure', 'cloud', 'deployment']
+        }
+    },
+    'product': {
+        'source_description': 'product feature requests and feedback',
+        'actor': 'product managers and engineers',
+        'action_type': 'feature specs that could be added to the product roadmap',
+        'example_action': 'Add dark mode support with system preference detection. Include toggle in settings. Ship in Q2 with iOS and Android parity.',
+        'topic_keywords': {
+            'UX/UI': ['ui', 'ux', 'design', 'interface', 'button', 'layout', 'theme', 'dark mode', 'navigation'],
+            'Performance': ['slow', 'fast', 'performance', 'speed', 'loading', 'lag', 'optimization'],
+            'Features': ['feature', 'add', 'want', 'need', 'missing', 'should', 'would be nice'],
+            'Bugs': ['bug', 'broken', 'fix', 'error', 'crash', 'issue', 'problem', 'not working'],
+            'Integration': ['integrate', 'connect', 'sync', 'import', 'export', 'api', 'webhook'],
+            'Mobile': ['mobile', 'app', 'ios', 'android', 'phone', 'tablet']
+        }
+    },
+    'general': {
+        'source_description': 'ideas and suggestions',
+        'actor': 'decision makers',
+        'action_type': 'actionable recommendations',
+        'example_action': 'Implement a pilot program to test this approach with a small group. Measure key metrics for 3 months before wider rollout.',
+        'topic_keywords': {
+            'Process': ['process', 'workflow', 'system', 'method', 'approach'],
+            'People': ['team', 'people', 'staff', 'hire', 'training'],
+            'Technology': ['tech', 'tool', 'software', 'digital', 'automate'],
+            'Communication': ['communicate', 'meeting', 'email', 'slack', 'update'],
+            'Resources': ['budget', 'money', 'time', 'resource', 'invest']
+        }
+    }
+}
+
+def get_context():
+    """Get the current context from environment variable."""
+    context = os.environ.get('CITYVOICE_CONTEXT', 'civic').lower()
+    if context not in CONTEXT_CONFIG:
+        print(f"Warning: Unknown context '{context}', using 'general'")
+        context = 'general'
+    return context
+
+def get_context_config():
+    """Get the configuration for the current context."""
+    return CONTEXT_CONFIG[get_context()]
 
 # Load environment variables from .env file
 try:
@@ -65,15 +143,9 @@ def detect_clusters(data):
         adjacency[edge['source_id']].add(edge['target_id'])
         adjacency[edge['target_id']].add(edge['source_id'])
 
-    # Topic keywords for initial classification
-    topic_keywords = {
-        'Housing': ['housing', 'home', 'apartment', 'adu', 'dwelling', 'zoning', 'residential', 'units', 'building', 'dense', 'homes'],
-        'Transit': ['bus', 'subway', 'transit', 'rail', 'train', 'metro', 'transport', 'commute', 'lane'],
-        'Sidewalks': ['sidewalk', 'pedestrian', 'street', 'walk', 'crosswalk', 'curb', 'wider'],
-        'Safety': ['safety', 'safe', 'police', 'officer', 'crime', 'security', 'enforcement', 'cops'],
-        'Green Space': ['green', 'tree', 'park', 'garden', 'nature', 'permeable', 'flood'],
-        'Schools': ['school', 'student', 'children', 'kids']
-    }
+    # Get topic keywords from context config
+    config = get_context_config()
+    topic_keywords = config['topic_keywords']
 
     # Classify each node
     def classify_node(node):
@@ -141,10 +213,11 @@ def extract_demands_anthropic(cluster, client):
     Phase 1: Extract discrete demands from cluster and deduplicate.
     Returns list of demands with voice counts.
     """
+    config = get_context_config()
     ideas = [f"[{n['id']}] @{n['username']}: {n.get('summary', 'No summary')}" for n in cluster['nodes']]
     ideas_text = "\n".join(ideas)
 
-    prompt = f"""Analyze these urban improvement suggestions from NYC residents and extract the DISTINCT actionable demands.
+    prompt = f"""Analyze these {config['source_description']} and extract the DISTINCT actionable demands/suggestions.
 
 Ideas:
 {ideas_text}
@@ -155,8 +228,8 @@ Your task:
 3. Normalize each demand to a clear, actionable description
 
 For example:
-- "wider sidewalks" and "make sidewalks bigger" = same demand
-- "car-free school streets" from multiple people = one demand with multiple voices
+- Similar phrasings of the same idea = one demand
+- Same core suggestion from multiple people = one demand with multiple voices
 
 Return JSON:
 {{
@@ -192,33 +265,34 @@ Only include actual actionable demands. Merge similar ones."""
 
 def synthesize_actions_anthropic(cluster, demands, client):
     """
-    Phase 2: Generate synthesized, implementable policy proposals.
+    Phase 2: Generate synthesized, implementable proposals.
     """
     if not demands:
         return []
 
+    config = get_context_config()
     demands_text = "\n".join([
         f"- {d['description']} ({d['count']} voice{'s' if d['count'] > 1 else ''})"
         for d in demands
     ])
 
-    prompt = f"""Given these citizen demands about {cluster['topic']}:
+    prompt = f"""Given these demands/suggestions about {cluster['topic']}:
 
 {demands_text}
 
-Synthesize 1-3 CONCRETE, IMPLEMENTABLE policy proposals that a city council could actually vote on.
+Synthesize 1-3 CONCRETE, IMPLEMENTABLE {config['action_type']} for {config['actor']}.
 
 Requirements:
-- Be specific: include numbers, timelines, pilot programs
+- Be specific: include numbers, timelines, concrete steps
 - Combine related demands into unified proposals where sensible
 - Make them actionable, not vague recommendations
 - Include implementation mechanisms
 
 Example good proposal:
-"Launch a 'School Streets' pilot program making blocks adjacent to 10 schools car-free during drop-off (7:30-8:30am) and pick-up (2:30-3:30pm). Start Fall 2025. Evaluate safety metrics after 6 months before citywide expansion."
+"{config['example_action']}"
 
 Example bad proposal:
-"Consider making streets safer for children" (too vague)
+"Consider improving this area" (too vague)
 
 Return JSON:
 {{
@@ -252,10 +326,11 @@ Return JSON:
 
 def generate_cluster_analysis_anthropic(cluster, client):
     """Use Claude to analyze a cluster and generate summary."""
+    config = get_context_config()
     ideas = [f"- @{n['username']}: {n.get('summary', 'No summary')}" for n in cluster['nodes']]
     ideas_text = "\n".join(ideas)
 
-    prompt = f"""Analyze this cluster of urban improvement ideas from NYC residents.
+    prompt = f"""Analyze this cluster of {config['source_description']}.
 
 Topic Category: {cluster['topic']}
 
@@ -265,7 +340,7 @@ Ideas in this cluster:
 Please provide:
 1. A concise cluster name (3-5 words) that captures the core theme
 2. A one-sentence summary of what these people are advocating for
-3. The key actionable recommendation for city officials (1-2 sentences)
+3. The key actionable recommendation for {config['actor']} (1-2 sentences)
 4. The level of consensus (High/Medium/Low) - are people saying the same thing or related but different things?
 
 Format your response as JSON:

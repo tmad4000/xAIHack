@@ -250,6 +250,11 @@ def run_clustering(project_name):
     if not connections_file.exists():
         raise ValueError(f"Project '{project_name}' not found")
 
+    # Read project metadata to get context
+    with open(connections_file, 'r') as f:
+        data = json.load(f)
+    project_context = data.get('metadata', {}).get('context', 'civic')
+
     # Run find_related_items.py to generate edges
     script_dir = Path(__file__).parent
     env = os.environ.copy()
@@ -257,6 +262,9 @@ def run_clustering(project_name):
     # Set the data path for the scripts
     if project_name != DEFAULT_PROJECT:
         env['CITYVOICE_DATA_PATH'] = str(project_path)
+
+    # Set the context for prompts
+    env['CITYVOICE_CONTEXT'] = project_context
 
     # Run edge generation
     result = subprocess.run(
@@ -332,6 +340,14 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
             project_name = parsed.path.split('/')[-1]
             self.handle_get_project(project_name)
             return
+
+        # API: Get project context
+        elif parsed.path.endswith('/context') and parsed.path.startswith('/api/projects/'):
+            parts = parsed.path.split('/')
+            if len(parts) == 5:  # ['', 'api', 'projects', 'name', 'context']
+                project_name = parts[3]
+                self.handle_get_context(project_name)
+                return
 
         return super().do_GET()
 
@@ -410,11 +426,28 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps({'error': 'Not found'}).encode())
 
+    def do_PUT(self):
+        """Handle PUT requests for API endpoints."""
+        parsed = urlparse(self.path)
+
+        # API: Set project context
+        if parsed.path.endswith('/context') and parsed.path.startswith('/api/projects/'):
+            parts = parsed.path.split('/')
+            if len(parts) == 5:  # ['', 'api', 'projects', 'name', 'context']
+                project_name = parts[3]
+                self.handle_set_context(project_name)
+                return
+
+        self.send_response(404)
+        self.send_header('Content-Type', 'application/json')
+        self.end_headers()
+        self.wfile.write(json.dumps({'error': 'Not found'}).encode())
+
     def do_OPTIONS(self):
         """Handle CORS preflight requests."""
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()
 
@@ -605,6 +638,75 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
         try:
             delete_project(project_name)
             self._send_json(200, {'message': f"Project '{project_name}' deleted"})
+
+        except ValueError as e:
+            self._send_json(400, {'error': str(e)})
+        except Exception as e:
+            self._send_json(500, {'error': str(e)})
+
+    def handle_get_context(self, project_name):
+        """Get project context type."""
+        try:
+            project_path = get_project_path(project_name)
+            connections_file = project_path / 'connections.json'
+
+            if not connections_file.exists():
+                self._send_json(404, {'error': f"Project '{project_name}' not found"})
+                return
+
+            with open(connections_file, 'r') as f:
+                data = json.load(f)
+
+            context = data.get('metadata', {}).get('context', 'civic')
+            available_contexts = ['civic', 'startup', 'product', 'general']
+
+            self._send_json(200, {
+                'context': context,
+                'available': available_contexts
+            })
+
+        except Exception as e:
+            self._send_json(500, {'error': str(e)})
+
+    def handle_set_context(self, project_name):
+        """Set project context type."""
+        try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            raw_body = self.rfile.read(content_length) if content_length else b''
+            payload = json.loads(raw_body.decode('utf-8')) if raw_body else {}
+
+            new_context = payload.get('context', '').strip().lower()
+            valid_contexts = ['civic', 'startup', 'product', 'general']
+
+            if new_context not in valid_contexts:
+                self._send_json(400, {
+                    'error': f"Invalid context. Must be one of: {', '.join(valid_contexts)}"
+                })
+                return
+
+            project_path = get_project_path(project_name)
+            connections_file = project_path / 'connections.json'
+
+            if not connections_file.exists():
+                self._send_json(404, {'error': f"Project '{project_name}' not found"})
+                return
+
+            with open(connections_file, 'r') as f:
+                data = json.load(f)
+
+            # Ensure metadata exists
+            if 'metadata' not in data:
+                data['metadata'] = {}
+
+            data['metadata']['context'] = new_context
+
+            with open(connections_file, 'w') as f:
+                json.dump(data, f, indent=2)
+
+            self._send_json(200, {
+                'context': new_context,
+                'message': f"Project context set to '{new_context}'"
+            })
 
         except ValueError as e:
             self._send_json(400, {'error': str(e)})
