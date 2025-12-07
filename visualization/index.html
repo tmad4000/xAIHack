@@ -1024,6 +1024,17 @@
             color: #f0f6fc;
         }
 
+        .markdown-content a,
+        .report-link {
+            color: #e07a5f;
+            text-decoration: none;
+        }
+
+        .markdown-content a:hover,
+        .report-link:hover {
+            text-decoration: underline;
+        }
+
         /* Empty/Loading states for clusters */
         .cluster-empty-state {
             padding: 40px 20px;
@@ -4853,7 +4864,8 @@
                     report += `**Topic:** ${cluster.topic}\n\n`;
                     report += `**Ideas:**\n`;
                     cluster.nodes.forEach(node => {
-                        report += `- @${node.username}: ${node.summary || 'No summary'}\n`;
+                        const link = node.link ? ` ([link](${node.link}))` : '';
+                        report += `- @${node.username}: ${node.summary || 'No summary'}${link}\n`;
                     });
                     report += `\n`;
                 });
@@ -4861,15 +4873,24 @@
 
             report += `## All Ideas by Date\n\n`;
             [...graphData.nodes].sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(node => {
-                report += `- [${node.date}] @${node.username}: ${node.summary || 'No summary'}\n`;
+                const link = node.link ? ` ([link](${node.link}))` : '';
+                report += `- [${node.date}] @${node.username}: ${node.summary || 'No summary'}${link}\n`;
             });
 
             return report;
         }
 
         function markdownToHtml(markdown) {
+            // Extract and preserve links before escaping
+            const links = [];
+            let html = markdown.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
+                const placeholder = `__LINK_${links.length}__`;
+                links.push({ text, url });
+                return placeholder;
+            });
+
             // Simple markdown to HTML conversion
-            let html = markdown
+            html = html
                 // Escape HTML
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
@@ -4888,6 +4909,11 @@
                 .replace(/<p><\/p>/g, '')
                 // Wrap consecutive list items
                 .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+
+            // Restore links as HTML anchor tags
+            links.forEach((link, i) => {
+                html = html.replace(`__LINK_${i}__`, `<a href="${link.url}" target="_blank" class="report-link">${link.text}</a>`);
+            });
 
             return html;
         }
