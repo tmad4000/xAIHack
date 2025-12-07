@@ -1,6 +1,7 @@
 import { useRef, useEffect, useMemo, useState, useCallback } from 'react'
 import ForceGraph2D from 'react-force-graph-2d'
 import { Settings2 } from 'lucide-react'
+import * as d3 from 'd3'
 
 // Simple hook for window size in the same file to save time/files
 const useWindowDimensions = () => {
@@ -28,17 +29,35 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
     const { width, height } = useWindowDimensions()
     const [chargeStrength, setChargeStrength] = useState(-300)
     const [linkDistance, setLinkDistance] = useState(50)
+    const [collisionSpacing, setCollisionSpacing] = useState(10)
+
+    // Constants for fixed world-space sizing
+    const FIXED_FONT_SIZE = 4;
+    const WRAP_CHARS = 20; // narrower wrap for world space
 
     // Process data to ensure valid structure
     const graphData = useMemo(() => {
         if (!data) return { nodes: [], edges: [] }
 
         // Clone to avoid mutation issues with force-graph
-        const nodes = data.nodes.map(node => ({
-            ...node,
-            // Add visual properties
-            val: node.connections?.length || 5, // Size
-        }))
+        const nodes = data.nodes.map(node => {
+            // Estimate dimensions for collision
+            const label = node.summary || '';
+            const charWidth = FIXED_FONT_SIZE * 0.6;
+            const lineVal = Math.min(label.length, WRAP_CHARS);
+            const estWidth = lineVal * charWidth + (FIXED_FONT_SIZE * 2); // padding
+            const numLines = Math.min(3, Math.ceil(label.length / WRAP_CHARS));
+            const estHeight = (numLines * FIXED_FONT_SIZE * 1.2) + (FIXED_FONT_SIZE * 2);
+
+            // Radius covering the box
+            const radius = Math.hypot(estWidth / 2, estHeight / 2);
+
+            return {
+                ...node,
+                val: node.connections?.length || 5, // Size
+                radius: radius
+            }
+        })
 
         const links = data.edges.map(edge => ({
             source: edge.source_id,
@@ -52,19 +71,27 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
     // Update forces when controls change
     useEffect(() => {
         if (fgRef.current) {
+            // Charge
             fgRef.current.d3Force('charge').strength(chargeStrength)
+
+            // Link
             fgRef.current.d3Force('link').distance(linkDistance)
+
+            // Collision
+            // basic radius + user spacing
+            fgRef.current.d3Force('collide', d3.forceCollide().radius(n => n.radius + collisionSpacing).iterations(2))
+
             fgRef.current.d3ReheatSimulation()
         }
-    }, [chargeStrength, linkDistance])
+    }, [chargeStrength, linkDistance, collisionSpacing, graphData])
 
     const drawNode = useCallback((node, ctx, globalScale) => {
         const label = node.summary || '';
-        const fontSize = 12 / globalScale;
+        const fontSize = FIXED_FONT_SIZE; // Fixed world size
         const lineHeight = fontSize * 1.2;
-        const padding = 8 / globalScale;
-        const maxWid = 120 / globalScale; // Max width of the card
-        const borderRadius = 4 / globalScale;
+        const padding = 4;
+        const maxWid = fontSize * 0.6 * WRAP_CHARS + (padding * 2);
+        const borderRadius = 2;
 
         ctx.font = `${fontSize}px Sans-Serif`;
 
@@ -92,7 +119,8 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
             lines[maxLines - 1] += "...";
         }
 
-        // Dimensions
+        // Recalculate exact dimensions based on actual render
+        // (Optimization: could store this back to node for next frame pointer area)
         const boxWidth = maxWid;
         const boxHeight = (lines.length * lineHeight) + (padding * 2);
 
@@ -113,17 +141,18 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
         ctx.quadraticCurveTo(x, y, x + borderRadius, y);
         ctx.closePath();
 
-        ctx.fillStyle = selectedNode?.id === node.id ? '#be185d' : 'rgba(30, 41, 59, 0.9)'; // Pink-700 selected, Slate-900 default
+        ctx.fillStyle = selectedNode?.id === node.id ? '#be185d' : 'rgba(30, 41, 59, 0.95)'; // Increased opacity
         if (selectedNode?.id === node.id) {
             ctx.shadowColor = '#f472b6';
             ctx.shadowBlur = 10;
+            ctx.strokeStyle = '#fbcfe8';
         } else {
             ctx.shadowColor = 'transparent';
             ctx.shadowBlur = 0;
+            ctx.strokeStyle = '#475569';
         }
         ctx.fill();
-        ctx.strokeStyle = selectedNode?.id === node.id ? '#fbcfe8' : '#475569'; // Pink-200 / Slate-600
-        ctx.lineWidth = 1 / globalScale;
+        ctx.lineWidth = 0.5; // Thinner line for world space
         ctx.stroke();
 
         // Reset shadow
@@ -163,14 +192,14 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
                     ctx.fillRect(x, y, boxWidth, boxHeight);
                 }}
                 linkLabel="reason"
-                linkWidth={1.5}
+                linkWidth={0.5}
                 linkDirectionalParticles={2}
                 linkDirectionalParticleSpeed={0.005}
                 linkColor={() => 'rgba(148, 163, 184, 0.4)'} // Slate 400 with opacity
                 onNodeClick={(node) => {
                     // Zoom to node?
                     fgRef.current.centerAt(node.x, node.y, 1000)
-                    fgRef.current.zoom(4, 2000)
+                    fgRef.current.zoom(8, 2000)
                     onNodeClick(node)
                 }}
                 onBackgroundClick={() => onNodeClick(null)}
@@ -210,6 +239,21 @@ const GraphView = ({ data, onNodeClick, selectedNode }) => {
                             max="200"
                             value={linkDistance}
                             onChange={(e) => setLinkDistance(Number(e.target.value))}
+                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                        />
+                    </div>
+
+                    <div>
+                        <div className="flex justify-between mb-1 text-xs text-slate-400">
+                            <span>Collision Spacing</span>
+                            <span>{collisionSpacing}</span>
+                        </div>
+                        <input
+                            type="range"
+                            min="0"
+                            max="50"
+                            value={collisionSpacing}
+                            onChange={(e) => setCollisionSpacing(Number(e.target.value))}
                             className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
                         />
                     </div>
