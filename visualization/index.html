@@ -5397,13 +5397,17 @@
             });
         }
 
-        // Export functionality - show preview overlay
+        // Export functionality - show preview overlay with Grok insights
         let currentReportMarkdown = '';
 
-        document.getElementById('exportBtn').addEventListener('click', () => {
-            const report = generateReport();
-            currentReportMarkdown = report;
-            showMarkdownPreview(report);
+        document.getElementById('exportBtn').addEventListener('click', async () => {
+            const baseReport = generateReport();
+            currentReportMarkdown = baseReport;
+            showMarkdownPreview(baseReport);
+
+            const enhancedReport = await appendGrokInsights(baseReport);
+            currentReportMarkdown = enhancedReport;
+            updateMarkdownPreview(enhancedReport);
         });
 
         function generateReport() {
@@ -5481,9 +5485,15 @@
 
         function showMarkdownPreview(markdown) {
             const overlay = document.getElementById('markdownOverlay');
-            const content = document.getElementById('markdownContent');
-            content.innerHTML = markdownToHtml(markdown);
+            updateMarkdownPreview(markdown);
             overlay.classList.add('active');
+        }
+
+        function updateMarkdownPreview(markdown) {
+            const content = document.getElementById('markdownContent');
+            if (content) {
+                content.innerHTML = markdownToHtml(markdown);
+            }
         }
 
         function hideMarkdownPreview() {
@@ -5513,6 +5523,38 @@
                 hideMarkdownPreview();
             }
         });
+
+        async function appendGrokInsights(markdown) {
+            if (!currentProject) return markdown;
+            const sectionTitle = '## Grok Insights';
+
+            const insertSection = (content, section) => {
+                const summaryIndex = content.indexOf('## Summary');
+                if (summaryIndex === -1) {
+                    return `${content}\n\n${section}`;
+                }
+                return `${content.slice(0, summaryIndex)}${section}\n\n${content.slice(summaryIndex)}`;
+            };
+
+            try {
+                const response = await fetch(`/api/projects/${currentProject}/report`, {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to fetch Grok insights');
+                }
+                if (data.insights) {
+                    const section = `${sectionTitle}\n\n${data.insights.trim()}\n`;
+                    return insertSection(markdown, section);
+                }
+            } catch (error) {
+                console.warn('Unable to fetch Grok insights:', error);
+                const section = `${sectionTitle}\n\nUnable to fetch Grok insights (${error.message || 'unknown error'}).\n`;
+                return insertSection(markdown, section);
+            }
+            return markdown;
+        }
 
         // Prompt modal functions
         function showPromptModal() {

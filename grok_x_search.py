@@ -272,7 +272,7 @@ def run_grok_search_sdk(
     if not api_key:
         raise SystemExit("Set XAI_API_KEY in your environment or .env file.")
 
-    Client, user, x_search = ensure_sdk()
+    Client, user, _ = ensure_sdk()
 
     tool_kwargs: Dict[str, Any] = {}
     if allowed_handles:
@@ -366,8 +366,8 @@ def run_grok_search(
             )
             print("[grok] Responses API succeeded", file=sys.stderr)
             return result
-        except Exception as e:
-            print(f"[grok] Responses API failed: {e}, falling back to SDK...", file=sys.stderr)
+        except Exception as exc:
+            print(f"[grok] Responses API failed: {exc}. Falling back to SDK.", file=sys.stderr)
 
     # Fall back to SDK
     print("[grok] Using SDK...", file=sys.stderr)
@@ -382,6 +382,81 @@ def run_grok_search(
         chunk_callback=chunk_callback,
         tool_callback=tool_callback,
     )
+
+
+def run_grok_report_insights(
+    nodes: List[dict],
+    edges: List[dict],
+    *,
+    context: str = "civic",
+    model: str = "grok-4-1-fast",
+    max_items: int = 40,
+) -> str:
+    """Generate high-level insights about the current graph using Grok."""
+    if not nodes:
+        return "No ideas available yet for Grok to analyze."
+
+    api_key = get_env("XAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("Set XAI_API_KEY in your environment or .env file to generate Grok insights.")
+
+    Client, user, _ = ensure_sdk()
+    client = Client(api_key=api_key)
+
+    # Prepare concise summaries for Grok
+    sorted_nodes = sorted(
+        nodes,
+        key=lambda n: (n.get("date") or "", n.get("username") or ""),
+        reverse=True,
+    )
+    node_snippets = []
+    for node in sorted_nodes[:max_items]:
+        node_snippets.append(
+            f"- [{node.get('date', '')}] {node.get('username', '')}: {node.get('summary', '')}"
+        )
+
+    # Include sample edges with reasons if available
+    node_lookup = {n.get("id"): n for n in nodes}
+    edge_snippets = []
+    for edge in edges[: max_items // 2]:
+        source = node_lookup.get(edge.get("source_id"), {})
+        target = node_lookup.get(edge.get("target_id"), {})
+        edge_snippets.append(
+            f"- {source.get('username', 'Unknown')} ↔ {target.get('username', 'Unknown')}: {edge.get('reason', '')}"
+        )
+
+    prompt_sections = [
+        f"You are an urban planning analyst reviewing {len(nodes)} public suggestions ({context} context).",
+        "Here are representative posts:",
+        "\n".join(node_snippets) or "- No samples available.",
+    ]
+
+    if edge_snippets:
+        prompt_sections.extend(
+            [
+                "\nKey connections that our clustering pipeline identified:",
+                "\n".join(edge_snippets),
+            ]
+        )
+
+    prompt_sections.append(
+        "\nYou are Grok, an analyst summarizing civic input for decision makers. "
+        "Write a concise markdown section (≤250 words) covering:\n"
+        "- Emerging macro themes with cited voices\n"
+        "- Conflicting opinions or tensions\n"
+        "- Suggested next actions for city leaders"
+    )
+
+    prompt = "\n\n".join(prompt_sections)
+
+    chat = client.chat.create(model=model)
+    chat.append(user(prompt))
+
+    final_response = None
+    for response, _ in chat.stream():
+        final_response = response
+
+    return _extract_response_text(final_response)
 
 
 def main() -> None:

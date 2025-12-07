@@ -1,15 +1,15 @@
 {
-  "total_ideas": 36,
-  "total_clusters": 5,
+  "total_ideas": 44,
+  "total_clusters": 8,
   "clusters": [
     {
       "id": 0,
       "topic": "Housing",
       "name": "Staten Island Housing",
-      "summary": "10 citizens advocating for housing improvements",
+      "summary": "11 citizens advocating for housing improvements",
       "action": "Review and prioritize these housing-related suggestions",
       "consensus": "High",
-      "node_count": 10,
+      "node_count": 11,
       "demands": [],
       "synthesized_actions": [],
       "nodes": [
@@ -49,11 +49,11 @@
           "link": "https://x.com/BadTakeEnjoyer/status/1995531427593494550"
         },
         {
-          "id": 6,
-          "username": "@CelestinAustin",
-          "summary": "Criticizes council members for proposing housing on inconvenient islands while their districts build none; calls for housing in existing neighborhoods.",
-          "date": "2025-11-30",
-          "link": "https://x.com/CelestinAustin/status/1994876419218800720"
+          "id": 38,
+          "username": "NYCWater",
+          "summary": "Staten Island Flooding Town Hall at JCC drew packed crowd where DEP experts taught residents techniques to reduce home and neighborhood flooding risks including sump pump installation and barriers; distributed free flood kits containing sump pumps",
+          "date": "2025-10-23",
+          "link": "flood barriers"
         },
         {
           "id": 7,
@@ -68,6 +68,13 @@
           "summary": "Build dense, affordable city-run 5+ story housing complexes (not for-profit).",
           "date": "2025-11-30",
           "link": "https://x.com/roselialescrime/status/1994943810267484220"
+        },
+        {
+          "id": 6,
+          "username": "@CelestinAustin",
+          "summary": "Criticizes council members for proposing housing on inconvenient islands while their districts build none; calls for housing in existing neighborhoods.",
+          "date": "2025-11-30",
+          "link": "https://x.com/CelestinAustin/status/1994876419218800720"
         },
         {
           "id": 16,
@@ -157,11 +164,11 @@
     {
       "id": 2,
       "topic": "Green Space",
-      "name": "Green Infrastructure",
-      "summary": "2 citizens advocating for green space improvements",
+      "name": "Staten Island Green Space",
+      "summary": "5 citizens advocating for green space improvements",
       "action": "Review and prioritize these green space-related suggestions",
-      "consensus": "Medium",
-      "node_count": 2,
+      "consensus": "High",
+      "node_count": 5,
       "demands": [],
       "synthesized_actions": [],
       "nodes": [
@@ -173,6 +180,47 @@
           "link": "https://x.com/TransAlt/status/1707858007583822153"
         },
         {
+          "id": 39,
+          "username": "RepNicole",
+          "summary": "NYC DEP hosts Flood Preparedness Town Hall on Oct 22 at Joan and Alan Berkinow JCC (1466 Manor Road",
+          "date": "2025-10-14",
+          "link": "Staten Island) featuring expert presentation and Q&A on flood reduction strategies; provides free flood kits limited to one per household with sump pump"
+        },
+        {
+          "id": 40,
+          "username": "NYCPlanning",
+          "summary": "City Planning Commission agenda includes review of proposed stormwater infrastructure enhancements in Staten Island to improve drainage capacity and reduce flash flood risks in vulnerable areas; part of broader resiliency measures aligned with City of Yes reforms for economic opportunity and green infrastructure integration.",
+          "date": "2025-10-20",
+          "link": "https://x.com/NYCPlanning/status/1980275032824930448"
+        },
+        {
+          "id": 41,
+          "username": "NYClimate",
+          "summary": "FloodNet.nyc real-time flood monitoring dashboard tracked peak inundation of 21.3 inches at Catherine Court & Jewett Ave intersection during July 31 storm",
+          "date": "2025-08-01",
+          "link": "enabling data-driven mitigation planning for recurrent flash flood hotspots; supports targeted green infrastructure like permeable pavements and rain gardens in North Shore neighborhoods."
+        },
+        {
+          "id": 44,
+          "username": "nycgov",
+          "summary": "Recent flash flooding underscores need for expanded Bluebelt systems like the new $70M Prospect Park initiative (adaptable to Staten Island's 22 sq mi network) to capture and infiltrate stormwater from Central Brooklyn-style neighborhoods",
+          "date": "2025-12-03",
+          "link": "reducing overload on combined sewer systems and preventing inundation in low-lying SI areas like Todt Hill and Emerson Hill."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "topic": "Green Space",
+      "name": "Green Infrastructure",
+      "summary": "1 citizens advocating for green space improvements",
+      "action": "Review and prioritize these green space-related suggestions",
+      "consensus": "Medium",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
           "id": 31,
           "username": "NYDailyNews",
           "summary": "Reinstated city plan for southern McGuinness Boulevard in Greenpoint",
@@ -182,7 +230,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "topic": "Transit",
       "name": "Bus Lane Expansion",
       "summary": "15 citizens advocating for transit improvements",
@@ -300,7 +348,27 @@
       ]
     },
     {
-      "id": 4,
+      "id": 5,
+      "topic": "Transit",
+      "name": "Staten Island Transit",
+      "summary": "1 citizens advocating for transit improvements",
+      "action": "Review and prioritize these transit-related suggestions",
+      "consensus": "Medium",
+      "node_count": 1,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 43,
+          "username": "NYC_SBS",
+          "summary": "Emergency Response team delivered free recovery resources to flood-impacted small businesses in Downtown Staten Island's Bayside Village BID post-storm",
+          "date": "2025-08-04",
+          "link": "including guidance on green infrastructure retrofits like rain gardens and permeable surfaces to enhance future stormwater absorption and reduce downtown flooding recurrence."
+        }
+      ]
+    },
+    {
+      "id": 6,
       "topic": "Safety",
       "name": "Public Safety",
       "summary": "1 citizens advocating for safety improvements",
@@ -316,6 +384,33 @@
           "summary": "Parking/delivery reform, automated enforcement, congestion pricing, close sections to traffic; reduce driving by set percentage.",
           "date": "2019-07-25",
           "link": "https://x.com/bikesnobnyc/status/1154393395688816640"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "topic": "Other",
+      "name": "Urban Improvements",
+      "summary": "2 citizens advocating for other improvements",
+      "action": "Review and prioritize these other-related suggestions",
+      "consensus": "Medium",
+      "node_count": 2,
+      "demands": [],
+      "synthesized_actions": [],
+      "nodes": [
+        {
+          "id": 37,
+          "username": "ABC7NY",
+          "summary": "Lessons from Superstorm Sandy highlight Living Breakwaters\u2014a $375 million Rebuild by Design project deploying oyster reefs",
+          "date": "2025-08-01",
+          "link": "stone mantles"
+        },
+        {
+          "id": 42,
+          "username": "nylcv",
+          "summary": "Upcoming Dec 2 event in Port Richmond",
+          "date": "2025-11-20",
+          "link": "Staten Island focuses on climate equity addressing flooding and resilience amid food insecurity and poverty; builds on prior Queens session to discuss community-specific green infrastructure adaptations like expanded bluebelts and resilient landscaping for low-income flood-prone areas."
         }
       ]
     }

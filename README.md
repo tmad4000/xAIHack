@@ -11,6 +11,7 @@ CityVoice discovers and clusters citizen suggestions from social media, helping 
 - **Automatic Clustering**: Groups similar suggestions by topic and idea
 - **Actionable Summary**: Prioritized list of citizen demands with consensus levels
 - **Export Reports**: Generate markdown reports for stakeholders
+- **Grok Insights**: The consolidated report now appends Grok-generated insights summarizing emerging themes and tensions
 
 ## Quick Start - Visualization
 

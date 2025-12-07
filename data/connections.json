@@ -271,6 +271,78 @@
       "link": "strengthened by Queens precedent requiring removal of 31st Street bike lane",
       "status": "committed",
       "source": "grok_search"
+    },
+    {
+      "id": 37,
+      "username": "ABC7NY",
+      "summary": "Lessons from Superstorm Sandy highlight Living Breakwaters\u2014a $375 million Rebuild by Design project deploying oyster reefs",
+      "date": "2025-08-01",
+      "link": "stone mantles",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 38,
+      "username": "NYCWater",
+      "summary": "Staten Island Flooding Town Hall at JCC drew packed crowd where DEP experts taught residents techniques to reduce home and neighborhood flooding risks including sump pump installation and barriers; distributed free flood kits containing sump pumps",
+      "date": "2025-10-23",
+      "link": "flood barriers",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 39,
+      "username": "RepNicole",
+      "summary": "NYC DEP hosts Flood Preparedness Town Hall on Oct 22 at Joan and Alan Berkinow JCC (1466 Manor Road",
+      "date": "2025-10-14",
+      "link": "Staten Island) featuring expert presentation and Q&A on flood reduction strategies; provides free flood kits limited to one per household with sump pump",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 40,
+      "username": "NYCPlanning",
+      "summary": "City Planning Commission agenda includes review of proposed stormwater infrastructure enhancements in Staten Island to improve drainage capacity and reduce flash flood risks in vulnerable areas; part of broader resiliency measures aligned with City of Yes reforms for economic opportunity and green infrastructure integration.",
+      "date": "2025-10-20",
+      "link": "https://x.com/NYCPlanning/status/1980275032824930448",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 41,
+      "username": "NYClimate",
+      "summary": "FloodNet.nyc real-time flood monitoring dashboard tracked peak inundation of 21.3 inches at Catherine Court & Jewett Ave intersection during July 31 storm",
+      "date": "2025-08-01",
+      "link": "enabling data-driven mitigation planning for recurrent flash flood hotspots; supports targeted green infrastructure like permeable pavements and rain gardens in North Shore neighborhoods.",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 42,
+      "username": "nylcv",
+      "summary": "Upcoming Dec 2 event in Port Richmond",
+      "date": "2025-11-20",
+      "link": "Staten Island focuses on climate equity addressing flooding and resilience amid food insecurity and poverty; builds on prior Queens session to discuss community-specific green infrastructure adaptations like expanded bluebelts and resilient landscaping for low-income flood-prone areas.",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 43,
+      "username": "NYC_SBS",
+      "summary": "Emergency Response team delivered free recovery resources to flood-impacted small businesses in Downtown Staten Island's Bayside Village BID post-storm",
+      "date": "2025-08-04",
+      "link": "including guidance on green infrastructure retrofits like rain gardens and permeable surfaces to enhance future stormwater absorption and reduce downtown flooding recurrence.",
+      "status": "committed",
+      "source": "grok_search"
+    },
+    {
+      "id": 44,
+      "username": "nycgov",
+      "summary": "Recent flash flooding underscores need for expanded Bluebelt systems like the new $70M Prospect Park initiative (adaptable to Staten Island's 22 sq mi network) to capture and infiltrate stormwater from Central Brooklyn-style neighborhoods",
+      "date": "2025-12-03",
+      "link": "reducing overload on combined sewer systems and preventing inundation in low-lying SI areas like Todt Hill and Emerson Hill.",
+      "status": "committed",
+      "source": "grok_search"
     }
   ],
   "edges": [
@@ -291,13 +363,13 @@
     },
     {
       "source_id": 1,
-      "target_id": 5,
-      "reason": "Shares keywords: island, staten"
+      "target_id": 38,
+      "reason": "Shares keywords: including, island, staten"
     },
     {
       "source_id": 1,
-      "target_id": 6,
-      "reason": "Shares keywords: build, housing"
+      "target_id": 5,
+      "reason": "Shares keywords: island, staten"
     },
     {
       "source_id": 2,
@@ -336,6 +408,11 @@
     },
     {
       "source_id": 3,
+      "target_id": 40,
+      "reason": "Shares keywords: green, island, staten"
+    },
+    {
+      "source_id": 3,
       "target_id": 5,
       "reason": "Shares keywords: island, staten"
     },
@@ -343,11 +420,6 @@
       "source_id": 3,
       "target_id": 1,
       "reason": "Shares keywords: island, staten"
-    },
-    {
-      "source_id": 3,
-      "target_id": 10,
-      "reason": "Shares keywords: space"
     },
     {
       "source_id": 4,
@@ -396,8 +468,8 @@
     },
     {
       "source_id": 5,
-      "target_id": 7,
-      "reason": "Shares keywords: island"
+      "target_id": 38,
+      "reason": "Shares keywords: island, staten"
     },
     {
       "source_id": 6,
@@ -493,6 +565,11 @@
       "source_id": 9,
       "target_id": 25,
       "reason": "Shares keywords: rail"
+    },
+    {
+      "source_id": 9,
+      "target_id": 44,
+      "reason": "Shares keywords: neighborhoods"
     },
     {
       "source_id": 10,
@@ -596,6 +673,11 @@
     },
     {
       "source_id": 14,
+      "target_id": 40,
+      "reason": "Shares keywords: areas, flood, green, infrastructure"
+    },
+    {
+      "source_id": 14,
       "target_id": 3,
       "reason": "Shares keywords: green, space"
     },
@@ -613,11 +695,6 @@
       "source_id": 14,
       "target_id": 17,
       "reason": "Shares keywords: car"
-    },
-    {
-      "source_id": 14,
-      "target_id": 21,
-      "reason": "Shares keywords: infrastructure"
     },
     {
       "source_id": 15,
@@ -718,6 +795,16 @@
       "source_id": 19,
       "target_id": 23,
       "reason": "Shares keywords: parking"
+    },
+    {
+      "source_id": 19,
+      "target_id": 38,
+      "reason": "Shares keywords: reduce"
+    },
+    {
+      "source_id": 19,
+      "target_id": 40,
+      "reason": "Shares keywords: reduce"
     },
     {
       "source_id": 20,
@@ -858,6 +945,11 @@
       "source_id": 25,
       "target_id": 21,
       "reason": "Shares keywords: light"
+    },
+    {
+      "source_id": 25,
+      "target_id": 41,
+      "reason": "Shares keywords: ave"
     },
     {
       "source_id": 26,
@@ -1118,6 +1210,166 @@
       "source_id": 36,
       "target_id": 27,
       "reason": "Shares keywords: bike, brooklyn, lane, protected"
+    },
+    {
+      "source_id": 37,
+      "target_id": 30,
+      "reason": "Shares keywords: project"
+    },
+    {
+      "source_id": 37,
+      "target_id": 33,
+      "reason": "Shares keywords: project"
+    },
+    {
+      "source_id": 38,
+      "target_id": 39,
+      "reason": "Shares keywords: dep, flood, hall, jcc, town"
+    },
+    {
+      "source_id": 38,
+      "target_id": 4,
+      "reason": "Shares keywords: island, staten"
+    },
+    {
+      "source_id": 38,
+      "target_id": 1,
+      "reason": "Shares keywords: including, island, staten"
+    },
+    {
+      "source_id": 38,
+      "target_id": 40,
+      "reason": "Shares keywords: flood, island, reduce, risks, staten"
+    },
+    {
+      "source_id": 38,
+      "target_id": 43,
+      "reason": "Shares keywords: flood, free, staten"
+    },
+    {
+      "source_id": 39,
+      "target_id": 38,
+      "reason": "Shares keywords: dep, flood, hall, jcc, town"
+    },
+    {
+      "source_id": 39,
+      "target_id": 41,
+      "reason": "Shares keywords: flood, nyc"
+    },
+    {
+      "source_id": 39,
+      "target_id": 14,
+      "reason": "Shares keywords: flood"
+    },
+    {
+      "source_id": 39,
+      "target_id": 36,
+      "reason": "Shares keywords: nyc"
+    },
+    {
+      "source_id": 39,
+      "target_id": 20,
+      "reason": "Shares keywords: nyc"
+    },
+    {
+      "source_id": 40,
+      "target_id": 14,
+      "reason": "Shares keywords: areas, flood, green, infrastructure"
+    },
+    {
+      "source_id": 40,
+      "target_id": 4,
+      "reason": "Shares keywords: island, staten"
+    },
+    {
+      "source_id": 40,
+      "target_id": 3,
+      "reason": "Shares keywords: green, island, staten"
+    },
+    {
+      "source_id": 40,
+      "target_id": 38,
+      "reason": "Shares keywords: flood, island, reduce, risks, staten"
+    },
+    {
+      "source_id": 40,
+      "target_id": 5,
+      "reason": "Shares keywords: island, staten"
+    },
+    {
+      "source_id": 41,
+      "target_id": 36,
+      "reason": "Shares keywords: court, nyc"
+    },
+    {
+      "source_id": 41,
+      "target_id": 39,
+      "reason": "Shares keywords: flood, nyc"
+    },
+    {
+      "source_id": 41,
+      "target_id": 43,
+      "reason": "Shares keywords: flood, storm"
+    },
+    {
+      "source_id": 41,
+      "target_id": 14,
+      "reason": "Shares keywords: flood"
+    },
+    {
+      "source_id": 41,
+      "target_id": 20,
+      "reason": "Shares keywords: nyc"
+    },
+    {
+      "source_id": 43,
+      "target_id": 38,
+      "reason": "Shares keywords: flood, free, staten"
+    },
+    {
+      "source_id": 43,
+      "target_id": 18,
+      "reason": "Shares keywords: free"
+    },
+    {
+      "source_id": 43,
+      "target_id": 22,
+      "reason": "Shares keywords: small"
+    },
+    {
+      "source_id": 43,
+      "target_id": 4,
+      "reason": "Shares keywords: staten"
+    },
+    {
+      "source_id": 43,
+      "target_id": 41,
+      "reason": "Shares keywords: flood, storm"
+    },
+    {
+      "source_id": 44,
+      "target_id": 20,
+      "reason": "Shares keywords: expanded, style"
+    },
+    {
+      "source_id": 44,
+      "target_id": 5,
+      "reason": "Shares keywords: staten, style"
+    },
+    {
+      "source_id": 44,
+      "target_id": 40,
+      "reason": "Shares keywords: flash, staten, stormwater"
+    },
+    {
+      "source_id": 44,
+      "target_id": 3,
+      "reason": "Shares keywords: brooklyn, staten"
+    },
+    {
+      "source_id": 44,
+      "target_id": 4,
+      "reason": "Shares keywords: staten"
     }
   ],
   "metadata": {

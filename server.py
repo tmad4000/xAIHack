@@ -26,7 +26,7 @@ try:
 except ImportError:
     pass
 
-from grok_x_search import run_grok_search, parse_handles, parse_date
+from grok_x_search import run_grok_search, run_grok_report_insights, parse_handles, parse_date
 
 # Project management
 PROJECTS_DIR = Path(__file__).parent / 'data' / 'projects'
@@ -364,6 +364,14 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
             self.handle_grok_search()
             return
 
+        # API: Generate Grok insights for consolidated report
+        if parsed.path.endswith('/report') and parsed.path.startswith('/api/projects/'):
+            parts = parsed.path.split('/')
+            if len(parts) == 5:  # ['', 'api', 'projects', 'name', 'report']
+                project_name = parts[3]
+                self.handle_project_report(project_name)
+                return
+
         # API: Create project
         if parsed.path == '/api/projects':
             self.handle_create_project()
@@ -540,6 +548,33 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
             return
 
         self._send_json(200, result)
+
+    def handle_project_report(self, project_name: str):
+        """Generate Grok insights for the consolidated report."""
+        project_path = get_project_path(project_name)
+        connections_file = project_path / 'connections.json'
+        if not connections_file.exists():
+            self._send_json(404, {'error': f"Project '{project_name}' not found"})
+            return
+
+        try:
+            with open(connections_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except Exception as exc:
+            self._send_json(500, {'error': f'Failed to load project data: {exc}'})
+            return
+
+        nodes = data.get('nodes', [])
+        edges = data.get('edges', [])
+        context = data.get('metadata', {}).get('context', 'civic')
+
+        try:
+            insights = run_grok_report_insights(nodes, edges, context=context)
+        except Exception as exc:
+            self._send_json(500, {'error': str(exc)})
+            return
+
+        self._send_json(200, {'insights': insights, 'context': context})
 
     def log_message(self, format, *args):
         """Custom log format."""
