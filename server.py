@@ -13,10 +13,153 @@ import os
 import socket
 import json
 import webbrowser
+import subprocess
+import shutil
+import re
 from pathlib import Path
 from urllib.parse import urlparse
 
 from grok_x_search import run_grok_search, parse_handles, parse_date
+
+# Project management
+PROJECTS_DIR = Path(__file__).parent / 'data' / 'projects'
+DEFAULT_PROJECT = 'default'
+
+
+def get_projects():
+    """List all available projects."""
+    projects = []
+
+    # Default project (uses root data files)
+    default_connections = Path(__file__).parent / 'data' / 'connections.json'
+    if default_connections.exists():
+        projects.append({
+            'name': DEFAULT_PROJECT,
+            'display_name': 'NYC Urbanist Ideas (Default)',
+            'is_default': True,
+            'has_clusters': (Path(__file__).parent / 'data' / 'enhanced_clusters.json').exists()
+        })
+
+    # Custom projects
+    if PROJECTS_DIR.exists():
+        for project_dir in sorted(PROJECTS_DIR.iterdir()):
+            if project_dir.is_dir():
+                connections_file = project_dir / 'connections.json'
+                if connections_file.exists():
+                    projects.append({
+                        'name': project_dir.name,
+                        'display_name': project_dir.name.replace('_', ' ').title(),
+                        'is_default': False,
+                        'has_clusters': (project_dir / 'enhanced_clusters.json').exists()
+                    })
+
+    return projects
+
+
+def get_project_path(project_name):
+    """Get the data directory for a project."""
+    if project_name == DEFAULT_PROJECT:
+        return Path(__file__).parent / 'data'
+    return PROJECTS_DIR / project_name
+
+
+def create_project(name):
+    """Create a new empty project."""
+    # Sanitize name
+    safe_name = re.sub(r'[^a-zA-Z0-9_-]', '_', name.lower().strip())
+    if not safe_name:
+        raise ValueError("Invalid project name")
+
+    project_dir = PROJECTS_DIR / safe_name
+    if project_dir.exists():
+        raise ValueError(f"Project '{safe_name}' already exists")
+
+    project_dir.mkdir(parents=True, exist_ok=True)
+
+    # Create empty connections file
+    empty_data = {'nodes': [], 'edges': []}
+    with open(project_dir / 'connections.json', 'w') as f:
+        json.dump(empty_data, f, indent=2)
+
+    return safe_name
+
+
+def add_nodes_to_project(project_name, rows):
+    """Add nodes from Grok search results to a project."""
+    project_path = get_project_path(project_name)
+    connections_file = project_path / 'connections.json'
+
+    if not connections_file.exists():
+        raise ValueError(f"Project '{project_name}' not found")
+
+    with open(connections_file, 'r') as f:
+        data = json.load(f)
+
+    # Find max existing ID
+    max_id = max([n.get('id', 0) for n in data['nodes']], default=0)
+
+    # Add new nodes
+    new_nodes = []
+    for row in rows:
+        max_id += 1
+        node = {
+            'id': max_id,
+            'username': (row.get('Username') or row.get('username', '')).replace('@', ''),
+            'summary': row.get('Summary/Quote') or row.get('summary', ''),
+            'date': row.get('Date') or row.get('date', ''),
+            'link': row.get('Link') or row.get('link', '')
+        }
+        new_nodes.append(node)
+        data['nodes'].append(node)
+
+    # Save updated data
+    with open(connections_file, 'w') as f:
+        json.dump(data, f, indent=2)
+
+    return {'added': len(new_nodes), 'total': len(data['nodes'])}
+
+
+def run_clustering(project_name):
+    """Run the clustering pipeline for a project."""
+    project_path = get_project_path(project_name)
+    connections_file = project_path / 'connections.json'
+
+    if not connections_file.exists():
+        raise ValueError(f"Project '{project_name}' not found")
+
+    # Run find_related_items.py to generate edges
+    script_dir = Path(__file__).parent
+    env = os.environ.copy()
+
+    # Set the data path for the scripts
+    if project_name != DEFAULT_PROJECT:
+        env['CITYVOICE_DATA_PATH'] = str(project_path)
+
+    # Run edge generation
+    result = subprocess.run(
+        ['python', str(script_dir / 'find_related_items.py')],
+        cwd=str(script_dir),
+        env=env,
+        capture_output=True,
+        text=True
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError(f"Edge generation failed: {result.stderr}")
+
+    # Run cluster enhancement
+    result = subprocess.run(
+        ['python', str(script_dir / 'enhance_clusters.py')],
+        cwd=str(script_dir),
+        env=env,
+        capture_output=True,
+        text=True
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError(f"Clustering failed: {result.stderr}")
+
+    return {'status': 'completed'}
 
 # Random port range to avoid conflicts
 START_PORT = 7847
@@ -56,6 +199,17 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
             self.send_cluster_summary()
             return
 
+        # API: List projects
+        elif parsed.path == '/api/projects':
+            self._send_json(200, {'projects': get_projects()})
+            return
+
+        # API: Get project data
+        elif parsed.path.startswith('/api/projects/') and parsed.path.count('/') == 3:
+            project_name = parsed.path.split('/')[-1]
+            self.handle_get_project(project_name)
+            return
+
         return super().do_GET()
 
     def do_POST(self):
@@ -65,6 +219,27 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
         if parsed.path == '/api/grok-search':
             self.handle_grok_search()
             return
+
+        # API: Create project
+        if parsed.path == '/api/projects':
+            self.handle_create_project()
+            return
+
+        # API: Add nodes to project
+        if parsed.path.endswith('/nodes') and parsed.path.startswith('/api/projects/'):
+            parts = parsed.path.split('/')
+            if len(parts) == 5:  # ['', 'api', 'projects', 'name', 'nodes']
+                project_name = parts[3]
+                self.handle_add_nodes(project_name)
+                return
+
+        # API: Run clustering
+        if parsed.path.endswith('/cluster') and parsed.path.startswith('/api/projects/'):
+            parts = parsed.path.split('/')
+            if len(parts) == 5:  # ['', 'api', 'projects', 'name', 'cluster']
+                project_name = parts[3]
+                self.handle_run_clustering(project_name)
+                return
 
         self.send_response(404)
         self.send_header('Content-Type', 'application/json')
@@ -184,6 +359,86 @@ class CityIdeasHandler(http.server.SimpleHTTPRequestHandler):
         else:
             handles = None
         return handles
+
+    def handle_get_project(self, project_name):
+        """Get project data (connections and clusters)."""
+        try:
+            project_path = get_project_path(project_name)
+            connections_file = project_path / 'connections.json'
+            clusters_file = project_path / 'enhanced_clusters.json'
+
+            if not connections_file.exists():
+                self._send_json(404, {'error': f"Project '{project_name}' not found"})
+                return
+
+            with open(connections_file, 'r') as f:
+                connections = json.load(f)
+
+            clusters = None
+            if clusters_file.exists():
+                with open(clusters_file, 'r') as f:
+                    clusters = json.load(f)
+
+            self._send_json(200, {
+                'name': project_name,
+                'connections': connections,
+                'clusters': clusters
+            })
+
+        except Exception as e:
+            self._send_json(500, {'error': str(e)})
+
+    def handle_create_project(self):
+        """Create a new project."""
+        try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            raw_body = self.rfile.read(content_length) if content_length else b''
+            payload = json.loads(raw_body.decode('utf-8')) if raw_body else {}
+
+            name = payload.get('name', '').strip()
+            if not name:
+                self._send_json(400, {'error': 'Project name is required'})
+                return
+
+            safe_name = create_project(name)
+            self._send_json(201, {'name': safe_name, 'message': f"Project '{safe_name}' created"})
+
+        except ValueError as e:
+            self._send_json(400, {'error': str(e)})
+        except Exception as e:
+            self._send_json(500, {'error': str(e)})
+
+    def handle_add_nodes(self, project_name):
+        """Add nodes to a project from Grok search results."""
+        try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            raw_body = self.rfile.read(content_length) if content_length else b''
+            payload = json.loads(raw_body.decode('utf-8')) if raw_body else {}
+
+            rows = payload.get('rows', [])
+            if not rows:
+                self._send_json(400, {'error': 'No rows to add'})
+                return
+
+            result = add_nodes_to_project(project_name, rows)
+            self._send_json(200, result)
+
+        except ValueError as e:
+            self._send_json(400, {'error': str(e)})
+        except Exception as e:
+            self._send_json(500, {'error': str(e)})
+
+    def handle_run_clustering(self, project_name):
+        """Run clustering pipeline for a project."""
+        try:
+            result = run_clustering(project_name)
+            self._send_json(200, result)
+        except ValueError as e:
+            self._send_json(400, {'error': str(e)})
+        except RuntimeError as e:
+            self._send_json(500, {'error': str(e)})
+        except Exception as e:
+            self._send_json(500, {'error': f'Clustering failed: {e}'})
 
     def _send_json(self, status_code, payload):
         self.send_response(status_code)
