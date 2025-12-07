@@ -7,6 +7,7 @@ import argparse
 import csv
 import json
 import os
+import sys
 from io import StringIO
 from datetime import datetime
 from pathlib import Path
@@ -59,9 +60,14 @@ def parse_handles(value: Optional[str]) -> Optional[List[str]]:
 
 
 def parse_date(date_str: Optional[str]) -> Optional[datetime]:
+    """Parse ISO-8601 dates if provided; ignore invalid values."""
     if not date_str:
         return None
-    return datetime.fromisoformat(date_str)
+    try:
+        return datetime.fromisoformat(date_str)
+    except ValueError:
+        print(f"Warning: ignoring invalid date '{date_str}'. Expected YYYY-MM-DD.", file=sys.stderr)
+        return None
 
 
 def parse_args() -> argparse.Namespace:
