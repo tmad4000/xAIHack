@@ -1028,6 +1028,71 @@
             color: #8b949e;
         }
 
+        .demand-chip.clickable {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .demand-chip.clickable:hover {
+            background: #30363d;
+            border-color: #58a6ff;
+            color: #58a6ff;
+        }
+
+        .actionable-toggle {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .toggle-btn {
+            padding: 6px 14px;
+            border: 1px solid #30363d;
+            background: #161b22;
+            color: #8b949e;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn:hover {
+            background: #21262d;
+            color: #c9d1d9;
+        }
+
+        .toggle-btn.active {
+            background: #58a6ff;
+            border-color: #58a6ff;
+            color: #0d1117;
+            font-weight: 500;
+        }
+
+        .demand-voices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .voice-link {
+            font-size: 0.75rem;
+            color: #58a6ff;
+            text-decoration: none;
+            padding: 2px 6px;
+            background: rgba(88, 166, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .voice-link:hover {
+            background: rgba(88, 166, 255, 0.2);
+            text-decoration: underline;
+        }
+
+        .demand-item {
+            border-left: 3px solid #ffa657;
+        }
+
         .synthesized-action {
             border-left: 3px solid #58a6ff;
         }
@@ -2530,6 +2595,8 @@
             }, 3000);
         }
 
+        let actionableViewMode = 'demands'; // 'demands' or 'proposals'
+
         function renderActionable() {
             const container = document.getElementById('actionableList');
 
@@ -2547,6 +2614,31 @@
                     });
                 }
             });
+
+            // Collect all demands across clusters
+            const allDemands = [];
+            clusters.forEach(cluster => {
+                if (cluster.demands && cluster.demands.length > 0) {
+                    cluster.demands.forEach(demand => {
+                        // Check if this demand already exists (dedup across clusters)
+                        const existing = allDemands.find(d => d.description === demand.description);
+                        if (existing) {
+                            existing.count += demand.count;
+                            existing.clusters.push(cluster);
+                        } else {
+                            allDemands.push({
+                                ...demand,
+                                clusters: [cluster],
+                                color: cluster.color,
+                                topic: cluster.topic
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Sort demands by voice count
+            allDemands.sort((a, b) => (b.count || 0) - (a.count || 0));
 
             // Sort by voices represented
             allActions.sort((a, b) => (b.voices_represented || 0) - (a.voices_represented || 0));
@@ -2592,13 +2684,53 @@
                     `).join('')}
                 `;
             } else {
-                // New synthesized actions display
-                container.innerHTML = `
+                // Build the view toggle header
+                const headerHtml = `
                     <div class="actionable-header">
-                        <h3>Synthesized Policy Proposals</h3>
-                        <p>AI-generated implementable actions from citizen demands</p>
+                        <div class="actionable-toggle">
+                            <button class="toggle-btn ${actionableViewMode === 'demands' ? 'active' : ''}" data-mode="demands">
+                                Citizen Demands
+                            </button>
+                            <button class="toggle-btn ${actionableViewMode === 'proposals' ? 'active' : ''}" data-mode="proposals">
+                                Policy Proposals
+                            </button>
+                        </div>
+                        <p>${actionableViewMode === 'demands'
+                            ? 'Synthesized issues extracted from citizen input'
+                            : 'AI-generated implementable policy actions'}</p>
                     </div>
-                    ${allActions.map((action, idx) => `
+                `;
+
+                let contentHtml = '';
+
+                if (actionableViewMode === 'demands') {
+                    // Demands view - show synthesized issues
+                    contentHtml = allDemands.map((demand, idx) => `
+                        <div class="actionable-item demand-item" data-cluster-id="${demand.clusters[0].id}">
+                            <div class="actionable-rank">#${idx + 1}</div>
+                            <div class="actionable-content">
+                                <div class="actionable-title-row">
+                                    <h4 style="border-left: 3px solid ${demand.color}; padding-left: 10px;">${demand.description}</h4>
+                                    <span class="topic-tag" style="background: ${demand.color}20; color: ${demand.color}; border: 1px solid ${demand.color}40;">${demand.topic}</span>
+                                </div>
+                                <div class="support-bar">
+                                    <div class="support-fill" style="width: ${Math.min(100, (demand.count || 1) * 20)}%; background: ${demand.color};"></div>
+                                </div>
+                                <div class="support-text">${demand.count || 1} voice${(demand.count || 1) === 1 ? '' : 's'}</div>
+                                ${demand.voices && demand.voices.length > 0 ? `
+                                    <div class="demand-voices">
+                                        ${demand.voices.map(v => {
+                                            const handle = v.replace(/^@+/, '');
+                                            return `<a href="https://twitter.com/${handle}" target="_blank" class="voice-link" onclick="event.stopPropagation();">@${handle}</a>`;
+                                        }).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    // Proposals view - show policy proposals
+                    contentHtml = allActions.map((action, idx) => `
                         <div class="actionable-item synthesized-action" data-cluster-id="${action.cluster.id}">
                             <div class="actionable-rank">#${idx + 1}</div>
                             <div class="actionable-content">
@@ -2614,13 +2746,47 @@
                                 ${action.supporting_demands && action.supporting_demands.length > 0 ? `
                                     <div class="supporting-demands">
                                         <span class="demands-label">Based on demands:</span>
-                                        ${action.supporting_demands.map(d => `<span class="demand-chip">${d}</span>`).join('')}
+                                        ${action.supporting_demands.map(d => `<span class="demand-chip clickable" data-demand="${d}">${d}</span>`).join('')}
                                     </div>
                                 ` : ''}
                             </div>
                         </div>
-                    `).join('')}
-                `;
+                    `).join('');
+                }
+
+                container.innerHTML = headerHtml + contentHtml;
+
+                // Add toggle handlers
+                container.querySelectorAll('.toggle-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        actionableViewMode = btn.dataset.mode;
+                        renderActionable();
+                    });
+                });
+
+                // Add demand chip click handlers (jump to demands view and highlight)
+                container.querySelectorAll('.demand-chip.clickable').forEach(chip => {
+                    chip.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const demandText = chip.dataset.demand;
+                        actionableViewMode = 'demands';
+                        renderActionable();
+                        // Highlight the matching demand after re-render
+                        setTimeout(() => {
+                            const demandItems = container.querySelectorAll('.demand-item h4');
+                            for (const item of demandItems) {
+                                if (item.textContent.includes(demandText)) {
+                                    const demandCard = item.closest('.demand-item');
+                                    demandCard.classList.add('highlighted');
+                                    demandCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                    setTimeout(() => demandCard.classList.remove('highlighted'), 3000);
+                                    break;
+                                }
+                            }
+                        }, 100);
+                    });
+                });
             }
 
             // Add click handlers to highlight clusters
