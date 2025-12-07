@@ -369,6 +369,11 @@
             border-top: 1px solid #21262d;
         }
 
+        .connection-item .connection-author {
+            color: #58a6ff;
+            font-weight: 500;
+        }
+
         .link-btn {
             display: inline-block;
             margin-top: 10px;
@@ -1681,7 +1686,7 @@
                     </div>
                     ${connections.map(c => `
                         <div class="connection-item clickable-connection" data-node-id="${c.node.id}">
-                            <strong>${c.node.username}</strong>: ${c.node.summary || 'No summary'}
+                            ${c.node.summary || 'No summary'} <span class="connection-author">— ${c.node.username}</span>
                             <div class="reason">${c.reason}</div>
                         </div>
                     `).join('')}
@@ -1754,7 +1759,7 @@
                     <div class="cluster-items">
                         ${cluster.nodes.map(n => `
                             <div class="item-mini" data-node-id="${n.id}">
-                                <span class="username">${n.username}</span>: ${(n.summary || '').substring(0, 100)}${(n.summary || '').length > 100 ? '...' : ''}
+                                ${(n.summary || '').substring(0, 100)}${(n.summary || '').length > 100 ? '...' : ''} <span class="username">— ${n.username}</span>
                             </div>
                         `).join('')}
                     </div>
