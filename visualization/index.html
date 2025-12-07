@@ -1788,6 +1788,9 @@
 
             document.getElementById('nodeDetail').innerHTML = detailHtml;
 
+            // Scroll detail panel to top
+            document.querySelector('.panel-content').scrollTop = 0;
+
             // Add click handlers to cluster tags
             document.querySelectorAll('.node-cluster-tag').forEach(tag => {
                 tag.addEventListener('click', () => {
