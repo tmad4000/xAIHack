@@ -1125,9 +1125,9 @@
                 .selectAll('line')
                 .data(links)
                 .enter().append('line')
-                .attr('stroke', '#30363d')
-                .attr('stroke-opacity', 0.6)
-                .attr('stroke-width', 1);
+                .attr('stroke', '#6e7681')
+                .attr('stroke-opacity', 0.8)
+                .attr('stroke-width', 1.5);
 
             // Draw nodes
             const node = g.append('g')
@@ -1262,10 +1262,10 @@
 
             d3.selectAll('.links line')
                 .attr('stroke', l =>
-                    (l.source.id === d.id || l.target.id === d.id) ? '#ff7b54' : '#30363d'
+                    (l.source.id === d.id || l.target.id === d.id) ? '#ff7b54' : '#6e7681'
                 )
                 .attr('stroke-opacity', l =>
-                    (l.source.id === d.id || l.target.id === d.id) ? 0.8 : 0.2
+                    (l.source.id === d.id || l.target.id === d.id) ? 1 : 0.3
                 );
         }
 
@@ -1276,8 +1276,8 @@
                 .attr('stroke-opacity', 0.6);
             d3.selectAll('.node-label').attr('opacity', 1);
             d3.selectAll('.links line')
-                .attr('stroke', '#30363d')
-                .attr('stroke-opacity', 0.6);
+                .attr('stroke', '#6e7681')
+                .attr('stroke-opacity', 0.8);
         }
 
         function handleNodeClick(event, d) {
@@ -1396,10 +1396,10 @@
 
             d3.selectAll('.links line')
                 .attr('stroke', l =>
-                    clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? '#ff7b54' : '#30363d'
+                    clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? '#ff7b54' : '#6e7681'
                 )
                 .attr('stroke-opacity', l =>
-                    clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? 0.8 : 0.1
+                    clusterNodeIds.has(l.source.id) && clusterNodeIds.has(l.target.id) ? 1 : 0.2
                 );
 
             // Reset after delay
@@ -1409,8 +1409,8 @@
                     .attr('stroke-opacity', 0.6);
                 d3.selectAll('.node-label').attr('opacity', 1);
                 d3.selectAll('.links line')
-                    .attr('stroke', '#30363d')
-                    .attr('stroke-opacity', 0.6);
+                    .attr('stroke', '#6e7681')
+                    .attr('stroke-opacity', 0.8);
             }, 3000);
         }
 
