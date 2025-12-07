@@ -1,0 +1,68 @@
+[
+{
+"Username": "BjornBergP",
+"Original Suggestion Summary": "Day/night settings for custom lock screen sounds (e.g., disable during sleep), timed 'Do Not Disturb' modes, full customization of welcoming screen.",
+"Similar Suggestions Found": 3,
+"Consolidated Suites & Key Links": "Timed/Scheduled Audio & DND Modes: Users want automated silence overrides for alarms/sleep without manual toggles."
+},
+{
+"Username": "charlescwcooke",
+"Original Suggestion Summary": "GPS-based prompt when turning on speaker during a call to warn if in confined public space (e.g., airport).",
+"Similar Suggestions Found": 1,
+"Consolidated Suites & Key Links": "Context-Aware Call Etiquette Alerts: Limited overlap; one post suggests GPS-triggered historical info during drives, not calls."
+},
+{
+"Username": "zombiez_q",
+"Original Suggestion Summary": "Integrate MacBook-style camera filters directly into iPhone for TikTok hype.",
+"Similar Suggestions Found": 2,
+"Consolidated Suites & Key Links": "Built-in Camera Effects/Filters: Calls for native filters to boost social media sharing, avoiding third-party apps."
+},
+{
+"Username": "appmountains",
+"Original Suggestion Summary": "Fix WiFi calling bugs, improve Siri for regional accents (e.g., Appalachian), resolve keyboard glitches, replace text tones with single beep during calls, ensure reliability.",
+"Similar Suggestions Found": 6,
+"Consolidated Suites & Key Links": "Siri/Dictation Fixes: Widespread frustration with accent recognition and voice-to-text errors. Call/Keyboard Bugs: Mute tones during calls and glitchy input."
+},
+{
+"Username": "stufflistings",
+"Original Suggestion Summary": "Enable tap-to-focus on Camera Control button for easier subject selection.",
+"Similar Suggestions Found": 4,
+"Consolidated Suites & Key Links": "Camera Control Enhancements: Tap gestures for focus/zoom to reduce hassle vs. holding/pressing."
+},
+{
+"Username": "akshatwit",
+"Original Suggestion Summary": "Customize Camera Control actions based on active app (e.g., volume for calls, zoom/brightness via pressure/slides, scrolling in Safari).",
+"Similar Suggestions Found": 3,
+"Consolidated Suites & Key Links": "App-Specific Button Remapping: Dynamic controls for volume, scrolling, or brightness per app context."
+},
+{
+"Username": "avstorm",
+"Original Suggestion Summary": "Add 4-column layout option for connectivity controls in Control Center to fit more actions, or standalone toggles.",
+"Similar Suggestions Found": 4,
+"Consolidated Suites & Key Links": "Control Center Layout/Customization: Expandable grids or multi-page fixes for cluttered toggles."
+},
+{
+"Username": "Self_Gambit",
+"Original Suggestion Summary": "Separate system and app audio channels; allow app audio to play when phone is muted.",
+"Similar Suggestions Found": 5,
+"Consolidated Suites & Key Links": "Audio Channel Separation: Independent app vs. system sounds, especially for muted playback."
+},
+{
+"Username": "futureform_",
+"Original Suggestion Summary": "'Updates Feed' via swipe-up on Home Screen for personalized info; circle gesture on Home Bar for Apple Intelligence queries.",
+"Similar Suggestions Found": 4,
+"Consolidated Suites & Key Links": "AI-Driven Home Interactions: Swipe feeds for contextual updates; on-screen circling for instant queries."
+},
+{
+"Username": "stalman",
+"Original Suggestion Summary": "Hardware camera upgrades: better ultra-wide with IBIS, closer macro focus on 1x, reduced night flares, C2PA verification (avoid megapixels/zoom/AI).",
+"Similar Suggestions Found": 5,
+"Consolidated Suites & Key Links": "Sensor/Optics Improvements: IBIS, macro focus, flare reduction over gimmicks."
+},
+{
+"Username": "kelly_neill",
+"Original Suggestion Summary": "Fix core iOS issues: Photos app glitches, intuitive Control Center, touchscreen lag, search bar functionality (prioritize basics over animations).",
+"Similar Suggestions Found": 7,
+"Consolidated Suites & Key Links": "Photos App Overhaul: Revert cluttered UI, improve navigation/search (highest redundancy). General UI Bugs: Touch lag, Control Center intuitiveness."
+}
+]

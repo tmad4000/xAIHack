@@ -1,4 +1,361 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": 1,
+      "username": "BjornBergP",
+      "summary": "Day/night settings for custom lock screen sounds (e.g., disable during sleep), timed 'Do Not Disturb' modes, full customization of welcoming screen. | Consolidated: Timed/Scheduled Audio & DND Modes: Users want automated silence overrides for alarms/sleep without manual toggles.",
+      "date": "2025-12-07",
+      "link": "https://x.com/BjornBergP"
+    },
+    {
+      "id": 2,
+      "username": "charlescwcooke",
+      "summary": "GPS-based prompt when turning on speaker during a call to warn if in confined public space (e.g., airport). | Consolidated: Context-Aware Call Etiquette Alerts: Limited overlap; one post suggests GPS-triggered historical info during drives, not calls.",
+      "date": "2025-12-07",
+      "link": "https://x.com/charlescwcooke"
+    },
+    {
+      "id": 3,
+      "username": "zombiez_q",
+      "summary": "Integrate MacBook-style camera filters directly into iPhone for TikTok hype. | Consolidated: Built-in Camera Effects/Filters: Calls for native filters to boost social media sharing, avoiding third-party apps.",
+      "date": "2025-12-07",
+      "link": "https://x.com/zombiez_q"
+    },
+    {
+      "id": 4,
+      "username": "appmountains",
+      "summary": "Fix WiFi calling bugs, improve Siri for regional accents (e.g., Appalachian), resolve keyboard glitches, replace text tones with single beep during calls, ensure reliability. | Consolidated: Siri/Dictation Fixes: Widespread frustration with accent recognition and voice-to-text errors. Call/Keyboard Bugs: Mute tones during calls and glitchy input.",
+      "date": "2025-12-07",
+      "link": "https://x.com/appmountains"
+    },
+    {
+      "id": 5,
+      "username": "stufflistings",
+      "summary": "Enable tap-to-focus on Camera Control button for easier subject selection. | Consolidated: Camera Control Enhancements: Tap gestures for focus/zoom to reduce hassle vs. holding/pressing.",
+      "date": "2025-12-07",
+      "link": "https://x.com/stufflistings"
+    },
+    {
+      "id": 6,
+      "username": "akshatwit",
+      "summary": "Customize Camera Control actions based on active app (e.g., volume for calls, zoom/brightness via pressure/slides, scrolling in Safari). | Consolidated: App-Specific Button Remapping: Dynamic controls for volume, scrolling, or brightness per app context.",
+      "date": "2025-12-07",
+      "link": "https://x.com/akshatwit"
+    },
+    {
+      "id": 7,
+      "username": "avstorm",
+      "summary": "Add 4-column layout option for connectivity controls in Control Center to fit more actions, or standalone toggles. | Consolidated: Control Center Layout/Customization: Expandable grids or multi-page fixes for cluttered toggles.",
+      "date": "2025-12-07",
+      "link": "https://x.com/avstorm"
+    },
+    {
+      "id": 8,
+      "username": "Self_Gambit",
+      "summary": "Separate system and app audio channels; allow app audio to play when phone is muted. | Consolidated: Audio Channel Separation: Independent app vs. system sounds, especially for muted playback.",
+      "date": "2025-12-07",
+      "link": "https://x.com/Self_Gambit"
+    },
+    {
+      "id": 9,
+      "username": "futureform_",
+      "summary": "'Updates Feed' via swipe-up on Home Screen for personalized info; circle gesture on Home Bar for Apple Intelligence queries. | Consolidated: AI-Driven Home Interactions: Swipe feeds for contextual updates; on-screen circling for instant queries.",
+      "date": "2025-12-07",
+      "link": "https://x.com/futureform_"
+    },
+    {
+      "id": 10,
+      "username": "stalman",
+      "summary": "Hardware camera upgrades: better ultra-wide with IBIS, closer macro focus on 1x, reduced night flares, C2PA verification (avoid megapixels/zoom/AI). | Consolidated: Sensor/Optics Improvements: IBIS, macro focus, flare reduction over gimmicks.",
+      "date": "2025-12-07",
+      "link": "https://x.com/stalman"
+    },
+    {
+      "id": 11,
+      "username": "kelly_neill",
+      "summary": "Fix core iOS issues: Photos app glitches, intuitive Control Center, touchscreen lag, search bar functionality (prioritize basics over animations). | Consolidated: Photos App Overhaul: Revert cluttered UI, improve navigation/search (highest redundancy). General UI Bugs: Touch lag, Control Center intuitiveness.",
+      "date": "2025-12-07",
+      "link": "https://x.com/kelly_neill"
+    }
+  ],
+  "edges": [
+    {
+      "source_id": 1,
+      "target_id": 8,
+      "reason": "Shares keywords: audio, consolidated, sounds"
+    },
+    {
+      "source_id": 1,
+      "target_id": 7,
+      "reason": "Shares keywords: consolidated, customization, toggles"
+    },
+    {
+      "source_id": 1,
+      "target_id": 9,
+      "reason": "Shares keywords: consolidated, screen"
+    },
+    {
+      "source_id": 1,
+      "target_id": 10,
+      "reason": "Shares keywords: consolidated, night"
+    },
+    {
+      "source_id": 1,
+      "target_id": 2,
+      "reason": "Shares keywords: consolidated, during"
+    },
+    {
+      "source_id": 2,
+      "target_id": 6,
+      "reason": "Shares keywords: based, calls, consolidated, context"
+    },
+    {
+      "source_id": 2,
+      "target_id": 4,
+      "reason": "Shares keywords: call, calls, consolidated, during"
+    },
+    {
+      "source_id": 2,
+      "target_id": 8,
+      "reason": "Shares keywords: consolidated, when"
+    },
+    {
+      "source_id": 2,
+      "target_id": 9,
+      "reason": "Shares keywords: consolidated, info"
+    },
+    {
+      "source_id": 2,
+      "target_id": 3,
+      "reason": "Shares keywords: calls, consolidated"
+    },
+    {
+      "source_id": 3,
+      "target_id": 6,
+      "reason": "Shares keywords: calls, camera, consolidated"
+    },
+    {
+      "source_id": 3,
+      "target_id": 5,
+      "reason": "Shares keywords: camera, consolidated"
+    },
+    {
+      "source_id": 3,
+      "target_id": 2,
+      "reason": "Shares keywords: calls, consolidated"
+    },
+    {
+      "source_id": 3,
+      "target_id": 4,
+      "reason": "Shares keywords: calls, consolidated"
+    },
+    {
+      "source_id": 3,
+      "target_id": 10,
+      "reason": "Shares keywords: camera, consolidated"
+    },
+    {
+      "source_id": 4,
+      "target_id": 11,
+      "reason": "Shares keywords: bugs, consolidated, fix, glitches, improve"
+    },
+    {
+      "source_id": 4,
+      "target_id": 2,
+      "reason": "Shares keywords: call, calls, consolidated, during"
+    },
+    {
+      "source_id": 4,
+      "target_id": 7,
+      "reason": "Shares keywords: consolidated, fixes"
+    },
+    {
+      "source_id": 4,
+      "target_id": 3,
+      "reason": "Shares keywords: calls, consolidated"
+    },
+    {
+      "source_id": 4,
+      "target_id": 6,
+      "reason": "Shares keywords: calls, consolidated"
+    },
+    {
+      "source_id": 5,
+      "target_id": 6,
+      "reason": "Shares keywords: button, camera, consolidated, control, zoom"
+    },
+    {
+      "source_id": 5,
+      "target_id": 10,
+      "reason": "Shares keywords: camera, consolidated, focus, zoom"
+    },
+    {
+      "source_id": 5,
+      "target_id": 3,
+      "reason": "Shares keywords: camera, consolidated"
+    },
+    {
+      "source_id": 5,
+      "target_id": 7,
+      "reason": "Shares keywords: consolidated, control"
+    },
+    {
+      "source_id": 5,
+      "target_id": 11,
+      "reason": "Shares keywords: consolidated, control"
+    },
+    {
+      "source_id": 6,
+      "target_id": 5,
+      "reason": "Shares keywords: button, camera, consolidated, control, zoom"
+    },
+    {
+      "source_id": 6,
+      "target_id": 7,
+      "reason": "Shares keywords: actions, consolidated, control, controls"
+    },
+    {
+      "source_id": 6,
+      "target_id": 2,
+      "reason": "Shares keywords: based, calls, consolidated, context"
+    },
+    {
+      "source_id": 6,
+      "target_id": 3,
+      "reason": "Shares keywords: calls, camera, consolidated"
+    },
+    {
+      "source_id": 6,
+      "target_id": 10,
+      "reason": "Shares keywords: camera, consolidated, zoom"
+    },
+    {
+      "source_id": 7,
+      "target_id": 6,
+      "reason": "Shares keywords: actions, consolidated, control, controls"
+    },
+    {
+      "source_id": 7,
+      "target_id": 11,
+      "reason": "Shares keywords: center, cluttered, consolidated, control"
+    },
+    {
+      "source_id": 7,
+      "target_id": 1,
+      "reason": "Shares keywords: consolidated, customization, toggles"
+    },
+    {
+      "source_id": 7,
+      "target_id": 5,
+      "reason": "Shares keywords: consolidated, control"
+    },
+    {
+      "source_id": 7,
+      "target_id": 4,
+      "reason": "Shares keywords: consolidated, fixes"
+    },
+    {
+      "source_id": 8,
+      "target_id": 1,
+      "reason": "Shares keywords: audio, consolidated, sounds"
+    },
+    {
+      "source_id": 8,
+      "target_id": 2,
+      "reason": "Shares keywords: consolidated, when"
+    },
+    {
+      "source_id": 8,
+      "target_id": 6,
+      "reason": "Shares keywords: app, consolidated"
+    },
+    {
+      "source_id": 8,
+      "target_id": 11,
+      "reason": "Shares keywords: app, consolidated"
+    },
+    {
+      "source_id": 8,
+      "target_id": 3,
+      "reason": "Shares keywords: consolidated"
+    },
+    {
+      "source_id": 9,
+      "target_id": 1,
+      "reason": "Shares keywords: consolidated, screen"
+    },
+    {
+      "source_id": 9,
+      "target_id": 2,
+      "reason": "Shares keywords: consolidated, info"
+    },
+    {
+      "source_id": 9,
+      "target_id": 6,
+      "reason": "Shares keywords: consolidated, via"
+    },
+    {
+      "source_id": 9,
+      "target_id": 11,
+      "reason": "Shares keywords: bar, consolidated"
+    },
+    {
+      "source_id": 9,
+      "target_id": 5,
+      "reason": "Shares keywords: consolidated"
+    },
+    {
+      "source_id": 10,
+      "target_id": 5,
+      "reason": "Shares keywords: camera, consolidated, focus, zoom"
+    },
+    {
+      "source_id": 10,
+      "target_id": 6,
+      "reason": "Shares keywords: camera, consolidated, zoom"
+    },
+    {
+      "source_id": 10,
+      "target_id": 3,
+      "reason": "Shares keywords: camera, consolidated"
+    },
+    {
+      "source_id": 10,
+      "target_id": 1,
+      "reason": "Shares keywords: consolidated, night"
+    },
+    {
+      "source_id": 10,
+      "target_id": 8,
+      "reason": "Shares keywords: consolidated"
+    },
+    {
+      "source_id": 11,
+      "target_id": 7,
+      "reason": "Shares keywords: center, cluttered, consolidated, control"
+    },
+    {
+      "source_id": 11,
+      "target_id": 4,
+      "reason": "Shares keywords: bugs, consolidated, fix, glitches, improve"
+    },
+    {
+      "source_id": 11,
+      "target_id": 6,
+      "reason": "Shares keywords: app, consolidated, control"
+    },
+    {
+      "source_id": 11,
+      "target_id": 5,
+      "reason": "Shares keywords: consolidated, control"
+    },
+    {
+      "source_id": 11,
+      "target_id": 8,
+      "reason": "Shares keywords: app, consolidated"
+    }
+  ],
+  "metadata": {
+    "context": "product"
+  }
 }

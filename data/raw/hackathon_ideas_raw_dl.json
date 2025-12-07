@@ -1,0 +1,1099 @@
+{
+"clusters": [
+{
+"name": "AI-Powered Educational Tools",
+"ideas": [
+{
+"name": "QuizDeck",
+"description": "AI quiz platform for creating/sharing personalized quizzes.",
+"url": "https://devpost.com/software/quizdeck",
+"tech": "AI, ML",
+"winner": false
+},
+{
+"name": "Quizzard",
+"description": "AI-generated questions, hints, and explanations for any subject.",
+"url": "https://devpost.com/software/quizzard",
+"tech": "AI",
+"winner": true
+},
+{
+"name": "Theia",
+"description": "Peer communication and AI tutoring app.",
+"url": "https://devpost.com/software/theia",
+"tech": "AI, Chatbot",
+"winner": false
+},
+{
+"name": "KNOCOBOT",
+"description": "Vernacular-language educational chatbot with TTS and resources.",
+"url": "https://devpost.com/software/knocobot",
+"tech": "AI, TTS",
+"winner": false
+},
+{
+"name": "iLearnAI",
+"description": "Pioneering the evolution of learning, making education smarter, accessible, and more personalized.",
+"url": "https://devpost.com/software/ilearnai-where-intelligence-meets-learning",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "EduSphere AI",
+"description": "Learn Without Limits, quality education accessible to everyone.",
+"url": "https://devpost.com/software/edusphere-ai",
+"tech": "AI, AR",
+"winner": false
+},
+{
+"name": "Pebble",
+"description": "AI-powered educational app for students with autism.",
+"url": "https://devpost.com/software/pebble-rz9hyd",
+"tech": "AI, Mobile",
+"winner": false
+},
+{
+"name": "EdTutor",
+"description": "An all-in-one education platform that supercharges learning and knowledge-sharing.",
+"url": "https://devpost.com/software/edtutor",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "SmartClicks",
+"description": "Unleashing the Power of AI for Personalized Education.",
+"url": "https://devpost.com/software/smartclicks",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "CKJ Datathon 2023",
+"description": "Explore education metrics in relation to socioeconomic and environmental factors.",
+"url": "https://devpost.com/software/rowdy-datathon-2023",
+"tech": "Data Analysis",
+"winner": false
+},
+{
+"name": "Education.Ly",
+"description": "Learn with Education.Ly",
+"url": "https://devpost.com/software/education-ly-t0wcze",
+"tech": "Web",
+"winner": false
+}
+],
+"similar_on_x": [
+{
+"content": "🍓 My submission for the @boltdotnew hackathon: Imagine studying but you farm XP and level up! 🌱 Upload a PDF or take a photo of your homework. In less than 1 minute, the AI will create an interactive course with multiple levels for you.",
+"url": "https://x.com/sammwy/status/1939747028000551423"
+},
+{
+"content": "ASI Create offers simulation environments for educational tech. Using agent-based models from https://fetch.ai/ educators can experiment with new teaching methods and personalized learning solutions before full-scale rollout.",
+"url": "https://x.com/ASI_Alliance/status/1888899900986826782"
+},
+{
+"content": "3. AI-Powered Micro-Education Studios Expert courses, tailored to micro-niches How AI helps: - Auto-generate video lessons, scripts, thumbnails, worksheets - Turn long content into structured courses - Personalised learning paths for each student - AI tutors to boost retention",
+"url": "https://x.com/HeyZaraKhan/status/1997340671058079784"
+},
+{
+"content": "I'm planning to create an AI tool school. It would be for anyone who wants to learn how to actually apply useful AI tools to your life. Rough ideas: - 1 class per week - A new tool every week + exactly how to apply it - 1-1.5 hour-long classes, interactive for any questions - Classes will be live + recorded - Members can vote every week for the next AI tool to breakdown - Possible testing + certifications? With the pace of updates to AI tools, a standalone course would be challenging to update, so this weekly model would be better. Who would be interested?",
+"url": "https://x.com/rowancheung/status/1680985595156348930"
+}
+],
+"winning_insights": "AI education tools often win when they incorporate gamification and personalization, like quiz platforms with real-time feedback. Non-winners typically lack user engagement features."
+},
+{
+"name": "Health and Wellness AI",
+"ideas": [
+{
+"name": "Story.ai",
+"description": "AI therapy journal for mental wellness routines.",
+"url": "https://devpost.com/software/story-ai",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Mike.ai",
+"description": "ML-based stroke risk quizzer.",
+"url": "https://devpost.com/software/mike-ai",
+"tech": "ML",
+"winner": false
+},
+{
+"name": "Heart Rate Variability Predictor",
+"description": "ML for health condition forecasting.",
+"url": "https://devpost.com/software/heart-rate-variability-predictor",
+"tech": "ML",
+"winner": false
+},
+{
+"name": "Suicide Prevention Post Detector",
+"description": "ML to flag risky social media content.",
+"url": "https://devpost.com/software/suicide-prevention-post-detector",
+"tech": "ML",
+"winner": false
+},
+{
+"name": "Heart Disease Random Forest Model",
+"description": "Input-based risk prediction.",
+"url": "https://devpost.com/software/heart-disease-random-forest-model",
+"tech": "ML",
+"winner": false
+},
+{
+"name": "My Health Companion",
+"description": "Integrated IoT + Alexa solution for continuous health improvement.",
+"url": "https://devpost.com/software/health-companion",
+"tech": "IoT, Alexa",
+"winner": false
+},
+{
+"name": "Mental Health ChatBot",
+"description": "Chatbot for mental health advice.",
+"url": "https://devpost.com/software/mental-health-chatbot-hbofnw",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Health Check",
+"description": "Health app that takes inputs from patients.",
+"url": "https://devpost.com/software/letshack-hackthon",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Bloom",
+"description": "Resources for women's mental health.",
+"url": "https://devpost.com/software/bloom-g913mc",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "eHealthWallet",
+"description": "Blockchain backed eHealth Wallet.",
+"url": "https://devpost.com/software/ehealthwallet",
+"tech": "Blockchain",
+"winner": false
+},
+{
+"name": "Healthut",
+"description": "Website and discord bot for health.",
+"url": "https://devpost.com/software/healthub",
+"tech": "Web, Bot",
+"winner": false
+},
+{
+"name": "Kare",
+"description": "AI-assisted digital health guidance.",
+"url": "https://devpost.com/software/kare-cuh2t8",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "HealthAPPy",
+"description": "Platform to find consultations.",
+"url": "https://devpost.com/software/healthappy",
+"tech": "Web",
+"winner": false
+}
+],
+"similar_on_x": [
+{
+"content": ""AI Meets Health: Smarter, Safer Choices for a Healthier Life". Create personalized plans for nutrition, fitness, sleep, emotional well-being, anti-aging, and stress management using AI tools like ChatGPT. Real-life examples and actionable prompts. https://billbasinger.thrivecart.com/ai-meets-health/?affiliate=donnaslam",
+"url": "https://x.com/DonnaSLam/status/1996977110196379890"
+},
+{
+"content": "I didn't win the hackathon i just participated in, but i'll share what I built under 2 hours, A fully functional AI-Powered medical system that uses local AI model to help in assigning patients to doctors and wards, Keeping checks of patients data, Analytics, Audits and also for carrying out full medical works simulated, Easening up the workload of medical staff, Which falls in line with my last hackathon project: A medtech solution that is built on blockDag blockchain, that uses nfc card to store encrypted keys that are used to store patients medical record Both are multi layered encrypted, hopefully i'll be able to win my next hackathon, but till then cheers! and congrats to the winners",
+"url": "https://x.com/honour_can_code/status/1984328141943554128"
+},
+{
+"content": "We hosted a AI healthcare hackathon focused on B2B problems - read the post and you might get ideas for other vertical AI stuff too. Some example projects built from scratch in 36 hours: - A tool to let recruiters know when a physicians might be looking for a new job - A tool that uses AI to judge other healthcare AI to see if their claims are legit - An easier way to help get all the information needed to enroll someone in long-term care And 10 other projects. Here's a round up of all the projects people made (in the next tweet)",
+"url": "https://x.com/nikillinit/status/1996977110196379890"
+},
+{
+"content": "Building a startup? Focus on timeless problems, the ones people never stop caring about: > Fitness → AI calorie tracker, workout planner > Studying → AI tutor, flashcard or quiz generator > Productivity → AI planner, focus or habit coach > Money → AI finance tracker or dropshipping helper > Beauty → AI skincare or makeup assistant > Memory → AI note-taker, summarizer, or mind-map generator > Mental health → AI mood, therapy, or sleep coach > Photography → AI photo editor, caption or style generator > Food → AI meal planner, grocery or recipe assistant > Relationships → AI dating coach, conversation guide > Health → AI symptom checker, rehab or wellness tracker > Travel → AI itinerary or trip planner These spaces never fade. People will always pay for solutions to everyday needs.",
+"url": "https://x.com/alexcooldev/status/1986328760426373550"
+},
+{
+"content": "Own solution: Community-driven AI hubs. Blend A and B with local "health pods" using AI for real-time screenings and virtual coaching. No more one-size-fits-all—tailored to genetics, habits, and environment. This could redefine healthcare equity.",
+"url": "https://x.com/fiirja12/status/1997317621637877770"
+}
+],
+"winning_insights": "Health AI projects win when they address critical issues like mental health or risk prediction with ethical considerations. Non-winners often miss integration with real-world data."
+},
+{
+"name": "Environmental and Sustainability Projects",
+"ideas": [
+{
+"name": "Timor-Leste Waste AI",
+"description": "Agents for hotspot detection and cleanup.",
+"url": "https://devpost.com/software/timor-leste-waste-ai",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Project CoolCity",
+"description": "AI for urban cooling strategies like tree planting.",
+"url": "https://devpost.com/software/project-coolcity",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Air Quality ML Informer",
+"description": "Global environment health predictor.",
+"url": "https://devpost.com/software/air-quality-ml-informer",
+"tech": "ML",
+"winner": false
+},
+{
+"name": "Smart Garbage IoT Can",
+"description": "Efficient waste management sensor.",
+"url": "https://devpost.com/software/smart-garbage-iot-can",
+"tech": "IoT",
+"winner": false
+},
+{
+"name": "Carbon Footprint Monitor",
+"description": "Daily environmental accountability tracker.",
+"url": "https://devpost.com/software/carbon-footprint-monitor",
+"tech": "App",
+"winner": false
+},
+{
+"name": "SDG: The Urban Sustainability Game",
+"description": "Sandbox to create a more sustainable city.",
+"url": "https://devpost.com/software/the-urban-sustainability-game",
+"tech": "Game",
+"winner": false
+},
+{
+"name": "Eco-Forge",
+"description": "AI-powered platform for environmental innovation.",
+"url": "https://devpost.com/software/eco-forge",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Climate Wavers",
+"description": "Uniting Technology for Environmental Change.",
+"url": "https://devpost.com/software/climatewavers",
+"tech": "Web",
+"winner": true
+},
+{
+"name": "EcoTech",
+"description": "Platform for sustainability.",
+"url": "https://devpost.com/software/ecotech-76yz32",
+"tech": "App",
+"winner": false
+},
+{
+"name": "EcoConnect",
+"description": "Sustainability platform connecting individuals and businesses.",
+"url": "https://devpost.com/software/ecoconnect-amnq1e",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "EcoIsland",
+"description": "Sustainable platform for Governors Island to reduce waste.",
+"url": "https://devpost.com/software/ecoisland",
+"tech": "QR, App",
+"winner": false
+},
+{
+"name": "Carbon-Aware AI Job Scheduler",
+"description": "Sustainable job scheduling for AI workloads.",
+"url": "https://devpost.com/software/carbon-aware-ai-job-scheduler",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Eco-venture",
+"description": "Discord bot for learning about environment.",
+"url": "https://devpost.com/software/eco-friend-draft",
+"tech": "Bot",
+"winner": false
+},
+{
+"name": "SeekCO2",
+"description": "Carbon footprint calculator.",
+"url": "https://devpost.com/software/backyardhacks-tba",
+"tech": "Web",
+"winner": false
+}
+],
+"similar_on_x": [
+{
+"content": "At @UCSC’s Reboot the Earth hackathon, students built AI-driven tools to fight wildfires and support climate adaptation, from systems that optimize irrigation during fire conditions to AI-accelerated environmental reviews.  https://news.ucsc.edu/2025/11/ai-solutions-wildfire-mitigation-reboot-the-earth-hackathon/",
+"url": "https://x.com/UCAdvocacy/status/1996274504520155447"
+},
+{
+"content": "Introducing Water Wise BITS! Born at the Dojima Foundation Hackathon, this project from @bitshyd focuses on water conservation through advanced tech & sustainable solutions. Check out the full video of this transformative initiative: https://www.youtube.com/watch?v=Iw1bYrVXkH4&feature=youtu.be #WaterBITS #Sustainability #TechForGood",
+"url": "https://x.com/dojimanetwork/status/1883930453557862834"
+},
+{
+"content": "Eco-Innovation from Waste: "Help Us Green" in India turns floral waste from temples into sustainable products like incense and compost, tackling river pollution with a smart business model and strong social mission.",
+"url": "https://x.com/CostlyIdeas/status/1996109366832009559"
+},
+{
+"content": "Follow us @club_kab  to learn more about young entrepreneurs. #GDI #SDGs #Youth2030 #WYDF #APGYD NO.23 The Greenie Project - Learn and Be Rewarded [Edenworld Conservation Initiative] This program relies on the "learn-and-reward" platform for implementation. People who sign up on the platform can take courses on climate change. After learning, they will get virtual points. The virtual points redeemed after taking the courses can be exchanged for scholarships, some paid courses, and cash support for tree planting programs. The uniqueness of this program lies in its strong technical support, with the founder developing a barcode system for tree recognition. When people scan the barcode, it will display all the detailed information about the trees. Currently, this program has started in a local community by helping in the biodiversity conservation of the community, and a total of 500 trees were donated there.",
+"url": "https://x.com/club_kab/status/1909428522084651480"
+},
+{
+"content": "🗣️ CALLING YOUNG BOTSWANA INNOVATORS! 📣 Climate Hackathon 2026 is ON! Got ideas to protect our communities from floods & climate shocks? This is your stage. Build it. Pitch it. 🌍 Engineers, coders, designers, policy thinkers - all are welcome. 🔗 https://docs.google.com/forms/d/e/1FAIpQLSfsyS7-o6n4U6Zrt9J9XdCF6_fbA1HI8uhtY_VguKm2tO6yPw/viewform?usp=send_form",
+"url": "https://x.com/CheveningBW/status/1995757553381146736"
+}
+],
+"winning_insights": "Sustainability projects win with real-world impact like waste management or carbon tracking. Winners often include community involvement; non-winners lack scalable solutions."
+},
+{
+"name": "Accessibility and Social Good Tools",
+"ideas": [
+{
+"name": "Lost Faces Identity AI",
+"description": "Re-identification for missing persons.",
+"url": "https://devpost.com/software/lost-faces-identity-ai",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Digital Braille Display",
+"description": "Text/speech-to-Braille converter.",
+"url": "https://devpost.com/software/digital-braille-display",
+"tech": "Hardware",
+"winner": false
+},
+{
+"name": "PC Donation Platform",
+"description": "Cognitive services for student support.",
+"url": "https://devpost.com/software/pc-donation-platform",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "Social Justice Journal",
+"description": "Community passion-sharing log.",
+"url": "https://devpost.com/software/social-justice-journal",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Misconception Debunker",
+"description": "Card-based self-education on issues.",
+"url": "https://devpost.com/software/misconception-debunker",
+"tech": "Cards",
+"winner": false
+},
+{
+"name": "MediStand",
+"description": "Improving accessibility in healthcare.",
+"url": "https://devpost.com/software/medistand-idkjgo",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Illuminate",
+"description": "Beauty shopping for visually-impaired.",
+"url": "https://devpost.com/software/le-wagon-el-hackathon-project",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Hackathon Social-Good Project List",
+"description": "Organizing non-profit projects at hackathons.",
+"url": "https://devpost.com/software/hackathon-social-good-project-list",
+"tech": "List",
+"winner": false
+},
+{
+"name": "PDFstral",
+"description": "Automated PDF-annotator for accessibility.",
+"url": "https://devpost.com/software/pdfstral",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "SocialQ",
+"description": "Facial expression detection for autism.",
+"url": "https://devpost.com/software/socialq",
+"tech": "AR",
+"winner": false
+},
+{
+"name": "HapticDAO",
+"description": "DeFi accessibility for disabilities.",
+"url": "https://devpost.com/software/hapticdao",
+"tech": "Blockchain",
+"winner": false
+},
+{
+"name": "Hack the Accessibility",
+"description": "Alexa for mute people using sign language.",
+"url": "https://devpost.com/software/hack-the-accessibility-pgfc9a",
+"tech": "Alexa, ML",
+"winner": false
+},
+{
+"name": "Accessibility",
+"description": "Navigation app for accessibility challenges.",
+"url": "https://devpost.com/software/accessibility",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Owl Accessibility Bot",
+"description": "Describe images and caption media on X.",
+"url": "https://devpost.com/software/owl-accessibility-bot",
+"tech": "Bot, AI",
+"winner": false
+}
+],
+"similar_on_x": [
+{
+"content": "We hosted a AI healthcare hackathon focused on B2B problems - read the post and you might get ideas for other vertical AI stuff too. Some example projects built from scratch in 36 hours: - A tool to let recruiters know when a physicians might be looking for a new job - A tool that uses AI to judge other healthcare AI to see if their claims are legit - An easier way to help get all the information needed to enroll someone in long-term care And 10 other projects. Here's a round up of all the projects people made (in the next tweet)",
+"url": "https://x.com/nikillinit/status/1996977110196379890"
+},
+{
+"content": "Got into YC office yesterday for the YC Hackathon. Everyone there was cracked. Saw some intense discussions and whiteboarding too. I teamed up on-site, built fast, soaked in inspo and learned how to crush short 8-hr hackathons - - Pick a problem that you can demo well - Plan REALLY well before the event starts: idea, design, tasks, how to use/ integrate sponsors and how to demo. - Don't miss the finalists demos and learn from them. They were chosen for a reason. These two were my personal favs - - Turn any camera into a smart monitor that you can set alerts in natural language. - Billboards that create and swap ads in real time based on local news + twitter feeds And don't forget to take the mandatory photo with YC logo with your teammates @adi_suresh01 @AkritiKeswani @Laylaliuuu",
+"url": "https://x.com/dibbaa_code/status/1954662341498556636"
+},
+{
+"content": "For parents of children with disabilities who may not be able to use tiny buttons & switches on toys, finding accessible must-have toys can be a struggle. This week NorQuest hosted Hacking The Holidays, where volunteers adapted toys to make them accessible at no cost to parents.",
+"url": "https://x.com/NorQuest/status/1997071713721262218"
+},
+{
+"content": "When students are asked to brainstorm ways technology could apply to social change, the possibilities are endless. Here’s what the Code Next hackathon finalists in Oakland and NYC came up with → https://blog.google/outreach-initiatives/education/code-next-hackathon/?utm_source=tw&utm_medium=social&utm_campaign=og",
+"url": "https://x.com/Google/status/1158431935368171525"
+},
+{
+"content": "👉Building a Future Where Accessibility and AI Empower Everyone - https://www.anoopcnair.com/windows-accessibility-and-ai-creating/ 🔊Windows Accessibility and AI Creating Technology that Works Better for Everyone 🔊Accessibility Started Long Before Technology — And Benefits Everyone",
+"url": "https://x.com/htmdcommunity/status/1995915874516004867"
+}
+],
+"winning_insights": "Accessibility tools win by focusing on inclusivity and real-user needs, like Braille converters or sign language integration. Non-winners often overlook hardware or user testing."
+},
+{
+"name": "Productivity and Assistant AI",
+"ideas": [
+{
+"name": "QuickSeek",
+"description": "AI YouTube video searcher extension.",
+"url": "https://devpost.com/software/quickseek",
+"tech": "AI, Extension",
+"winner": false
+},
+{
+"name": "AutoCaptions",
+"description": "Image captioning for social media.",
+"url": "https://devpost.com/software/autocaptions",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "GlobalMate",
+"description": "AI travel planning agent.",
+"url": "https://devpost.com/software/globalmate",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Bunq Mate",
+"description": "Screen-seeing AI support helper.",
+"url": "https://devpost.com/software/bunq-mate",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Palm Pilot Productivity",
+"description": "Pomodoro + Gemini for focus.",
+"url": "https://devpost.com/software/palm-pilot-productivity",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "BlueTask",
+"description": "AI-powered to-do manager.",
+"url": "https://devpost.com/software/alraai",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "ProSistant",
+"description": "Productivity assistant for online studying.",
+"url": "https://devpost.com/software/prosistant",
+"tech": "Extension",
+"winner": false
+},
+{
+"name": "Okati",
+"description": "Wellbeing & Productivity App.",
+"url": "https://devpost.com/software/okati",
+"tech": "App",
+"winner": false
+},
+{
+"name": "MicroHacks Project",
+"description": "AI reminder system for hackathons.",
+"url": "https://devpost.com/software/microhacks-project-vishal-anshul-ethan-and-lloyd",
+"tech": "AI, Web",
+"winner": false
+},
+{
+"name": "Hackathon Project Management Tool",
+"description": "Tool for collaborating on hackathon projects.",
+"url": "https://devpost.com/software/hackathon-project-management-tool",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "Monday Manager Voice Assistant",
+"description": "Voice assistant for Monday tools.",
+"url": "https://devpost.com/software/monday-manager",
+"tech": "Voice AI",
+"winner": false
+},
+{
+"name": "FocusTug",
+"description": "AI tool that blocks distractions.",
+"url": "https://devpost.com/software/focustug",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Project Copilot",
+"description": "AI assistant for Jira and Confluence.",
+"url": "https://devpost.com/software/project-copilot",
+"tech": "AI",
+"winner": false
+}
+],
+"similar_on_x": [
+{
+"content": "Got into YC office yesterday for the YC Hackathon. Everyone there was cracked. Saw some intense discussions and whiteboarding too. I teamed up on-site, built fast, soaked in inspo and learned how to crush short 8-hr hackathons - - Pick a problem that you can demo well - Plan REALLY well before the event starts: idea, design, tasks, how to use/ integrate sponsors and how to demo. - Don't miss the finalists demos and learn from them. They were chosen for a reason. These two were my personal favs - - Turn any camera into a smart monitor that you can set alerts in natural language. - Billboards that create and swap ads in real time based on local news + twitter feeds And don't forget to take the mandatory photo with YC logo with your teammates @adi_suresh01 @AkritiKeswani @Laylaliuuu",
+"url": "https://x.com/dibbaa_code/status/1954662341498556636"
+},
+{
+"content": "There are no unsolvable problems. Only problems we haven’t tried AI on. Recently, our Data & Analytics team ran a hackathon with one mission: → Build something with AI that makes our life easier.  48 hours to hack, 25 participants, 5 projects. The best part: some ideas are already in use.",
+"url": "https://x.com/Manychat_life/status/1995860502258348430"
+},
+{
+"content": "Building a startup? Focus on timeless problems, the ones people never stop caring about: > Fitness → AI calorie tracker, workout planner > Studying → AI tutor, flashcard or quiz generator > Productivity → AI planner, focus or habit coach > Money → AI finance tracker or dropshipping helper > Beauty → AI skincare or makeup assistant > Memory → AI note-taker, summarizer, or mind-map generator > Mental health → AI mood, therapy, or sleep coach > Photography → AI photo editor, caption or style generator > Food → AI meal planner, grocery or recipe assistant > Relationships → AI dating coach, conversation guide > Health → AI symptom checker, rehab or wellness tracker > Travel → AI itinerary or trip planner These spaces never fade. People will always pay for solutions to everyday needs.",
+"url": "https://x.com/alexcooldev/status/1944263369252344050"
+},
+{
+"content": "We hosted a AI healthcare hackathon focused on B2B problems - read the post and you might get ideas for other vertical AI stuff too. Some example projects built from scratch in 36 hours: - A tool to let recruiters know when a physicians might be looking for a new job - A tool that uses AI to judge other healthcare AI to see if their claims are legit - An easier way to help get all the information needed to enroll someone in long-term care And 10 other projects. Here's a round up of all the projects people made (in the next tweet)",
+"url": "https://x.com/nikillinit/status/1996977110196379890"
+},
+{
+"content": "I didn't win the hackathon i just participated in, but i'll share what I built under 2 hours, A fully functional AI-Powered medical system that uses local AI model to help in assigning patients to doctors and wards, Keeping checks of patients data, Analytics, Audits and also for carrying out full medical works simulated, Easening up the workload of medical staff, Which falls in line with my last hackathon project: A medtech solution that is built on blockDag blockchain, that uses nfc card to store encrypted keys that are used to store patients medical record Both are multi layered encrypted, hopefully i'll be able to win my next hackathon, but till then cheers! and congrats to the winners",
+"url": "https://x.com/honour_can_code/status/1984328141943554128"
+}
+],
+"winning_insights": "Productivity AI wins with ROI metrics, like task automation saving time. Non-winners lack multi-tool integration."
+},
+{
+"name": "Creative Content Generation",
+"ideas": [
+{
+"name": "Travel Story Narrator",
+"description": "Pics-to-video AI magic.",
+"url": "https://devpost.com/software/travel-story-narrator",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Story Cinematics AI",
+"description": "Real-time narrative visuals.",
+"url": "https://devpost.com/software/story-cinematics-ai",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "ModzyFlow",
+"description": "AI workflow builder for creatives.",
+"url": "https://devpost.com/software/modzyflow",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "EdComposer",
+"description": "Personalized educational video generator.",
+"url": "https://devpost.com/software/edcomposer",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "iPod Visualizer VR",
+"description": "Audio-reactive music immersion.",
+"url": "https://devpost.com/software/ipod-visualizer-vr",
+"tech": "VR",
+"winner": false
+},
+{
+"name": "HackIdea",
+"description": "Creative hackathon idea generator.",
+"url": "https://devpost.com/software/hackidea",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "postdev",
+"description": "Machine generated hackathon project ideas.",
+"url": "https://devpost.com/software/postdev",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Hackathon Video Generator",
+"description": "Pitch video generator for hackathons.",
+"url": "https://devpost.com/software/hackathon-video-generator",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Writers Hackathon 2025",
+"description": "Write a book in 30 days with AI.",
+"url": "https://devpost.com/software/writers-hackathon-2025",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "CreAItivity",
+"description": "Portal for content creators using AI.",
+"url": "https://devpost.com/software/creaitivity",
+"tech": "AI",
+"winner": false
+}
+],
+"similar_on_x": [
+{
+"content": "HackIdea - A Creative hackathon Idea Generator - Are you looking for exciting ideas for your hackathon project? Use our generator to get started! 😺🙌",
+"url": "https://x.com/user/status/1996792589539008841"
+},
+{
+"content": "My start up idea includes a 𝕕𝕣𝕖𝕒𝕞 𝕙𝕒𝕔𝕜 studio! Where users [teens/you g adults] learn to  code by building their own video games inspired by their dreams or favorite stories. Using beginner-friendly languages like Python and JavaScript, users start with simple 2D games.",
+"url": "https://x.com/Gauntletxxx/status/1944263369252344050"
+},
+{
+"content": "17. Crowdsourced Content. Create a user-generated content platform and monetize through ads. Idea: Site to share startup hacks.",
+"url": "https://x.com/johnrushx/status/1997007543873556981"
+},
+{
+"content": "Free tools to generate unlimited content ideas: 1. Buzzsumo —Content ideas at fingertips. 2. Answerthepublic —Generate questions around the keywords. 3. Google Related Search —Find out what people search. 4. Quora —Find out most answered questions. Research, 10x results",
+"url": "https://x.com/MakadiaHarsh/status/1565685979079266304"
+},
+{
+"content": "Got into YC office yesterday for the YC Hackathon. Everyone there was cracked. Saw some intense discussions and whiteboarding too. I teamed up on-site, built fast, soaked in inspo and learned how to crush short 8-hr hackathons - - Pick a problem that you can demo well - Plan REALLY well before the event starts: idea, design, tasks, how to use/ integrate sponsors and how to demo. - Don't miss the finalists demos and learn from them. They were chosen for a reason. These two were my personal favs - - Turn any camera into a smart monitor that you can set alerts in natural language. - Billboards that create and swap ads in real time based on local news + twitter feeds And don't forget to take the mandatory photo with YC logo with your teammates @adi_suresh01 @AkritiKeswani @Laylaliuuu",
+"url": "https://x.com/dibbaa_code/status/1954662341498556636"
+}
+],
+"winning_insights": "Creative tools win for efficiency in content creation, like video generators. Non-winners underemphasize user customization."
+},
+{
+"name": "Career and Professional Development",
+"ideas": [
+{
+"name": "StartupMesh",
+"description": "AGI studio for market analysis and assets.",
+"url": "https://devpost.com/software/startupmesh",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "TechMap",
+"description": "IT career roadmaps and resources.",
+"url": "https://devpost.com/software/techmap",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "DevHub",
+"description": "AI mentorship and internship matcher.",
+"url": "https://devpost.com/software/devhub",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "EcoOpportunities",
+"description": "Connect people with sustainability jobs.",
+"url": "https://devpost.com/software/ecotech-76yz32",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "Writers Hackathon 2025",
+"description": "Career in writing with AI.",
+"url": "https://devpost.com/software/writers-hackathon-2025",
+"tech": "AI",
+"winner": false
+}
+],
+"similar_on_x": [
+{
+"content": "Struggling to find your next hackathon idea? Curated list of 100+ real-world hackathon projects with code, docs & demo links. Clone, learn, win. https://github.com/Olanetsoft/awesome-hackathon-projects",
+"url": "https://x.com/firozkhxn_/status/1997289687090966933"
+},
+{
+"content": "I wanna conduct a vibe coding (anti-) hackathon for non-engineers where before vibe coding they validate idea, do thorough consumer and market research, figure out GTM and positioning. And invest in top 3 products that come out of it. More weightage to be given to everything else except coding.",
+"url": "https://x.com/PratikshaDake/status/1903708300874797146"
+},
+{
+"content": "I’m thinking of hosting a 4 weeks intense Career accelerator program to help everyone struggling in Tech figure it out before 2026 I’d bring the brightest minds to hold your hands for 1 month and help you figure every aspect of career by force. Who’s interested in this? 🥺🫱🏼‍🫲🏽",
+"url": "https://x.com/Tech_babby/status/1961416035405275184"
+},
+{
+"content": "@mysparkpath created a resource called Challenge Cards that flip career exploration on its head. Instead of choosing a career and identifying the steps it takes to get there, you choose a challenge or topic of interest and work BACKWARDS. #hsdlearns #hsdcdle #CareerDevelopment",
+"url": "https://x.com/KirbyLKrause/status/1997007543873556981"
+},
+{
+"content": "I wanna conduct a vibe coding (anti-) hackathon for non-engineers where before vibe coding they validate idea, do thorough consumer and market research, figure out GTM and positioning. And invest in top 3 products that come out of it. More weightage to be given to everything else except coding.",
+"url": "https://x.com/PratikshaDake/status/1903708300874797146"
+}
+],
+"winning_insights": "Career tools win with AI personalization for roadmaps. Small cluster; static tools lose."
+},
+{
+"name": "Social and Community Tools",
+"ideas": [
+{
+"name": "Study Group Former",
+"description": "Tutor-finding app for deadlines.",
+"url": "https://devpost.com/software/study-group-former",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Campus Event Calendar",
+"description": "FistBump boredom-buster.",
+"url": "https://devpost.com/software/campus-event-calendar",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Social Intervention App",
+"description": "Friend alerts in discomfort.",
+"url": "https://devpost.com/software/social-intervention-app",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Grade Distribution Viewer",
+"description": "BU class insights app.",
+"url": "https://devpost.com/software/grade-distribution-viewer",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Open Study Space Finder",
+"description": "Campus availability tool.",
+"url": "https://devpost.com/software/open-study-space-finder",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Naqston",
+"description": "Student/university community app.",
+"url": "https://devpost.com/software/naqston",
+"tech": "App",
+"winner": false
+},
+{
+"name": "Climate Wavers",
+"description": "Social media for environmental advocacy.",
+"url": "https://devpost.com/software/climatewavers",
+"tech": "Social",
+"winner": false
+},
+{
+"name": "EcoConnect",
+"description": "Connects communities for greener world.",
+"url": "https://devpost.com/software/ecoconnect-amnq1e",
+"tech": "Platform",
+"winner": false
+},
+{
+"name": "Healthut",
+"description": "Discord bot for social health interactions.",
+"url": "https://devpost.com/software/healthub",
+"tech": "Bot",
+"winner": false
+},
+{
+"name": "Bloom",
+"description": "Mental health resources community.",
+"url": "https://devpost.com/software/bloom-g913mc",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "Eco-venture",
+"description": "Community bot for environmental learning.",
+"url": "https://devpost.com/software/eco-friend-draft",
+"tech": "Bot",
+"winner": false
+}
+],
+"similar_on_x": [
+{
+"content": "What should the first hackathon on Consensus Learning focus on? A couple of options from my head: ▪️A decentralized model to detect collusion in oracles. ▪️Detect/predict a DeFi exploit and automatically pause a contract. ▪️Detect a tumour or a heart attack from medical images. ▪️Predict a potential customers claim rate for insurance purposes. The possibilities are substantial. Put your thoughts below. https://t.co/3TpxJ5ZRx1",
+"url": "https://x.com/HugoPhilion/status/1774371430706159907"
+},
+{
+"content": "There are no unsolvable problems. Only problems we haven’t tried AI on. Recently, our Data & Analytics team ran a hackathon with one mission: → Build something with AI that makes our life easier.  48 hours to hack, 25 participants, 5 projects. The best part: some ideas are already in use.",
+"url": "https://x.com/Manychat_life/status/1995860502258348430"
+},
+{
+"content": "I didn't win the hackathon i just participated in, but i'll share what I built under 2 hours, A fully functional AI-Powered medical system that uses local AI model to help in assigning patients to doctors and wards, Keeping checks of patients data, Analytics, Audits and also for carrying out full medical works simulated, Easening up the workload of medical staff, Which falls in line with my last hackathon project: A medtech solution that is built on blockDag blockchain, that uses nfc card to store encrypted keys that are used to store patients medical record Both are multi layered encrypted, hopefully i'll be able to win my next hackathon, but till then cheers! and congrats to the winners",
+"url": "https://x.com/honour_can_code/status/1984328141943554128"
+},
+{
+"content": "1/ Hackathons are the birthplace of groundbreaking ideas. Today, we’re unveiling Hackbox, a revolutionary plug-and-play solution designed to empower local leads and community stewards in hosting hackathons easily and efficiently 🧵 https://t.co/06JVGhcMrp",
+"url": "https://x.com/NEARDevHub/status/1703801826116555107"
+},
+{
+"content": "When students are asked to brainstorm ways technology could apply to social change, the possibilities are endless. Here’s what the Code Next hackathon finalists in Oakland and NYC came up with → https://blog.google/outreach-initiatives/education/code-next-hackathon/?utm_source=tw&utm_medium=social&utm_campaign=og",
+"url": "https://x.com/Google/status/1158431935368171525"
+}
+],
+"winning_insights": "Social tools win for inclusivity in events or communities. Non-winners miss integration with existing platforms."
+},
+{
+"name": "Data Analysis and Prediction",
+"ideas": [
+{
+"name": "Health Insights Agents",
+"description": "Personalized domain-specific predictions.",
+"url": "https://devpost.com/software/health-insights-agents",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Population Digital Twins",
+"description": "Location decision simulator.",
+"url": "https://devpost.com/software/population-digital-twins",
+"tech": "Simulation",
+"winner": false
+},
+{
+"name": "Feynman Diagrams AI",
+"description": "Natural language to physics visuals.",
+"url": "https://devpost.com/software/feynman-diagrams-ai",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Poverty Predictor App",
+"description": "Vulnerability assessment for aid.",
+"url": "https://devpost.com/software/poverty-predictor-app",
+"tech": "App",
+"winner": false
+},
+{
+"name": "DropRead",
+"description": "Student question analytics for educators.",
+"url": "https://devpost.com/software/dropread",
+"tech": "Analytics",
+"winner": false
+},
+{
+"name": "deepHack",
+"description": "Deep learning hacking predictions and analysis.",
+"url": "https://devpost.com/software/deephack-emi9rt",
+"tech": "DL",
+"winner": false
+},
+{
+"name": "NVIDIA Stock Predicton Bot",
+"description": "Stock price prediction bot.",
+"url": "https://devpost.com/software/nvidia-stock-predicton-bot",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Heart Disease EDA",
+"description": "Data analysis on heart disease factors.",
+"url": "https://devpost.com/software/heart-disease-eda",
+"tech": "Data",
+"winner": false
+},
+{
+"name": "Predictra",
+"description": "Intelligent data analysis platform.",
+"url": "https://devpost.com/software/predicta-gynv2c",
+"tech": "ML",
+"winner": false
+},
+{
+"name": "DiamondAI",
+"description": "Predicting MLB stars with data.",
+"url": "https://devpost.com/software/diamondai",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Data Friend",
+"description": "Collaborative filtering for data viz.",
+"url": "https://devpost.com/software/ok-spmfva",
+"tech": "Data",
+"winner": false
+},
+{
+"name": "StockSight Projections",
+"description": "Stock comparison and prediction.",
+"url": "https://devpost.com/software/stocksight-projections",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "Farm Easy",
+"description": "Crop prediction for farmers.",
+"url": "https://devpost.com/software/cba-hackathon-project",
+"tech": "Predictive",
+"winner": false
+},
+{
+"name": "Flowlytics",
+"description": "Seamless data insights for students.",
+"url": "https://devpost.com/software/flowlytics-seamless-data-powerful-insights",
+"tech": "Data",
+"winner": false
+}
+],
+"similar_on_x": [
+{
+"content": "9 Data Analytics Project Ideas to help build your Portfolio as a Data Analyst A Thread!!! 1.Analyze and visualize the trends in stock market data using datasets from finance websites such as Yahoo Finance or Google Finance. https://www.kaggle.com/datasets/rohanrao/nifty50-stock-market-data",
+"url": "https://x.com/Rita_tyna/status/1620713906388996096"
+},
+{
+"content": "Non profit  startup IDEA:   A DevCareer like mode that focus on NYSC candidates alone. A model that trains them for the first 6 months and they start working after that. Advantage: You get candidates that are ready to work, build their lives and know that degree is a scam.",
+"url": "https://x.com/hackSultan/status/1188768280430944258"
+},
+{
+"content": "Own solution: Community-driven AI hubs. Blend A and B with local "health pods" using AI for real-time screenings and virtual coaching. No more one-size-fits-all—tailored to genetics, habits, and environment. This could redefine healthcare equity.",
+"url": "https://x.com/fiirja12/status/1997317621637877770"
+},
+{
+"content": "1/ Hackathons are the birthplace of groundbreaking ideas. Today, we’re unveiling Hackbox, a revolutionary plug-and-play solution designed to empower local leads and community stewards in hosting hackathons easily and efficiently 🧵 https://t.co/06JVGhcMrp",
+"url": "https://x.com/NEARDevHub/status/1703801826116555107"
+},
+{
+"content": "I made https://hackamaps.com/ you can travel and hack along . perfect if you are a hardcore techie and wants to connect with people in real life hackthons. 1000 real user today.",
+"url": "https://x.com/yetiii_10/status/1997071713721262218"
+}
+],
+"winning_insights": "Data projects win in healthcare or finance predictions with accurate models. Non-winners skip visualization."
+},
+{
+"name": "Miscellaneous/Other",
+"ideas": [
+{
+"name": "Eye-Looking AI",
+"description": "Vision-based interaction tool.",
+"url": "https://devpost.com/software/eye-looking-ai",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "HackIdeas",
+"description": "Survey-based hackathon brainstormer.",
+"url": "https://devpost.com/software/hackideas",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "Learning Rewards System",
+"description": "Positive reinforcement for online activity.",
+"url": "https://devpost.com/software/learning-rewards-system",
+"tech": "System",
+"winner": false
+},
+{
+"name": "One-Tap Educational Search",
+"description": "Quick site aggregator.",
+"url": "https://devpost.com/software/one-tap-educational-search",
+"tech": "Search",
+"winner": false
+},
+{
+"name": "Hackathon Idea Generator",
+"description": "Generates ideas for hackathons.",
+"url": "https://devpost.com/software/hackathon-idea-generator-viwz1b",
+"tech": "Web",
+"winner": false
+},
+{
+"name": "Boltthon",
+"description": "Hackathon Generator ideas.",
+"url": "https://devpost.com/software/boltthon-hackathon-generator-ideas",
+"tech": "AI",
+"winner": false
+},
+{
+"name": "EVERYONE WIN",
+"description": "Meme project.",
+"url": "https://devpost.com/software/everyone-win",
+"tech": "Meme",
+"winner": true
+},
+{
+"name": "Judging Details",
+"description": "Details of hackathon judging.",
+"url": "https://devpost.com/software/winner-details",
+"tech": "Tool",
+"winner": false
+},
+{
+"name": "AI:1301",
+"description": "Winner of Chainlink hackathon.",
+"url": "https://devpost.com/software/ai-1301",
+"tech": "AI",
+"winner": true
+},
+{
+"name": "Will It Win?",
+"description": "Predicts hackathon winners.",
+"url": "https://devpost.com/software/will-it-win",
+"tech": "ML",
+"winner": false
+},
+{
+"name": "Hackathon 2025",
+"description": "Genetic privacy vs. progress.",
+"url": "https://devpost.com/software/hackathon-2025",
+"tech": "Discussion",
+"winner": false
+},
+{
+"name": "Supernova",
+"description": "AI-generated ads.",
+"url": "https://devpost.com/software/supernova-p1tum5",
+"tech": "AI",
+"winner": true
+}
+],
+"similar_on_x": [
+{
+"content": "1/ Hackathons are the birthplace of groundbreaking ideas. Today, we’re unveiling Hackbox, a revolutionary plug-and-play solution designed to empower local leads and community stewards in hosting hackathons easily and efficiently 🧵 https://t.co/06JVGhcMrp",
+"url": "https://x.com/NEARDevHub/status/1703801826116555107"
+},
+{
+"content": "My start up idea includes a 𝕕𝕣𝕖𝕒𝕞 𝕙𝕒𝕔𝕜 studio! Where users [teens/you g adults] learn to  code by building their own video games inspired by their dreams or favorite stories. Using beginner-friendly languages like Python and JavaScript, users start with simple 2D games.",
+"url": "https://x.com/Gauntletxxx/status/1944263369252344050"
+},
+{
+"content": "something I wish existed: An All-Star Game for the tech industry. like the NBA all star game, create a weekend for the best hackers, designers & marketers from the internet Companies get to nominate their best talent (eg. companies like FB/Google can send 8 people. Startups send 2) The main "game" is a hackathon where they create something & pitch it at the end There may be side competitions (like the dunk contest). Maybe some kind of programming contest, or re-design contest with a time limit Produce it like it's on TV, stream it on youtube/twitch 1. Top talent gets recognition/reward for being epic 2. Inspire young makers (see how good the BEST are) 3. Fun competition / entertainment 4. Top talent from various companies ets to meet each other yo @eriktorenberg - you should create this!",
+"url": "https://x.com/ShaanVP/status/1676303890705428481"
+},
+{
+"content": "Are you an ideas person? Someone who loves to think about the big picture for web3, but isn’t a developer by training? The Community Concepts Hackathon — the non-technical (no building required!) hackathon for dApp concepts on Sapphire — was designed for you! Join below 👇",
+"url": "https://x.com/OasisProtocol/status/1565685979079266304"
+},
+{
+"content": "I made https://hackamaps.com/ you can travel and hack along . perfect if you are a hardcore techie and wants to connect with people in real life hackthons. 1000 real user today.",
+"url": "https://x.com/yetiii_10/status/1997071713721262218"
+}
+],
+"winning_insights": "Miscellaneous ideas win in niche utilities with innovation. Prototypes often lose without polish."
+}
+]
+}41 𝕏 posts97 web pages1.8sExpert

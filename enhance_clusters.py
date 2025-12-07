@@ -476,18 +476,25 @@ def enhance_clusters(use_ai=True):
 
     enhanced_clusters = []
 
+    import sys
     for i, cluster in enumerate(clusters):
-        print(f"Analyzing cluster {i+1}/{len(clusters)}: {cluster['topic']} ({len(cluster['nodes'])} nodes)")
+        pct = int((i / len(clusters)) * 100)
+        print(f"[{pct:3d}%] Analyzing cluster {i+1}/{len(clusters)}: {cluster['topic']} ({len(cluster['nodes'])} nodes)")
+        sys.stdout.flush()
 
         if client:
+            print(f"       → Generating cluster analysis...")
+            sys.stdout.flush()
             analysis = generate_cluster_analysis_anthropic(cluster, client)
 
             # Phase 1: Extract discrete demands
-            print(f"  Extracting demands...")
+            print(f"       → Extracting demands...")
+            sys.stdout.flush()
             demands = extract_demands_anthropic(cluster, client)
 
             # Phase 2: Synthesize actionable proposals
-            print(f"  Synthesizing policy proposals...")
+            print(f"       → Synthesizing policy proposals...")
+            sys.stdout.flush()
             synthesized_actions = synthesize_actions_anthropic(cluster, demands, client)
         else:
             analysis = generate_cluster_analysis_simple(cluster)
@@ -512,6 +519,9 @@ def enhance_clusters(use_ai=True):
                 'link': n.get('link', '')
             } for n in cluster['nodes']]
         })
+
+    print(f"[100%] All clusters analyzed!")
+    sys.stdout.flush()
 
     # Save enhanced clusters
     output_path = get_data_path() / 'enhanced_clusters.json'

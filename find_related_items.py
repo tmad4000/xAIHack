@@ -271,7 +271,9 @@ def find_all_relations(items: list[dict], provider: str = "anthropic") -> list[d
     all_connections = []
 
     for i, item in enumerate(items):
-        print(f"Processing item {item['id']}/{len(items)}: @{item['Username']}...")
+        pct = int((i / len(items)) * 100)
+        print(f"[{pct:3d}%] Processing item {i+1}/{len(items)}: @{item['Username']}...")
+        sys.stdout.flush()
 
         try:
             relations = find_fn(items, item)
