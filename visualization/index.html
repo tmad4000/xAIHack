@@ -2060,7 +2060,7 @@
                     projectInfo ? projectInfo.display_name : projectName;
 
                 // Re-render graph
-                initializeGraph();
+                initGraph();
                 renderProjectsList();
 
                 // Collapse selector
@@ -2409,11 +2409,39 @@
 
         function initGraph() {
             const svg = d3.select('#graph');
+
+            // Clear existing graph elements when switching projects
+            svg.selectAll('*').remove();
+
             const container = svg.node().parentElement;
             const width = container.clientWidth;
             const height = container.clientHeight;
 
             svg.attr('viewBox', [0, 0, width, height]);
+
+            // Handle empty project
+            if (!graphData || !graphData.nodes || graphData.nodes.length === 0) {
+                const g = svg.append('g').attr('class', 'graph-container');
+                g.append('text')
+                    .attr('x', width / 2)
+                    .attr('y', height / 2)
+                    .attr('text-anchor', 'middle')
+                    .attr('fill', '#666')
+                    .attr('font-size', '16px')
+                    .text('No data yet. Use Grok Search to add nodes.');
+
+                // Clear sidebar clusters
+                const clusterList = document.getElementById('clusterList');
+                if (clusterList) {
+                    clusterList.innerHTML = '<div style="color: #666; padding: 20px; text-align: center;">No clusters yet. Add data and run clustering.</div>';
+                }
+
+                // Clear topics legend
+                const topicLegend = document.querySelector('.topic-legend');
+                if (topicLegend) topicLegend.innerHTML = '';
+
+                return;
+            }
 
             // Create container for zoom
             const g = svg.append('g').attr('class', 'graph-container');
