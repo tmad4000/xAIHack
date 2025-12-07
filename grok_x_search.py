@@ -155,7 +155,107 @@ def to_jsonable(value: Any) -> Any:
     return str(value)
 
 
-def run_grok_search(
+def _build_prompt(location: str, count: int) -> str:
+    """Build the standard prompt for X search queries."""
+    return (
+        f"Use the X search tool to find {count} recent posts mentioning {location}. "
+        "Return ONLY CSV text with the exact header:\n"
+        "Date,Username,Summary/Quote,Link\n"
+        "For each row:\n"
+        "- Date: ISO (YYYY-MM-DD) of the tweet\n"
+        "- Username: the @handle\n"
+        "- Summary/Quote: 1-2 sentences capturing the proposal/problem details, matching the specificity found in curated civic planning datasets (e.g., mention numbers, locations, specific improvements, concrete requests)\n"
+        "- Link: canonical https://x.com/... status URL\n"
+        "Write rich summaries similar in detail to analytical civic planning notes (see geodatanyc.csv). "
+        "No numbering, no extra commentary-just the header and rows."
+    )
+
+
+def _parse_csv_response(csv_text: str) -> List[Dict[str, str]]:
+    """Parse CSV text into a list of row dictionaries."""
+    rows: List[Dict[str, str]] = []
+    if csv_text:
+        try:
+            reader = csv.DictReader(StringIO(csv_text))
+            for row in reader:
+                clean_row = {k: (v.strip() if isinstance(v, str) else v) for k, v in row.items()}
+                if any(clean_row.values()):
+                    rows.append(clean_row)
+        except Exception:
+            rows = []
+    return rows
+
+
+def run_grok_search_responses_api(
+    location: str,
+    *,
+    count: int = 10,
+    model: str = "grok-4-1-fast",
+    timeout: int = 90,
+) -> Dict[str, Any]:
+    """Execute x_search using the direct Responses API (often faster/more reliable)."""
+    import requests
+
+    api_key = get_env("XAI_API_KEY")
+    if not api_key:
+        raise SystemExit("Set XAI_API_KEY in your environment or .env file.")
+
+    prompt = _build_prompt(location, count)
+
+    payload = {
+        "model": model,
+        "input": [
+            {"role": "user", "content": prompt}
+        ],
+        "tools": [
+            {"type": "x_search"}
+        ]
+    }
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {api_key}"
+    }
+
+    response = requests.post(
+        "https://api.x.ai/v1/responses",
+        headers=headers,
+        json=payload,
+        timeout=timeout
+    )
+
+    if response.status_code != 200:
+        raise RuntimeError(f"Responses API error {response.status_code}: {response.text}")
+
+    data = response.json()
+
+    # Extract the text content from the response
+    csv_text = ""
+    if "output" in data:
+        for item in data["output"]:
+            if item.get("type") == "message":
+                for content in item.get("content", []):
+                    if content.get("type") == "output_text":
+                        csv_text = content.get("text", "")
+                        break
+
+    rows = _parse_csv_response(csv_text)
+
+    return {
+        "csv_text": csv_text,
+        "rows": rows,
+        "response_text": csv_text,
+        "usage": data.get("usage"),
+        "citations": None,
+        "tool_calls": [],
+        "model": model,
+        "location": location,
+        "count": count,
+        "api_method": "responses_api",
+    }
+
+
+def run_grok_search_sdk(
     location: str,
     *,
     count: int = 10,
@@ -167,10 +267,7 @@ def run_grok_search(
     chunk_callback: Optional[Callable[[str], None]] = None,
     tool_callback: Optional[Callable[[Dict[str, Any]], None]] = None,
 ) -> Dict[str, Any]:
-    """Execute an x_search-powered Grok query and return structured results."""
-    if allowed_handles and excluded_handles:
-        raise ValueError("Specify either allowed_handles or excluded_handles, not both.")
-
+    """Execute x_search using the xAI SDK (supports more options but may be slower)."""
     api_key = get_env("XAI_API_KEY")
     if not api_key:
         raise SystemExit("Set XAI_API_KEY in your environment or .env file.")
@@ -191,18 +288,7 @@ def run_grok_search(
     client = Client(api_key=api_key)
     chat = client.chat.create(model=model, tools=[tool])
 
-    prompt = (
-        f"Use the X search tool to find {count} recent posts mentioning {location}. "
-        "Return ONLY CSV text with the exact header:\n"
-        "Date,Username,Summary/Quote,Link\n"
-        "For each row:\n"
-        "- Date: ISO (YYYY-MM-DD) of the tweet\n"
-        "- Username: the @handle\n"
-        "- Summary/Quote: 1-2 sentences capturing the proposal/problem details, matching the specificity found in curated civic planning datasets (e.g., mention numbers, locations, specific improvements, concrete requests)\n"
-        "- Link: canonical https://x.com/... status URL\n"
-        "Write rich summaries similar in detail to analytical civic planning notes (see geodatanyc.csv). "
-        "No numbering, no extra commentary-just the header and rows."
-    )
+    prompt = _build_prompt(location, count)
     chat.append(user(prompt))
 
     csv_buffer: List[str] = []
@@ -228,20 +314,9 @@ def run_grok_search(
         final_response = response
 
     csv_text = "".join(csv_buffer).strip()
-    rows: List[Dict[str, str]] = []
+    rows = _parse_csv_response(csv_text)
 
-    if csv_text:
-        try:
-            reader = csv.DictReader(StringIO(csv_text))
-            for row in reader:
-                clean_row = {k: (v.strip() if isinstance(v, str) else v) for k, v in row.items()}
-                if any(clean_row.values()):
-                    rows.append(clean_row)
-        except Exception:
-            # If parsing fails, still return the raw CSV text
-            rows = []
-
-    result = {
+    return {
         "csv_text": csv_text,
         "rows": rows,
         "response_text": _extract_response_text(final_response),
@@ -251,9 +326,62 @@ def run_grok_search(
         "model": model,
         "location": location,
         "count": count,
+        "api_method": "sdk",
     }
 
-    return result
+
+def run_grok_search(
+    location: str,
+    *,
+    count: int = 10,
+    allowed_handles: Optional[List[str]] = None,
+    excluded_handles: Optional[List[str]] = None,
+    from_date: Optional[datetime] = None,
+    to_date: Optional[datetime] = None,
+    model: str = "grok-4-1-fast",
+    chunk_callback: Optional[Callable[[str], None]] = None,
+    tool_callback: Optional[Callable[[Dict[str, Any]], None]] = None,
+    use_responses_api: bool = True,
+) -> Dict[str, Any]:
+    """Execute an x_search-powered Grok query and return structured results.
+
+    By default, tries the faster Responses API first. Falls back to SDK if it fails
+    or if advanced options (handle filtering, date ranges) are specified.
+    """
+    if allowed_handles and excluded_handles:
+        raise ValueError("Specify either allowed_handles or excluded_handles, not both.")
+
+    # Use SDK directly if advanced filtering options are specified
+    needs_sdk = allowed_handles or excluded_handles or from_date or to_date
+
+    if use_responses_api and not needs_sdk:
+        # Try Responses API first (reportedly faster/more reliable)
+        try:
+            print("[grok] Trying Responses API...", file=sys.stderr)
+            result = run_grok_search_responses_api(
+                location,
+                count=count,
+                model=model,
+                timeout=90,
+            )
+            print("[grok] Responses API succeeded", file=sys.stderr)
+            return result
+        except Exception as e:
+            print(f"[grok] Responses API failed: {e}, falling back to SDK...", file=sys.stderr)
+
+    # Fall back to SDK
+    print("[grok] Using SDK...", file=sys.stderr)
+    return run_grok_search_sdk(
+        location,
+        count=count,
+        allowed_handles=allowed_handles,
+        excluded_handles=excluded_handles,
+        from_date=from_date,
+        to_date=to_date,
+        model=model,
+        chunk_callback=chunk_callback,
+        tool_callback=tool_callback,
+    )
 
 
 def main() -> None:
