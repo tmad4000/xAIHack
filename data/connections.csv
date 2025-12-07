@@ -1,0 +1,113 @@
+source_id,target_id,reason
+1,3,"Both propose large-scale housing creation, with ADUs as distributed approach vs concentrated Bronx development"
+1,4,Both focus on Staten Island housing solutions - ADUs as current tool vs subway enabling future housing
+1,5,Both target Staten Island for housing policy changes - ADUs implementation vs zoning reform experiment
+1,6,Addresses housing location strategy - ADUs in existing neighborhoods aligns with criticism of inconvenient island development
+2,1,Both discuss housing creation mechanisms - ADUs vs high permitting volumes
+2,3,"Both focus on housing production/permitting, with item 3 proposing specific housing numbers for Bronx"
+2,4,"Relates to housing enablement through infrastructure, complementing high permitting with transit access"
+2,6,Addresses housing distribution and permitting patterns across different NYC areas
+3,1,"Both focus on creating more housing units, with ADUs as another housing solution"
+3,4,Proposes enabling more housing on Staten Island through improved transit access
+3,6,Discusses housing development strategy and criticizes lack of housing in existing neighborhoods
+3,8,Advocates for dense development which complements large-scale housing proposals
+3,9,Supports dense development approach that would be needed for 150k homes
+4,5,"Both focus specifically on Staten Island development - transit tunnel enables housing, zoning experiment enables development"
+4,1,Complementary housing solutions - ADUs provide incremental housing while subway tunnel enables larger scale Staten Island housing development
+4,15,Both address transit expansion needs - subway tunnel and more bus routes/services are complementary transit infrastructure improvements
+4,26,Both propose major transit infrastructure expansion - subway tunnel and extensive bus lane network address different scales of transit connectivity
+5,4,Both focus specifically on Staten Island development - transit infrastructure complements zoning reform
+5,1,Tokyo-style zoning typically allows more flexible housing types like ADUs mentioned here
+5,8,Tokyo zoning enables dense development which aligns with this density advocacy
+5,9,Tokyo-style zoning supports dense urban form that this user advocates for
+6,1,Discusses ADUs as housing solution in existing neighborhoods across boroughs
+6,3,Proposes large-scale housing development in existing borough (Bronx)
+6,4,"Proposes housing on Staten Island, which could be seen as an 'inconvenient island' that CelestinAustin criticizes"
+6,7,"Satirically proposes housing on Governor's Island, another example of housing on inconvenient islands that CelestinAustin opposes"
+7,1,"Both discuss housing solutions, specifically affordable/accessory dwelling units"
+7,3,Both propose large-scale housing development in NYC boroughs
+7,6,Both address housing location strategies and critique of building in inconvenient/remote locations
+7,4,Both discuss housing development on islands with infrastructure considerations
+8,9,Identical concept - both advocating for dense development
+8,3,Specific implementation of dense housing with concrete proposal for 150k homes in Bronx
+8,1,Complementary housing density strategy through ADUs as proven method to increase housing supply
+8,5,"Tokyo-style zoning enables high-density development, directly supporting dense building goals"
+9,8,Exact same concept - both advocate for dense development
+9,3,Specific proposal for dense housing development (150k homes in Bronx)
+9,1,ADUs are a tool for creating denser housing within existing neighborhoods
+9,24,Walkable urban neighborhoods are typically achieved through dense development patterns
+10,11,Complementary street design approach - narrow streets paired with wide sidewalks creates pedestrian-focused streetscape
+10,13,Both focus on optimizing street cross-section design for pedestrians rather than cars
+10,16,Related street design reform - narrowing streets can provide space for wider sidewalks with minimum width standards
+10,25,Similar pedestrian-focused street design philosophy - both prioritize people over vehicle space
+10,24,Narrow streets are a key component of walkable urban neighborhood design
+11,13,Both specifically advocate for bigger and better sidewalks
+11,16,Proposes concrete policy for sidewalk width standards and funding for widening
+11,23,"Also focuses on wider sidewalks, specifically near transit infrastructure"
+11,10,Narrow streets complement wide sidewalks in human-focused street design
+11,25,Pedestrianization with trees/gardens is complementary human-focused street redesign
+12,17,Both focus on school safety - officers complement car-free school zones
+12,18,Same school safety focus - enforcement needed for car-free school streets
+12,21,Direct match - both propose more police enforcement for safety
+12,13,"Bigger sidewalks improve pedestrian safety, complementing officer presence"
+12,16,Minimum sidewalk widths address pedestrian safety infrastructure
+13,16,Directly addresses sidewalk width standards and funding for widening substandard sidewalks
+13,11,Advocates for wide sidewalks as part of human-focused street redesign
+13,23,Proposes wider sidewalks specifically near subway stations
+13,14,Complementary approach to reclaim car space for pedestrian infrastructure and green space
+13,22,Supports connecting sidewalks as part of urbanization efforts
+14,11,Both focus on street redesign prioritizing human needs over car space
+14,13,Both advocate for taking car space and repurposing it for pedestrian infrastructure
+14,16,Both propose systematic improvements to pedestrian infrastructure through space reallocation
+14,25,Both suggest replacing car-dominated spaces with green/pedestrian-friendly infrastructure
+15,20,Both focus on bus transit improvements - bus routes and bus lanes are complementary transit solutions
+15,26,Both address bus system enhancement - more routes work together with expanded bus lane infrastructure
+15,14,Both propose replacing car-focused infrastructure with alternative uses - buses reduce car dependency while green space replaces car space
+16,11,Both focus on making sidewalks wider for human-focused street design
+16,13,Both propose making sidewalks bigger and better infrastructure
+16,23,"Both address widening sidewalks, specifically near transit infrastructure"
+16,22,Both emphasize connecting sidewalk infrastructure for urbanization
+16,25,Pedestrianization complements wider sidewalk infrastructure for walkability
+17,18,Identical proposal for school streets implementation
+17,12,Both address safety concerns around schools and public spaces
+17,16,Complementary pedestrian infrastructure - wider sidewalks support car-free school streets
+17,13,Enhanced sidewalk infrastructure that would benefit car-free school street implementation
+17,11,Human-focused street redesign aligns with car-free school street concept
+18,17,"Identical proposal for school streets implementation, just with additional detail about safety and enjoyment benefits"
+18,13,Complementary sidewalk improvement proposal that would enhance the pedestrian-friendly environment around schools
+18,16,Related sidewalk infrastructure improvement that supports walkable school zones with proper pedestrian space
+18,11,Shares focus on human-centered street design with wider sidewalks that would complement car-free school areas
+19,20,Both focus on improving street space allocation - bus lanes complement delivery reform by organizing vehicle priorities
+19,26,Bus lane implementation would require coordinated parking/delivery reform to be effective
+19,17,School streets implementation requires managing parking and delivery access during restricted hours
+19,18,Car-free school blocks need delivery reform policies to maintain access for essential services
+20,15,Both focus on improving bus transit - more routes complements dedicated bus lanes
+20,26,Both propose bus lane infrastructure - 100 miles of bus lanes would include N-S corridors
+20,19,Parking/delivery reform would support bus lane effectiveness by reducing conflicts
+20,14,Both involve reallocating street space - bus lanes and green infrastructure both replace car space
+21,12,Both propose increasing police presence as a safety solution
+21,17,"Both focus on safety measures, though different approaches - enforcement vs infrastructure"
+21,18,Both address safety concerns around schools and pedestrian areas
+22,11,Both focus on sidewalk improvements for pedestrian experience
+22,13,Both advocate for better sidewalk infrastructure and pedestrian connectivity
+22,16,Both address sidewalk standards and infrastructure improvements
+22,23,Both propose sidewalk enhancements to improve pedestrian connections
+22,24,Both support walkable urban development with pedestrian infrastructure
+23,11,Both propose wider sidewalks for human-focused street design
+23,13,Both advocate for bigger and better sidewalks with specific improvements
+23,16,Both focus on sidewalk width standards and widening substandard sidewalks
+23,10,Narrow streets complement wider sidewalks in pedestrian-focused street design
+23,24,Both support walkable urban infrastructure improvements
+24,10,Both promote walkable urban design - narrow streets complement walkable neighborhoods
+24,11,Wide sidewalks directly support walkable neighborhoods by improving pedestrian infrastructure
+24,13,Better sidewalks are essential infrastructure for creating walkable urban environments
+24,22,Connecting sidewalks and urbanization directly enable walkable neighborhood connectivity
+24,25,Pedestrianizing streets with green space creates walkable areas that enhance social interaction
+25,11,Both focus on human-centered street redesign with wider pedestrian spaces
+25,13,Complementary approach of making sidewalks bigger and better for pedestrians
+25,16,Related sidewalk improvement initiative with specific width standards
+25,23,Similar concept of repurposing street space for wider pedestrian areas
+25,17,Complementary car-free street initiative that could work alongside pedestrianized areas
+26,15,Both focus on improving bus transit - more routes complements more bus lanes
+26,20,Both about bus infrastructure - N-S bus lanes and 100 miles of bus lanes are complementary transit improvements
+26,14,"Bus lanes can incorporate green infrastructure and reduce car space, supporting flood resilience goals"
