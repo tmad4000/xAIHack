@@ -1,0 +1,11 @@
+# User Prompts Log
+# Each entry is timestamped with the literal prompt given
+
+---
+## 2025-12-06
+
+So I want to create a graph of all the suggestions and issues for different localities. And what I'd like you to do is write a script that will go through each item and use AI to find the most related items. These are lists of tweets. So I want a script that I can run, and it will, if it's a small list, just use the context window for now. In the future, we can make a plan to do initial top matches with embeddings and write this plan file. I have a sample file with a relatively small number right now. What do you think a reasonable number for the context window cutoff is? Just choose that.
+
+[Follow-up] I want it to probably make an additional output file that's another CSV or another appropriate data format that includes those connections.
+
+---

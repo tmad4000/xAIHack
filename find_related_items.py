@@ -1,0 +1,252 @@
+#!/usr/bin/env python3
+"""
+Find related items in a CSV of suggestions/issues using AI.
+
+For small datasets (≤100 items): Uses full context window approach
+For large datasets (>100 items): See PLAN_EMBEDDINGS.md for future approach
+
+Usage:
+    python find_related_items.py data/geodatanyc.csv
+
+Output:
+    - data/connections.csv: CSV with source_id, target_id, relationship_reason
+    - data/connections.json: Full graph data with items and edges
+"""
+
+import csv
+import json
+import os
+import sys
+from pathlib import Path
+
+# Try to import AI libraries
+try:
+    import anthropic
+    HAS_ANTHROPIC = True
+except ImportError:
+    HAS_ANTHROPIC = False
+
+try:
+    import openai
+    HAS_OPENAI = True
+except ImportError:
+    HAS_OPENAI = False
+
+CONTEXT_WINDOW_THRESHOLD = 100  # Switch to embeddings above this
+
+
+def load_csv(filepath: str) -> list[dict]:
+    """Load CSV file and return list of dicts with id added."""
+    items = []
+    with open(filepath, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for i, row in enumerate(reader):
+            row['id'] = i + 1  # 1-indexed
+            items.append(row)
+    return items
+
+
+def format_items_for_prompt(items: list[dict]) -> str:
+    """Format items as numbered list for AI prompt."""
+    lines = []
+    for item in items:
+        lines.append(f"[{item['id']}] @{item['Username']}: {item['Summary/Quote']}")
+    return "\n".join(lines)
+
+
+def find_relations_anthropic(items: list[dict], target_item: dict) -> list[dict]:
+    """Use Anthropic Claude to find related items."""
+    client = anthropic.Anthropic()
+
+    items_text = format_items_for_prompt(items)
+
+    prompt = f"""You are analyzing urban planning suggestions/issues from Twitter.
+
+Here are all the items:
+{items_text}
+
+For item [{target_item['id']}] "@{target_item['Username']}: {target_item['Summary/Quote']}"
+
+Find the TOP 3-5 most related items from the list. Items are related if they:
+- Address the same topic (housing, transit, sidewalks, safety, etc.)
+- Propose complementary or conflicting solutions
+- Could be combined into a larger initiative
+- Share geographic focus
+
+Respond in JSON format only:
+{{
+  "related": [
+    {{"id": <number>, "reason": "<brief reason for relation>"}},
+    ...
+  ]
+}}
+
+Only include items that have meaningful connections. If fewer than 3 items are related, that's fine."""
+
+    response = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=1024,
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    # Parse JSON from response
+    text = response.content[0].text
+    # Handle potential markdown code blocks
+    if "```json" in text:
+        text = text.split("```json")[1].split("```")[0]
+    elif "```" in text:
+        text = text.split("```")[1].split("```")[0]
+
+    result = json.loads(text.strip())
+    return result.get("related", [])
+
+
+def find_relations_openai(items: list[dict], target_item: dict) -> list[dict]:
+    """Use OpenAI to find related items."""
+    client = openai.OpenAI()
+
+    items_text = format_items_for_prompt(items)
+
+    prompt = f"""You are analyzing urban planning suggestions/issues from Twitter.
+
+Here are all the items:
+{items_text}
+
+For item [{target_item['id']}] "@{target_item['Username']}: {target_item['Summary/Quote']}"
+
+Find the TOP 3-5 most related items from the list. Items are related if they:
+- Address the same topic (housing, transit, sidewalks, safety, etc.)
+- Propose complementary or conflicting solutions
+- Could be combined into a larger initiative
+- Share geographic focus
+
+Respond in JSON format only:
+{{
+  "related": [
+    {{"id": <number>, "reason": "<brief reason for relation>"}},
+    ...
+  ]
+}}
+
+Only include items that have meaningful connections. If fewer than 3 items are related, that's fine."""
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        response_format={"type": "json_object"}
+    )
+
+    result = json.loads(response.choices[0].message.content)
+    return result.get("related", [])
+
+
+def find_all_relations(items: list[dict], provider: str = "anthropic") -> list[dict]:
+    """Find relations for all items."""
+    if len(items) > CONTEXT_WINDOW_THRESHOLD:
+        print(f"WARNING: {len(items)} items exceeds threshold of {CONTEXT_WINDOW_THRESHOLD}.")
+        print("Consider implementing embeddings approach (see PLAN_EMBEDDINGS.md)")
+
+    find_fn = find_relations_anthropic if provider == "anthropic" else find_relations_openai
+
+    all_connections = []
+
+    for i, item in enumerate(items):
+        print(f"Processing item {item['id']}/{len(items)}: @{item['Username']}...")
+
+        try:
+            relations = find_fn(items, item)
+            for rel in relations:
+                all_connections.append({
+                    "source_id": item['id'],
+                    "target_id": rel['id'],
+                    "reason": rel['reason']
+                })
+        except Exception as e:
+            print(f"  Error: {e}")
+            continue
+
+    return all_connections
+
+
+def save_connections_csv(connections: list[dict], filepath: str):
+    """Save connections to CSV file."""
+    with open(filepath, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=['source_id', 'target_id', 'reason'])
+        writer.writeheader()
+        writer.writerows(connections)
+    print(f"Saved {len(connections)} connections to {filepath}")
+
+
+def save_full_graph(items: list[dict], connections: list[dict], filepath: str):
+    """Save full graph data as JSON."""
+    graph = {
+        "nodes": [
+            {
+                "id": item['id'],
+                "username": item['Username'],
+                "summary": item['Summary/Quote'],
+                "date": item['Date'],
+                "link": item['Link']
+            }
+            for item in items
+        ],
+        "edges": connections
+    }
+
+    with open(filepath, 'w', encoding='utf-8') as f:
+        json.dump(graph, f, indent=2)
+    print(f"Saved full graph to {filepath}")
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: python find_related_items.py <input.csv> [--provider anthropic|openai]")
+        sys.exit(1)
+
+    input_file = sys.argv[1]
+
+    # Parse provider argument
+    provider = "anthropic"
+    if "--provider" in sys.argv:
+        idx = sys.argv.index("--provider")
+        if idx + 1 < len(sys.argv):
+            provider = sys.argv[idx + 1]
+
+    # Check API availability
+    if provider == "anthropic" and not HAS_ANTHROPIC:
+        print("Error: anthropic library not installed. Run: pip install anthropic")
+        sys.exit(1)
+    if provider == "openai" and not HAS_OPENAI:
+        print("Error: openai library not installed. Run: pip install openai")
+        sys.exit(1)
+
+    # Check API key
+    if provider == "anthropic" and not os.environ.get("ANTHROPIC_API_KEY"):
+        print("Error: ANTHROPIC_API_KEY environment variable not set")
+        sys.exit(1)
+    if provider == "openai" and not os.environ.get("OPENAI_API_KEY"):
+        print("Error: OPENAI_API_KEY environment variable not set")
+        sys.exit(1)
+
+    print(f"Loading {input_file}...")
+    items = load_csv(input_file)
+    print(f"Loaded {len(items)} items")
+
+    print(f"\nFinding relations using {provider}...")
+    connections = find_all_relations(items, provider)
+
+    # Determine output paths
+    input_path = Path(input_file)
+    output_dir = input_path.parent
+
+    csv_output = output_dir / "connections.csv"
+    json_output = output_dir / "connections.json"
+
+    save_connections_csv(connections, str(csv_output))
+    save_full_graph(items, connections, str(json_output))
+
+    print(f"\nDone! Found {len(connections)} connections.")
+
+
+if __name__ == "__main__":
+    main()
