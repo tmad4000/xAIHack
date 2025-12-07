@@ -1726,6 +1726,33 @@
             });
         }
 
+        // Show cluster in sidebar - switch tab, scroll to card, highlight it
+        function showClusterInSidebar(clusterId) {
+            // Switch to Clusters tab
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-tab="clusters"]').classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('clusters-tab').classList.add('active');
+
+            // Find and highlight the cluster card
+            const card = document.querySelector(`.cluster-card[data-cluster="${clusterId}"]`);
+            if (card) {
+                // Remove selected from other cards
+                document.querySelectorAll('.cluster-card').forEach(c => c.classList.remove('selected'));
+
+                // Select and expand this card
+                card.classList.add('selected', 'expanded');
+
+                // Scroll into view
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Remove highlight after a delay
+                setTimeout(() => {
+                    card.classList.remove('selected');
+                }, 3000);
+            }
+        }
+
         function highlightCluster(clusterId, shouldPan = true) {
             const cluster = clusters.find(c => c.id === clusterId);
             if (!cluster) return;
@@ -1869,9 +1896,10 @@
                     <span class="count">${cluster.nodes.length}</span>
                 `;
 
-                // Click to zoom to cluster
+                // Click to zoom to cluster and show in sidebar
                 label.addEventListener('click', () => {
                     highlightCluster(cluster.id);
+                    showClusterInSidebar(cluster.id);
                 });
 
                 // Hover to highlight cluster nodes
