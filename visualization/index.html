@@ -395,7 +395,7 @@
             padding: 12px 14px;
             border-radius: 8px;
             margin-bottom: 16px;
-            border-left: 3px solid #e07a5f;
+            border-left: 2px solid #e07a5f;
             cursor: pointer;
             transition: all 0.2s;
             text-align: left;
@@ -403,7 +403,7 @@
 
         .connection-item:hover {
             background: #21262d;
-            border-left-width: 4px;
+            border-left-width: 3px;
             transform: translateX(2px);
         }
 
@@ -641,6 +641,11 @@
         .tooltip .username {
             color: #e07a5f;
             font-weight: 600;
+            text-decoration: none;
+        }
+
+        .tooltip .username:hover {
+            text-decoration: underline;
         }
 
         .tooltip .tweet-link {
@@ -1875,10 +1880,11 @@
 
             const tooltip = d3.select('#tooltip');
             const hasLink = d.link && d.link.startsWith('http');
+            const handle = d.username.replace('@', '');
             tooltip
                 .html(`
                     <div style="margin-bottom: 8px; line-height: 1.4;">${d.summary || 'No summary'}</div>
-                    <span class="username">${d.username}</span> · ${d.date || ''}
+                    <a href="https://twitter.com/${handle}" target="_blank" class="username" onclick="event.stopPropagation();">${d.username}</a> · ${d.date || ''}
                     ${hasLink ? `<br><a href="${d.link}" target="_blank" class="tweet-link" onclick="event.stopPropagation();">View Tweet →</a>` : ''}
                 `)
                 .style('left', (event.pageX + 15) + 'px')
