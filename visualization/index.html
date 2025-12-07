@@ -308,24 +308,25 @@
         }
 
         .connection-item {
-            background: #21262d;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            border-left: 3px solid #e07a5f;
+            background: #161b22;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            border-left: 2px solid #e07a5f;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .connection-item:hover {
-            background: #30363d;
-            transform: translateX(4px);
+            background: #21262d;
+            border-left-width: 3px;
         }
 
         .connection-item .reason {
-            font-size: 0.8rem;
-            color: #8b949e;
+            font-size: 0.75rem;
+            color: #6e7681;
             font-style: italic;
+            margin-top: 4px;
         }
 
         .link-btn {
@@ -574,6 +575,43 @@
             vertical-align: middle;
         }
 
+        /* Overlay toggle control */
+        .overlay-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(22, 27, 34, 0.95);
+            padding: 6px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            z-index: 100;
+            display: flex;
+            gap: 2px;
+            backdrop-filter: blur(8px);
+        }
+
+        .overlay-btn {
+            padding: 6px 10px;
+            border: none;
+            background: transparent;
+            color: #6e7681;
+            font-size: 0.7rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .overlay-btn:hover {
+            color: #c9d1d9;
+        }
+
+        .overlay-btn.active {
+            background: #30363d;
+            color: #f0f6fc;
+        }
+
         .export-section {
             padding: 12px 16px;
             border-top: 1px solid #21262d;
@@ -806,6 +844,12 @@
 
             <div class="cluster-overlay" id="clusterOverlay"></div>
 
+            <div class="overlay-toggle" id="overlayToggle">
+                <button class="overlay-btn active" data-mode="auto">Auto</button>
+                <button class="overlay-btn" data-mode="always">Always</button>
+                <button class="overlay-btn" data-mode="never">Never</button>
+            </div>
+
             <div class="tooltip" id="tooltip"></div>
         </div>
 
@@ -892,6 +936,15 @@
             '#b8a9c9', '#9ab3d5', '#d4a574', '#a3c4bc', '#c9b1d4'
         ];
 
+        // Node dimension constants
+        const NODE_FONT_SIZE = 11;
+        const NODE_LINE_HEIGHT = 14;
+        const NODE_PADDING_V = 8;
+        const NODE_PADDING_H = 10;
+
+        // Overlay mode: 'auto' | 'always' | 'never'
+        let overlayMode = 'auto';
+
         // Topic keywords for classification
         const topicKeywords = {
             'Housing': ['housing', 'home', 'apartment', 'ADU', 'dwelling', 'zoning', 'residential', 'units', 'building', 'dense', 'homes'],
@@ -941,6 +994,7 @@
                 setupLegend();
                 setupClusterOverlay();
                 hookClusterLabelUpdates();
+                setupOverlayToggle();
 
             } catch (error) {
                 console.error('Error loading data:', error);
@@ -1242,17 +1296,22 @@
                     .on('end', dragended));
 
             // Node labels - show summary text, truncated
+            // Using global constants: NODE_FONT_SIZE, NODE_LINE_HEIGHT, NODE_PADDING_V, NODE_PADDING_H
+            const fontSize = NODE_FONT_SIZE;
+            const lineHeight = NODE_LINE_HEIGHT;
+            const paddingV = NODE_PADDING_V;
+            const paddingH = NODE_PADDING_H;
+
             const nodeText = node.append('text')
                 .attr('class', 'node-label')
-                .attr('x', 8)
-                .attr('y', 12)
+                .attr('x', paddingH)
                 .attr('fill', '#e6edf3')
-                .attr('font-size', '10px')
+                .attr('font-size', `${fontSize}px`)
                 .style('pointer-events', 'none')
                 .each(function(d) {
                     const text = d3.select(this);
                     const summary = d.summary || 'No summary';
-                    const maxChars = 32;
+                    const maxChars = 30;
 
                     // Split into lines
                     const words = summary.split(' ');
@@ -1272,23 +1331,32 @@
                     // Limit to 3 lines, add ellipsis if needed
                     if (lines.length > 3) {
                         lines = lines.slice(0, 3);
-                        lines[2] = lines[2].substring(0, 28) + '...';
+                        lines[2] = lines[2].substring(0, 26) + '...';
                     }
 
                     d.lineCount = lines.length;
-                    d.maxLineWidth = Math.max(...lines.map(l => l.length)) * 6;
+                    d.maxLineWidth = Math.max(...lines.map(l => l.length)) * 6.5;
+
+                    // Calculate centered y position
+                    // Box height: paddingV + (lineCount * lineHeight) + paddingV - (lineHeight - fontSize)
+                    // First baseline should be at: paddingV + fontSize (roughly)
+                    const boxHeight = paddingV * 2 + d.lineCount * lineHeight - (lineHeight - fontSize);
+                    const firstLineY = paddingV + fontSize - 2; // -2 for visual baseline adjustment
+
+                    text.attr('y', firstLineY);
 
                     lines.forEach((line, i) => {
                         text.append('tspan')
-                            .attr('x', 8)
-                            .attr('dy', i === 0 ? 0 : 13)
+                            .attr('x', paddingH)
+                            .attr('dy', i === 0 ? 0 : lineHeight)
                             .text(line);
                     });
                 });
 
             // Add rounded rectangle background behind text
-            // Height calculation: 6px top + lineCount*13px content + 6px bottom
-            const getNodeHeight = (d) => (d.lineCount || 2) * 13 + 10;
+            const getNodeHeight = (d) => paddingV * 2 + (d.lineCount || 2) * lineHeight - (lineHeight - fontSize);
+
+            const getNodeWidth = (d) => Math.max(d.maxLineWidth + paddingH * 2, 120);
 
             node.insert('rect', 'text')
                 .attr('class', 'node-bg')
@@ -1296,10 +1364,10 @@
                 .attr('ry', 6)
                 .attr('fill', '#21262d')
                 .attr('stroke', d => d.clusterColor || '#81b29a')
-                .attr('stroke-width', 2)
+                .attr('stroke-width', 1)
                 .attr('fill-opacity', 1)
                 .attr('stroke-opacity', 1)
-                .attr('width', d => Math.max(d.maxLineWidth + 16, 100))
+                .attr('width', d => getNodeWidth(d))
                 .attr('height', d => getNodeHeight(d))
                 .attr('x', 0)
                 .attr('y', 0)
@@ -1311,9 +1379,9 @@
             // Update positions on tick - edges connect to center of nodes
             simulation.on('tick', () => {
                 link
-                    .attr('x1', d => d.source.x + (d.source.maxLineWidth + 16) / 2)
+                    .attr('x1', d => d.source.x + getNodeWidth(d.source) / 2)
                     .attr('y1', d => d.source.y + getNodeHeight(d.source) / 2)
-                    .attr('x2', d => d.target.x + (d.target.maxLineWidth + 16) / 2)
+                    .attr('x2', d => d.target.x + getNodeWidth(d.target) / 2)
                     .attr('y2', d => d.target.y + getNodeHeight(d.target) / 2);
 
                 node.attr('transform', d => `translate(${d.x},${d.y})`);
@@ -1341,6 +1409,15 @@
             }
         }
 
+        // Node dimension helpers
+        function calcNodeWidth(n) {
+            return Math.max((n.maxLineWidth || 100) + NODE_PADDING_H * 2, 120);
+        }
+
+        function calcNodeHeight(n) {
+            return NODE_PADDING_V * 2 + (n.lineCount || 2) * NODE_LINE_HEIGHT - (NODE_LINE_HEIGHT - NODE_FONT_SIZE);
+        }
+
         // Pan and zoom to show specific nodes
         function panToNodes(nodeIds, padding = 100) {
             if (!window.svgZoom || !nodeIds || nodeIds.length === 0) return;
@@ -1351,8 +1428,8 @@
             // Calculate bounding box of target nodes
             let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
             targetNodes.forEach(n => {
-                const nodeWidth = (n.maxLineWidth || 100) + 16;
-                const nodeHeight = ((n.lineCount || 2) * 14 + 12);
+                const nodeWidth = calcNodeWidth(n);
+                const nodeHeight = calcNodeHeight(n);
                 minX = Math.min(minX, n.x);
                 maxX = Math.max(maxX, n.x + nodeWidth);
                 minY = Math.min(minY, n.y);
@@ -1410,7 +1487,7 @@
             });
 
             d3.selectAll('.node-bg')
-                .attr('stroke-width', n => n.id === d.id || connected.has(n.id) ? 3 : 1)
+                .attr('stroke-width', n => n.id === d.id || connected.has(n.id) ? 2 : 1)
                 .attr('opacity', n => n.id === d.id || connected.has(n.id) ? 1 : 0.4);
             d3.selectAll('.node-label')
                 .attr('opacity', n => n.id === d.id || connected.has(n.id) ? 1 : 0.3);
@@ -1430,7 +1507,7 @@
         function handleMouseOut() {
             d3.select('#tooltip').classed('visible', false);
             d3.selectAll('.node-bg')
-                .attr('stroke-width', 2)
+                .attr('stroke-width', 1)
                 .attr('opacity', 1);
             d3.selectAll('.node-label').attr('opacity', 1);
             d3.selectAll('.links line')
@@ -1496,11 +1573,11 @@
                         showNodeDetail(targetNode);
                         // Highlight the node briefly
                         d3.selectAll('.node-bg')
-                            .attr('stroke-width', n => n.id === nodeId ? 4 : 2)
+                            .attr('stroke-width', n => n.id === nodeId ? 2 : 1)
                             .attr('opacity', n => n.id === nodeId ? 1 : 0.5);
                         setTimeout(() => {
                             d3.selectAll('.node-bg')
-                                .attr('stroke-width', 2)
+                                .attr('stroke-width', 1)
                                 .attr('opacity', 1);
                         }, 2000);
                     }
@@ -1579,7 +1656,7 @@
             }
 
             d3.selectAll('.node-bg')
-                .attr('stroke-width', n => clusterNodeIds.has(n.id) ? 3 : 1)
+                .attr('stroke-width', n => clusterNodeIds.has(n.id) ? 2 : 1)
                 .attr('opacity', n => clusterNodeIds.has(n.id) ? 1 : 0.4);
             d3.selectAll('.node-label')
                 .attr('opacity', n => clusterNodeIds.has(n.id) ? 1 : 0.2);
@@ -1598,7 +1675,7 @@
             // Reset highlighting after delay (but keep pan position)
             setTimeout(() => {
                 d3.selectAll('.node-bg')
-                    .attr('stroke-width', 2)
+                    .attr('stroke-width', 1)
                     .attr('opacity', 1);
                 d3.selectAll('.node-label').attr('opacity', 1);
                 d3.selectAll('.links line')
@@ -1738,9 +1815,18 @@
             const transform = d3.zoomTransform(window.svgElement.node());
             currentZoomScale = transform.k;
 
-            // Show labels when zoomed out, hide when zoomed in
+            // Determine visibility based on mode
             const overlay = document.getElementById('clusterOverlay');
-            overlay.style.opacity = currentZoomScale < 0.8 ? 1 : 0;
+            let showOverlay = false;
+            if (overlayMode === 'always') {
+                showOverlay = true;
+            } else if (overlayMode === 'never') {
+                showOverlay = false;
+            } else { // auto
+                showOverlay = currentZoomScale < 0.7;
+            }
+            overlay.style.opacity = showOverlay ? 1 : 0;
+            overlay.style.pointerEvents = showOverlay ? 'auto' : 'none';
 
             clusterLabels.forEach(({ element, cluster }) => {
                 const centroid = getClusterCentroid(cluster);
@@ -1763,6 +1849,18 @@
             }
         }
 
+        // Setup overlay toggle buttons
+        function setupOverlayToggle() {
+            document.querySelectorAll('.overlay-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.overlay-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    overlayMode = btn.dataset.mode;
+                    updateClusterLabelPositions();
+                });
+            });
+        }
+
         function highlightTopic(topic) {
             // Collect node IDs for this topic
             const topicNodeIds = graphData.nodes
@@ -1775,14 +1873,14 @@
             }
 
             d3.selectAll('.node-bg')
-                .attr('stroke-width', n => n.primaryTopic === topic ? 3 : 1)
+                .attr('stroke-width', n => n.primaryTopic === topic ? 2 : 1)
                 .attr('opacity', n => n.primaryTopic === topic ? 1 : 0.4);
             d3.selectAll('.node-label')
                 .attr('opacity', n => n.primaryTopic === topic ? 1 : 0.2);
 
             setTimeout(() => {
                 d3.selectAll('.node-bg')
-                    .attr('stroke-width', 2)
+                    .attr('stroke-width', 1)
                     .attr('opacity', 1);
                 d3.selectAll('.node-label').attr('opacity', 1);
             }, 2000);
@@ -1805,7 +1903,7 @@
 
             if (!query) {
                 d3.selectAll('.node-bg')
-                    .attr('stroke-width', 2)
+                    .attr('stroke-width', 1)
                     .attr('opacity', 1);
                 d3.selectAll('.node-label').attr('opacity', 1);
                 return;
@@ -1814,7 +1912,7 @@
             d3.selectAll('.node-bg')
                 .attr('stroke-width', n => {
                     const text = `${n.username} ${n.summary}`.toLowerCase();
-                    return text.includes(query) ? 3 : 1;
+                    return text.includes(query) ? 2 : 1;
                 })
                 .attr('opacity', n => {
                     const text = `${n.username} ${n.summary}`.toLowerCase();
